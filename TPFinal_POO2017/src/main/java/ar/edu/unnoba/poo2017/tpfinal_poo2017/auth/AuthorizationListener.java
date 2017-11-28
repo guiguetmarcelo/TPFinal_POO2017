@@ -5,8 +5,8 @@
  */
 package ar.edu.unnoba.poo2017.tpfinal_poo2017.auth;
 
-import ar.edu.unnoba.poo2017.gastos.controller.SessionBacking;
-import ar.edu.unnoba.poo2017.gastos.model.Usuario;
+import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Usuario;
+import ar.edu.unobba.poo2017.tpfinal_poo2017.controller.SessionBacking;
 import javax.faces.application.NavigationHandler;
 import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseEvent;
