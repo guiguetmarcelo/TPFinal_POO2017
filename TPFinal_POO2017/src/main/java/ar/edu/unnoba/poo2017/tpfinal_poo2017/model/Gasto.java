@@ -1,4 +1,4 @@
-package ar.edu.unnoba.poo2017.tpfinal_poo2017;
+package ar.edu.unnoba.poo2017.tpfinal_poo2017.model;
 
 import java.io.Serializable;
 import java.util.Date;
