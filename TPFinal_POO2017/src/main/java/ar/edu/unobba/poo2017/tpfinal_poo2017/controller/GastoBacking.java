@@ -5,10 +5,15 @@
  */
 package ar.edu.unobba.poo2017.tpfinal_poo2017.controller;
 
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
+
 /**
  *
  * @author Sebastian
  */
+@Named
+@ViewScoped
 public class GastoBacking {
     
 }

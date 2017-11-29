@@ -5,10 +5,16 @@
  */
 package ar.edu.unnoba.poo2017.tpfinal_poo2017.dao;
 
+import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Presupuesto;
+
 /**
  *
  * @author Sebastian
  */
-public class PresupuestoDao {
-    
+public class PresupuestoDao extends AbstractDao<Presupuesto> {
+        
+    public PresupuestoDao() {
+        super(Presupuesto.class);
+    }
+        
 }

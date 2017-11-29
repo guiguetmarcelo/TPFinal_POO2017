@@ -5,19 +5,16 @@
  */
 package ar.edu.unnoba.poo2017.tpfinal_poo2017.dao;
 
-import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Subcategoria;
-
+import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Gasto;
 
 /**
  *
  * @author Sebastian
  */
-public class SubcategoriaDao extends AbstractDao<Subcategoria>{
+public class GastoDao extends AbstractDao<Gasto>{
     
-    public SubcategoriaDao() {
-        super(Subcategoria.class);
+    public GastoDao() {
+        super(Gasto.class);
     }
-    
-   
     
 }

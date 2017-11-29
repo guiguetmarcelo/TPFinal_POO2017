@@ -5,10 +5,16 @@
  */
 package ar.edu.unnoba.poo2017.tpfinal_poo2017.dao;
 
+import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Periodo;
+
 /**
  *
  * @author Sebastian
  */
-public class PeriodoDao {
+public class PeriodoDao extends AbstractDao<Periodo> {
+    
+    public PeriodoDao() {
+        super(Periodo.class);
+    }
     
 }
