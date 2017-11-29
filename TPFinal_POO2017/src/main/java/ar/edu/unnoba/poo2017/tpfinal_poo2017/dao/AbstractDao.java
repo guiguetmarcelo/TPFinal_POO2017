@@ -15,13 +15,13 @@ import javax.persistence.PersistenceContext;
  * @author poo
  * @param <T>
  */
-public abstract class AbstractDAO<T> {
+public abstract class AbstractDao<T> {
     final Class<T> typeParameterClass;
 
     @PersistenceContext(unitName = "PU")
     protected  EntityManager em;
     
-    public AbstractDAO(Class<T> type){
+    public AbstractDao(Class<T> type){
         this.typeParameterClass = type;
     }
     
