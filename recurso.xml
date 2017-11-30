@@ -1,0 +1,10 @@
+<jdbc-resource pool-name="gastos" jndi-name="jdbc/poo2017"></jdbc-resource>
+    <jdbc-connection-pool driver-classname="com.mysql.jdbc.Driver" datasource-classname="com.mysql.jdbc.jdbc2.optional.MysqlDataSource" name="gastos" wrap-jdbc-objects="false" connection-validation-method="auto-commit" res-type="javax.sql.DataSource">
+      <property name="URL" value="jdbc:mysql://localhost:3306/gastos?zeroDateTimeBehavior=convertToNull"></property>
+      <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+      <property name="Password" value="1234"></property>
+      <property name="portNumber" value="3306"></property>
+      <property name="databaseName" value="gastos"></property>
+      <property name="User" value="root"></property>
+      <property name="serverName" value="localhost"></property>
+    </jdbc-connection-pool>
