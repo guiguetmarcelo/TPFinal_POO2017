@@ -40,7 +40,7 @@ public class Usuario extends AbstractEntity implements Serializable{
     
     @Basic(optional = false)
     @Column(nullable = false)
-    private Boolean activo;
+    private Boolean activo = true;
 
     public Usuario() {
 

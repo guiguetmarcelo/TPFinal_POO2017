@@ -24,8 +24,6 @@
                 <p:inputText value="#{usuarioBacking.usuario.username}"/>
                 <p:outputLabel value="Contraseña"></p:outputLabel>
                 <p:password value="#{usuarioBacking.usuario.password}"/>
-                <p:outputLabel value="Activo (REVISAR)"></p:outputLabel>
-                <p:inputText value="#{usuarioBacking.usuario.activo}"/>
                 <p:commandButton value="Guardar" 
                                  action="#{usuarioBacking.create()}" 
                                  update="messages"/>
