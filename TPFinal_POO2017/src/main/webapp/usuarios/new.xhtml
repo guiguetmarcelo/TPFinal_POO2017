@@ -14,10 +14,18 @@
         <h:form>
             <p:growl id="messages"></p:growl>
             <p:panelGrid columns="2" styleClass="">
-                <p:outputLabel value="Usuario"></p:outputLabel>
+                <p:outputLabel value="Nombre"></p:outputLabel>
+                <p:inputText value="#{usuarioBacking.usuario.nombre}"/>
+                <p:outputLabel value="Apellido"></p:outputLabel>
+                <p:inputText value="#{usuarioBacking.usuario.apellido}"/>
+                <p:outputLabel value="Email"></p:outputLabel>
+                <p:inputText value="#{usuarioBacking.usuario.email}"/>
+                <p:outputLabel value="Nombre de usuario"></p:outputLabel>
                 <p:inputText value="#{usuarioBacking.usuario.username}"/>
                 <p:outputLabel value="Contraseña"></p:outputLabel>
                 <p:password value="#{usuarioBacking.usuario.password}"/>
+                <p:outputLabel value="Activo (REVISAR)"></p:outputLabel>
+                <p:inputText value="#{usuarioBacking.usuario.activo}"/>
                 <p:commandButton value="Guardar" 
                                  action="#{usuarioBacking.create()}" 
                                  update="messages"/>
