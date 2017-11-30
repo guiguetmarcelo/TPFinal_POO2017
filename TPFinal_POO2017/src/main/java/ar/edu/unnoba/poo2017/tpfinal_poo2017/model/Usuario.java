@@ -4,10 +4,18 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "usuarios")
+@NamedQueries({
+   @NamedQuery(name = "usuario.disponibles",
+           query = "Select u From Usuario u"),
+    @NamedQuery(name = "usuario.por_username_y_password",
+           query = "Select u From Usuario u "
+                   + "where u.username = :username and u.password = :password")})
 public class Usuario extends AbstractEntity implements Serializable{
     
     @Basic(optional = false)

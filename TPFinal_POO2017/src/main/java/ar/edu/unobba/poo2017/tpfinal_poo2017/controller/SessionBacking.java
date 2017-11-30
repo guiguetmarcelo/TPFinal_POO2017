@@ -25,7 +25,7 @@ import javax.inject.Named;
 @SessionScoped
 @Named
 public class SessionBacking implements Serializable{
-    private String userName;
+    private String username;
     private String password;
     private Usuario usuario;
     
@@ -40,7 +40,7 @@ public class SessionBacking implements Serializable{
     }
     
     public String login(){
-       this.usuario = usuarioDao.getUsuario(this.userName,this.password); 
+       this.usuario = usuarioDao.getUsuario(this.username,this.password); 
        if(usuario == null){
            FacesContext context = FacesContext.getCurrentInstance();
            FacesMessage message = new FacesMessage("Usuario y contraseña incorrecta");
@@ -56,11 +56,11 @@ public class SessionBacking implements Serializable{
     }
 
     public String getUserName() {
-        return userName;
+        return username;
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        this.username = userName;
     }
 
     public String getPassword() {

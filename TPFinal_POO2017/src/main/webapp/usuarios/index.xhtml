@@ -15,14 +15,14 @@
 
         <h:body>
             <h:form>
-                <h:outputText value="#{sessionBacking.usuario.userName}"/>
+                <h:outputText value="#{sessionBacking.usuario.username}"/>
                 <p:commandLink action="#{sessionBacking.logout()}" value="Salir"></p:commandLink>
             
                 <p:dataTable id="usuarios"
                     value="#{usuarioBacking.usuarios}" 
                     var="usuario">
                     <p:column headerText="User Name">
-                        <h:outputText value="#{usuario.userName}"/>
+                        <h:outputText value="#{usuario.username}"/>
                     </p:column>
                     <p:column headerText="Password">
                         <h:outputText value="#{usuario.password}"/>
@@ -37,7 +37,7 @@
                                        value="Eliminar"
                                        update="usuarios">
                             <p:confirm header="Confirmation" 
-                                       message="¿Se eliminará el usuario #{usuario.userName}?" 
+                                       message="¿Se eliminará el usuario #{usuario.username}?" 
                                        icon="ui-icon-alert" />
                         </p:commandLink>
                     </p:column>
