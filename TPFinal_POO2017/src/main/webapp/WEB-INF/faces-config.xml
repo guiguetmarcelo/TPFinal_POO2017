@@ -8,15 +8,15 @@
         <phase-listener>ar.edu.unnoba.poo2017.tpfinal_poo2017.auth.AuthorizationListener</phase-listener>
     </lifecycle>
     
-<!--    <application>
+    <application>
         
         <locale-config>
-            <default-locale>en</default-locale>
-            <supported-locale>es</supported-locale>
+            <default-locale>es</default-locale>
+            <supported-locale>en</supported-locale>
         </locale-config>
         <resource-bundle>
-            <base-name>ar.edu.unnoba.poo2017.tpfinal.messages</base-name>
+            <base-name>ar.edu.unnoba.poo2017.tpfinal_poo2017.messages.messages</base-name>
             <var>msg</var>
         </resource-bundle>
-    </application>-->
+    </application>
 </faces-config>
