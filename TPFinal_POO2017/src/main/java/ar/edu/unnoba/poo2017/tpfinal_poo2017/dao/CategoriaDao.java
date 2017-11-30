@@ -11,7 +11,7 @@ import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Categoria;
  *
  * @author Sebastian
  */
-public class CategoriaDao extends AbstractDao<Categoria> {
+public class CategoriaDao extends AbstractDAO<Categoria> {
     
     public CategoriaDao() {
         super(Categoria.class);

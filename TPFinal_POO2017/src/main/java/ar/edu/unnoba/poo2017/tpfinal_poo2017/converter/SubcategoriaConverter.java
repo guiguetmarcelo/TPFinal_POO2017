@@ -3,21 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ar.edu.unnoba.poo2017.tpfinal_poo2017.dao;
+package ar.edu.unnoba.poo2017.tpfinal_poo2017.converter;
 
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Subcategoria;
-
+import javax.faces.convert.FacesConverter;
 
 /**
  *
  * @author Sebastian
  */
-public class SubcategoriaDao extends AbstractDAO<Subcategoria>{
+@FacesConverter(forClass=Subcategoria.class)
+public class SubcategoriaConverter extends AbstractConverter<Subcategoria>{
     
-    public SubcategoriaDao() {
-        super(Subcategoria.class);
+    @Override
+    public String getDAOName() {
+        return "SubategoriaDao";
     }
-    
-   
     
 }

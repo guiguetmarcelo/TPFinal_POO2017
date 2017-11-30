@@ -3,18 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ar.edu.unnoba.poo2017.tpfinal_poo2017.dao;
+package ar.edu.unnoba.poo2017.tpfinal_poo2017.converter;
 
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Periodo;
+import javax.faces.convert.FacesConverter;
 
 /**
  *
  * @author Sebastian
  */
-public class PeriodoDao extends AbstractDAO<Periodo> {
+@FacesConverter(forClass=Periodo.class)
+public class PeriodoConverter extends AbstractConverter<Periodo> {
     
-    public PeriodoDao() {
-        super(Periodo.class);
+    @Override
+    public String getDAOName() {
+        return "PeriodoDao";
     }
+    
     
 }

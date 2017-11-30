@@ -11,7 +11,7 @@ import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Gasto;
  *
  * @author Sebastian
  */
-public class GastoDao extends AbstractDao<Gasto>{
+public class GastoDao extends AbstractDAO<Gasto>{
     
     public GastoDao() {
         super(Gasto.class);

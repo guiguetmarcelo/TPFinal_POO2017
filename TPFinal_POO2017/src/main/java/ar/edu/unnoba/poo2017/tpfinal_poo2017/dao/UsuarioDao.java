@@ -16,7 +16,7 @@ import javax.persistence.Query;
  * @author jpgm
  */
 @Stateless
-public class UsuarioDao extends AbstractDao<Usuario>{
+public class UsuarioDao extends AbstractDAO<Usuario>{
     public UsuarioDao(){
         super(Usuario.class);
     }
