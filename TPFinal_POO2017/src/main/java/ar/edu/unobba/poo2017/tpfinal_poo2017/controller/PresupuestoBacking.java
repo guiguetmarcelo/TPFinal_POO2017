@@ -5,6 +5,7 @@
  */
 package ar.edu.unobba.poo2017.tpfinal_poo2017.controller;
 
+import java.io.Serializable;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -14,6 +15,6 @@ import javax.inject.Named;
  */
 @Named
 @ViewScoped
-public class PresupuestoBacking {
+public class PresupuestoBacking implements Serializable {
     
 }
