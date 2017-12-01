@@ -6,31 +6,36 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Editar Usuario</title>
+        <title>#{msg.usuarios_editarTitle}</title>
         <f:metadata>
             <f:viewParam name="id" value="#{usuarioBacking.usuario}"/>
         </f:metadata>
     </h:head>
     <h:body>
-        Actualizar los datos del usuario
+        #{msg.usuarios_editarTitulo}
         <br />
         <h:form>
             <p:growl id="messages"></p:growl>
             <p:panelGrid columns="2" styleClass="">
-                <p:outputLabel value="Nombre"></p:outputLabel>
+                <p:outputLabel value="#{msg.usuarios_nombre}"></p:outputLabel>
                 <p:inputText value="#{usuarioBacking.usuario.nombre}"/>
-                <p:outputLabel value="Apellido"></p:outputLabel>
+                
+                <p:outputLabel value="#{msg.usuarios_apellido}"></p:outputLabel>
                 <p:inputText value="#{usuarioBacking.usuario.apellido}"/>
-                <p:outputLabel value="Email"></p:outputLabel>
+                
+                <p:outputLabel value="#{msg.usuarios_email}"></p:outputLabel>
                 <p:inputText value="#{usuarioBacking.usuario.email}"/>
+                
                 <p:outputLabel value="#{msg.usuarios_username}"></p:outputLabel>
                 <p:inputText value="#{usuarioBacking.usuario.username}"/>
+                
                 <p:outputLabel value="#{msg.usuarios_password}"></p:outputLabel>
                 <p:password value="#{usuarioBacking.usuario.password}"/>
-                <p:commandButton value="Actualizar" 
+                
+                <p:commandButton value="#{msg.usuarios_botonActualizar}" 
                                  action="#{usuarioBacking.update()}" 
                                  update="messages"/>
-                <p:button value="Cancelar" outcome="/usuarios/index"/>
+                <p:button value="#{msg.usuarios_botonCancelar}" outcome="/usuarios/index"/>
             </p:panelGrid>
         </h:form>
     </h:body>
