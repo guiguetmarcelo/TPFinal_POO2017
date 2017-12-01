@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ar.edu.unobba.poo2017.tpfinal_poo2017.controller;
 
+import ar.edu.unnoba.poo2017.tpfinal_poo2017.bundle.MessagesBundle;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.dao.UsuarioDao;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Usuario;
 import java.io.Serializable;
-import java.util.ResourceBundle;
+import java.util.PropertyResourceBundle;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -24,34 +24,39 @@ import javax.inject.Named;
  */
 @SessionScoped
 @Named
-public class SessionBacking implements Serializable{
+public class SessionBacking implements Serializable {
+
     private String username;
     private String password;
     private Usuario usuario;
-    
+
     @EJB
     private UsuarioDao usuarioDao;
-    
+
     //@Inject("#{msg}")
-    //private ResourceBundle messages;
+    //private ResourceBundle msg;
+    @Inject
+    @MessagesBundle
+    private transient PropertyResourceBundle msg;
     
     @PostConstruct
-    public void init(){
+    public void init() {
     }
-    
-    public String login(){
-       this.usuario = usuarioDao.getUsuario(this.username,this.password); 
-       if(usuario == null){
-           FacesContext context = FacesContext.getCurrentInstance();
-           FacesMessage message = new FacesMessage("Usuario y contraseña incorrecta");
-           context.addMessage(null, message);
-           return null;
-       }
-       return "usuarios/index?faces-redirect=true";
+
+    public String login() {
+        this.usuario = usuarioDao.getUsuario(this.username, this.password);
+        if (usuario == null) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            // FacesMessage message = new FacesMessage("Usuario y contraseña incorrecta");
+            FacesMessage message = new FacesMessage(msg.getString("usuarios_loginUCIncorrectos"));
+            context.addMessage(null, message);
+            return null;
+        }
+        return "usuarios/index?faces-redirect=true";
     }
-    
-    public String logout(){
-       // usuario = new Usuario();
+
+    public String logout() {
+        // usuario = new Usuario();
         setUsuario(null);
         return "/login.xhtml?faces-redirect=true";
     }
@@ -87,6 +92,4 @@ public class SessionBacking implements Serializable{
     public void setMessages(ResourceBundle messages) {
         this.messages = messages;
     }*/
-    
-    
 }
