@@ -21,11 +21,14 @@
                 <p:dataTable id="periodos"
                              value="#{periodoBacking.periodos}" 
                              var="periodo">
-                    <p:column headerText="Nombre">
-                        <h:outputText value="#{periodo.nombre}"/>
+                    <p:column headerText="Fecha Inicio">
+                        <h:outputText value="#{periodo.fechaDesde}"/>
+                    </p:column>
+                    <p:column headerText="Fecha Fin">
+                        <h:outputText value="#{periodo.fechaHasta}"/>
                     </p:column>
                     <p:column headerText="Descripcion">
-                        <h:outputText value="#{periodo.nombre}"/>
+                        <h:outputText value="#{periodo.descripcion}"/>
                     </p:column>
                     <p:column>
                         <h:link outcome="/periodos/edit" value="Editar periodo">
