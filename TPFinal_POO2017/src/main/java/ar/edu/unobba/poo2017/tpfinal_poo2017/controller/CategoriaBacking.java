@@ -24,38 +24,38 @@ import javax.persistence.Query;
 public class CategoriaBacking implements Serializable {
 
     private Categoria categoria;
-    
+
     @PostConstruct
-    public void init(){
+    public void init() {
         this.categoria = new Categoria();
     }
-    
-    @EJB 
+
+    @EJB
     private CategoriaDao categoriaDao;
-    
-    public List<Categoria> getCategorias(){
+
+    public List<Categoria> getCategorias() {
         return categoriaDao.getCategorias();
     }
-    
-    public String create(){
-        try{
+
+    public String create() {
+        try {
             categoriaDao.create(categoria);
             return "/categorias/index?faces-redirect=true";
-        }catch(Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
-    
-    public String update(){
-        try{
+
+    public String update() {
+        try {
             categoriaDao.update(categoria);
             return "/categorias/index?faces-redirect=true";
-        }catch(Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
-    
-    public void delete(Categoria categoria){
+
+    public void delete(Categoria categoria) {
         categoriaDao.delete(categoria);
     }
 
@@ -66,5 +66,5 @@ public class CategoriaBacking implements Serializable {
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
-    
+
 }
