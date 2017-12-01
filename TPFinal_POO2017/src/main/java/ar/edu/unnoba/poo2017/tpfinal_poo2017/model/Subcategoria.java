@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @DiscriminatorValue("subcat")
 @NamedQueries({
    @NamedQuery(name = "subcategoria.disponibles",
-           query = "Select c From Categoria c" + "where c.tipo='subcat'") })
+           query = "Select c From Categoria c" ) })
 public class Subcategoria extends Categoria implements Serializable {
 
     @ManyToOne(optional = false)

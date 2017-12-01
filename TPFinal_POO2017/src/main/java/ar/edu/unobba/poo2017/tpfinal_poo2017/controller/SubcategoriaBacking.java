@@ -66,8 +66,16 @@ public class SubcategoriaBacking implements Serializable{
         return subcategoria;
     }
 
-    public void setCategoria(Subcategoria subcategoria) {
+    public void setSubategoria(Subcategoria subcategoria) {
         this.subcategoria = subcategoria;
     }
     
+    public Categoria getCategoria() {
+        return categoria;
+    }
+    
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    
+}
 }
