@@ -22,6 +22,7 @@ import javax.inject.Named;
 @ViewScoped
 public class UsuarioBacking implements Serializable {
     private Usuario usuario;
+
     
     @PostConstruct
     public void init(){
