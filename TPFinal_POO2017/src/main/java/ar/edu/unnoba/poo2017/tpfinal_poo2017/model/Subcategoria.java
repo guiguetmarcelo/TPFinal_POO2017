@@ -10,11 +10,16 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "categorias")
 @DiscriminatorValue("subcat")
+@NamedQueries({
+   @NamedQuery(name = "subcategoria.disponibles",
+           query = "Select c From Categoria c" + "where c.tipo='subcat'") })
 public class Subcategoria extends Categoria implements Serializable {
 
     @ManyToOne(optional = false)

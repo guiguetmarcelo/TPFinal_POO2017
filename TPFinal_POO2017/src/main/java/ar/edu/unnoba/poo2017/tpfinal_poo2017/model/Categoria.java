@@ -20,7 +20,7 @@ import javax.persistence.Table;
 @DiscriminatorValue("cat")
 @NamedQueries({
    @NamedQuery(name = "categoria.disponibles",
-           query = "Select c From Categoria c") })
+           query = "Select c From Categoria c")})
 public class Categoria extends AbstractEntity implements Serializable {
     
     @Basic(optional = false)

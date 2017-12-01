@@ -6,18 +6,24 @@
 package ar.edu.unnoba.poo2017.tpfinal_poo2017.dao;
 
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Subcategoria;
-
+import java.util.List;
+import javax.ejb.Stateless;
+import javax.persistence.Query;
 
 /**
  *
  * @author Sebastian
  */
-public class SubcategoriaDao extends AbstractDAO<Subcategoria>{
+@Stateless
+public class SubcategoriaDao extends AbstractDAO<Subcategoria> {
     
     public SubcategoriaDao() {
         super(Subcategoria.class);
     }
     
-   
+    public List<Subcategoria> getSubcategorias(){
+        Query query = em.createNamedQuery("subcategoria.disponibles");
+        return query.getResultList();
+    }
     
 }
