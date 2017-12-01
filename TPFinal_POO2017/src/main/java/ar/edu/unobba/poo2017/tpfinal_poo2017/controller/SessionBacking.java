@@ -47,7 +47,7 @@ public class SessionBacking implements Serializable{
            context.addMessage(null, message);
            return null;
        }
-       return "usuarios/index?faces-redirect=true";
+       return "/index?faces-redirect=true";
     }
     
     public String logout(){
