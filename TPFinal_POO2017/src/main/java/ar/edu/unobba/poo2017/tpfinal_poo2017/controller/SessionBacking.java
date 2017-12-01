@@ -51,8 +51,9 @@ public class SessionBacking implements Serializable{
     }
     
     public String logout(){
-        usuario = new Usuario();
-        return "/index?faces-redirect=true";
+       // usuario = new Usuario();
+        setUsuario(null);
+        return "/login.xhtml?faces-redirect=true";
     }
 
     public String getUserName() {
