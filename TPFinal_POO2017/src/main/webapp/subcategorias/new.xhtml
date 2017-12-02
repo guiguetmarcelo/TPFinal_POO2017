@@ -15,11 +15,12 @@
             <p:growl id="messages"></p:growl>
             <p:panelGrid columns="2" styleClass="">
                 <p:outputLabel value="Nombre"></p:outputLabel>
-                <p:inputText value="#{subcategoriaBacking.categoria.nombre}"/>
+                <p:inputText value="#{subcategoriaBacking.subcategoria.nombre}"/>
                 <p:outputLabel value="Descripcion"></p:outputLabel>
-                <p:inputText value="#{subcategoriaBacking.categoria.descripcion}"/>
-                <p:selectOneMenu id="padre" value="#{subcategoriaBacking.subcategoria.categoriaPadre}">
-                    <f:selectItem itemLabel="Elegi categoria padre" itemValue="" />
+                <p:inputText value="#{subcategoriaBacking.subcategoria.descripcion}"/>
+                <p:outputLabel for="categoriapadre" value="Categoria padre " />
+                <p:selectOneMenu id="categoriapadre" value="#{subcategoriaBacking.subcategoria.categoriaPadre}" effect="fold" editable="true">
+                    <f:selectItem itemLabel="Selecciona uno" itemValue="" />
                     <f:selectItems value="#{categoriaBacking.categorias}" />
                 </p:selectOneMenu>
                 <p:commandButton value="Guardar" 

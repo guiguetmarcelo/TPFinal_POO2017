@@ -13,6 +13,7 @@ import javax.faces.convert.FacesConverter;
  *
  * @author jpgm
  */
+
 @FacesConverter(forClass=Categoria.class)
 public class CategoriaConverter extends AbstractConverter<Categoria>{
 
