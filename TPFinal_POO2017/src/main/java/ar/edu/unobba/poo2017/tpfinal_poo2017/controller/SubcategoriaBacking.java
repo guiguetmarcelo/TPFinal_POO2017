@@ -23,12 +23,10 @@ import javax.inject.Named;
 @ViewScoped
 public class SubcategoriaBacking implements Serializable{
     
-    private Categoria categoria;
     private Subcategoria subcategoria;
     
     @PostConstruct
     public void init(){
-        this.categoria= new Categoria();
         this.subcategoria = new Subcategoria();
     }
     
@@ -70,12 +68,5 @@ public class SubcategoriaBacking implements Serializable{
         this.subcategoria = subcategoria;
     }
     
-    public Categoria getCategoria() {
-        return categoria;
-    }
     
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
-    
-}
 }
