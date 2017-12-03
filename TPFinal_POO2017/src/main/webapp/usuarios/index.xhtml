@@ -4,34 +4,31 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
+   
 
-    <f:view contentType="text/html">
-        <h:head>
-            <f:facet name="first">
-                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>Welcome</title>
-            </f:facet>
-        </h:head>
-
-        <h:body>
+    <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
+        <ui:define name="content">
             <h:form>
                 <h:outputText value="#{sessionBacking.usuario.username}"/>
-                <p:commandLink action="#{sessionBacking.logout()}" value="Salir"></p:commandLink>
-            
+                <p:commandLink action="#{sessionBacking.logout()}" value="#{msg.usuarios_loginLogout}"></p:commandLink>
+
                 <p:dataTable id="usuarios"
-                    value="#{usuarioBacking.usuarios}" 
-                    var="usuario">
+                             value="#{usuarioBacking.usuarios}" 
+                             var="usuario">
                     <p:column headerText="User Name">
                         <h:outputText value="#{usuario.username}"/>
                     </p:column>
+
                     <p:column headerText="Password">
                         <h:outputText value="#{usuario.password}"/>
                     </p:column>
+
                     <p:column>
                         <h:link outcome="/usuarios/edit" value="Edit">
                             <f:param name="id" value="#{usuario.id}" />
                         </h:link>
                     </p:column>
+
                     <p:column>
                         <p:commandLink actionListener="#{usuarioBacking.delete(usuario)}" 
                                        value="Eliminar"
@@ -41,17 +38,17 @@
                                        icon="ui-icon-alert" />
                         </p:commandLink>
                     </p:column>
+
                 </p:dataTable>
                 <p:button value="Nuevo" outcome="/usuarios/new"/>
-                
-                
+
+
                 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
                     <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
                     <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                 </p:confirmDialog>
             </h:form>
-        </h:body>
-
-    </f:view>
+        </ui:define>
+    </ui:composition>
 </html>
 
