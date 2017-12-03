@@ -37,5 +37,24 @@ public class Subcategoria extends Categoria implements Serializable {
     public void setCategoriaPadre(Categoria categoriaPadre) {
         this.categoriaPadre = categoriaPadre;
     }
+    
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (getId() != null ? getId().hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof Subcategoria)) {
+            return false;
+        }
+        Subcategoria other = (Subcategoria) object;
+        if ((this.getId() == null && other.getId() != null) || (this.getId() != null && !this.getId().equals(other.getId()))) {
+            return false;
+        }
+        return true;
+    }
 
 }

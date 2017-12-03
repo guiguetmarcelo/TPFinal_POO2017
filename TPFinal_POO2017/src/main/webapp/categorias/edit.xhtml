@@ -6,25 +6,25 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Editar Categoria</title>
+        <title>#{msg.editar_categoria}</title>
         <f:metadata>
             <f:viewParam name="id" value="#{categoriaBacking.categoria}"/>
         </f:metadata>
     </h:head>
     <h:body>
-        Actualizar los datos de la categoria
+        #{msg.actualizar_cat}
         <br />
         <h:form>
             <p:growl id="messages"></p:growl>
             <p:panelGrid columns="2" styleClass="">
-                <p:outputLabel value="Nombre"></p:outputLabel>
+                <p:outputLabel value="#{msg.categoria_nombre}"></p:outputLabel>
                 <p:inputText value="#{categoriaBacking.categoria.nombre}"/>
-                <p:outputLabel value="Descripcion"></p:outputLabel>
+                <p:outputLabel value="#{msg.categoria_descripcion}"></p:outputLabel>
                 <p:inputText value="#{categoriaBacking.categoria.descripcion}"/>
-                <p:commandButton value="Actualizar" 
+                <p:commandButton value="#{msg.actualizar}" 
                                  action="#{categoriaBacking.update()}" 
                                  update="messages"/>
-                <p:button value="Cancelar" outcome="/categorias/index"/>
+                <p:button value="#{msg.cancelar}" outcome="/categorias/index"/>
             </p:panelGrid>
         </h:form>
     </h:body>
