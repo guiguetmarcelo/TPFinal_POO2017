@@ -62,5 +62,24 @@ public class Categoria extends AbstractEntity implements Serializable {
     public void setBorrada(Boolean borrada) {
         this.borrada = borrada;
     }
+    
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (getId() != null ? getId().hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof Categoria)) {
+            return false;
+        }
+        Categoria other = (Categoria) object;
+        if ((this.getId() == null && other.getId() != null) || (this.getId() != null && !this.getId().equals(other.getId()))) {
+            return false;
+        }
+        return true;
+    }
 
 }

@@ -18,10 +18,10 @@
                 <p:inputText value="#{subcategoriaBacking.subcategoria.nombre}"/>
                 <p:outputLabel value="Descripcion"></p:outputLabel>
                 <p:inputText value="#{subcategoriaBacking.subcategoria.descripcion}"/>
-                <p:outputLabel for="categoriapadre" value="Categoria padre " />
-                <p:selectOneMenu id="categoriapadre" value="#{subcategoriaBacking.subcategoria.categoriaPadre}" effect="fold" editable="true">
-                    <f:selectItem itemLabel="Selecciona uno" itemValue="" />
-                    <f:selectItems value="#{categoriaBacking.categorias}" />
+                <p:outputLabel for="cat" value="Categoria Padre: " />
+                <p:selectOneMenu id="cat" value="#{subcategoriaBacking.subcategoria.categoriaPadre}">
+                    <f:selectItem itemLabel="Elige uno: " itemValue="#{cat}" />
+                    <f:selectItems value="#{categoriaBacking.categorias}" var="cat" itemLabel="#{cat.nombre}" itemValue="#{cat}" />
                 </p:selectOneMenu>
                 <p:commandButton value="Guardar" 
                                  action="#{subcategoriaBacking.create()}" 
