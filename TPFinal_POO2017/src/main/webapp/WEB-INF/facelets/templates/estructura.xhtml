@@ -4,7 +4,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:unnoba="http://unnoba.edu.ar/poo2017/functions">
 
     <h:head>
 
@@ -14,7 +15,7 @@
         <!-- <h:outputStylesheet name="webjars/font-awesome/4.7.0/css/font-awesome-jsf.css"></h:outputStylesheet>-->
 
 
-        <title><ui:insert name="title">Sistema Gastos</ui:insert></title>
+        <title><ui:insert name="title">#{msg.home_title}</ui:insert></title>
     </h:head>
 
     <h:body>
@@ -23,29 +24,29 @@
             <ui:insert name="menu">
                 <h:form>
                     <p:menubar>
-                        <p:menuitem value="Principal" outcome="/index"></p:menuitem>
-                        
-                        <p:submenu label="Gastos" icon=""></p:submenu>
+                        <p:menuitem value="#{msg.menu_principal}" outcome="/index.xhtml?faces-redirect=true" icon="fa fa-home"></p:menuitem>
 
-                        <p:submenu label="Presupuestos" icon=""></p:submenu>
+                        <p:submenu label="#{msg.menu_gastos}" icon="fa fa-money"></p:submenu>
 
-                        <p:submenu label="Categorias" icon=""></p:submenu>
+                        <p:submenu label="#{msg.menu_presupuestos}" icon="fa fa-file-text-o"></p:submenu>
 
-                        <p:submenu label="Periodos" icon=""></p:submenu>
+                        <p:submenu label="#{msg.menu_categorias}" icon="fa fa-tags"></p:submenu>
 
-                        <p:submenu label="Usuarios" icon="fa fa-user-circle" >
-                            <p:menuitem value="Nuevo usuario" outcome="/usuarios/new.xhtml?faces-redirect=true"></p:menuitem>
-                            <p:menuitem value="Listar usuarios" outcome="/usuarios/index.xhtml?faces-redirect=true"></p:menuitem>
+                        <p:submenu label="#{msg.menu_periodos}" icon="fa fa-calendar"></p:submenu>
+
+                        <p:submenu label="#{msg.menu_usuarios}" icon="fa fa-user-circle" >
+                            <p:menuitem value="#{msg.menu_usuariosNuevo}" outcome="/usuarios/new.xhtml?faces-redirect=true"></p:menuitem>
+                            <p:menuitem value="#{msg.menu_usuariosListar}" outcome="/usuarios/index.xhtml?faces-redirect=true"></p:menuitem>
                         </p:submenu>
 
                         <f:facet name="options">
-                            <h:outputText value="#{sessionBacking.usuario.username}"/>
-                            
+                            <h:outputFormat value="#{unnoba:textFormat(msg.menu_usuarioLogin, sessionBacking.usuario.username)}"/>
+
                             <p:commandButton action="#{sessionBacking.logout()}"
-                                             value="#{msg.usuarios_loginLogout}" 
+                                             value="#{msg.menu_usuarioLogout}" 
                                              icon="ui-icon-extlink"
-                                             /> 
-                            
+                                             ></p:commandButton> 
+
                         </f:facet>
 
 

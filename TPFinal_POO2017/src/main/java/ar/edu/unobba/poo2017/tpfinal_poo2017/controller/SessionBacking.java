@@ -6,6 +6,7 @@
 package ar.edu.unobba.poo2017.tpfinal_poo2017.controller;
 
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.bundle.MessagesBundle;
+import ar.edu.unnoba.poo2017.tpfinal_poo2017.bundle.MessagesProducer;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.dao.UsuarioDao;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Usuario;
 import java.io.Serializable;
@@ -33,11 +34,13 @@ public class SessionBacking implements Serializable {
     @EJB
     private UsuarioDao usuarioDao;
 
-    //@Inject("#{msg}")
-    //private ResourceBundle msg;
+    
     @Inject
     @MessagesBundle
     private transient PropertyResourceBundle msg;
+    
+   // @Inject
+    //private MessagesProducer h;
     
     @PostConstruct
     public void init() {
@@ -47,8 +50,7 @@ public class SessionBacking implements Serializable {
         this.usuario = usuarioDao.getUsuario(this.username, this.password);
         if (usuario == null) {
             FacesContext context = FacesContext.getCurrentInstance();
-            // FacesMessage message = new FacesMessage("Usuario y contraseña incorrecta");
-            FacesMessage message = new FacesMessage(msg.getString("usuarios_loginUCIncorrectos"));
+            FacesMessage message = new FacesMessage(msg.getString("usuarios_loginUCIncorrectos"));         
             context.addMessage(null, message);
             return null;
         }
