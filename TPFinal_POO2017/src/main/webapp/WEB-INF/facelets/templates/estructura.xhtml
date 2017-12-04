@@ -16,22 +16,41 @@
 
 
         <title><ui:insert name="title">#{msg.home_title}</ui:insert></title>
+        <ui:insert name="head_content"></ui:insert>
     </h:head>
 
     <h:body>
 
         <div id="top">
             <ui:insert name="menu">
-                <h:form>
+                <h:form id="form_menu_principal">
                     <p:menubar>
                         <p:menuitem value="#{msg.menu_principal}" outcome="/index.xhtml?faces-redirect=true" icon="fa fa-home"></p:menuitem>
-                        <p:submenu label="#{msg.menu_gastos}" icon="fa fa-money"></p:submenu>
+
+
+                        <p:submenu label="#{msg.menu_gastos}" icon="fa fa-money">
+                            <p:menuitem value="#{msg.menu_gastosNuevo}" outcome="/gastos/new"></p:menuitem>
+                        </p:submenu>
+
 
                         <p:submenu label="#{msg.menu_presupuestos}" icon="fa fa-file-text-o"></p:submenu>
 
+<<<<<<< HEAD
                         <p:submenu label="#{msg.categorias}" icon="fa fa-tags">
                             <p:menuitem value="#{msg.aniadir_categoria}" outcome="/categorias/new.xhtml?faces-redirect=true"></p:menuitem>
                             <p:menuitem value="#{msg.listar_categoria}" outcome="/categorias/index.xhtml?faces-redirect=true"></p:menuitem>
+=======
+                        <p:submenu label="#{msg.menu_categorias}" icon="fa fa-tags">
+
+                            
+                            <p:submenu label="#{msg.menu_categoriasSubcategorias}" icon="">
+                                <p:menuitem value="#{msg.menu_categoriasSubcategoriasListar}" outcome="/subcategorias/index"></p:menuitem>
+                            </p:submenu>
+
+                            <p:menuitem value="#{msg.menu_categoriasListar}" outcome="/categorias/index"></p:menuitem>
+                            <p:menuitem value="#{msg.categoria_nueva}" outcome="/categorias/new.xhtml?faces-redirect=true"></p:menuitem>
+
+>>>>>>> ef536d5e8b4673bb3498f40a53b6b247eb3e7d9b
                         </p:submenu>
 
                         <p:submenu label="#{msg.periodos}" icon="fa fa-calendar">
@@ -59,15 +78,15 @@
                     </p:menubar>
                 </h:form>
             </ui:insert>
-            <ui:insert name="top">Top</ui:insert>
+            <ui:insert name="top"></ui:insert>
         </div>
 
         <div id="content" class="center_content">
-            <ui:insert name="content">Content</ui:insert>
+            <ui:insert name="content"></ui:insert>
         </div>
 
         <div id="bottom">
-            <ui:insert name="bottom">Bottom</ui:insert>
+            <ui:insert name="bottom"></ui:insert>
         </div>
 
     </h:body>

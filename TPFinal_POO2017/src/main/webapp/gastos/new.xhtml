@@ -5,12 +5,44 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
+
+        <ui:define name="title">#{msg.gastos_nuevoTitle}</ui:define>
+
+        <ui:define name="content">
+            #{msg.gastos_nuevoTitulo}
+            <br />
+
+            <h:form>
+                <p:growl id="messages"></p:growl>
+                <p:panelGrid columns="2" styleClass="">
+
+                    <p:outputLabel value="#{msg.gastos_fecha}"></p:outputLabel>
+                    <p:inputText value="#{gastoBacking.gasto.fecha}"/>
+
+                    <p:outputLabel value="#{msg.gastos_importe}"></p:outputLabel>
+                    <p:inputNumber value="#{gastoBacking.gasto.importe}"/>
+                    
+                    <p:outputLabel for="gastos_subcat" value="#{msg.gastos_subcategoria}"  ></p:outputLabel>         
+                    <p:selectOneMenu id="gastos_subcat" value="#{gastoBacking.gasto.subcategoria}">
+                        <f:selectItems value="#{subcategoriaBacking.subcategorias}" var="subcat" itemLabel="#{subcat.nombre}" itemValue="#{subcat}"/>
+                    </p:selectOneMenu>
+
+
+                    <p:commandButton value="#{msg.boton_registrar}" 
+                                     action="#{usuarioBacking.create()}" 
+                                     update="messages"/>
+
+                    <p:button value="#{msg.usuarios_botonCancelar}" outcome="/gastos/index"/>
+                </p:panelGrid>
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
 </html>

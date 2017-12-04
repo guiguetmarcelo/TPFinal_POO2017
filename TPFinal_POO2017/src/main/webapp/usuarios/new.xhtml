@@ -5,41 +5,43 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
+
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
+
+        <ui:define name="title">#{msg.usuarios_nuevoTitle}</ui:define>
+
         <ui:define name="content">
-    <h:head>
-        <title>Nuevo Usuario</title>
-    </h:head>
-    <h:body>
-        Ingrese los datos del nuevo usuario
-        <br />
-        <h:form>
-            <p:growl id="messages"></p:growl>
-            <p:panelGrid columns="2" styleClass="">
-                <p:outputLabel value="Nombre"></p:outputLabel>
-                <p:inputText value="#{usuarioBacking.usuario.nombre}"/>
-                
-                <p:outputLabel value="Apellido"></p:outputLabel>
-                <p:inputText value="#{usuarioBacking.usuario.apellido}"/>
-                
-                <p:outputLabel value="Email"></p:outputLabel>
-                <p:inputText value="#{usuarioBacking.usuario.email}"/>
-                
-                <p:outputLabel value="Nombre de usuario"></p:outputLabel>
-                <p:inputText value="#{usuarioBacking.usuario.username}"/>
-                
-                <p:outputLabel value="Contraseña"></p:outputLabel>
-                <p:password value="#{usuarioBacking.usuario.password}"/>
-                
-                <p:commandButton value="Guardar" 
-                                 action="#{usuarioBacking.create()}" 
-                                 update="messages"/>
-                
-                <p:button value="#{msg.usuarios_botonCancelar}" outcome="/usuarios/index"/>
-            </p:panelGrid>
-        </h:form>
-    </h:body>
-            </ui:define>
+            #{msg.usuarios_nuevoTitulo}
+            <br />
+
+            <h:form>
+                <p:growl id="messages"></p:growl>
+                <p:panelGrid columns="2" styleClass="">
+
+                    <p:outputLabel value="#{msg.usuarios_username}"></p:outputLabel>
+                    <p:inputText value="#{usuarioBacking.usuario.username}"/>
+
+                    <p:outputLabel value="#{msg.usuarios_password}"></p:outputLabel>
+                    <p:password value="#{usuarioBacking.usuario.password}"/>
+
+                    <p:outputLabel value="#{msg.usuarios_nombre}"></p:outputLabel>
+                    <p:inputText value="#{usuarioBacking.usuario.nombre}"/>
+
+                    <p:outputLabel value="#{msg.usuarios_apellido}"></p:outputLabel>
+                    <p:inputText value="#{usuarioBacking.usuario.apellido}"/>
+
+                    <p:outputLabel value="#{msg.usuarios_email}"></p:outputLabel>
+                    <p:inputText value="#{usuarioBacking.usuario.email}"/>
+
+                    <p:commandButton value="#{msg.boton_registrar}" 
+                                     action="#{usuarioBacking.create()}" 
+                                     update="messages"/>
+
+                    <p:button value="#{msg.usuarios_botonCancelar}" outcome="/usuarios/index"/>
+                </p:panelGrid>
+            </h:form>
+
+        </ui:define>
     </ui:composition>
 </html>
 
