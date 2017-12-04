@@ -10,25 +10,30 @@ and open the template in the editor.
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-    
+      
+
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
 
         <ui:define name="title">#{msg.gastos_nuevoTitle}</ui:define>
-
+        
+        <ui:define name="head_content" >
+            <h:outputScript library="js" name="calendar_es.js" />
+        </ui:define>
+        
         <ui:define name="content">
             #{msg.gastos_nuevoTitulo}
             <br />
 
-            <h:form>
+            <h:form >
                 <p:growl id="messages"></p:growl>
                 <p:panelGrid columns="2" styleClass="">
 
                     <p:outputLabel value="#{msg.gastos_fecha}"></p:outputLabel>
-                    <p:inputText value="#{gastoBacking.gasto.fecha}"/>
+                    <p:calendar id="input_gastos_fecha" value="#{gastoBacking.gasto.fecha}" required="true" pattern="dd/MM/yyyy" navigator="true"/>
 
                     <p:outputLabel value="#{msg.gastos_importe}"></p:outputLabel>
                     <p:inputNumber value="#{gastoBacking.gasto.importe}"/>
-                    
+
                     <p:outputLabel for="gastos_subcat" value="#{msg.gastos_subcategoria}"  ></p:outputLabel>         
                     <p:selectOneMenu id="gastos_subcat" value="#{gastoBacking.gasto.subcategoria}">
                         <f:selectItems value="#{subcategoriaBacking.subcategorias}" var="subcat" itemLabel="#{subcat.nombre}" itemValue="#{subcat}"/>

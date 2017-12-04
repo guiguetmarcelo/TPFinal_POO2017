@@ -6,6 +6,8 @@
 package ar.edu.unnoba.poo2017.tpfinal_poo2017.dao;
 
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Presupuesto;
+import java.util.List;
+import javax.persistence.Query;
 
 /**
  *
@@ -16,5 +18,9 @@ public class PresupuestoDao extends AbstractDAO<Presupuesto> {
     public PresupuestoDao() {
         super(Presupuesto.class);
     }
-        
+    
+    public List<Presupuesto> getPresupuestos(){
+        Query query = em.createNamedQuery("presupuestos.disponibles");
+        return query.getResultList();
+    }
 }
