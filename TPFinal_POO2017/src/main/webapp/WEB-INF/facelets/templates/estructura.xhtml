@@ -34,10 +34,12 @@
                         </p:submenu>
 
 
-                        <p:submenu label="#{msg.menu_presupuestos}" icon="fa fa-file-text-o"></p:submenu>
+                        <p:submenu label="#{msg.menu_presupuestos}" icon="fa fa-file-text-o">
+                            <p:menuitem value="#{msg.menu_presupuestosListar}" outcome="/presupuestos/index"></p:menuitem>
+                            <p:menuitem value="#{msg.menu_presupuestosNuevo}" outcome="/presupuestos/new"></p:menuitem>
+                        </p:submenu>
 
                         <p:submenu label="#{msg.menu_categorias}" icon="fa fa-tags">
-
 
                             <p:submenu label="#{msg.menu_categoriasSubcategorias}" icon="">
                                 <p:menuitem value="#{msg.menu_categoriasSubcategoriasListar}" outcome="/subcategorias/index"></p:menuitem>

@@ -2,6 +2,7 @@ package ar.edu.unnoba.poo2017.tpfinal_poo2017.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -60,4 +61,30 @@ public class Periodo extends AbstractEntity implements Serializable {
         this.descripcion = descripcion;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash += (getId() != null ? getId().hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Periodo other = (Periodo) obj;
+        if (this.getId() == null || other.getId() == null || !Objects.equals(this.getId(), other.getId())) {
+            return false;
+        }
+        return true;
+    }
+
+    
 }

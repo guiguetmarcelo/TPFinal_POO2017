@@ -7,12 +7,15 @@ package ar.edu.unnoba.poo2017.tpfinal_poo2017.dao;
 
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Presupuesto;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.persistence.Query;
 
 /**
  *
- * @author Sebastian
+ * @author Marcelo
  */
+
+@Stateless
 public class PresupuestoDao extends AbstractDAO<Presupuesto> {
         
     public PresupuestoDao() {

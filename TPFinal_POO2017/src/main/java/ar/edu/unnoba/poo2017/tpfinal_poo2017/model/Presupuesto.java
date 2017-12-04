@@ -58,4 +58,12 @@ public class Presupuesto extends AbstractEntity implements Serializable{
         this.subcategoria = subcategoria;
     }
 
+    @Override
+    public String toString() {
+        if(getPeriodo() == null || getSubcategoria() == null)
+            return "Error de toString";
+        return "Presupuesto{" + "monto=" + monto + ", periodo=" + periodo.getDescripcion() + ", subcategoria=" + subcategoria.getNombre() + '}';
+    }
+
+    
 }

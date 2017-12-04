@@ -43,8 +43,8 @@
                                          value="#{msg.boton_eliminar}"
                                          update="gastos" 
                                          icon="fa fa-trash">
-                            <p:confirm header="#{msg.usuarios_eliminarConfirmacionTitulo}"
-                                       message="#{unnoba:textFormat(msg.usuarios_eliminarConfirmacionMensaje, usuario.username)}"
+                            <p:confirm header="#{msg.dialogo_confirmacion}"
+                                       message="#{unnoba:textFormat(msg.gastos_eliminarConfirmacionMensaje, gasto.id)}"
                                        icon="fa fa-exclamation-triangle"/>
                         </p:commandButton>
 
