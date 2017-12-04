@@ -25,10 +25,10 @@
                         </p:calendar>
                         <p:outputLabel value="#{msg.descripcion}"></p:outputLabel>
                         <p:inputText value="#{periodoBacking.periodo.descripcion}"/>
-                        <p:commandButton value="#{msg.guardar}" 
+                        <p:commandButton value="#{msg.boton_guardar}" 
                                          action="#{periodoBacking.create()}" 
                                          update="messages"/>
-                        <p:button value="#{msg.cancelar}" outcome="/periodos/index"/>
+                        <p:button value="#{msg.boton_cancelar}" outcome="/periodos/index"/>
                     </p:panelGrid>
                 </h:form>
             </h:body>

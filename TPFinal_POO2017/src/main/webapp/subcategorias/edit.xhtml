@@ -8,30 +8,30 @@
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
         <ui:define name="content">
             <h:head>
-                <title>Editar Subcategoria</title>
+                <title>#{msg.subcategoria_editar}</title>
                 <f:metadata>
                     <f:viewParam name="id" value="#{subcategoriaBacking.subcategoria}"/>
                 </f:metadata>
             </h:head>
             <h:body>
-                Actualizar los datos de la subcategoria
+                #{msg.subcategoria_actualizar}
                 <br />
                 <h:form>
                     <p:growl id="messages"></p:growl>
                     <p:panelGrid columns="2" styleClass="">
-                        <p:outputLabel value="Nombre"></p:outputLabel>
+                        <p:outputLabel value="#{msg.usuarios_nombre}"></p:outputLabel>
                         <p:inputText value="#{subcategoriaBacking.subcategoria.nombre}"/>
-                        <p:outputLabel value="Descripcion"></p:outputLabel>
+                        <p:outputLabel value="#{msg.descripcion}"></p:outputLabel>
                         <p:inputText value="#{subcategoriaBacking.subcategoria.descripcion}"/>
-                        <p:outputLabel for="cat" value="Categoria Padre: " />
+                        <p:outputLabel for="cat" value="#{msg.categoria_padre}" />
                         <p:selectOneMenu id="cat" value="#{subcategoriaBacking.subcategoria.categoriaPadre}">
-                            <f:selectItem itemLabel="Elige uno: " itemValue="#{cat}" />
+                            <f:selectItem itemLabel="#{msg.elegir} " itemValue="#{cat}" />
                             <f:selectItems value="#{categoriaBacking.categorias}" var="cat" itemLabel="#{cat.nombre}" itemValue="#{cat}" />
                         </p:selectOneMenu>
-                        <p:commandButton value="Actualizar" 
+                        <p:commandButton value="#{msg.boton_actualizar}" 
                                          action="#{subcategoriaBacking.update()}" 
                                          update="messages"/>
-                        <p:button value="Cancelar" outcome="/subcategorias/index"/>
+                        <p:button value="#{msg.boton_cancelar}" outcome="/subcategorias/index"/>
                     </p:panelGrid>
                 </h:form>
             </h:body>
