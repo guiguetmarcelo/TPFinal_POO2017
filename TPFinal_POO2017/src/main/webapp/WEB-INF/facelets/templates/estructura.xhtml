@@ -16,21 +16,32 @@
 
 
         <title><ui:insert name="title">#{msg.home_title}</ui:insert></title>
+        <ui:insert name="head_content"></ui:insert>
     </h:head>
 
     <h:body>
 
         <div id="top">
             <ui:insert name="menu">
-                <h:form>
+                <h:form id="form_menu_principal">
                     <p:menubar>
                         <p:menuitem value="#{msg.menu_principal}" outcome="/index.xhtml?faces-redirect=true" icon="fa fa-home"></p:menuitem>
 
-                        <p:submenu label="#{msg.menu_gastos}" icon="fa fa-money"></p:submenu>
+                        <p:submenu label="#{msg.menu_gastos}" icon="fa fa-money">
+                            <p:menuitem value="#{msg.menu_gastosNuevo}" outcome="/gastos/new"></p:menuitem>
+                        </p:submenu>
 
                         <p:submenu label="#{msg.menu_presupuestos}" icon="fa fa-file-text-o"></p:submenu>
 
-                        <p:submenu label="#{msg.menu_categorias}" icon="fa fa-tags"></p:submenu>
+                        <p:submenu label="#{msg.menu_categorias}" icon="fa fa-tags">
+                            
+                            <p:submenu label="#{msg.menu_categoriasSubcategorias}" icon="">
+                                <p:menuitem value="#{msg.menu_categoriasSubcategoriasListar}" outcome="/subcategorias/index"></p:menuitem>
+                            </p:submenu>
+
+                            <p:menuitem value="#{msg.menu_categoriasListar}" outcome="/categorias/index"></p:menuitem>
+
+                        </p:submenu>
 
                         <p:submenu label="#{msg.menu_periodos}" icon="fa fa-calendar"></p:submenu>
 
@@ -54,15 +65,15 @@
                     </p:menubar>
                 </h:form>
             </ui:insert>
-            <ui:insert name="top">Top</ui:insert>
+            <ui:insert name="top"></ui:insert>
         </div>
 
         <div id="content" class="center_content">
-            <ui:insert name="content">Content</ui:insert>
+            <ui:insert name="content"></ui:insert>
         </div>
 
         <div id="bottom">
-            <ui:insert name="bottom">Bottom</ui:insert>
+            <ui:insert name="bottom"></ui:insert>
         </div>
 
     </h:body>
