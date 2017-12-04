@@ -17,7 +17,7 @@ public class SubcategoriaConverter extends AbstractConverter<Subcategoria>{
     
     @Override
     public String getDAOName() {
-        return "SubategoriaDao";
+        return "SubcategoriaDao";
     }
     
 }
