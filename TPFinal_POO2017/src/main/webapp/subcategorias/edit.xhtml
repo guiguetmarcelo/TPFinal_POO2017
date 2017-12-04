@@ -5,32 +5,36 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-    <h:head>
-        <title>Editar Subcategoria</title>
-        <f:metadata>
-            <f:viewParam name="id" value="#{subcategoriaBacking.subcategorias}"/>
-        </f:metadata>
-    </h:head>
-    <h:body>
-        Actualizar los datos de la subcategoria
-        <br />
-        <h:form>
-            <p:growl id="messages"></p:growl>
-            <p:panelGrid columns="2" styleClass="">
-                <p:outputLabel value="Nombre"></p:outputLabel>
-                <p:inputText value="#{subcategoriaBacking.subcategoria.nombre}"/>
-                <p:outputLabel value="Descripcion"></p:outputLabel>
-                <p:inputText value="#{subcategoriaBacking.subcategoria.descripcion}"/>
-                <p:outputLabel for="cat" value="Categoria Padre: " />
-                <p:selectOneMenu id="cat" value="#{subcategoriaBacking.subcategoria.categoriaPadre}">
-                    <f:selectItem itemLabel="Elige uno: " itemValue="#{cat}" />
-                    <f:selectItems value="#{categoriaBacking.categorias}" var="cat" itemLabel="#{cat.nombre}" itemValue="#{cat}" />
-                </p:selectOneMenu>
-                <p:commandButton value="Actualizar" 
-                                 action="#{subcategoriaBacking.update()}" 
-                                 update="messages"/>
-                <p:button value="Cancelar" outcome="/subcategorias/index"/>
-            </p:panelGrid>
-        </h:form>
-    </h:body>
+    <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
+        <ui:define name="content">
+            <h:head>
+                <title>Editar Subcategoria</title>
+                <f:metadata>
+                    <f:viewParam name="id" value="#{subcategoriaBacking.subcategoria}"/>
+                </f:metadata>
+            </h:head>
+            <h:body>
+                Actualizar los datos de la subcategoria
+                <br />
+                <h:form>
+                    <p:growl id="messages"></p:growl>
+                    <p:panelGrid columns="2" styleClass="">
+                        <p:outputLabel value="Nombre"></p:outputLabel>
+                        <p:inputText value="#{subcategoriaBacking.subcategoria.nombre}"/>
+                        <p:outputLabel value="Descripcion"></p:outputLabel>
+                        <p:inputText value="#{subcategoriaBacking.subcategoria.descripcion}"/>
+                        <p:outputLabel for="cat" value="Categoria Padre: " />
+                        <p:selectOneMenu id="cat" value="#{subcategoriaBacking.subcategoria.categoriaPadre}">
+                            <f:selectItem itemLabel="Elige uno: " itemValue="#{cat}" />
+                            <f:selectItems value="#{categoriaBacking.categorias}" var="cat" itemLabel="#{cat.nombre}" itemValue="#{cat}" />
+                        </p:selectOneMenu>
+                        <p:commandButton value="Actualizar" 
+                                         action="#{subcategoriaBacking.update()}" 
+                                         update="messages"/>
+                        <p:button value="Cancelar" outcome="/subcategorias/index"/>
+                    </p:panelGrid>
+                </h:form>
+            </h:body>
+        </ui:define>
+    </ui:composition>
 </html>
