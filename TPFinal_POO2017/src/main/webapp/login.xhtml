@@ -9,17 +9,20 @@
         <title>#{msg.usuarios_loginTitle}</title>
     </h:head>
     <h:body>
-        #{msg.usuarios_loginTitulo}
-        <br />
+        <h1>#{msg.usuarios_loginTitulo}</h1>
+
+        <h3>#{msg.usuarios_loginSubtitulo}</h3>
+
         <h:form>
             <p:growl id="messages"></p:growl>
             <p:panelGrid columns="2" styleClass="">
+
                 <p:outputLabel value="#{msg.usuarios_username}"></p:outputLabel>
                 <p:inputText value="#{sessionBacking.userName}"/>
-                
+
                 <p:outputLabel value="#{msg.usuarios_password}"></p:outputLabel>
                 <p:password value="#{sessionBacking.password}"/>
-                
+
                 <p:commandButton value="#{msg.usuarios_loginIngresar}" 
                                  action="#{sessionBacking.login()}" 
                                  update="messages"/>

@@ -8,6 +8,7 @@
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
         
         <ui:define name="title">#{msg.usuarios_editarTitle}</ui:define>
+        
         <ui:define name="head_content">
             <f:metadata>
                 <f:viewParam name="id" value="#{usuarioBacking.usuario}"/>
@@ -15,12 +16,12 @@
         </ui:define>
         
         <ui:define name="content">
-                #{msg.usuarios_editarTitulo}
-                <br />
+            <h1>#{msg.usuarios_editarTitulo}</h1>
                 
                 <h:form>
                     <p:growl id="messages"></p:growl>
-                    <p:panelGrid columns="2" styleClass="">
+                    
+                    <p:panelGrid columns="2" styleClass="">   
                         <p:outputLabel value="#{msg.usuarios_nombre}"></p:outputLabel>
                         <p:inputText value="#{usuarioBacking.usuario.nombre}"/>
 
@@ -39,7 +40,8 @@
                         <p:commandButton value="#{msg.usuarios_botonActualizar}" 
                                          action="#{usuarioBacking.update()}" 
                                          update="messages :form_menu_principal"/>
-                        <p:button value="#{msg.usuarios_botonCancelar}" outcome="/usuarios/index"/>
+                        
+                        <p:button value="#{msg.usuarios_botonCancelar}" outcome="/usuarios/index.xhtml?faces-redirect=true"/>
                     </p:panelGrid>
                 </h:form>
         </ui:define>

@@ -11,13 +11,12 @@
         <ui:define name="title">#{msg.usuarios_nuevoTitle}</ui:define>
 
         <ui:define name="content">
-            #{msg.usuarios_nuevoTitulo}
-            <br />
+            <h1>#{msg.usuarios_nuevoTitulo}</h1>
 
             <h:form>
                 <p:growl id="messages"></p:growl>
-                <p:panelGrid columns="2" styleClass="">
 
+                <p:panelGrid columns="2" styleClass="">
                     <p:outputLabel value="#{msg.usuarios_username}"></p:outputLabel>
                     <p:inputText value="#{usuarioBacking.usuario.username}"/>
 
@@ -37,7 +36,7 @@
                                      action="#{usuarioBacking.create()}" 
                                      update="messages"/>
 
-                    <p:button value="#{msg.usuarios_botonCancelar}" outcome="/usuarios/index"/>
+                    <p:button value="#{msg.boton_cancelar}" outcome="/usuarios/index.xhtml?faces-redirect=true"/>
                 </p:panelGrid>
             </h:form>
 

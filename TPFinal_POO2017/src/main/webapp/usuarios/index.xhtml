@@ -7,9 +7,12 @@
       >
 
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
-        <ui:define name="title"></ui:define>
+
+        <ui:define name="title">#{msg.usuariosTitle}</ui:define>
 
         <ui:define name="content">
+            <h1>#{msg.usuariosTitulo}</h1>
+            
             <h:form id="usuarios_form_index">
 
                 <p:growl id="messages" autoUpdate="true" for="msgUsuario"></p:growl>
@@ -27,13 +30,13 @@
                     </p:column>
 
                     <p:column>
-                        <p:button outcome="/usuarios/view" icon="fa fa-eye" value="#{msg.boton_ver}">
+                        <p:button outcome="/usuarios/view.xhtml?faces-redirect=true" icon="fa fa-eye" value="#{msg.boton_ver}">
                             <f:param name="id" value="#{usuario.id}"/>
                         </p:button>
                     </p:column>
 
                     <p:column>
-                        <p:button outcome="/usuarios/edit" icon="fa fa-pencil" value="#{msg.boton_editar}">
+                        <p:button outcome="/usuarios/edit.xhtml?faces-redirect=true" icon="fa fa-pencil" value="#{msg.boton_editar}">
                             <f:param name="id" value="#{usuario.id}" />
                         </p:button>
                     </p:column>
@@ -43,21 +46,22 @@
                                          value="#{msg.boton_eliminar}"
                                          update="usuarios" 
                                          icon="fa fa-trash">
+                            
                             <p:confirm header="#{msg.dialogo_confirmacion}"
                                        message="#{unnoba:textFormat(msg.usuarios_eliminarConfirmacionMensaje, usuario.username)}"
                                        icon="fa fa-exclamation-triangle"/>
                         </p:commandButton>
-
                     </p:column>
 
                 </p:dataTable>
-                <p:button value="#{msg.usuarios_nuevo}" outcome="/usuarios/new"/>
-
+                
+                <p:button value="#{msg.usuarios_nuevo}" outcome="/usuarios/new.xhtml?faces-redirect=true"/>
 
                 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
                     <p:commandButton value="#{msg.boton_si}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
                     <p:commandButton value="#{msg.boton_no}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                 </p:confirmDialog>
+                
             </h:form>
         </ui:define>
     </ui:composition>
