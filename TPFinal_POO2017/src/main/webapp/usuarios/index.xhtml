@@ -8,17 +8,17 @@
 
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
 
-        <ui:define name="title">#{msg.usuariosTitle}</ui:define>
+        <ui:define name="title">#{msg.usuarios_title}</ui:define>
 
         <ui:define name="content">
-            <h1>#{msg.usuariosTitulo}</h1>
+            <h1>#{msg.usuarios_titulo}</h1>
             
             <h:form id="usuarios_form_index">
 
                 <p:growl id="messages" autoUpdate="true" for="msgUsuario"></p:growl>
 
                 <p:dataTable id="usuarios"
-                             value="#{usuarioBacking.usuarios}" 
+                             value="#{usuarioBacking.usuariosActivos}" 
                              var="usuario">
 
                     <p:column headerText="#{msg.usuarios_username}">

@@ -518,7 +518,7 @@
         <engine sniffer="web"></engine>
       </module>
     </application>
-    <application context-root="/TPFinal_POO2017" object-type="user" name="TPFinal_POO2017" directory-deployed="true" location="file:/C:/Users/Sebastian/Documents/GitHub/TPFinal_POO2017/TPFinal_POO2017/target/TPFinal_POO2017-1.0-SNAPSHOT/">
+    <application context-root="/TPFinal_POO2017" object-type="user" name="TPFinal_POO2017" directory-deployed="true" location="file:/C:\Users\Marcelo\Documents\GitHub/TPFinal_POO2017/TPFinal_POO2017/target/TPFinal_POO2017-1.0-SNAPSHOT/">
       <property name="archiveType" value="war"></property>
       <property name="org.glassfish.persistence.resource_jndi_name_property.PU" value="jdbc/poo2017"></property>
       <property name="org.glassfish.persistence.drop_table_value_property.PU" value="false"></property>
@@ -526,7 +526,7 @@
       <property name="org.glassfish.persistence.processor_type.PU" value="JPA"></property>
       <property name="org.glassfish.persistence.drop_jdbc_file_name_property.PU" value="TPFinal_POO2017_PU_dropDDL.jdbc"></property>
       <property name="org.glassfish.persistence.create_table_value_property.PU" value="true"></property>
-      <property name="appLocation" value="file:/C:/Users/Sebastian/Documents/GitHub/TPFinal_POO2017/TPFinal_POO2017/target/TPFinal_POO2017-1.0-SNAPSHOT/"></property>
+      <property name="appLocation" value="file:/C:\Users\Marcelo\Documents\TPFinal_POO2017/TPFinal_POO2017/target/TPFinal_POO2017-1.0-SNAPSHOT/"></property>
       <property name="org.glassfish.ejb.container.application_unique_id" value="99095071748194304"></property>
       <property name="org.glassfish.persistence.app_name_property" value="TPFinal_POO2017"></property>
       <property name="defaultAppName" value="TPFinal_POO2017-1.0-SNAPSHOT"></property>

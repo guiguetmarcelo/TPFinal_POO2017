@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      >
+
+    <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
+
+        <ui:define name="title">#{msg.usuarios_vistaTodosTitle}</ui:define>
+
+        <ui:define name="content">
+            <h1>#{msg.usuarios_vistaTodosTitulo}</h1>
+            
+            <h:form id="usuarios_form_index">
+
+                <p:growl id="messages" autoUpdate="true" for="msgUsuario"></p:growl>
+
+                <p:dataTable id="usuarios"
+                             value="#{usuarioBacking.usuarios}" 
+                             var="usuario">
+
+                    <p:column headerText="#{msg.usuarios_username}">
+                        <h:outputText value="#{usuario.username}"/>
+                    </p:column>
+
+                    <p:column headerText="#{msg.usuarios_password}">
+                        <h:outputText value="#{usuario.password}"/>
+                    </p:column>
+                    
+                    <p:column headerText="#{msg.usuarios_estado}">
+                        <h:outputText value="#{usuario.estado}"/>
+                    </p:column>
+                </p:dataTable>
+                
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+

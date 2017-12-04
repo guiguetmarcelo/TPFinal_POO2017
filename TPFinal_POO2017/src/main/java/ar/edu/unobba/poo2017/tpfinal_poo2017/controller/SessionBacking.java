@@ -23,8 +23,6 @@ import javax.inject.Named;
  *
  * @author jpgm
  */
-
-
 @SessionScoped
 @Named
 public class SessionBacking implements Serializable {
@@ -36,23 +34,21 @@ public class SessionBacking implements Serializable {
     @EJB
     private UsuarioDao usuarioDao;
 
-    
     @Inject
     @MessagesBundle
     private transient PropertyResourceBundle msg;
-    
-   // @Inject
+
+    // @Inject
     //private MessagesProducer h;
-    
     @PostConstruct
     public void init() {
     }
 
     public String login() {
-        this.usuario = usuarioDao.getUsuario(this.username, this.password);
+        this.usuario = usuarioDao.getUsuarioActivo(this.username, this.password);
         if (usuario == null) {
             FacesContext context = FacesContext.getCurrentInstance();
-            FacesMessage message = new FacesMessage(msg.getString("usuarios_loginUCIncorrectos"));         
+            FacesMessage message = new FacesMessage(msg.getString("usuarios_loginUCIncorrectos"));
             context.addMessage(null, message);
             return null;
         }
@@ -60,7 +56,6 @@ public class SessionBacking implements Serializable {
     }
 
     public String logout() {
-        // usuario = new Usuario();
         setUsuario(null);
         return "/login.xhtml?faces-redirect=true";
     }

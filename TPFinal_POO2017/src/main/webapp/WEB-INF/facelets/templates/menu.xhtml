@@ -41,8 +41,9 @@
             </p:submenu>
 
             <p:submenu label="#{msg.menu_usuarios}" icon="fa fa-user-circle" >
-                <p:menuitem value="#{msg.menu_usuariosNuevo}" outcome="/usuarios/new.xhtml?faces-redirect=true"></p:menuitem>
                 <p:menuitem value="#{msg.menu_usuariosListar}" outcome="/usuarios/index.xhtml?faces-redirect=true"></p:menuitem>
+                <p:menuitem value="#{msg.menu_usuariosNuevo}" outcome="/usuarios/new.xhtml?faces-redirect=true"></p:menuitem>
+                <p:menuitem value="#{msg.menu_usuariosListarTodos}" outcome="/usuarios/view_all.xhtml?faces-redirect=true"></p:menuitem>
             </p:submenu>
 
             <f:facet name="options">

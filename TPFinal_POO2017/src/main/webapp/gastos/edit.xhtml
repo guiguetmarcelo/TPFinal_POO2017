@@ -8,6 +8,7 @@
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
 
         <ui:define name="title">#{msg.gastos_editarTitle}</ui:define>
+        
         <ui:define name="head_content">
             <f:metadata>
                 <f:viewParam name="id" value="#{gastoBacking.gasto}"/>
@@ -15,8 +16,7 @@
         </ui:define>
 
         <ui:define name="content">
-            #{msg.gastos_editarTitulo}
-            <br />
+            <h1>#{msg.gastos_editarTitulo}</h1>
 
             <h:form>
                 <p:growl id="messages"></p:growl>
@@ -25,17 +25,17 @@
                     <p:calendar id="input_gastos_fecha" value="#{gastoBacking.gasto.fecha}" required="true" pattern="dd/MM/yyyy" navigator="true"/>
 
                     <p:outputLabel value="#{msg.gastos_importe}"></p:outputLabel>
-                    <p:inputNumber value="#{gastoBacking.gasto.importe}"/>
+                    <p:inputNumber value="#{gastoBacking.gasto.importe}" required="true"/>
 
                     <p:outputLabel for="gastos_subcat" value="#{msg.gastos_subcategoria}"  ></p:outputLabel>         
                     <p:selectOneMenu id="gastos_subcat" value="#{gastoBacking.gasto.subcategoria}">
                         <f:selectItems value="#{subcategoriaBacking.subcategorias}" var="subcat" itemLabel="#{subcat.nombre}" itemValue="#{subcat}"/>
                     </p:selectOneMenu>
 
-                    <p:commandButton value="#{msg.usuarios_botonActualizar}" 
+                    <p:commandButton value="#{msg.boton_actualizar}" 
                                      action="#{gastoBacking.update()}" 
                                      update="messages"/>
-                    <p:button value="#{msg.boton_cancelar}" outcome="/gastos/index"/>
+                    <p:button value="#{msg.boton_cancelar}" outcome="/gastos/index.xhtml?faces-redirect=true"/>
                 </p:panelGrid>
             </h:form>
         </ui:define>

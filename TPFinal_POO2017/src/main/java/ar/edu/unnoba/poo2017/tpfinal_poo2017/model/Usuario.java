@@ -12,10 +12,15 @@ import javax.persistence.Table;
 @Table(name = "usuarios")
 @NamedQueries({
    @NamedQuery(name = "usuario.disponibles",
+           query = "Select u From Usuario u Where u.activo = TRUE"),
+    @NamedQuery(name = "usuario.totales",
            query = "Select u From Usuario u"),
     @NamedQuery(name = "usuario.por_username_y_password",
            query = "Select u From Usuario u "
-                   + "where u.username = :username and u.password = :password")})
+                   + "where u.username = :username and u.password = :password"),
+    @NamedQuery(name = "usuario.por_username_y_password_activo",
+           query = "Select u From Usuario u where u.username = :username and u.password = :password and u.activo = TRUE")
+})
 public class Usuario extends AbstractEntity implements Serializable{
     
     @Basic(optional = false)
@@ -86,7 +91,7 @@ public class Usuario extends AbstractEntity implements Serializable{
         this.nombre = nombre;
     }
 
-    public Boolean getActivo() {
+    public Boolean isActivo() {
         return activo;
     }
 
@@ -94,4 +99,9 @@ public class Usuario extends AbstractEntity implements Serializable{
         this.activo = activo;
     }
 
+    public String getEstado(){
+        if(isActivo())
+            return "Activo";
+        return "Borrado";
+    }
 }

@@ -45,6 +45,10 @@ public class UsuarioBacking implements Serializable {
     public List<Usuario> getUsuarios() {
         return usuarioDao.getUsuarios();
     }
+    
+      public List<Usuario> getUsuariosActivos() {
+        return usuarioDao.getUsuariosActivos();
+    }
 
     public String create() {
         try {
