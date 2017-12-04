@@ -27,6 +27,9 @@
                             <p:column headerText="Descripcion">
                                 <h:outputText value="#{subcategoria.descripcion}"/>
                             </p:column>
+                            <p:column headerText="Categoria padre: ">
+                                <h:outputText value="#{subcategoria.categoriaPadre.nombre}"/>
+                            </p:column>
                             <p:column>
                                 <h:link outcome="/subcategorias/edit" value="Editar subcategoria">
                                     <f:param name="id" value="#{subcategoria.id}" />

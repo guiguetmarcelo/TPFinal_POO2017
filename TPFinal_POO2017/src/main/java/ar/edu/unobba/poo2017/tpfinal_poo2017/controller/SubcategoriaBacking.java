@@ -12,6 +12,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -32,7 +33,6 @@ public class SubcategoriaBacking implements Serializable{
     
     @EJB 
     private SubcategoriaDao subcategoriaDao;
-    private SubcategoriaDao categoriaDao;
     
     public List<Subcategoria> getSubcategorias(){
         return subcategoriaDao.getSubcategorias();
@@ -64,7 +64,7 @@ public class SubcategoriaBacking implements Serializable{
         return subcategoria;
     }
 
-    public void setSubategoria(Subcategoria subcategoria) {
+    public void setSubcategoria(Subcategoria subcategoria) {
         this.subcategoria = subcategoria;
     }
     
