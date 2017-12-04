@@ -19,9 +19,9 @@
                 <h:form>
                     <p:growl id="messages"></p:growl>
                     <p:panelGrid columns="2" styleClass="">
-                        <p:outputLabel value="#{msg.categoria_nombre}"></p:outputLabel>
+                        <p:outputLabel value="#{msg.nombre}"></p:outputLabel>
                         <p:inputText value="#{categoriaBacking.categoria.nombre}"/>
-                        <p:outputLabel value="#{msg.categoria_descripcion}"></p:outputLabel>
+                        <p:outputLabel value="#{msg.descripcion}"></p:outputLabel>
                         <p:inputText value="#{categoriaBacking.categoria.descripcion}"/>
                         <p:commandButton value="#{msg.actualizar}" 
                                          action="#{categoriaBacking.update()}" 

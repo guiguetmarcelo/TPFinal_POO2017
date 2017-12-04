@@ -25,20 +25,25 @@
                 <h:form>
                     <p:menubar>
                         <p:menuitem value="#{msg.menu_principal}" outcome="/index.xhtml?faces-redirect=true" icon="fa fa-home"></p:menuitem>
-
                         <p:submenu label="#{msg.menu_gastos}" icon="fa fa-money"></p:submenu>
 
                         <p:submenu label="#{msg.menu_presupuestos}" icon="fa fa-file-text-o"></p:submenu>
 
-                        <p:submenu label="#{msg.menu_categorias}" icon="fa fa-tags"></p:submenu>
+                        <p:submenu label="#{msg.menu_categorias}" icon="fa fa-tags">
+                            <p:menuitem value="#{msg.categoria_nueva}" outcome="/categorias/new.xhtml?faces-redirect=true"></p:menuitem>
+                            <p:menuitem value="#{msg.listar_categoria}" outcome="/categorias/index.xhtml?faces-redirect=true"></p:menuitem>
+                        </p:submenu>
 
-                        <p:submenu label="#{msg.menu_periodos}" icon="fa fa-calendar"></p:submenu>
-
+                        <p:submenu label="#{msg.menu_periodos}" icon="fa fa-calendar">
+                            <p:menuitem value="#{msg.periodo_nuevo}" outcome="/periodos/new.xhtml?faces-redirect=true"></p:menuitem>
+                            <p:menuitem value="#{msg.periodo_listar}" outcome="/periodos/index.xhtml?faces-redirect=true"></p:menuitem>
+                        </p:submenu>
+                        
                         <p:submenu label="#{msg.menu_usuarios}" icon="fa fa-user-circle" >
                             <p:menuitem value="#{msg.menu_usuariosNuevo}" outcome="/usuarios/new.xhtml?faces-redirect=true"></p:menuitem>
                             <p:menuitem value="#{msg.menu_usuariosListar}" outcome="/usuarios/index.xhtml?faces-redirect=true"></p:menuitem>
                         </p:submenu>
-
+                        
                         <f:facet name="options">
                             <h:outputFormat value="#{unnoba:textFormat(msg.menu_usuarioLogin, sessionBacking.usuario.username)}"/>
 

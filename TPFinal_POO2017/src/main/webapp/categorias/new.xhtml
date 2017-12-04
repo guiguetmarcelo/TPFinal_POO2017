@@ -16,14 +16,14 @@
         <h:form>
             <p:growl id="messages"></p:growl>
             <p:panelGrid columns="2" styleClass="">
-                <p:outputLabel value="#{msg.usuarios_nombre}"></p:outputLabel>
+                <p:outputLabel value="#{msg.nombre}"></p:outputLabel>
                 <p:inputText value="#{categoriaBacking.categoria.nombre}"/>
-                <p:outputLabel value="#{msg.categoria_descripcion}"></p:outputLabel>
+                <p:outputLabel value="#{msg.descripcion}"></p:outputLabel>
                 <p:inputText value="#{categoriaBacking.categoria.descripcion}"/>
                 <p:commandButton value="#{msg.guardar}" 
                                  action="#{categoriaBacking.create()}" 
                                  update="messages"/>
-                <p:button value="#{msg.usuarios_botonCancelar}" outcome="/categorias/index"/>
+                <p:button value="#{msg.cancelar}" outcome="/categorias/index"/>
             </p:panelGrid>
         </h:form>
     </h:body>
