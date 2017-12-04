@@ -5,27 +5,31 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-    <h:head>
-        <title>#{msg.editar_categoria}</title>
-        <f:metadata>
-            <f:viewParam name="id" value="#{categoriaBacking.categoria}"/>
-        </f:metadata>
-    </h:head>
-    <h:body>
-        #{msg.actualizar_cat}
-        <br />
-        <h:form>
-            <p:growl id="messages"></p:growl>
-            <p:panelGrid columns="2" styleClass="">
-                <p:outputLabel value="#{msg.categoria_nombre}"></p:outputLabel>
-                <p:inputText value="#{categoriaBacking.categoria.nombre}"/>
-                <p:outputLabel value="#{msg.categoria_descripcion}"></p:outputLabel>
-                <p:inputText value="#{categoriaBacking.categoria.descripcion}"/>
-                <p:commandButton value="#{msg.actualizar}" 
-                                 action="#{categoriaBacking.update()}" 
-                                 update="messages"/>
-                <p:button value="#{msg.cancelar}" outcome="/categorias/index"/>
-            </p:panelGrid>
-        </h:form>
-    </h:body>
+    <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
+        <ui:define name="content">
+            <h:head>
+                <title>#{msg.editar_categoria}</title>
+                <f:metadata>
+                    <f:viewParam name="id" value="#{categoriaBacking.categoria}"/>
+                </f:metadata>
+            </h:head>
+            <h:body>
+                #{msg.actualizar_cat}
+                <br />
+                <h:form>
+                    <p:growl id="messages"></p:growl>
+                    <p:panelGrid columns="2" styleClass="">
+                        <p:outputLabel value="#{msg.categoria_nombre}"></p:outputLabel>
+                        <p:inputText value="#{categoriaBacking.categoria.nombre}"/>
+                        <p:outputLabel value="#{msg.categoria_descripcion}"></p:outputLabel>
+                        <p:inputText value="#{categoriaBacking.categoria.descripcion}"/>
+                        <p:commandButton value="#{msg.actualizar}" 
+                                         action="#{categoriaBacking.update()}" 
+                                         update="messages"/>
+                        <p:button value="#{msg.cancelar}" outcome="/categorias/index"/>
+                    </p:panelGrid>
+                </h:form>
+            </h:body>
+        </ui:define>
+    </ui:composition>
 </html>

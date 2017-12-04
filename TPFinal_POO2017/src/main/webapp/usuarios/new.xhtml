@@ -5,6 +5,8 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
+        <ui:define name="content">
     <h:head>
         <title>Nuevo Usuario</title>
     </h:head>
@@ -37,5 +39,7 @@
             </p:panelGrid>
         </h:form>
     </h:body>
+            </ui:define>
+    </ui:composition>
 </html>
 

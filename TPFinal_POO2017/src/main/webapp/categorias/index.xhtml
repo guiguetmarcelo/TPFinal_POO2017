@@ -4,6 +4,9 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
+    
+    <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
+        <ui:define name="content">
 
     <f:view contentType="text/html">
         <h:head>
@@ -15,8 +18,6 @@
 
         <h:body>
             <h:form>
-                <h:outputText value="#{sessionBacking.usuario.username}"/>
-                <p:commandLink action="#{sessionBacking.logout()}" value="Salir"></p:commandLink>
 
                 <p:dataTable id="categorias"
                              value="#{categoriaBacking.categorias}" 
@@ -37,7 +38,7 @@
                                        value="#{msg.eliminar}"
                                        update="categorias">
                             <p:confirm header="Confirmation" 
-                                       message="¿Se eliminará la categoria #{categoria.nombre}?" 
+                                       message="#{msg.categoria_confirmacion} #{categoria.nombre}?" 
                                        icon="ui-icon-alert" />
                         </p:commandLink>
                     </p:column>
@@ -52,4 +53,6 @@
             </h:form>
         </h:body>
     </f:view>
+            </ui:define>
+    </ui:composition>
 </html>
