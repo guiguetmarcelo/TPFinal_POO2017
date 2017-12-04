@@ -5,31 +5,36 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-    <h:head>
-        <title>Editar Periodo</title>
-        <f:metadata>
-            <f:viewParam name="id" value="#{periodoBacking.periodo}"/>
-        </f:metadata>
-    </h:head>
-    <h:body>
-        Actualizar los datos de un periodo
-        <br />
-        <h:form>
-            <p:growl id="messages"></p:growl>
-            <p:panelGrid columns="2" styleClass="">
-                <p:outputLabel for="evento" value="Fecha Inicio:" />
-                <p:calendar id="evento" value="#{periodoBacking.periodo.fechaDesde}">
-                </p:calendar>
-                <p:outputLabel for="event" value="Fecha Inicio:" />
-                <p:calendar id="event" value="#{periodoBacking.periodo.fechaHasta}">
-                </p:calendar>
-                <p:outputLabel value="Descripcion"></p:outputLabel>
-                <p:inputText value="#{periodoBacking.periodo.descripcion}"/>
-                <p:commandButton value="Actualizar" 
-                                 action="#{periodoBacking.update()}" 
-                                 update="messages"/>
-                <p:button value="Cancelar" outcome="/periodos/index"/>
-            </p:panelGrid>
-        </h:form>
-    </h:body>
+    <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
+        <ui:define name="content">
+
+            <h:head>
+                <title>#{msg.editar_periodo}</title>
+                <f:metadata>
+                    <f:viewParam name="id" value="#{periodoBacking.periodo}"/>
+                </f:metadata>
+            </h:head>
+            <h:body>
+                 #{msg.periodo_cabecera_act}
+                <br />
+                <h:form>
+                    <p:growl id="messages"></p:growl>
+                    <p:panelGrid columns="2" styleClass="">
+                        <p:outputLabel for="evento" value="#{msg.fecha_inicio}" />
+                        <p:calendar id="evento" value="#{periodoBacking.periodo.fechaDesde}">
+                        </p:calendar>
+                        <p:outputLabel for="event" value="#{msg.fecha_fin}" />
+                        <p:calendar id="event" value="#{periodoBacking.periodo.fechaHasta}">
+                        </p:calendar>
+                        <p:outputLabel value="#{msg.descripcion}"></p:outputLabel>
+                        <p:inputText value="#{periodoBacking.periodo.descripcion}"/>
+                        <p:commandButton value="#{msg.actualizar}" 
+                                         action="#{periodoBacking.update()}" 
+                                         update="messages"/>
+                        <p:button value="#{msg.cancelar}" outcome="/periodos/index"/>
+                    </p:panelGrid>
+                </h:form>
+            </h:body>
+        </ui:define>
+    </ui:composition>
 </html>

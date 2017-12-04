@@ -22,10 +22,10 @@
                 <p:dataTable id="categorias"
                              value="#{categoriaBacking.categorias}" 
                              var="categoria">
-                    <p:column headerText="#{msg.categoria_nombre}">
+                    <p:column headerText="#{msg.nombre}">
                         <h:outputText value="#{categoria.nombre}"/>
                     </p:column>
-                    <p:column headerText="#{msg.categoria_descripcion}">
+                    <p:column headerText="#{msg.descripcion}">
                         <h:outputText value="#{categoria.descripcion}"/>
                     </p:column>
                     <p:column>
