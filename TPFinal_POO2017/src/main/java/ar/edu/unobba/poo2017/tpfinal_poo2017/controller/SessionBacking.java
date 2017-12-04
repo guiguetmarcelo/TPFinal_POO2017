@@ -23,6 +23,8 @@ import javax.inject.Named;
  *
  * @author jpgm
  */
+
+
 @SessionScoped
 @Named
 public class SessionBacking implements Serializable {
