@@ -21,23 +21,23 @@
                         <p:dataTable id="subcategorias"
                                      value="#{subcategoriaBacking.subcategorias}" 
                                      var="subcategoria">
-                            <p:column headerText="Nombre">
+                            <p:column headerText="#{msg.usuarios_nombre}">
                                 <h:outputText value="#{subcategoria.nombre}"/>
                             </p:column>
-                            <p:column headerText="Descripcion">
+                            <p:column headerText="#{msg.descripcion}">
                                 <h:outputText value="#{subcategoria.descripcion}"/>
                             </p:column>
-                            <p:column headerText="Categoria padre: ">
+                            <p:column headerText="#{msg.categoria_padre}">
                                 <h:outputText value="#{subcategoria.categoriaPadre.nombre}"/>
                             </p:column>
                             <p:column>
-                                <h:link outcome="/subcategorias/edit" value="Editar subcategoria">
+                                <h:link outcome="/subcategorias/edit" value="#{msg.editar_subcategoria}">
                                     <f:param name="id" value="#{subcategoria.id}" />
                                 </h:link>
                             </p:column>
                             <p:column>
                                 <p:commandLink actionListener="#{subcategoriaBacking.delete(subcategoria)}" 
-                                               value="Eliminar"
+                                               value="#{msg.boton_eliminar}"
                                                update="subcategorias">
                                     <p:confirm header="Confirmation" 
                                                message="¿Se eliminará la subcategoria #{subcategoria.nombre}?" 
@@ -45,7 +45,7 @@
                                 </p:commandLink>
                             </p:column>
                         </p:dataTable>
-                        <p:button value="Nueva" outcome="/subcategorias/new"/>
+                        <p:button value="#{msg.boton_registrar}" outcome="/subcategorias/new"/>
 
 
                         <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
