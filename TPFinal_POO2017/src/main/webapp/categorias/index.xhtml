@@ -4,6 +4,9 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
+    
+    <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
+        <ui:define name="content">
 
     <f:view contentType="text/html">
         <h:head>
@@ -15,34 +18,32 @@
 
         <h:body>
             <h:form>
-                <h:outputText value="#{sessionBacking.usuario.username}"/>
-                <p:commandLink action="#{sessionBacking.logout()}" value="Salir"></p:commandLink>
 
                 <p:dataTable id="categorias"
                              value="#{categoriaBacking.categorias}" 
                              var="categoria">
-                    <p:column headerText="Nombre">
+                    <p:column headerText="#{msg.categoria_nombre}">
                         <h:outputText value="#{categoria.nombre}"/>
                     </p:column>
-                    <p:column headerText="Descripcion">
+                    <p:column headerText="#{msg.categoria_descripcion}">
                         <h:outputText value="#{categoria.descripcion}"/>
                     </p:column>
                     <p:column>
-                        <h:link outcome="/categorias/edit" value="Editar categoria">
+                        <h:link outcome="/categorias/edit" value="#{msg.editar_categoria}">
                             <f:param name="id" value="#{categoria.id}" />
                         </h:link>
                     </p:column>
                     <p:column>
                         <p:commandLink actionListener="#{categoriaBacking.delete(categoria)}" 
-                                       value="Eliminar"
+                                       value="#{msg.eliminar}"
                                        update="categorias">
                             <p:confirm header="Confirmation" 
-                                       message="¿Se eliminará la categoria #{categoria.nombre}?" 
+                                       message="#{msg.categoria_confirmacion} #{categoria.nombre}?" 
                                        icon="ui-icon-alert" />
                         </p:commandLink>
                     </p:column>
                 </p:dataTable>
-                <p:button value="Nueva" outcome="/categorias/new"/>
+                <p:button value="#{msg.aniadir_categoria}" outcome="/categorias/new"/>
 
 
                 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
@@ -52,4 +53,6 @@
             </h:form>
         </h:body>
     </f:view>
+            </ui:define>
+    </ui:composition>
 </html>
