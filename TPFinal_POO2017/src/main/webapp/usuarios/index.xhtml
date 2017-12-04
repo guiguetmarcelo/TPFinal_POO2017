@@ -12,9 +12,6 @@
             <h:form id="usuarios_form_index">
                 
                 <p:growl id="m" autoUpdate="true" for="msgUsuario"></p:growl>
-                
-                <h:outputText value="#{sessionBacking.usuario.username}"/>
-                <p:commandLink action="#{sessionBacking.logout()}" value="#{msg.usuarios_loginLogout}"></p:commandLink>
 
                 <p:dataTable id="usuarios"
                              value="#{usuarioBacking.usuarios}" 
