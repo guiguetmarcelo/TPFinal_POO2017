@@ -36,6 +36,11 @@
 
                         <p:submenu label="#{msg.menu_presupuestos}" icon="fa fa-file-text-o"></p:submenu>
 
+<<<<<<< HEAD
+                        <p:submenu label="#{msg.categorias}" icon="fa fa-tags">
+                            <p:menuitem value="#{msg.aniadir_categoria}" outcome="/categorias/new.xhtml?faces-redirect=true"></p:menuitem>
+                            <p:menuitem value="#{msg.listar_categoria}" outcome="/categorias/index.xhtml?faces-redirect=true"></p:menuitem>
+=======
                         <p:submenu label="#{msg.menu_categorias}" icon="fa fa-tags">
 
 
@@ -46,9 +51,10 @@
                             <p:menuitem value="#{msg.menu_categoriasListar}" outcome="/categorias/index"></p:menuitem>
                             <p:menuitem value="#{msg.categoria_nueva}" outcome="/categorias/new.xhtml?faces-redirect=true"></p:menuitem>
 
+>>>>>>> ef536d5e8b4673bb3498f40a53b6b247eb3e7d9b
                         </p:submenu>
 
-                        <p:submenu label="#{msg.menu_periodos}" icon="fa fa-calendar">
+                        <p:submenu label="#{msg.periodos}" icon="fa fa-calendar">
                             <p:menuitem value="#{msg.periodo_nuevo}" outcome="/periodos/new.xhtml?faces-redirect=true"></p:menuitem>
                             <p:menuitem value="#{msg.periodo_listar}" outcome="/periodos/index.xhtml?faces-redirect=true"></p:menuitem>
                         </p:submenu>
