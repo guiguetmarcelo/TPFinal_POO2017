@@ -1,16 +1,63 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      >
+
+    <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
+        <ui:define name="title"></ui:define>
+
+        <ui:define name="content">
+            <h:form id="gastos_form_index">
+
+                <p:growl id="messages" autoUpdate="true" for="msgUsuario"></p:growl>
+
+                <p:dataTable id="gastos"
+                             value="#{gastoBacking.gastos}" 
+                             var="gasto">
+
+                    <p:column headerText="#{msg.gastos_fecha}">
+                        <h:outputText value="#{gasto.fecha}"/>
+                    </p:column>
+
+                    <p:column headerText="#{msg.gastos_importe}">
+                        <h:outputText value="#{gasto.importe}"/>
+                    </p:column>
+                    
+                    <p:column headerText="#{msg.gastos_subcategoria}">
+                        <h:outputText value="#{gasto.subcategoria.nombre}"/>
+                    </p:column>
+
+                    <p:column>
+                        <p:button outcome="/usuarios/edit" icon="fa fa-pencil" value="#{msg.boton_editar}">
+                            <f:param name="id" value="#{gasto.id}" />
+                        </p:button>
+                    </p:column>
+
+                    <p:column>
+                        <p:commandButton actionListener="#{gastoBacking.delete(gasto)}"
+                                         value="#{msg.boton_eliminar}"
+                                         update="usuarios" 
+                                         icon="fa fa-trash">
+                            <p:confirm header="#{msg.usuarios_eliminarConfirmacionTitulo}"
+                                       message="#{unnoba:textFormat(msg.usuarios_eliminarConfirmacionMensaje, usuario.username)}"
+                                       icon="fa fa-exclamation-triangle"/>
+                        </p:commandButton>
+
+                    </p:column>
+
+                </p:dataTable>
+                <p:button value="#{msg.usuarios_nuevo}" outcome="/usuarios/new"/>
+
+
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                    <p:commandButton value="#{msg.boton_si}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                    <p:commandButton value="#{msg.boton_no}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                </p:confirmDialog>
+            </h:form>
+        </ui:define>
+    </ui:composition>
 </html>
+

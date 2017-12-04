@@ -6,7 +6,9 @@
 package ar.edu.unnoba.poo2017.tpfinal_poo2017.dao;
 
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Gasto;
+import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.Query;
 
 /**
  *
@@ -20,4 +22,8 @@ public class GastoDao extends AbstractDAO<Gasto>{
         super(Gasto.class);
     }
     
+    public List<Gasto> getGastos(){
+        Query query = em.createNamedQuery("gastos.disponibles");
+        return query.getResultList();
+    }
 }
