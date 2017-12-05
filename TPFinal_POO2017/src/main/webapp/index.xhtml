@@ -5,25 +5,13 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
-    <!--
-    <h:head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </h:head>
-    <h:body>
-        <div>MENU DE INICIO</div>
-        
-        <a href="/TPFinal_POO2017/usuarios/index.xhtml">Usuarios</a> 
-        <a href="/TPFinal_POO2017/categorias/index.xhtml">Categorias</a> 
-        <a href="/TPFinal_POO2017/periodos/index.xhtml">Periodos</a> 
-        <a href="/TPFinal_POO2017/subcategorias/index.xhtml">Subcategorias</a> 
-        <a href="/TPFinal_POO2017/subcategorias/new.xhtml"> nueva Subcategorias</a> 
-        
-        
-        
-    </h:body>-->
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:unnoba="http://unnoba.edu.ar/poo2017/functions">
+
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
-        
+        <ui:define name="content">
+            <h1>#{unnoba:textFormat(msg.home_titulo,sessionBacking.usuario.username)}</h1>
+            <p>#{msg.home_contenido}</p>
+        </ui:define>
     </ui:composition>
 </html>

@@ -12,6 +12,7 @@
     background-color: #c2dfef;
     padding: 5px;
     margin: 10px 0px 0px 0px;
+    text-align: center;
 }
 
 #left {
@@ -47,15 +48,26 @@
 }
 
 #top a:link, #top a:visited {
-  color: #045491;
-  font-weight : bold;
-  text-decoration: none;
+    color: #045491;
+    font-weight : bold;
+    text-decoration: none;
 }
 
 #top a:link:hover, #top a:visited:hover  {
-  color: black;
-  font-weight : bold;
-  text-decoration : underline;
+    color: black;
+    font-weight : bold;
+    text-decoration : underline;
 }
 
+#titulo_sistema{
+    text-align: center; 
+    padding: 40px 0;
+}
+#titulo_sistema span {
+    font-weight: bold;
+    font-size: 2em;
+}
 
+#form_menu_principal\:usuario_login{
+    padding-right: 10px;
+}

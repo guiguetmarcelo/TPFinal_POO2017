@@ -8,7 +8,6 @@ package ar.edu.unobba.poo2017.tpfinal_poo2017.controller;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.dao.GastoDao;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Gasto;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -19,26 +18,24 @@ import javax.inject.Named;
  *
  * @author Marcelo
  */
-
 @Named
 @ViewScoped
-public class GastoBacking implements Serializable{
+public class GastoBacking implements Serializable {
+
     private Gasto gasto;
-    
+
     @EJB
     private GastoDao gastoDao;
-    
+
     @PostConstruct
-    public void init(){
+    public void init() {
         setGasto(new Gasto());
-       // getGasto().setFecha(new Date());
     }
-    
-    public List<Gasto> getGastos(){
-        List<Gasto> a = gastoDao.getGastos();
+
+    public List<Gasto> getGastos() {
         return gastoDao.getGastos();
     }
-    
+
     public String create() {
         try {
             gastoDao.create(getGasto());
@@ -69,6 +66,4 @@ public class GastoBacking implements Serializable{
         this.gasto = gasto;
     }
 
-    
-    
 }
