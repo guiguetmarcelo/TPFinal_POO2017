@@ -47,7 +47,7 @@
             </p:submenu>
 
             <f:facet name="options">
-                <h:outputFormat value="#{unnoba:textFormat(msg.menu_usuarioLogin, sessionBacking.usuario.username)}"/>
+                <h:outputFormat id="usuario_login" value="#{unnoba:textFormat(msg.menu_usuarioLogin, sessionBacking.usuario.username)}"/>
 
                 <p:commandButton action="#{sessionBacking.logout()}"
                                  value="#{msg.menu_usuarioLogout}" 

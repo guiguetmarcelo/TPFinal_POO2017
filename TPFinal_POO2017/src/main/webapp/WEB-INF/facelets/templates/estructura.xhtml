@@ -5,7 +5,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:unnoba="http://unnoba.edu.ar/poo2017/functions">
+      xmlns:unnoba="http://unnoba.edu.ar/poo2017/functions"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <h:head>
 
@@ -21,6 +22,10 @@
     <h:body>
 
         <div id="top">
+            <div id="titulo_sistema">
+                <span>#{msg.sistema}</span>
+            </div>
+            
             <ui:insert name="menu">
                 <ui:decorate template="/WEB-INF/facelets/templates/menu.xhtml">
                 </ui:decorate>  
@@ -34,6 +39,15 @@
         </div>
 
         <div id="bottom">
+            <h3>#{msg.p_autores}</h3>
+            <p>Sebastian Adorno</p>
+            <p>Marcelo Emanuel Guiguet</p>
+            <h3>#{msg.p_materia}</h3>
+            <p>Programación Orientada a Objetos</p>
+            <h3>#{msg.p_carrera}</h3>
+            <p>Ingeniería en informática</p>    
+            <h3>2017</h3>
+
             <ui:insert name="bottom"></ui:insert>
         </div>
 
