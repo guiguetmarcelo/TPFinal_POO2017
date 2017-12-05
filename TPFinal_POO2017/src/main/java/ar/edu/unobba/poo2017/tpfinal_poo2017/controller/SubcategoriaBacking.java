@@ -57,7 +57,12 @@ public class SubcategoriaBacking implements Serializable{
     }
     
     public void delete(Subcategoria subcategoria){
+        try{
         subcategoriaDao.delete(subcategoria);
+        }
+        catch(Exception e){
+            
+        }
     }
 
     public Subcategoria getSubcategoria() {

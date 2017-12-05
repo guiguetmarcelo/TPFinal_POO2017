@@ -5,6 +5,7 @@
  */
 package ar.edu.unnoba.poo2017.tpfinal_poo2017.model;
 
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -39,14 +40,28 @@ public abstract class AbstractEntity {
     }
 
     @Override
-    public boolean equals(Object o) {
-        return super.equals(o); //To change body of generated methods, choose Tools | Templates.
+    public int hashCode() {
+        int hash = 7;
+        hash = 23 * hash + Objects.hashCode(this.id);
+        return hash;
     }
 
     @Override
-    public int hashCode() {
-        return super.hashCode(); //To change body of generated methods, choose Tools | Templates.
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final AbstractEntity other = (AbstractEntity) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
     }
+
+    
 }
 
     
