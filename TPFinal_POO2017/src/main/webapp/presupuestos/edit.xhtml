@@ -8,6 +8,7 @@
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
 
         <ui:define name="title">#{msg.presupuestos_editarTitle}</ui:define>
+        
         <ui:define name="head_content">
             <f:metadata>
                 <f:viewParam name="id" value="#{presupuestoBacking.presupuesto}"/>
@@ -15,8 +16,7 @@
         </ui:define>
 
         <ui:define name="content">
-            #{msg.presupuestos_editarTitulo}
-            <br />
+            <h1>#{msg.presupuestos_editarTitulo}</h1>
 
             <h:form>
                 <p:growl id="messages"></p:growl>

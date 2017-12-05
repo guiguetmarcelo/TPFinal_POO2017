@@ -6,35 +6,39 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
-        <ui:define name="content">
 
-            <h:head>
-                <title>#{msg.editar_periodo}</title>
-                <f:metadata>
-                    <f:viewParam name="id" value="#{periodoBacking.periodo}"/>
-                </f:metadata>
-            </h:head>
-            <h:body>
-                 #{msg.periodo_cabecera_act}
-                <br />
-                <h:form>
-                    <p:growl id="messages"></p:growl>
-                    <p:panelGrid columns="2" styleClass="">
-                        <p:outputLabel for="evento" value="#{msg.fecha_inicio}" />
-                        <p:calendar id="evento" value="#{periodoBacking.periodo.fechaDesde}">
-                        </p:calendar>
-                        <p:outputLabel for="event" value="#{msg.fecha_fin}" />
-                        <p:calendar id="event" value="#{periodoBacking.periodo.fechaHasta}">
-                        </p:calendar>
-                        <p:outputLabel value="#{msg.descripcion}"></p:outputLabel>
-                        <p:inputText value="#{periodoBacking.periodo.descripcion}"/>
-                        <p:commandButton value="#{msg.boton_actualizar}" 
-                                         action="#{periodoBacking.update()}" 
-                                         update="messages"/>
-                        <p:button value="#{msg.boton_cancelar}" outcome="/periodos/index"/>
-                    </p:panelGrid>
-                </h:form>
-            </h:body>
+        <ui:define name="title">#{msg.editar_periodo}</ui:define>
+
+        <ui:define name="head_content">
+            <f:metadata>
+                <f:viewParam name="id" value="#{periodoBacking.periodo}"/>
+            </f:metadata>
+            <h:outputScript library="js" name="calendar_es.js" />
+        </ui:define>
+        
+        <ui:define name="content">
+            <h1>#{msg.periodo_cabecera_act}</h1>
+
+            <h:form>
+                <p:growl id="messages"></p:growl>
+                <p:panelGrid columns="2" styleClass="">
+                    <p:outputLabel for="evento" value="#{msg.fecha_inicio}" />
+                    <p:calendar id="evento" value="#{periodoBacking.periodo.fechaDesde}">
+                    </p:calendar>
+
+                    <p:outputLabel for="event" value="#{msg.fecha_fin}" />
+                    <p:calendar id="event" value="#{periodoBacking.periodo.fechaHasta}">
+                    </p:calendar>
+
+                    <p:outputLabel value="#{msg.descripcion}"></p:outputLabel>
+                    <p:inputText value="#{periodoBacking.periodo.descripcion}"/>
+
+                    <p:commandButton value="#{msg.boton_actualizar}" 
+                                     action="#{periodoBacking.update()}" 
+                                     update="messages"/>
+                    <p:button value="#{msg.boton_cancelar}" outcome="/periodos/index"/>
+                </p:panelGrid>
+            </h:form>
         </ui:define>
     </ui:composition>
 </html>

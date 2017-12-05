@@ -7,42 +7,40 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:unnoba="http://unnoba.edu.ar/poo2017/functions">
-    
+
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
-        
+
         <ui:define name="title">#{unnoba:textFormat(msg.usuarios_vistaTitle,usuarioBacking.usuario.username)}</ui:define>
-        
+
         <ui:define name="head_content">
             <f:metadata>
                 <f:viewParam name="id" value="#{usuarioBacking.usuario}"/>
             </f:metadata>
         </ui:define>
-        
+
         <ui:define name="content">
-            
+
             <h1>#{msg.usuarios_vistaTitulo}</h1>
-            
+
             <p:panelGrid columns="2">
                 <h:outputText value="#{msg.usuarios_username}"/>
                 <h:outputText value="#{usuarioBacking.usuario.username}"/>
-                
+
                 <h:outputText value="#{msg.usuarios_password}"/>
                 <h:outputText value="#{usuarioBacking.usuario.password}"/>
-                
+
                 <h:outputText value="#{msg.usuarios_nombre}"/>
                 <h:outputText value="#{usuarioBacking.usuario.nombre}"/>
-                
+
                 <h:outputText value="#{msg.usuarios_apellido}"/>
                 <h:outputText value="#{usuarioBacking.usuario.apellido}"/>
-                
+
                 <h:outputText value="#{msg.usuarios_email}"/>
                 <h:outputText value="#{usuarioBacking.usuario.email}"/>
-                
             </p:panelGrid>
-            
+
             <p:button value="#{msg.boton_regresar}" outcome="/usuarios/index.xhtml?faces-redirect=true"/>
         </ui:define>
-        
     </ui:composition>
-    
+
 </html>

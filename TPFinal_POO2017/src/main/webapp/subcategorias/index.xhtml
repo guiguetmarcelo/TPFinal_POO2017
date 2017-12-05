@@ -5,59 +5,52 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
+
         <ui:define name="content">
             <f:view contentType="text/html">
-                <h:head>
-                    <f:facet name="first">
-                        <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                        <title>Welcome</title>
-                    </f:facet>
-                </h:head>
+                <h:form>
+                    <p:dataTable id="subcategorias"
+                                 value="#{subcategoriaBacking.subcategorias}" 
+                                 var="subcategoria">
 
-                <h:body>
-                    <h:form>
+                        <p:column headerText="#{msg.usuarios_nombre}">
+                            <h:outputText value="#{subcategoria.nombre}"/>
+                        </p:column>
 
+                        <p:column headerText="#{msg.descripcion}">
+                            <h:outputText value="#{subcategoria.descripcion}"/>
+                        </p:column>
 
-                        <p:dataTable id="subcategorias"
-                                     value="#{subcategoriaBacking.subcategorias}" 
-                                     var="subcategoria">
-                            <p:column headerText="#{msg.usuarios_nombre}">
-                                <h:outputText value="#{subcategoria.nombre}"/>
-                            </p:column>
-                            <p:column headerText="#{msg.descripcion}">
-                                <h:outputText value="#{subcategoria.descripcion}"/>
-                            </p:column>
-                            <p:column headerText="#{msg.categoria_padre}">
-                                <h:outputText value="#{subcategoria.categoriaPadre.nombre}"/>
-                            </p:column>
-                          
-                            <p:column>
-                                <p:button outcome="/subcategorias/edit" icon="fa fa-pencil" value="#{msg.boton_editar}">
-                                    <f:param name="id" value="#{subcategoria.id}" />
-                                </p:button>
-                            </p:column>
+                        <p:column headerText="#{msg.categoria_padre}">
+                            <h:outputText value="#{subcategoria.categoriaPadre.nombre}"/>
+                        </p:column>
 
-                            <p:column>
-                                <p:commandButton actionListener="#{subcategoriaBacking.delete(subcategoria)}"
-                                                 value="#{msg.boton_eliminar}"
-                                                 update="subcategorias" 
-                                                 icon="fa fa-trash">
+                        <p:column>
+                            <p:button outcome="/subcategorias/edit" icon="fa fa-pencil" value="#{msg.boton_editar}">
+                                <f:param name="id" value="#{subcategoria.id}" />
+                            </p:button>
+                        </p:column>
 
-                                    <p:confirm header="#{msg.dialogo_confirmacion}"
-                                               message="#{msg.categoria_confirmacion} #{subcategoria.nombre}"
-                                               icon="fa fa-exclamation-triangle"/>
-                                </p:commandButton>
-                            </p:column>
-                        </p:dataTable>
-                        <p:button value="#{msg.boton_registrar}" outcome="/subcategorias/new"/>
+                        <p:column>
+                            <p:commandButton actionListener="#{subcategoriaBacking.delete(subcategoria)}"
+                                             value="#{msg.boton_eliminar}"
+                                             update="subcategorias" 
+                                             icon="fa fa-trash">
+
+                                <p:confirm header="#{msg.dialogo_confirmacion}"
+                                           message="#{msg.categoria_confirmacion} #{subcategoria.nombre}"
+                                           icon="fa fa-exclamation-triangle"/>
+                            </p:commandButton>
+                        </p:column>
+                    </p:dataTable>
+                    <p:button value="#{msg.boton_registrar}" outcome="/subcategorias/new"/>
 
 
-                        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                            <p:commandButton value="#{msg.boton_si}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                            <p:commandButton value="#{msg.boton_no}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-                        </p:confirmDialog>
-                    </h:form>
-                </h:body>
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="#{msg.boton_si}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                        <p:commandButton value="#{msg.boton_no}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog>
+                </h:form>
             </f:view>
         </ui:define>
     </ui:composition>

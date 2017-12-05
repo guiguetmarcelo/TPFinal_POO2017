@@ -9,13 +9,14 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <h:head>
+        <f:facet name="first">
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <title><ui:insert name="title">#{msg.home_title}</ui:insert></title>
+        </f:facet>
 
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="css/default.css" />
         <h:outputStylesheet name="css/cssLayout.css"/>
-        <!-- <h:outputStylesheet name="webjars/font-awesome/4.7.0/css/font-awesome-jsf.css"></h:outputStylesheet>-->
-
-        <title><ui:insert name="title">#{msg.home_title}</ui:insert></title>
+        
         <ui:insert name="head_content"></ui:insert>
     </h:head>
 

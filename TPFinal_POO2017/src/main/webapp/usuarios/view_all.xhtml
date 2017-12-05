@@ -12,7 +12,7 @@
 
         <ui:define name="content">
             <h1>#{msg.usuarios_vistaTodosTitulo}</h1>
-            
+
             <h:form id="usuarios_form_index">
 
                 <p:growl id="messages" autoUpdate="true" for="msgUsuario"></p:growl>
@@ -28,12 +28,12 @@
                     <p:column headerText="#{msg.usuarios_password}">
                         <h:outputText value="#{usuario.password}"/>
                     </p:column>
-                    
+
                     <p:column headerText="#{msg.usuarios_estado}">
                         <h:outputText value="#{usuario.estado}"/>
                     </p:column>
                 </p:dataTable>
-                
+
             </h:form>
         </ui:define>
     </ui:composition>

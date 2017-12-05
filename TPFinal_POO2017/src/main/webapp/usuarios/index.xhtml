@@ -12,7 +12,7 @@
 
         <ui:define name="content">
             <h1>#{msg.usuarios_titulo}</h1>
-            
+
             <h:form id="usuarios_form_index">
 
                 <p:growl id="messages" autoUpdate="true" for="msgUsuario"></p:growl>
@@ -46,7 +46,7 @@
                                          value="#{msg.boton_eliminar}"
                                          update="usuarios" 
                                          icon="fa fa-trash">
-                            
+
                             <p:confirm header="#{msg.dialogo_confirmacion}"
                                        message="#{unnoba:textFormat(msg.usuarios_eliminarConfirmacionMensaje, usuario.username)}"
                                        icon="fa fa-exclamation-triangle"/>
@@ -54,14 +54,14 @@
                     </p:column>
 
                 </p:dataTable>
-                
+
                 <p:button value="#{msg.usuarios_nuevo}" outcome="/usuarios/new.xhtml?faces-redirect=true"/>
 
                 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
                     <p:commandButton value="#{msg.boton_si}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
                     <p:commandButton value="#{msg.boton_no}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                 </p:confirmDialog>
-                
+
             </h:form>
         </ui:define>
     </ui:composition>

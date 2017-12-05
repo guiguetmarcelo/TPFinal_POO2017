@@ -10,19 +10,17 @@ and open the template in the editor.
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-      
 
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
 
         <ui:define name="title">#{msg.gastos_nuevoTitle}</ui:define>
-        
+
         <ui:define name="head_content" >
             <h:outputScript library="js" name="calendar_es.js" />
         </ui:define>
-        
+
         <ui:define name="content">
-            #{msg.gastos_nuevoTitulo}
-            <br />
+            <h1>#{msg.gastos_nuevoTitulo}</h1>
 
             <h:form >
                 <p:growl id="messages"></p:growl>
