@@ -22,6 +22,7 @@ import javax.inject.Named;
 /**
  *
  * @author jpgm
+ * @author Marcelo
  */
 @SessionScoped
 @Named
@@ -40,6 +41,7 @@ public class SessionBacking implements Serializable {
 
     // @Inject
     //private MessagesProducer h;
+    
     @PostConstruct
     public void init() {
     }
@@ -84,11 +86,4 @@ public class SessionBacking implements Serializable {
         this.usuario = usuario;
     }
 
-    /*public ResourceBundle getMessages() {
-        return messages;
-    }
-
-    public void setMessages(ResourceBundle messages) {
-        this.messages = messages;
-    }*/
 }
