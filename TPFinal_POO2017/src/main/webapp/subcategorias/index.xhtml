@@ -44,6 +44,23 @@
                                                icon="ui-icon-alert" />
                                 </p:commandLink>
                             </p:column>
+                            <p:column>
+                                <p:button outcome="/subcategorias/edit" icon="fa fa-pencil" value="#{msg.boton_editar}">
+                                    <f:param name="id" value="#{subcategoria.id}" />
+                                </p:button>
+                            </p:column>
+
+                            <p:column>
+                                <p:commandButton actionListener="#{subcategoriaBacking.delete(subcategoria)}"
+                                                 value="#{msg.boton_eliminar}"
+                                                 update="subcategorias" 
+                                                 icon="fa fa-trash">
+
+                                    <p:confirm header="#{msg.dialogo_confirmacion}"
+                                               message="#{msg.categoria_confirmacion} #{subcategoria.nombre}"
+                                               icon="fa fa-exclamation-triangle"/>
+                                </p:commandButton>
+                            </p:column>
                         </p:dataTable>
                         <p:button value="#{msg.boton_registrar}" outcome="/subcategorias/new"/>
 

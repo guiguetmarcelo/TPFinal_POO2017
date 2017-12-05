@@ -4,55 +4,59 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-    
+
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
         <ui:define name="content">
 
-    <f:view contentType="text/html">
-        <h:head>
-            <f:facet name="first">
-                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>Welcome</title>
-            </f:facet>
-        </h:head>
+            <f:view contentType="text/html">
+                <h:head>
+                    <f:facet name="first">
+                        <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                        <title>Welcome</title>
+                    </f:facet>
+                </h:head>
 
-        <h:body>
-            <h:form>
+                <h:body>
+                    <h:form>
 
-                <p:dataTable id="categorias"
-                             value="#{categoriaBacking.categorias}" 
-                             var="categoria">
-                    <p:column headerText="#{msg.usuarios_nombre}">
-                        <h:outputText value="#{categoria.nombre}"/>
-                    </p:column>
-                    <p:column headerText="#{msg.descripcion}">
-                        <h:outputText value="#{categoria.descripcion}"/>
-                    </p:column>
-                    <p:column>
-                        <h:link outcome="/categorias/edit" value="#{msg.editar_categoria}">
-                            <f:param name="id" value="#{categoria.id}" />
-                        </h:link>
-                    </p:column>
-                    <p:column>
-                        <p:commandLink actionListener="#{categoriaBacking.delete(categoria)}" 
-                                       value="#{msg.boton_eliminar}"
-                                       update="categorias">
-                            <p:confirm header="Confirmation" 
-                                       message="#{msg.categoria_confirmacion} #{categoria.nombre}?" 
-                                       icon="ui-icon-alert" />
-                        </p:commandLink>
-                    </p:column>
-                </p:dataTable>
-                <p:button value="#{msg.aniadir_categoria}" outcome="/categorias/new"/>
+                        <p:dataTable id="categorias"
+                                     value="#{categoriaBacking.categorias}" 
+                                     var="categoria">
+                            <p:column headerText="#{msg.usuarios_nombre}">
+                                <h:outputText value="#{categoria.nombre}"/>
+                            </p:column>
+                            <p:column headerText="#{msg.descripcion}">
+                                <h:outputText value="#{categoria.descripcion}"/>
+                            </p:column>
+
+                            <p:column>
+                                <p:button outcome="/categorias/edit" icon="fa fa-pencil" value="#{msg.boton_editar}">
+                                    <f:param name="id" value="#{categoria.id}" />
+                                </p:button>
+                            </p:column>
+
+                            <p:column>
+                                <p:commandButton actionListener="#{categoriaBacking.delete(categoria)}"
+                                                 value="#{msg.boton_eliminar}"
+                                                 update="categorias" 
+                                                 icon="fa fa-trash">
+
+                                    <p:confirm header="#{msg.dialogo_confirmacion}"
+                                               message="#{msg.categoria_confirmacion} #{categoria.nombre}"
+                                               icon="fa fa-exclamation-triangle"/>
+                                </p:commandButton>
+                            </p:column>
+                        </p:dataTable>
+                        <p:button value="#{msg.aniadir_categoria}" outcome="/categorias/new"/>
 
 
-                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                    <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-                </p:confirmDialog>
-            </h:form>
-        </h:body>
-    </f:view>
-            </ui:define>
+                        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                            <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                        </p:confirmDialog>
+                    </h:form>
+                </h:body>
+            </f:view>
+        </ui:define>
     </ui:composition>
 </html>

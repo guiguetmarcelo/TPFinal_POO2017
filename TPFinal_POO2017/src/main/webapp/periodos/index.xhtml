@@ -4,58 +4,62 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-    
+
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
         <ui:define name="content">
 
-    <f:view contentType="text/html">
-        <h:head>
-            <f:facet name="first">
-                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>Welcome</title>
-            </f:facet>
-        </h:head>
+            <f:view contentType="text/html">
+                <h:head>
+                    <f:facet name="first">
+                        <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                        <title>Welcome</title>
+                    </f:facet>
+                </h:head>
 
-        <h:body>
-            <h:form>
+                <h:body>
+                    <h:form>
 
-                <p:dataTable id="periodos"
-                             value="#{periodoBacking.periodos}" 
-                             var="periodo">
-                    <p:column headerText="#{msg.fecha_inicio}">
-                        <h:outputText value="#{periodo.fechaDesde}"/>
-                    </p:column>
-                    <p:column headerText="#{msg.fecha_fin}">
-                        <h:outputText value="#{periodo.fechaHasta}"/>
-                    </p:column>
-                    <p:column headerText="#{msg.descripcion}">
-                        <h:outputText value="#{periodo.descripcion}"/>
-                    </p:column>
-                    <p:column>
-                        <h:link outcome="/periodos/edit" value="#{msg.editar_periodo}">
-                            <f:param name="id" value="#{periodo.id}" />
-                        </h:link>
-                    </p:column>
-                    <p:column>
-                        <p:commandLink actionListener="#{periodoBacking.delete(periodo)}" 
-                                       value="#{msg.boton_eliminar}"
-                                       update="periodos">
-                            <p:confirm header="Confirmation" 
-                                       message="¿Se eliminará el periodo?" 
-                                       icon="ui-icon-alert" />
-                        </p:commandLink>
-                    </p:column>
-                </p:dataTable>
-                <p:button value="#{msg.periodo_nuevo}" outcome="/periodos/new"/>
+                        <p:dataTable id="periodos"
+                                     value="#{periodoBacking.periodos}" 
+                                     var="periodo">
+                            <p:column headerText="#{msg.fecha_inicio}">
+                                <h:outputText value="#{periodo.fechaDesde}"/>
+                            </p:column>
+                            <p:column headerText="#{msg.fecha_fin}">
+                                <h:outputText value="#{periodo.fechaHasta}"/>
+                            </p:column>
+                            <p:column headerText="#{msg.descripcion}">
+                                <h:outputText value="#{periodo.descripcion}"/>
+                            </p:column>
+                            <p:column>
+                                <p:button outcome="/periodos/edit" icon="fa fa-pencil" value="#{msg.boton_editar}">
+                                    <f:param name="id" value="#{periodo.id}" />
+                                </p:button>
+                            </p:column>
+
+                            <p:column>
+                                <p:commandButton actionListener="#{periodoBacking.delete(periodo)}"
+                                                 value="#{msg.boton_eliminar}"
+                                                 update="periodos" 
+                                                 icon="fa fa-trash">
+
+                                    <p:confirm header="#{msg.dialogo_confirmacion}"
+                                               message="#{msg.confirmacion_periodo}"
+                                               icon="fa fa-exclamation-triangle"/>
+                                </p:commandButton>
+                            </p:column>
+
+                        </p:dataTable>
+                        <p:button value="#{msg.periodo_nuevo}" outcome="/periodos/new"/>
 
 
-                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                    <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-                </p:confirmDialog>
-            </h:form>
-        </h:body>
-    </f:view>
-            </ui:define>
+                        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                            <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                        </p:confirmDialog>
+                    </h:form>
+                </h:body>
+            </f:view>
+        </ui:define>
     </ui:composition>
 </html>
