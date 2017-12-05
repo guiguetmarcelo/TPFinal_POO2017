@@ -7,6 +7,7 @@ package ar.edu.unnoba.poo2017.tpfinal_poo2017.dao;
 
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Categoria;
 import java.util.List;
+import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.persistence.Query;
 
@@ -22,8 +23,15 @@ public class CategoriaDao extends AbstractDAO<Categoria> {
     }
     
     public List<Categoria> getCategorias(){
-        Query query = em.createNamedQuery("categoria.disponibles");
+        Query query = em.createNamedQuery("categoria.activas");
         return query.getResultList();
+    }
+    
+    
+    @Override
+    public void delete(Categoria c) throws EJBException {
+        c.setBorrada(Boolean.TRUE);
+        super.update(c);
     }
     
 }

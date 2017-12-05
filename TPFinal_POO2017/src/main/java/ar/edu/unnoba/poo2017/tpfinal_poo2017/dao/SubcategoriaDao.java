@@ -22,7 +22,7 @@ public class SubcategoriaDao extends AbstractDAO<Subcategoria> {
     }
     
     public List<Subcategoria> getSubcategorias(){
-        Query query = em.createNamedQuery("subcategoria.disponibles");
+        Query query = em.createNamedQuery("subcategoria.activas");
         return query.getResultList();
     }
     

@@ -55,8 +55,10 @@ public class CategoriaBacking implements Serializable {
         }
     }
 
-    public void delete(Categoria categoria) {
+    
+     public void delete(Categoria categoria) {
         categoriaDao.delete(categoria);
+        
     }
 
     public Categoria getCategoria() {
