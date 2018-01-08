@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -22,6 +24,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "empresas")
+@NamedQueries({
+    @NamedQuery(name = "empresas.disponibles", query = "SELECT e FROM Empresa e")
+})
 public class Empresa implements Serializable{
     
     @Id
@@ -29,6 +34,14 @@ public class Empresa implements Serializable{
     @Basic(optional = false)
     @Column
     private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
     
     @Basic(optional = false)
     @Column(nullable = false)
@@ -100,21 +113,18 @@ public class Empresa implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 23 * hash + Objects.hashCode(this.id);
+        int hash = 0;
+        hash += (getId() != null ? getId().hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
+    public boolean equals(Object object) {
+        if (!(object instanceof Empresa)) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Empresa other = (Empresa) obj;
-        if (!Objects.equals(this.id, other.id)) {
+        Empresa other = (Empresa) object;
+        if ((this.getId() == null && other.getId() != null) || (this.getId() != null && !this.getId().equals(other.getId()))) {
             return false;
         }
         return true;
