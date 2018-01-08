@@ -12,6 +12,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -26,10 +27,14 @@ public class PresupuestoBacking implements Serializable {
 
     @EJB
     private PresupuestoDao presupuestoDao;
+    
+    @Inject
+    private SessionBacking sessionBacking;
 
     @PostConstruct
     public void init() {
         setPresupuesto(new Presupuesto());
+        this.presupuesto.setEmpresa(sessionBacking.getUsuario().getEmpresa());
     }
 
     public List<Presupuesto> getPresupuestos() {

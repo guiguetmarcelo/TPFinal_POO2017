@@ -11,7 +11,9 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.Query;
 
@@ -22,19 +24,25 @@ import javax.persistence.Query;
 @Named
 @ViewScoped
 public class CategoriaBacking implements Serializable {
-
+    
     private Categoria categoria;
 
     @PostConstruct
     public void init() {
         this.categoria = new Categoria();
+        this.categoria.setEmpresa(sessionBacking.getUsuario().getEmpresa());
+  
     }
 
     @EJB
     private CategoriaDao categoriaDao;
+    
+    @Inject
+    private SessionBacking sessionBacking;
 
     public List<Categoria> getCategorias() {
         return categoriaDao.getCategorias();
+        
     }
 
     public String create() {
