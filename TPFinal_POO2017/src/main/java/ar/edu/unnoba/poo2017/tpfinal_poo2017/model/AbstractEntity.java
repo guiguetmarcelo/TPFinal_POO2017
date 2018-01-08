@@ -11,6 +11,8 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 
 /**
@@ -25,6 +27,18 @@ public abstract class AbstractEntity {
     @Basic(optional = false)
     @Column
     private Long id;
+    
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "empresa")
+    private Empresa empresa;
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
 
     public Long getId() {
         return id;
