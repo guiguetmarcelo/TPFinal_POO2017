@@ -12,6 +12,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -27,10 +28,14 @@ public class PeriodoBacking implements Serializable {
     @PostConstruct
     public void init(){
         this.periodo = new Periodo();
+        this.periodo.setEmpresa(sessionBacking.getUsuario().getEmpresa());
     }
     
     @EJB
     private PeriodoDao periodoDao;
+    
+    @Inject
+    private SessionBacking sessionBacking;
     
     public List<Periodo> getPeriodos(){
         return periodoDao.getPeriodos();

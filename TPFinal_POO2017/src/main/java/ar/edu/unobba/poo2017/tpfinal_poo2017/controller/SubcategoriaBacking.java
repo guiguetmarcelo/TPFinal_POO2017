@@ -14,6 +14,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -29,10 +30,14 @@ public class SubcategoriaBacking implements Serializable{
     @PostConstruct
     public void init(){
         this.subcategoria = new Subcategoria();
+        this.subcategoria.setEmpresa(sessionBacking.getUsuario().getEmpresa());
     }
     
     @EJB 
     private SubcategoriaDao subcategoriaDao;
+    
+    @Inject
+    private SessionBacking sessionBacking;
     
     public List<Subcategoria> getSubcategorias(){
         return subcategoriaDao.getSubcategorias();
