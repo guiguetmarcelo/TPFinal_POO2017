@@ -6,8 +6,10 @@
 package ar.edu.unnoba.poo2017.tpfinal_poo2017.dao;
 
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Periodo;
+import ar.edu.unobba.poo2017.tpfinal_poo2017.controller.SessionBacking;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.Query;
 
 /**
@@ -21,8 +23,11 @@ public class PeriodoDao extends AbstractDAO<Periodo> {
         super(Periodo.class);
     }
     
+    @Inject
+    private SessionBacking sessionBacking;
+    
     public List<Periodo> getPeriodos(){
-        Query query = em.createNamedQuery("periodo.disponibles");
+        Query query = em.createNamedQuery("periodo.disponibles").setParameter("empresa", sessionBacking.getUsuario().getEmpresa());
         return query.getResultList();
     }
     

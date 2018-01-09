@@ -22,7 +22,7 @@ import javax.persistence.Table;
    @NamedQuery(name = "categoria.disponibles",
            query = "Select c From Categoria c WHERE TYPE(c)= Categoria"), 
      @NamedQuery(name = "categoria.activas",
-           query = "Select c From Categoria c WHERE TYPE(c)= Categoria AND c.borrada=FALSE")
+           query = "Select c From Categoria c WHERE TYPE(c)= Categoria AND c.borrada=FALSE AND c.empresa=:empresa")
 
 })
 public class Categoria extends AbstractEntity implements Serializable {

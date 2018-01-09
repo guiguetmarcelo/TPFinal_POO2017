@@ -6,8 +6,10 @@
 package ar.edu.unnoba.poo2017.tpfinal_poo2017.dao;
 
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Presupuesto;
+import ar.edu.unobba.poo2017.tpfinal_poo2017.controller.SessionBacking;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.Query;
 
 /**
@@ -22,8 +24,11 @@ public class PresupuestoDao extends AbstractDAO<Presupuesto> {
         super(Presupuesto.class);
     }
     
+    @Inject
+    private SessionBacking sessionBacking;
+    
     public List<Presupuesto> getPresupuestos(){
-        Query query = em.createNamedQuery("presupuestos.disponibles");
+        Query query = em.createNamedQuery("presupuestos.disponibles").setParameter("empresa", sessionBacking.getUsuario().getEmpresa());
         return query.getResultList();
     }
 }

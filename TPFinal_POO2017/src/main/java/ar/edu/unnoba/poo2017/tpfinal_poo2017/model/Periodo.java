@@ -16,7 +16,7 @@ import javax.persistence.TemporalType;
 @Table(name = "periodos")
 @NamedQueries({
    @NamedQuery(name = "periodo.disponibles",
-           query = "Select p From Periodo p")})
+           query = "Select p From Periodo p WHERE p.empresa=:empresa")})
 public class Periodo extends AbstractEntity implements Serializable {
 
     @Temporal(TemporalType.TIMESTAMP)

@@ -21,7 +21,7 @@ import javax.persistence.Table;
    @NamedQuery(name = "subcategoria.disponibles",
            query = "Select c From Subcategoria c" ), 
     @NamedQuery(name = "subcategoria.activas",
-           query = "Select c From Subcategoria c WHERE c.borrada=FALSE")
+           query = "Select c From Subcategoria c WHERE c.borrada=FALSE and c.empresa=:empresa")
 })
 public class Subcategoria extends Categoria implements Serializable {
 

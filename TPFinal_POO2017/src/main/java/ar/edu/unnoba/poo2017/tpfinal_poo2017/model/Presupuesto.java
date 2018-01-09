@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "presupuestos")
 @NamedQueries({
-    @NamedQuery(name = "presupuestos.disponibles", query = "SELECT p FROM Presupuesto p")
+    @NamedQuery(name = "presupuestos.disponibles", query = "SELECT p FROM Presupuesto p WHERE p.empresa=:empresa")
 })
 public class Presupuesto extends AbstractEntity implements Serializable{
     
