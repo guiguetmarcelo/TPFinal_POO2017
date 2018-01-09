@@ -7,6 +7,7 @@ package ar.edu.unobba.poo2017.tpfinal_poo2017.controller;
 
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.bundle.MessagesProducer;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.dao.UsuarioDao;
+import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.RolUsuario;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Usuario;
 import java.io.Serializable;
 import java.util.List;
@@ -51,6 +52,7 @@ public class UsuarioBacking implements Serializable {
     }
 
     public String create() {
+        usuario.setRol(RolUsuario.ADMINISTRADOR_GENERAL);
         try {
             usuarioDao.create(usuario);
             return "/usuarios/index?faces-redirect=true";

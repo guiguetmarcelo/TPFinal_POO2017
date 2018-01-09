@@ -4,6 +4,8 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -46,6 +48,13 @@ public class Usuario extends AbstractEntity implements Serializable{
     @Basic(optional = false)
     @Column(nullable = false)
     private Boolean activo = true;
+    
+    @Enumerated(EnumType.ORDINAL)
+    @Basic(optional = false)
+    @Column(name = "rol")
+    private RolUsuario rol;
+    
+    
 
     public Usuario() {
 
@@ -103,5 +112,23 @@ public class Usuario extends AbstractEntity implements Serializable{
         if(isActivo())
             return "Activo";
         return "Borrado";
+    }
+
+    public RolUsuario getRol() {
+        return rol;
+    }
+
+    public void setRol(RolUsuario rol) {
+        this.rol = rol;
+    }
+    
+    
+    
+    public Boolean isAdmGen(){
+        return getRol().isAdmGen();
+    }
+    
+    public Boolean isAdmEmp(){
+        return getRol().isAdmEmp();
     }
 }
