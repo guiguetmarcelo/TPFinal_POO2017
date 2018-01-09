@@ -15,6 +15,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -46,13 +47,16 @@ public class UsuarioBacking implements Serializable {
     public List<Usuario> getUsuarios() {
         return usuarioDao.getUsuarios();
     }
-    
-      public List<Usuario> getUsuariosActivos() {
+
+    public List<Usuario> getUsuariosActivos() {
         return usuarioDao.getUsuariosActivos();
     }
 
     public String create() {
-        usuario.setRol(RolUsuario.ADMINISTRADOR_GENERAL);
+        if (!session.getUsuario().isAdmGen()) {
+            usuario.setRol(RolUsuario.ADMINISTRADOR_EMPRESA);
+            usuario.setEmpresa(session.getUsuario().getEmpresa());
+        }
         try {
             usuarioDao.create(usuario);
             return "/usuarios/index?faces-redirect=true";
@@ -103,6 +107,16 @@ public class UsuarioBacking implements Serializable {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public SelectItem[] getRolesSelectMany() {
+        SelectItem[] items = new SelectItem[RolUsuario.values().length];
+
+        int i = 0;
+        for (RolUsuario role : RolUsuario.values()) {
+            items[i++] = new SelectItem(role, role.toString());
+        }
+        return items;
     }
 
 }

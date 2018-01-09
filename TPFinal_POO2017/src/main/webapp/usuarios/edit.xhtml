@@ -36,6 +36,18 @@
 
                     <p:outputLabel value="#{msg.usuarios_password}"></p:outputLabel>
                     <p:password value="#{usuarioBacking.usuario.password}"/>
+                    
+                    <p:outputLabel for="labelEmpresa" value="#{msg.usuarios_empresa}" rendered="#{sessionBacking.usuario.isAdmGen()}" />
+                    <p:selectOneMenu id="labelEmpresa" value="#{usuarioBacking.usuario.empresa}" rendered="#{sessionBacking.usuario.isAdmGen()}" required="true" filter="true" filterMatchMode="startsWith">
+                        <f:selectItem itemLabel="#{msg.elegir} " />
+                        <f:selectItems value="#{empresaBacking.empresas}" var="emp" itemLabel="#{emp.nombre}" itemValue="#{emp}" />
+                    </p:selectOneMenu>
+                    
+                     <p:outputLabel for="labelRol" value="Rol" rendered="#{sessionBacking.usuario.isAdmGen()}"></p:outputLabel>
+                    <p:selectOneMenu id="labelRol" value="#{usuarioBacking.usuario.rol}" converter="rolUsuarioConverter" rendered="#{sessionBacking.usuario.isAdmGen()}" required="true" filter="true" filterMatchMode="startsWith">
+                        <f:selectItem itemLabel="#{msg.elegir} " />
+                        <f:selectItems value="#{usuarioBacking.rolesSelectMany}" var="rol" itemLabel="#{rol.name}" itemValue="#{rol}" />
+                    </p:selectOneMenu>
 
                     <p:commandButton value="#{msg.usuarios_botonActualizar}" 
                                      action="#{usuarioBacking.update()}" 
