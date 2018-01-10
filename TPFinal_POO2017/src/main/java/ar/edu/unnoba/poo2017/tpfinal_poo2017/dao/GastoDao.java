@@ -37,6 +37,7 @@ public class GastoDao extends AbstractDAO<Gasto> {
         Query query = em.createNamedQuery("gastos.por_categoria_periodo").setParameter("empresa", sessionBacking.getUsuario().getEmpresa());
 
         return query.getResultList();
+        
 
     }
 
