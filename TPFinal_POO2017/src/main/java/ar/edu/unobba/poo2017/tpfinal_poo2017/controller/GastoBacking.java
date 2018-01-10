@@ -41,10 +41,6 @@ public class GastoBacking implements Serializable {
         return gastoDao.getGastos();
     }
 
-    public List<Object[]> getReporteGastos(){
-        return gastoDao.getReporteGastos();
-    }
-    
     public String create() {
         try {
             gastoDao.create(getGasto());

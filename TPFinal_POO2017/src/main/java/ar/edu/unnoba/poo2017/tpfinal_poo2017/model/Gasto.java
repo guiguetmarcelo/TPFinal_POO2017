@@ -16,8 +16,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "gastos")
 @NamedQueries({
-    @NamedQuery(name = "gastos.disponibles", query = "SELECT g FROM Gasto g WHERE g.empresa=:empresa"),
-   @NamedQuery(name = "gastos.por_categoria_periodo", query = "SELECT g, p, s FROM Gasto g INNER JOIN Periodo p INNER JOIN Subcategoria s WHERE g.empresa=:empresa")
+    @NamedQuery(name = "gastos.disponibles", query = "SELECT g FROM Gasto g WHERE g.empresa=:empresa")
 })
 public class Gasto extends AbstractEntity implements Serializable {
 
