@@ -21,7 +21,9 @@ import javax.persistence.Table;
            query = "Select u From Usuario u "
                    + "where u.username = :username and u.password = :password"),
     @NamedQuery(name = "usuario.por_username_y_password_activo",
-           query = "Select u From Usuario u where u.username = :username and u.password = :password and u.activo = TRUE")
+           query = "Select u From Usuario u where u.username = :username and u.password = :password and u.activo = TRUE"),
+    @NamedQuery(name = "usuario.por_username_password_empresa_activo",
+           query = "Select u From Usuario u where u.username = :username AND u.password = :password AND u.empresa = :empresa AND u.activo = TRUE")
 })
 public class Usuario extends AbstractEntity implements Serializable{
     

@@ -5,6 +5,7 @@
  */
 package ar.edu.unnoba.poo2017.tpfinal_poo2017.dao;
 
+import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Empresa;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Usuario;
 import java.util.List;
 import javax.ejb.EJBException;
@@ -48,6 +49,19 @@ public class UsuarioDao extends AbstractDAO<Usuario> {
         Query query = em.createNamedQuery("usuario.por_username_y_password_activo");
         query.setParameter("username", username);
         query.setParameter("password", password);
+        List<Usuario> usuarios = query.getResultList();
+        if (usuarios.isEmpty()) {
+            return null;
+        } else {
+            return usuarios.get(0);            
+        }
+    }
+    
+     public Usuario getUsuarioActivo(String username, String password, Empresa empresa) {
+        Query query = em.createNamedQuery("usuario.por_username_password_empresa_activo");
+        query.setParameter("username", username);
+        query.setParameter("password", password);
+        query.setParameter("empresa", empresa);
         List<Usuario> usuarios = query.getResultList();
         if (usuarios.isEmpty()) {
             return null;

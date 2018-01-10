@@ -23,6 +23,12 @@
                 <p:outputLabel value="#{msg.usuarios_password}"></p:outputLabel>
                 <p:password value="#{sessionBacking.password}"/>
 
+                <p:outputLabel for="labelEmpresa" value="#{msg.usuarios_empresa}" />
+                <p:selectOneMenu id="labelEmpresa" value="#{sessionBacking.empresa}" required="true" filter="true" filterMatchMode="startsWith">
+                    <f:selectItem itemLabel="#{msg.elegir} " />
+                    <f:selectItems value="#{empresaBacking.empresas}" var="emp" itemLabel="#{emp.nombre}" itemValue="#{emp}" />
+                </p:selectOneMenu>
+
                 <p:commandButton value="#{msg.usuarios_loginIngresar}" 
                                  action="#{sessionBacking.login()}" 
                                  update="messages"/>

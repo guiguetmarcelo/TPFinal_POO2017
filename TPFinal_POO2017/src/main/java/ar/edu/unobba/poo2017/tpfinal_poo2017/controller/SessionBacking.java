@@ -8,6 +8,7 @@ package ar.edu.unobba.poo2017.tpfinal_poo2017.controller;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.bundle.MessagesBundle;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.bundle.MessagesProducer;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.dao.UsuarioDao;
+import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Empresa;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Usuario;
 import java.io.Serializable;
 import java.util.PropertyResourceBundle;
@@ -31,6 +32,7 @@ public class SessionBacking implements Serializable {
     private String username;
     private String password;
     private Usuario usuario;
+    private Empresa empresa;
 
     @EJB
     private UsuarioDao usuarioDao;
@@ -41,13 +43,12 @@ public class SessionBacking implements Serializable {
 
     // @Inject
     //private MessagesProducer h;
-    
     @PostConstruct
     public void init() {
     }
 
     public String login() {
-        this.usuario = usuarioDao.getUsuarioActivo(this.username, this.password);
+        this.usuario = usuarioDao.getUsuarioActivo(this.username, this.password, this.empresa);
         if (usuario == null) {
             FacesContext context = FacesContext.getCurrentInstance();
             FacesMessage message = new FacesMessage(msg.getString("usuarios_loginUCIncorrectos"));
@@ -84,6 +85,14 @@ public class SessionBacking implements Serializable {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
     }
 
 }
