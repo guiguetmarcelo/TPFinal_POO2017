@@ -1,0 +1,57 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 15-ene-2018, 10:59:29
+    Author     : Marcelo
+*/
+
+@mixin border-radius($radius: 5px){
+    border-radius: $radius;
+    -moz-border-radius: $radius;
+    -webkit-border-radius: $radius;
+}
+
+//FIX Jquery ui conflict with bootstrap in box-sizing attribute
+.ui-widget {
+    *,
+    *:before,
+        *:after {
+        -webkit-box-sizing: content-box;
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
+    }
+}
+
+.loginBody {
+    background: url("\#{resource['images/fondo.jpg']}") no-repeat;
+    background-size: cover;
+    background-position: center;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 0;
+}
+.loginVertical {
+    padding-top: 8%;
+}
+.loginFormContainer{
+    background: #fff9;
+    border: 0px solid;
+    @include border-radius(10px);
+    -webkit-box-shadow: -1px 4px 26px 10px rgba(0,0,0,0.75);
+    -moz-box-shadow: -1px 4px 26px 10px rgba(0,0,0,0.75);
+    box-shadow: -1px 4px 26px 10px rgba(0,0,0,0.75);
+    padding: 30px;
+
+    h3 {
+        margin-bottom: 40px;
+    }
+}
+
+.prueba {
+    color:#ffffff;
+}

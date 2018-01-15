@@ -15,6 +15,21 @@
     </properties>
     
     <dependencies>
+        
+        <dependency>  
+            <groupId>org.primefaces.themes</groupId>  
+            <artifactId>bootstrap</artifactId>  
+            <version>1.0.10</version>  
+        </dependency> 
+    
+        
+        <!-- https://mvnrepository.com/artifact/com.sun.faces/jsf-impl -->
+        <dependency>
+            <groupId>com.sun.faces</groupId>
+            <artifactId>jsf-impl</artifactId>
+            <version>2.2.15</version>
+        </dependency>
+        
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
