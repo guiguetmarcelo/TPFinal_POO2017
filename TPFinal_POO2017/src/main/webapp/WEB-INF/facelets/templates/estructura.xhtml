@@ -14,44 +14,76 @@
             <title><ui:insert name="title">#{msg.home_title}</ui:insert></title>
         </f:facet>
 
-        <h:outputStylesheet name="css/default.css" />
-        <h:outputStylesheet name="css/cssLayout.css"/>
+        <!--<h:outputStylesheet name="css/default.css" />
+        <h:outputStylesheet name="css/cssLayout.css"/>-->
+        <h:outputStylesheet name="css/bootstrap.css"/>
+        <h:outputStylesheet name="css/styles.css"/>
         <!--<h:outputStylesheet name="css/bootstrap.css"/>-->
-        
+
         <ui:insert name="head_content"></ui:insert>
     </h:head>
 
     <h:body>
 
-        <div id="top">
-            <div id="titulo_sistema">
-                <span>#{msg.sistema}</span>
+
+        <header class="">
+            <div id="top" class="col-12">
+                <div id="titulo_sistema">
+                    <span>#{msg.sistema}</span>
+                </div>
+
+                <ui:insert name="menu">
+                    <ui:decorate template="/WEB-INF/facelets/templates/menu.xhtml">
+                    </ui:decorate>  
+                </ui:insert>
+
+                <ui:insert name="top"></ui:insert>
             </div>
-            
-            <ui:insert name="menu">
-                <ui:decorate template="/WEB-INF/facelets/templates/menu.xhtml">
-                </ui:decorate>  
+        </header>
+
+        <section class="container-fluid" role="main">
+            <div class="row">
+                <div id="content" class="center_content col-12">
+                    <ui:insert name="content"></ui:insert>
+                </div>
+            </div>
+        </section>
+
+        <footer class="">
+            <ui:insert name="bottom">
+                <div id="bottom" class="container-fluid">
+                    <div class="row justify-content-center">
+                        <div class="col-auto">
+                            <figure>
+                                <h:graphicImage library="images" name="escudo.png"></h:graphicImage>
+                            </figure>
+                            
+
+                        </div>
+
+                        <div class="col-auto align-self-center">   
+                            <h3>#{msg.p_autores}</h3>
+                            <p>Sebastian Adorno</p>
+                            <p>Marcelo Emanuel Guiguet</p>                       
+                        </div>
+                        
+                        <div class="col-12" role="end">
+                            <p>Programación Orientada a Objetos (POO) | Ingeniería en Informática | UNNOBA</p>
+                            <p>Año 2017</p>
+                        </div>
+
+                    </div> 
+                </div>
             </ui:insert>
 
-            <ui:insert name="top"></ui:insert>
-        </div>
+        </footer>
 
-        <div id="content" class="center_content">
-            <ui:insert name="content"></ui:insert>
-        </div>
 
-        <div id="bottom">
-            <h3>#{msg.p_autores}</h3>
-            <p>Sebastian Adorno</p>
-            <p>Marcelo Emanuel Guiguet</p>
-            <h3>#{msg.p_materia}</h3>
-            <p>Programación Orientada a Objetos</p>
-            <h3>#{msg.p_carrera}</h3>
-            <p>Ingeniería en informática</p>    
-            <h3>2017</h3>
 
-            <ui:insert name="bottom"></ui:insert>
-        </div>
+
+
+
+
 
     </h:body>
 

@@ -8,11 +8,35 @@ and open the template in the editor.
     Author     : Marcelo
 */
 
+
+/* Coolors Exported Palette - coolors.co/e6fafc-48a0c9-0353a4-011627-080c0a */
+/* RGB */
+//$color1: rgba(230, 250, 252, 1);
+$color1: #fcfcfb;
+$color2: rgba(72, 160, 201, 1);
+$color3: rgba(3, 83, 164, 1);
+$color4: rgba(1, 22, 39, 1);
+$color5: rgba(8, 12, 10, 1);
+
+$color1Darken: darken($color1, 10%);
+
+$color2Darken: darken($color2, 10%);
+$color2Lighten: lighten($color2, 10%);
+$color3Lighten: lighten($color3, 10%);
+
+
 @mixin border-radius($radius: 5px){
     border-radius: $radius;
     -moz-border-radius: $radius;
     -webkit-border-radius: $radius;
 }
+
+@mixin flex($at1:1, $at2:0, $at3:auto){
+    -webkit-flex: $at1 $at2 $at3; /* Safari 6.1+ */
+    -ms-flex: $at1 $at2 $at3; /* IE 10 */
+    flex: $at1 $at2 $at3;
+}
+
 
 //FIX Jquery ui conflict with bootstrap in box-sizing attribute
 .ui-widget {
@@ -25,6 +49,7 @@ and open the template in the editor.
     }
 }
 
+/* Login */
 .loginBody {
     background: url("\#{resource['images/fondo.jpg']}") no-repeat;
     background-size: cover;
@@ -51,7 +76,70 @@ and open the template in the editor.
         margin-bottom: 40px;
     }
 }
+/* FIN Login */
 
-.prueba {
-    color:#ffffff;
+html {
+    height: 100%;
+}
+
+body {
+    background: $color1;
+    height: 100%;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    -webkit-flex-direction:colum;
+}
+header {
+    background: $color3;
+    color: $color1Darken;
+    padding-bottom: 10px;
+}
+footer{
+    background: $color4;
+
+    color: $color2Lighten;
+    h3{
+        color: $color2;
+    }
+    
+    figure {
+        
+        text-align: center;
+        
+        img {
+            width: 100%;
+            max-width: 200px;
+            padding: 20px;
+        }
+    }
+    div[role=end]{
+        background: $color5;
+        text-align: center;
+        color: $color2Darken;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        
+        p{
+            margin-bottom: 0;
+        }
+    }
+}
+
+section[role=main]{
+    @include flex(1,0,auto);
+}
+
+#titulo_sistema{
+    text-align: center; 
+    padding: 40px 0;
+
+    span {
+        font-weight: bold;
+        font-size: 2em; 
+    }
+}
+
+#content {
+
 }
