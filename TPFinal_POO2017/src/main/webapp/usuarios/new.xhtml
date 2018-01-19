@@ -4,59 +4,115 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
 
         <ui:define name="title">#{msg.usuarios_nuevoTitle}</ui:define>
 
         <ui:define name="content">
-            <h1>#{msg.usuarios_nuevoTitulo}</h1>
-
-            <h:form>
-                <p:growl id="messages"></p:growl>
-
-                <p:panelGrid columns="2" styleClass="">
-                    <p:outputLabel value="#{msg.usuarios_username}"></p:outputLabel>
-                    <p:inputText value="#{usuarioBacking.usuario.username}"/>
-
-                    <p:outputLabel value="#{msg.usuarios_password}"></p:outputLabel>
-                    <p:password value="#{usuarioBacking.usuario.password}"/>
-
-                    <p:outputLabel value="#{msg.usuarios_nombre}"></p:outputLabel>
-                    <p:inputText value="#{usuarioBacking.usuario.nombre}"/>
-
-                    <p:outputLabel value="#{msg.usuarios_apellido}"></p:outputLabel>
-                    <p:inputText value="#{usuarioBacking.usuario.apellido}"/>
-                    
-                    <p:outputLabel value="#{msg.usuarios_email}"></p:outputLabel>
-                    <h:inputText id="email" value="#{usuarioBacking.usuario.email}" required="true" validatorMessage="Mail invalido">
-                        <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
-                    </h:inputText>
-                   
-
-                    <p:outputLabel for="labelRol" value="Rol" rendered="#{sessionBacking.usuario.isAdmGen()}"></p:outputLabel>
-                    <p:selectOneMenu id="labelRol" value="#{usuarioBacking.usuario.rol}" converter="rolUsuarioConverter" rendered="#{sessionBacking.usuario.isAdmGen()}" required="true" filter="true" filterMatchMode="startsWith">
-                        <f:selectItem itemLabel="#{msg.elegir} " />
-                        <f:selectItems value="#{usuarioBacking.rolesSelectMany}" var="rol" itemLabel="#{rol.name}" itemValue="#{rol}" />
-                    </p:selectOneMenu>
-
-                    <p:outputLabel for="labelEmpresa" value="#{msg.usuarios_empresa}" rendered="#{sessionBacking.usuario.isAdmGen()}" />
-                    <p:selectOneMenu id="labelEmpresa" value="#{usuarioBacking.usuario.empresa}" rendered="#{sessionBacking.usuario.isAdmGen()}" required="true" filter="true" filterMatchMode="startsWith">
-                        <f:selectItem itemLabel="#{msg.elegir} " />
-                        <f:selectItems value="#{empresaBacking.empresas}" var="emp" itemLabel="#{emp.nombre}" itemValue="#{emp}" />
-                    </p:selectOneMenu>
+            <div class="row justify-content-center">
+                <div class="col-auto">
 
 
-                    <p:commandButton value="#{msg.boton_registrar}" 
-                                     action="#{usuarioBacking.create()}" 
-                                     update="messages"/>
+                    <h1>#{msg.usuarios_nuevoTitulo}</h1>
 
-                    <p:button value="#{msg.boton_cancelar}" outcome="/usuarios/index.xhtml?faces-redirect=true"/>
-                </p:panelGrid>
-            </h:form>
+                    <h:form>
+                        <p:growl id="messages"></p:growl>
 
+                        <p:panelGrid  styleClass="">
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel for="newUserInputUsername" value="#{msg.usuarios_username}"></p:outputLabel>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText id="newUserInputUsername" value="#{usuarioBacking.usuario.username}" class="bsbb"/>
+                                </p:column>
+                            </p:row>
+
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel for="newUserInputPassword" value="#{msg.usuarios_password}"></p:outputLabel>
+                                </p:column>
+                                <p:column>
+                                    <p:password id="newUserInputPassword" value="#{usuarioBacking.usuario.password}" class="bsbb"/>
+                                </p:column>
+                            </p:row>
+
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel for="newUserInputName" value="#{msg.usuarios_nombre}"></p:outputLabel>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText id="newUserInputName" value="#{usuarioBacking.usuario.nombre}" class="bsbb"/>
+                                </p:column>
+                            </p:row>
+
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel for="newUserInputLastName" value="#{msg.usuarios_apellido}"></p:outputLabel>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText id="newUserInputLastName" value="#{usuarioBacking.usuario.apellido}" class="bsbb"/>
+                                </p:column>
+                            </p:row>
+
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel for="newUserInputEmail" value="#{msg.usuarios_email}"></p:outputLabel>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText id="newUserInputEmail" value="#{usuarioBacking.usuario.email}" required="true" validatorMessage="Mail invalido" class="bsbb">
+                                        <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                                    </p:inputText>
+                                </p:column>
+                            </p:row>
+
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel for="newUserInputRol" value="Rol" rendered="#{sessionBacking.usuario.isAdmGen()}"></p:outputLabel>
+
+                                </p:column>
+                                <p:column>
+                                    <p:selectOneMenu id="newUserInputRol" value="#{usuarioBacking.usuario.rol}" converter="rolUsuarioConverter" rendered="#{sessionBacking.usuario.isAdmGen()}" required="true" filter="true" filterMatchMode="startsWith">
+                                        <f:selectItem itemLabel="#{msg.elegir} " />
+                                        <f:selectItems value="#{usuarioBacking.rolesSelectMany}" var="rol" itemLabel="#{rol.name}" itemValue="#{rol}" />
+                                    </p:selectOneMenu>
+                                </p:column>
+                            </p:row>
+
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel for="newUserInputCompany" value="#{msg.usuarios_empresa}" rendered="#{sessionBacking.usuario.isAdmGen()}" />
+
+                                </p:column>
+                                <p:column>
+                                    <p:selectOneMenu id="newUserInputCompany" value="#{usuarioBacking.usuario.empresa}" rendered="#{sessionBacking.usuario.isAdmGen()}" required="true" filter="true" filterMatchMode="startsWith">
+                                        <f:selectItem itemLabel="#{msg.elegir} " />
+                                        <f:selectItems value="#{empresaBacking.empresas}" var="emp" itemLabel="#{emp.nombre}" itemValue="#{emp}" />
+                                    </p:selectOneMenu>
+                                </p:column>
+                            </p:row>
+
+                            <p:row styleClass="tableFooter">
+                                <p:column colspan="2">
+                                    <p:commandButton value="#{msg.boton_registrar}" 
+                                                     action="#{usuarioBacking.create()}" 
+                                                     update="messages"/>
+
+                                    <p:button value="#{msg.boton_cancelar}" outcome="/usuarios/index.xhtml?faces-redirect=true"/>
+                                </p:column>
+                            </p:row>
+
+
+
+                        </p:panelGrid>
+                    </h:form>
+                </div>
+            </div>
         </ui:define>
+
     </ui:composition>
 </html>
 

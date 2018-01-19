@@ -9,6 +9,26 @@ and open the template in the editor.
 */
 /* Coolors Exported Palette - coolors.co/e6fafc-48a0c9-0353a4-011627-080c0a */
 /* RGB */
+.ui-growl-item-container {
+  background: #0353a4 !important;
+  opacity: .95 !important;
+  filter: alpha(opacity=95) !important; }
+
+.ui-menu.ui-widget li > .ui-menuitem-link.ui-state-hover {
+  background-color: #0081c2;
+  background-image: -moz-linear-gradient(top, #0088cc, #0077b3);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0077b3));
+  background-image: -webkit-linear-gradient(top, #0088cc, #0077b3);
+  background-image: -o-linear-gradient(top, #0088cc, #0077b3);
+  background-image: linear-gradient(to bottom, #1f94cf, #0077b3);
+  background-repeat: repeat-x;
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0); }
+
+.bsbb {
+  -webkit-box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important;
+  box-sizing: border-box !important; }
+
 .ui-widget *,
 .ui-widget *:before,
 .ui-widget *:after {
@@ -16,8 +36,33 @@ and open the template in the editor.
   -moz-box-sizing: content-box;
   box-sizing: content-box; }
 
+table {
+  box-sizing: border-box !important; }
+  table input {
+    width: 100%; }
+
+.tableFooter {
+  text-align: center;
+  background: transparent; }
+  .tableFooter td {
+    padding: 30px 0px !important;
+    border-color: transparent !important; }
+  .tableFooter button {
+    margin-left: 10px;
+    margin-right: 10px; }
+
 /* Login */
 .loginBody {
+  background: #a9bacb;
+  background: -moz-linear-gradient(-45deg, #a9bacb 0%, #eedecd 12%, #bcab9a 32%, #789aab 53%, #eedecd 75%, #446688 100%);
+  background: -webkit-gradient(left top, right bottom, color-stop(0%, #a9bacb), color-stop(12%, #eedecd), color-stop(32%, #bcab9a), color-stop(53%, #789aab), color-stop(75%, #eedecd), color-stop(100%, #446688));
+  background: -webkit-linear-gradient(-45deg, #a9bacb 0%, #eedecd 12%, #bcab9a 32%, #789aab 53%, #eedecd 75%, #446688 100%);
+  background: -o-linear-gradient(-45deg, #a9bacb 0%, #eedecd 12%, #bcab9a 32%, #789aab 53%, #eedecd 75%, #446688 100%);
+  background: -ms-linear-gradient(-45deg, #a9bacb 0%, #eedecd 12%, #bcab9a 32%, #789aab 53%, #eedecd 75%, #446688 100%);
+  background: linear-gradient(135deg, #a9bacb 0%, #eedecd 12%, #bcab9a 32%, #789aab 53%, #eedecd 75%, #446688 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a9bacb', endColorstr='#446688', GradientType=1 ); }
+
+.loginBackground {
   background: url("#{resource['images/fondo.jpg']}") no-repeat;
   background-size: cover;
   background-position: center;
@@ -44,6 +89,9 @@ and open the template in the editor.
     margin-bottom: 40px; }
 
 /* FIN Login */
+.ui-widget {
+  line-height: 1.15; }
+
 html {
   height: 100%; }
 
@@ -56,7 +104,7 @@ body {
   -webkit-flex-direction: colum; }
 
 header {
-  background: #0353a4;
+  background: #48a0c9;
   color: #e6e6de;
   padding-bottom: 10px; }
 
@@ -86,6 +134,12 @@ section[role=main] {
   -ms-flex: 1 0 auto;
   /* IE 10 */
   flex: 1 0 auto; }
+
+.btnTable {
+  margin-right: 10px !important; }
+
+.dataTableUsuarios td {
+  text-align: center; }
 
 #titulo_sistema {
   text-align: center;
