@@ -40,6 +40,9 @@ table {
   box-sizing: border-box !important; }
   table input {
     width: 100%; }
+  table .ui-selectonemenu {
+    width: 100%;
+    box-sizing: border-box; }
 
 .tableFooter {
   text-align: center;
@@ -51,6 +54,21 @@ table {
     margin-left: 10px;
     margin-right: 10px; }
 
+.tableBorderOff tr {
+  border: none !important; }
+.tableBorderOff td {
+  border: none !important; }
+
+.tableAutoMargin {
+  margin: 0 auto; }
+
+/* New User */
+.newUserContainer {
+  padding: 25px 0; }
+  .newUserContainer h1 {
+    text-align: center; }
+
+/* FIN New User */
 /* Login */
 .loginBody {
   background: #a9bacb;

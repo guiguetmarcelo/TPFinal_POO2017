@@ -38,7 +38,7 @@
                                 <h:outputText value="#{usuario.password}"/>
                             </p:column>
 
-                            <p:column>
+                            <p:column colspan="3">
                                 <p:button outcome="/usuarios/view.xhtml?faces-redirect=true" icon="fa fa-eye" value="#{msg.boton_ver}" class="btnTable">
                                     <f:param name="id" value="#{usuario.id}"/>
                                 </p:button>

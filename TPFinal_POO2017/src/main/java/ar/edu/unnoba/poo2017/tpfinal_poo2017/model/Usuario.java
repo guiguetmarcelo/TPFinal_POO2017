@@ -1,5 +1,7 @@
 package ar.edu.unnoba.poo2017.tpfinal_poo2017.model;
 
+
+
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -53,7 +55,7 @@ public class Usuario extends AbstractEntity implements Serializable{
     
     @Enumerated(EnumType.ORDINAL)
     @Basic(optional = false)
-    @Column(name = "rol")
+    @Column(name = "rol", nullable = false)
     private RolUsuario rol;
     
     

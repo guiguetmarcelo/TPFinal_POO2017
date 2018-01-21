@@ -77,6 +77,10 @@ table {
     input{
         width: 100%;
     }
+    .ui-selectonemenu{
+        width: 100%;
+        box-sizing: border-box;
+    }
 }
 
 .tableFooter{
@@ -93,6 +97,30 @@ table {
         margin-right: 10px;
     }
 }
+
+.tableBorderOff {
+    tr {
+        border: none !important;
+    }
+    td {
+        border: none !important;
+    }
+}
+
+.tableAutoMargin{
+    margin: 0 auto;
+}
+
+/* New User */
+.newUserContainer{
+    padding: 25px 0;
+    h1 {
+        text-align: center;
+    }
+}
+
+/* FIN New User */
+
 /* Login */
 .loginBody{
 

@@ -29,7 +29,7 @@ public abstract class AbstractEntity {
     private Long id;
     
     @ManyToOne(optional = false)
-    @JoinColumn(name = "empresa")
+    @JoinColumn(name = "empresa", nullable = false)
     private Empresa empresa;
 
     public Empresa getEmpresa() {

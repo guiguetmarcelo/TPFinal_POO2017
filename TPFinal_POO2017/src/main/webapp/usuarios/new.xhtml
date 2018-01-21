@@ -13,30 +13,61 @@
 
         <ui:define name="content">
             <div class="row justify-content-center">
-                <div class="col-auto">
+                <div class="col-auto newUserContainer">
 
 
                     <h1>#{msg.usuarios_nuevoTitulo}</h1>
 
-                    <h:form>
-                        <p:growl id="messages"></p:growl>
+                    <h:form id="s">
 
-                        <p:panelGrid  styleClass="">
+                        <p:messages autoUpdate="true" for="newUserInputUsername" closable="true"></p:messages>
+                        <p:messages autoUpdate="true" for="newUserInputPassword" closable="true"></p:messages>
+                        <p:messages autoUpdate="true" for="newUserInputEmail" closable="true"></p:messages>
+                        <p:messages autoUpdate="true" for="newUserInputRol" closable="true"></p:messages>
+                        <p:messages autoUpdate="true" for="newUserInputCompany" closable="true"></p:messages>
+
+                        <p:panelGrid id="ss" styleClass="tableBorderOff tableAutoMargin"> 
+
+                            <p:row>
+                                <p:column>
+
+
+                                </p:column>
+                            </p:row>
                             <p:row>
                                 <p:column>
                                     <p:outputLabel for="newUserInputUsername" value="#{msg.usuarios_username}"></p:outputLabel>
                                 </p:column>
                                 <p:column>
-                                    <p:inputText id="newUserInputUsername" value="#{usuarioBacking.usuario.username}" class="bsbb"/>
+                                    <p:inputText id="newUserInputUsername" value="#{usuarioBacking.usuario.username}" class="bsbb" required="true"/>
                                 </p:column>
                             </p:row>
+
+
+
 
                             <p:row>
                                 <p:column>
                                     <p:outputLabel for="newUserInputPassword" value="#{msg.usuarios_password}"></p:outputLabel>
                                 </p:column>
                                 <p:column>
-                                    <p:password id="newUserInputPassword" value="#{usuarioBacking.usuario.password}" class="bsbb"/>
+                                    <p:password id="newUserInputPassword" value="#{usuarioBacking.usuario.password}" 
+                                                class="bsbb"
+                                                feedback="true"
+                                                required="true"
+                                                validatorMessage="Las contraseñas no coinciden"
+                                                match="newUserInputPassword2"/>
+                                </p:column>
+                            </p:row>
+
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel for="newUserInputPassword2" value="#{msg.usuarios_password}"></p:outputLabel>
+                                </p:column>
+                                <p:column>
+                                    <p:password id="newUserInputPassword2" value="#{usuarioBacking.usuario.password}" class="bsbb"
+                                                required="true"
+                                                />
                                 </p:column>
                             </p:row>
 
@@ -66,6 +97,7 @@
                                     <p:inputText id="newUserInputEmail" value="#{usuarioBacking.usuario.email}" required="true" validatorMessage="Mail invalido" class="bsbb">
                                         <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
                                     </p:inputText>
+                                    <p:message  showDetail="true"  for="newUserInputEmail" display="tooltip" />
                                 </p:column>
                             </p:row>
 
@@ -99,7 +131,7 @@
                                 <p:column colspan="2">
                                     <p:commandButton value="#{msg.boton_registrar}" 
                                                      action="#{usuarioBacking.create()}" 
-                                                     update="messages"/>
+                                                     update="s"/>
 
                                     <p:button value="#{msg.boton_cancelar}" outcome="/usuarios/index.xhtml?faces-redirect=true"/>
                                 </p:column>
