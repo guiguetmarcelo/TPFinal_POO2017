@@ -13,7 +13,7 @@ import javax.faces.convert.FacesConverter;
  *
  * @author Marcelo
  */
-@FacesConverter(value="rolUsuarioConverter")
+@FacesConverter(value="rolUsuarioConverter",forClass = RolUsuario.class)
 public class RolUsuarioConverter extends EnumConverter{
 
 

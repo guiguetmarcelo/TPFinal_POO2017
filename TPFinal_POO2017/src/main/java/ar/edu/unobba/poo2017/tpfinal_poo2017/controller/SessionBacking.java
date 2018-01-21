@@ -49,7 +49,7 @@ public class SessionBacking implements Serializable {
 
     public String login() {
         this.usuario = usuarioDao.getUsuarioActivo(this.username, this.password, this.empresa);
-        if (usuario == null) {
+        if (this.usuario == null) {
             FacesContext context = FacesContext.getCurrentInstance();
             FacesMessage message = new FacesMessage(msg.getString("usuarios_loginUCIncorrectos"));
             context.addMessage(null, message);

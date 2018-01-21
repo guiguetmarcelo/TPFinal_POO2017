@@ -20,37 +20,48 @@ import javax.servlet.http.HttpSession;
  */
 public class AuthorizationListener implements PhaseListener {
 
-  @Override
-  public void afterPhase(PhaseEvent event) {
-    FacesContext facesContext = event.getFacesContext();
-    String currentPage = facesContext.getViewRoot().getViewId();
-    
-    SessionBacking sessionBacking=null; 
-    try{
-        sessionBacking = facesContext.getApplication().evaluateExpressionGet(facesContext, "#{sessionBacking}", SessionBacking.class);
-    }catch(Exception e){}
+    @Override
+    public void afterPhase(PhaseEvent event) {
+        FacesContext facesContext = event.getFacesContext();
+        String currentPage = facesContext.getViewRoot().getViewId();
 
+        SessionBacking sessionBacking = null;
+        try {
+            sessionBacking = facesContext.getApplication().evaluateExpressionGet(facesContext, "#{sessionBacking}", SessionBacking.class);
+        } catch (Exception e) {
+        }
 
-   // SessionBacking sessionBacking = (SessionBacking)event.getFacesContext().getExternalContext().getSessionMap().get("sessionBacking");
-    Usuario currentUser = null;
-    if(sessionBacking != null){
-        currentUser = (Usuario)sessionBacking.getUsuario();
+        // SessionBacking sessionBacking = (SessionBacking)event.getFacesContext().getExternalContext().getSessionMap().get("sessionBacking");
+        Usuario currentUser = null;
+        if (sessionBacking != null) {
+            currentUser = (Usuario) sessionBacking.getUsuario();
+        }
+
+        if (currentUser == null) {
+            if (!currentPage.equals("/errorpage.xhtml") && !currentPage.equals("/login.xhtml")) {
+                NavigationHandler nh = facesContext.getApplication().getNavigationHandler();
+                nh.handleNavigation(facesContext, null, "/login.xhtml?faces-redirect=true");
+            }
+        } else {
+            try {
+                if (!currentUser.isAdmGen()) {
+                    if (currentPage.equals("/empresas/index.xhtml")) {
+                        NavigationHandler nh = facesContext.getApplication().getNavigationHandler();
+                        nh.handleNavigation(facesContext, null, "/error404.xhtml?faces-redirect=false");
+                    }
+                }
+            } catch (Exception e) {
+
+            }
+        }
     }
-    
-    if(currentUser == null){
-      if(!currentPage.equals("/errorpage.xhtml") && !currentPage.equals("/login.xhtml")){
-        NavigationHandler nh = facesContext.getApplication().getNavigationHandler();
-        nh.handleNavigation(facesContext, null, "/login.xhtml?faces-redirect=true");
-      }
-    }
-  }
-  
-  @Override
-  public void beforePhase(PhaseEvent event) {
-  }
 
-  @Override
-  public PhaseId getPhaseId() {
-    return PhaseId.RESTORE_VIEW;
-  }
+    @Override
+    public void beforePhase(PhaseEvent event) {
+    }
+
+    @Override
+    public PhaseId getPhaseId() {
+        return PhaseId.RESTORE_VIEW;
+    }
 }

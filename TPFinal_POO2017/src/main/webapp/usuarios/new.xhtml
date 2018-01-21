@@ -101,7 +101,7 @@
                                 </p:column>
                             </p:row>
 
-                            <p:row>
+                            <p:row rendered="#{sessionBacking.usuario.isAdmGen()}">
                                 <p:column>
                                     <p:outputLabel for="newUserInputRol" value="Rol" rendered="#{sessionBacking.usuario.isAdmGen()}"></p:outputLabel>
 
@@ -114,7 +114,7 @@
                                 </p:column>
                             </p:row>
 
-                            <p:row>
+                            <p:row rendered="#{sessionBacking.usuario.isAdmGen()}">
                                 <p:column>
                                     <p:outputLabel for="newUserInputCompany" value="#{msg.usuarios_empresa}" rendered="#{sessionBacking.usuario.isAdmGen()}" />
 

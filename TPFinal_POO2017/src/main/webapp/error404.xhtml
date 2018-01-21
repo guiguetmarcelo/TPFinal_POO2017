@@ -1,54 +1,35 @@
-<?xml version='1.0' encoding='UTF-8' ?> 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:unnoba="http://unnoba.edu.ar/poo2017/functions"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
-
+      xmlns:unnoba="http://unnoba.edu.ar/poo2017/functions">
     <h:head>
+        <title>Error 404</title>
         <f:facet name="first">
-            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-            <title><ui:insert name="title">#{msg.home_title}</ui:insert></title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+            <h:outputStylesheet name="css/bootstrap.css"/>
+            <h:outputStylesheet name="css/styles.css"/>
         </f:facet>
 
-        <!--<h:outputStylesheet name="css/default.css" />
+        <!-- <h:outputStylesheet name="css/default.css" />
         <h:outputStylesheet name="css/cssLayout.css"/>-->
-        <h:outputStylesheet name="css/bootstrap.css"/>
-        <h:outputStylesheet name="css/styles.css"/>
-        <!--<h:outputStylesheet name="css/bootstrap.css"/>-->
 
-        <ui:insert name="head_content"></ui:insert>
     </h:head>
-
     <h:body>
-
-
-        <header class="">
-            <div id="top" class="col-12">
-                <div id="titulo_sistema">
-                    <span>#{msg.sistema}</span>
-                    <span>#{sessionBacking.usuario.empresa.nombre}</span>
-                </div>
-
-                <ui:insert name="menu">
-                    <ui:decorate template="/WEB-INF/facelets/templates/menu.xhtml">
-                    </ui:decorate>  
-                </ui:insert>
-
-                <ui:insert name="top"></ui:insert>
-            </div>
-        </header>
-
         <section class="container-fluid" role="main">
-            <ui:insert name="content">
-
-
-            </ui:insert>
+            <div class="row justify-content-center h-100 align-items-center error404">
+                <div class="col-auto">
+                    <h1>ERROR 404</h1>
+                    <p:button value="Regresar al inicio" outcome="/index.xhtml?faces-redirect=true"></p:button>
+                </div>
+            </div>
         </section>
-
+        
         <footer class="">
             <ui:insert name="bottom">
                 <div id="bottom" class="container-fluid">
@@ -77,14 +58,5 @@
             </ui:insert>
 
         </footer>
-
-
-
-
-
-
-
-
     </h:body>
-
 </html>

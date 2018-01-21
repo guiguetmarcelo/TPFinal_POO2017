@@ -233,14 +233,27 @@ section[role=main]{
 
 #titulo_sistema{
     text-align: center; 
-    padding: 40px 0;
+    padding-top: 15px;
+    padding-bottom: 30px;
+    // padding: 40px 0;
 
     span {
         font-weight: bold;
         font-size: 2em; 
+        display: block;
     }
 }
 
 #content {
+
+}
+
+.error404{
+    text-align:center;
+    
+    h1{
+        color: $color2;
+        font-size: 5.5rem;
+    }
 
 }
