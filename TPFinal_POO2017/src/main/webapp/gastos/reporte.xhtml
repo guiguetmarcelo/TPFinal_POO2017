@@ -6,37 +6,44 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       >
-    
+
 
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
 
         <ui:define name="title">Reporte de gastos</ui:define>
 
         <ui:define name="content">
+
             <h1>Reporte de gastos</h1>
-
             <h:form id="gastos_form_index">
+                <p:toolbar>
+                    <f:facet name="left">
+                        <p:outputLabel for="cat" value="Elegir categoria" />
+                        <p:selectOneMenu id="cat" value="#{gastoBacking.categoria}" >
+                            <f:selectItem itemLabel="#{msg.elegir} " itemValue="#{cat}" />
+                            <f:selectItems value="#{categoriaBacking.categorias}" var="cat" itemLabel="#{cat.nombre}" itemValue="#{cat}" />
+                        </p:selectOneMenu>
 
-                <p:growl id="messages" autoUpdate="true" for="msgUsuario"></p:growl>
-                    <p:outputLabel for="cat" value="Elegir categoria" />
-                    <p:selectOneMenu id="cat" value="#{gastoBacking.categoria}">
-                        <f:selectItem itemLabel="#{msg.elegir} " itemValue="#{cat}" />
-                        <f:selectItems value="#{categoriaBacking.categorias}" var="cat" itemLabel="#{cat.nombre}" itemValue="#{cat}" />
-                    </p:selectOneMenu>
+                        <span class="ui-separator">
+                            <span class="ui-icon ui-icon-grip-dotted-vertical" />
+                        </span>     
 
+                        <p:outputLabel for="periodo" value="Elegir periodo" />
+                        <p:selectOneMenu id="periodo" value="#{gastoBacking.periodo}">
+                            <f:selectItem itemLabel="#{msg.elegir} " itemValue="#{periodo}" />
+                            <f:selectItems value="#{periodoBacking.periodos}" var="periodo" itemLabel="#{periodo.descripcion}" itemValue="#{periodo}" />
+                        </p:selectOneMenu>
 
-                    <p:outputLabel for="periodo" value="Elegir periodo" />
-                    <p:selectOneMenu id="periodo" value="#{gastoBacking.periodo}">
-                        <f:selectItem itemLabel="#{msg.elegir} " itemValue="#{periodo}" />
-                        <f:selectItems value="#{periodoBacking.periodos}" var="periodo" itemLabel="#{periodo.descripcion}" itemValue="#{periodo}" />
-                    </p:selectOneMenu>
+                        <span class="ui-separator">
+                            <span class="ui-icon ui-icon-grip-dotted-vertical" />
+                        </span>
 
-                    <p:commandButton value="Reportar" 
-                                     actionListener="#{gastoBacking.getGastosPeriodoCategoria(gastoBacking.periodo, gastoBacking.categoria)}" 
-                                     update="gastos"/>
-                
+                        <p:commandButton value="Reportar" 
+                                         actionListener="#{gastoBacking.getGastosPeriodoCategoria(gastoBacking.periodo, gastoBacking.categoria)}" 
+                                         update="gastos"/>
+                    </f:facet>
+                </p:toolbar>
 
-      
                 <p:dataTable id="gastos"
                              value="#{gastoBacking.filtrados}" 
                              var="gasto">
@@ -54,8 +61,10 @@
                     <p:column headerText="Categoria" >
                         <h:outputText value="#{gasto.subcategoria.categoriaPadre.nombre}" />
                     </p:column>
+
                 </p:dataTable>
-               
+
+
 
             </h:form>
         </ui:define>
