@@ -19,7 +19,7 @@
                 <p:toolbar>
                     <f:facet name="left">
                         <p:outputLabel for="cat" value="Elegir categoria" />
-                        <p:selectOneMenu id="cat" value="#{gastoBacking.categoria}" >
+                        <p:selectOneMenu id="cat" value="#{reporteBacking.categoria}" >
                             <f:selectItem itemLabel="#{msg.elegir} " itemValue="#{cat}" />
                             <f:selectItems value="#{categoriaBacking.categorias}" var="cat" itemLabel="#{cat.nombre}" itemValue="#{cat}" />
                         </p:selectOneMenu>
@@ -29,7 +29,7 @@
                         </span>     
 
                         <p:outputLabel for="periodo" value="Elegir periodo" />
-                        <p:selectOneMenu id="periodo" value="#{gastoBacking.periodo}">
+                        <p:selectOneMenu id="periodo" value="#{reporteBacking.periodo}">
                             <f:selectItem itemLabel="#{msg.elegir} " itemValue="#{periodo}" />
                             <f:selectItems value="#{periodoBacking.periodos}" var="periodo" itemLabel="#{periodo.descripcion}" itemValue="#{periodo}" />
                         </p:selectOneMenu>
@@ -39,13 +39,13 @@
                         </span>
 
                         <p:commandButton value="Reportar" 
-                                         actionListener="#{gastoBacking.getGastosPeriodoCategoria(gastoBacking.periodo, gastoBacking.categoria)}" 
+                                         actionListener="#{reporteBacking.getGastosPeriodoCategoria(reporteBacking.periodo, reporteBacking.categoria)}" 
                                          update="gastos"/>
                     </f:facet>
                 </p:toolbar>
 
                 <p:dataTable id="gastos"
-                             value="#{gastoBacking.filtrados}" 
+                             value="#{reporteBacking.filtrados}" 
                              var="gasto">
 
                     <p:column headerText="#{msg.gastos_fecha}">
@@ -54,13 +54,21 @@
                         </h:outputText>
                     </p:column>
 
+                    <p:column headerText="Subcategoria" >
+                        <h:outputText value="#{gasto.subcategoria.nombre}" />
+                    </p:column>
+
+
                     <p:column headerText="#{msg.gastos_importe}">
                         <h:outputText value="#{gasto.importe}"/>
                     </p:column>
 
-                    <p:column headerText="Categoria" >
-                        <h:outputText value="#{gasto.subcategoria.categoriaPadre.nombre}" />
-                    </p:column>
+                    <p:columnGroup type="footer">
+                        <p:row>
+                            <p:column colspan="2" style="text-align:right" footerText="Total:" />
+                            <p:column footerText="$#{reporteBacking.totalFiltrados}" />
+                        </p:row>
+                    </p:columnGroup>
 
                 </p:dataTable>
 

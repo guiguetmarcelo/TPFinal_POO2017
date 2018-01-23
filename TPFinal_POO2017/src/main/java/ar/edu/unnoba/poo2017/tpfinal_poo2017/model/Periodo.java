@@ -1,6 +1,7 @@
 package ar.edu.unnoba.poo2017.tpfinal_poo2017.model;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Basic;
@@ -59,6 +60,13 @@ public class Periodo extends AbstractEntity implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+    
+    @Override
+    public String toString(){
+        String desde = new SimpleDateFormat("dd-MM-yyyy").format(fechaDesde);
+        String hasta = new SimpleDateFormat("dd-MM-yyyy").format(fechaHasta);
+        return "Desde "+desde+" hasta "+hasta;
     }
 
     @Override

@@ -39,6 +39,7 @@ public class GastoDao extends AbstractDAO<Gasto>{
     public List<Gasto> getGastosPeriodo(Periodo periodo){
         
         Query query = em.createNamedQuery("gastos.porperiodo");
+         query.setParameter("empresa", sessionBacking.getUsuario().getEmpresa());
         query.setParameter("fechaDesde", periodo.getFechaDesde(),TemporalType.TIMESTAMP);
         query.setParameter("fechaHasta", periodo.getFechaHasta(),TemporalType.TIMESTAMP);
         return query.getResultList();
@@ -47,6 +48,7 @@ public class GastoDao extends AbstractDAO<Gasto>{
     public List<Gasto> getGastosCategoria(Categoria categoria){
         
         Query query = em.createNamedQuery("gastos.porcategoria");
+         query.setParameter("empresa", sessionBacking.getUsuario().getEmpresa());
         query.setParameter("categoria", categoria);
         return query.getResultList();
     }
@@ -54,6 +56,7 @@ public class GastoDao extends AbstractDAO<Gasto>{
     public List<Gasto> getGastosPeriodoCategoria(Periodo periodo, Categoria categoria){
         
         Query query = em.createNamedQuery("gastos.periodo_y_categoria");
+        query.setParameter("empresa", sessionBacking.getUsuario().getEmpresa());
         query.setParameter("fechaDesde", periodo.getFechaDesde(),TemporalType.TIMESTAMP);
         query.setParameter("fechaHasta", periodo.getFechaHasta(),TemporalType.TIMESTAMP);
         query.setParameter("categoria", categoria);

@@ -17,6 +17,10 @@ import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import org.primefaces.model.chart.Axis;
+import org.primefaces.model.chart.AxisType;
+import org.primefaces.model.chart.LineChartModel;
+import org.primefaces.model.chart.LineChartSeries;
 
 /**
  *
@@ -27,63 +31,27 @@ import javax.inject.Named;
 public class GastoBacking implements Serializable {
 
     private Gasto gasto;
-    private Periodo periodo;
-    private Categoria categoria;
-    private List<Gasto> filtrados;
-
-    
 
     @EJB
     private GastoDao gastoDao;
-    
+
+    public Gasto getGasto() {
+        return gasto;
+    }
+
+    public void setGasto(Gasto gasto) {
+        this.gasto = gasto;
+    }
+
     @Inject
     private SessionBacking sessionBacking;
-    
-    
+
     @PostConstruct
     public void init() {
         setGasto(new Gasto());
-        setPeriodo(new Periodo());
-        setCategoria(new Categoria());
-        setFiltrados(new ArrayList<Gasto>());
         this.gasto.setEmpresa(sessionBacking.getUsuario().getEmpresa());
-    }
-    
-     public Periodo getPeriodo() {
-        return periodo;
-    }
 
-    public void setPeriodo(Periodo periodo) {
-        this.periodo = periodo;
     }
-    
-    public Categoria getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
-    }
-    
-    public List<Gasto> getGastos() {
-        return gastoDao.getGastos();
-    }
-    
-     public List<Gasto> getGastosPeriodo(){
-        return gastoDao.getGastosPeriodo(periodo);
-    }
-     
-     public List<Gasto> getGastosCategoria(Categoria categoria){
-        this.setFiltrados(gastoDao.getGastosCategoria(categoria));
-        return filtrados;
-    }
-     
-     public List<Gasto> getGastosPeriodoCategoria(Periodo periodo, Categoria categoria){
-        this.setFiltrados(gastoDao.getGastosPeriodoCategoria(periodo, categoria));
-        return filtrados;
-    }
-     
-     
 
     public String create() {
         try {
@@ -107,20 +75,8 @@ public class GastoBacking implements Serializable {
         gastoDao.delete(gasto);
     }
 
-    public Gasto getGasto() {
-        return gasto;
-    }
-
-    public void setGasto(Gasto gasto) {
-        this.gasto = gasto;
-    }
-    
-    public List<Gasto> getFiltrados() {
-        return filtrados;
-    }
-
-    public void setFiltrados(List<Gasto> filtrados) {
-        this.filtrados = filtrados;
+    public List<Gasto> getGastos() {
+        return gastoDao.getGastos();
     }
 
 }
