@@ -125,26 +125,32 @@ public class reporteBacking implements Serializable {
 
     public void graficar(Categoria categoria) {
         LineChartModel model = new LineChartModel();
-
         ChartSeries presupuesto = new ChartSeries();
         ChartSeries gastos = new ChartSeries();
-        for (Presupuesto pre : presupuestoDao.getPresupuestosCategoria(categoria)) {
+        model.setTitle("Desvio de gastos por categoria");
+        List<Presupuesto> presupuestos=  presupuestoDao.getPresupuestosCategoria(categoria);
+        if (!presupuestos.isEmpty()){
+        for (Presupuesto pre : presupuestos) {
             presupuesto.set(pre.getPeriodo().toString(), pre.getMonto());
-            this.getGastosPeriodoCategoria(pre.getPeriodo(), pre.getSubcategoria().getCategoriaPadre());
-            float total=0;
-            for(Gasto unGasto: this.getFiltrados()){
-                total+=unGasto.getImporte();
+            this.getGastosPeriodoCategoria(pre.getPeriodo(), categoria);
+            if(filtrados.isEmpty()){
+                gastos.set(pre.getPeriodo().toString(), 0);
             }
+            float total= this.getTotalFiltrados();
             gastos.set(pre.getPeriodo().toString(),total);
+
             
+        }}
+        else{
+            model.setTitle("La categoria seleccionada no presenta presupuestos");
+            presupuesto.set("No hay datos", 0);
+            gastos.set("No hay datos", 0);
         }
 
             gastos.setLabel("Gastado");
             model.addSeries(gastos);
             presupuesto.setLabel("Presupuestado");
             model.addSeries(presupuesto);
-
-            model.setTitle("Linear Chart");
             model.setLegendPosition("e");
             Axis yAxis = model.getAxis(AxisType.Y);
             Axis xAxis = model.getAxis(AxisType.X);

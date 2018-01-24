@@ -31,7 +31,7 @@
                             <p:commandButton id="reportar" value="Generar grafico" actionListener="#{reporteBacking.graficar(reporteBacking.categoria)}" styleClass="ui-priority-primary" update="tabla"  />
                     </f:facet>
                 </p:toolbar>
-                <p:panel id="tabla" styleClass="tableBorderOff tableAutoMargin"> 
+                <p:panel id="tabla"> 
 
                     <p:chart type="line" model="#{reporteBacking.reporteGrafico}" style="height:300px;" rendered="#{reporteBacking.reporteGrafico != null}"/>
 
