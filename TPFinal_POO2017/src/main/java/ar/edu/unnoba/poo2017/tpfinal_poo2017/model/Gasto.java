@@ -17,9 +17,9 @@ import javax.persistence.TemporalType;
 @Table(name = "gastos")
 @NamedQueries({
     @NamedQuery(name = "gastos.disponibles", query = "SELECT g FROM Gasto g WHERE g.empresa=:empresa"),
-        @NamedQuery(name= "gastos.porperiodo", query= "SELECT g FROM Gasto g WHERE g.fecha BETWEEN :fechaDesde AND :fechaHasta AND g.empresa=:empresa"),
+        @NamedQuery(name= "gastos.porperiodo", query= "SELECT g FROM Gasto g WHERE g.fecha BETWEEN :fechaDesde AND :fechaHasta AND g.empresa=:empresa "),
         @NamedQuery(name="gastos.porcategoria", query="SELECT g FROM Gasto g WHERE g.subcategoria.categoriaPadre=:categoria AND g.empresa=:empresa"),
-        @NamedQuery(name="gastos.periodo_y_categoria", query="SELECT g FROM Gasto g WHERE g.empresa=:empresa AND g.subcategoria.categoriaPadre=:categoria AND  g.fecha BETWEEN :fechaDesde AND :fechaHasta")
+        @NamedQuery(name="gastos.periodo_y_categoria", query="SELECT g FROM Gasto g WHERE g.empresa=:empresa AND g.subcategoria.categoriaPadre=:categoria AND  g.fecha BETWEEN :fechaDesde AND :fechaHasta ORDER BY g.fecha")
 })
 public class Gasto extends AbstractEntity implements Serializable {
 
