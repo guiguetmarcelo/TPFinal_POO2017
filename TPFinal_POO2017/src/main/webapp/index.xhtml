@@ -12,6 +12,14 @@
         <ui:define name="content">
             <h1>#{unnoba:textFormat(msg.home_titulo,sessionBacking.usuario.username)}</h1>
             <p>#{msg.home_contenido}</p>
+            <p:button outcome="/reportes/reporteDesvio.xhtml" value="Reporte grafico" icon="fa-bar-chart-o" >
+            </p:button>
+            <p:button outcome="/reportes/reporteLista.xhtml" value="Reporte de gastos" icon="fa-list-alt" >
+            </p:button>
+            
+            <p:button outcome="/reportes/reporteComparativo.xhtml" value="Reporte comparativo" icon="fa-list-alt" >
+            </p:button>
+
         </ui:define>
     </ui:composition>
 </html>
