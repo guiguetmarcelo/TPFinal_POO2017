@@ -15,17 +15,14 @@
             <h:outputStylesheet name="css/styles.css"/>
         </f:facet>
 
-        <!-- <h:outputStylesheet name="css/default.css" />
-        <h:outputStylesheet name="css/cssLayout.css"/>-->
-
     </h:head>
     <h:body class="h-100 loginBody">
         <div class="loginBackground"></div>
-        
+
         <div class="container-fluid h-100">
 
             <div class="row justify-content-center loginVertical">
-                
+
                 <h:form class="loginFormContainer col-auto">
                     <p:growl id="messages"></p:growl>
 
@@ -34,13 +31,23 @@
                     <h3>#{msg.usuarios_loginSubtitulo}</h3>
                     <div class="form-group">
                         <p:outputLabel for="loginInputUsername" value="#{msg.usuarios_username}"></p:outputLabel>
-                        <p:inputText id="loginInputUsername" class="form-control" a:aria-describedby="usernameHelp" placeholder="Usuario" value="#{sessionBacking.userName}"/>
+                        <p:inputText id="loginInputUsername" 
+                                     class="form-control" 
+                                     a:aria-describedby="usernameHelp" 
+                                     placeholder="Usuario" 
+                                     value="#{sessionBacking.userName}"
+                                     required="true"/>
                         <small id="usernameHelp" class="form-text text-muted">El usuario es personal, no lo haga publico!.</small>
                     </div>
 
                     <div class="form-group">
                         <p:outputLabel for="loginInputPassword" value="#{msg.usuarios_password}"></p:outputLabel>
-                        <p:password id="loginInputPassword" class="form-control" a:aria-describedby="passwordHelp" placeholder="Contraseña" value="#{sessionBacking.password}"/>
+                        <p:password id="loginInputPassword" 
+                                    class="form-control" 
+                                    a:aria-describedby="passwordHelp" 
+                                    placeholder="Contraseña" 
+                                    value="#{sessionBacking.password}"
+                                    required="true"/>
                         <small id="passwordHelp" class="form-text text-muted">Nunca comparta su contraseña!.</small>
                     </div>
 
@@ -48,7 +55,7 @@
                         <p:outputLabel for="loginInputEmpresa" value="#{msg.usuarios_empresa}" />
 
                         <p:selectOneMenu id="loginInputEmpresa"
-                                         class=""
+                                         class="login-selectonemenu"
                                          value="#{sessionBacking.empresa}" 
                                          required="true" 
                                          filter="true" 
@@ -59,9 +66,12 @@
                         </p:selectOneMenu>                     
                     </div>
 
-                    <p:commandButton value="#{msg.usuarios_loginIngresar}" 
-                                     action="#{sessionBacking.login()}" 
-                                     update="messages"/>
+                    <div class="login-button">
+                        <p:commandButton value="#{msg.usuarios_loginIngresar}" 
+                                         action="#{sessionBacking.login()}" 
+                                         update="messages"/>
+                    </div>
+
 
                 </h:form>
             </div>
