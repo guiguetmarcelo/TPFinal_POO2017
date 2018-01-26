@@ -8,6 +8,7 @@ package ar.edu.unnoba.poo2017.tpfinal_poo2017.dao;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Categoria;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Gasto;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Periodo;
+import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Subcategoria;
 import ar.edu.unobba.poo2017.tpfinal_poo2017.controller.PeriodoBacking;
 import ar.edu.unobba.poo2017.tpfinal_poo2017.controller.SessionBacking;
 import java.util.List;
@@ -60,6 +61,16 @@ public class GastoDao extends AbstractDAO<Gasto>{
         query.setParameter("fechaDesde", periodo.getFechaDesde(),TemporalType.TIMESTAMP);
         query.setParameter("fechaHasta", periodo.getFechaHasta(),TemporalType.TIMESTAMP);
         query.setParameter("categoria", categoria);
+        return query.getResultList();
+    }
+    
+     public List<Gasto> getGastosPeriodoSubcategoria(Periodo periodo, Subcategoria subcategoria){
+        
+        Query query = em.createNamedQuery("gastos.periodo_y_categoria");
+        query.setParameter("empresa", sessionBacking.getUsuario().getEmpresa());
+        query.setParameter("fechaDesde", periodo.getFechaDesde(),TemporalType.TIMESTAMP);
+        query.setParameter("fechaHasta", periodo.getFechaHasta(),TemporalType.TIMESTAMP);
+        query.setParameter("subcategoria", subcategoria);
         return query.getResultList();
     }
 }

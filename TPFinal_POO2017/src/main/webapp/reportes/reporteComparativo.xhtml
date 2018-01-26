@@ -6,14 +6,20 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       >
-    
-
 
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
 
         <ui:define name="title">Reporte de gastos comparativo</ui:define>
 
         <ui:define name="content">
+
+            <script type="text/javascript">
+                function ext1() {
+                    this.cfg.seriesDefaults.rendererOptions = {
+                        barWidth: 50
+                    };
+                }
+            </script>
 
             <h1>Reporte de gastos comparativo</h1>
             <h:form id="gastos_form_index">
@@ -29,7 +35,7 @@
                             <span class="ui-icon ui-icon-grip-dotted-vertical" />
                         </span>
 
-                            <p:commandButton id="reportar" value="Generar grafico" actionListener="#{reporteBacking.graficoComparativo(reporteBacking.periodo)}" styleClass="ui-priority-primary" update="tabla"  />
+                        <p:commandButton id="reportar" value="Generar grafico" actionListener="#{reporteBacking.graficoComparativo(reporteBacking.periodo)}" styleClass="ui-priority-primary" update="tabla"  />
                     </f:facet>
                 </p:toolbar>
                 <p:panel id="tabla"> 

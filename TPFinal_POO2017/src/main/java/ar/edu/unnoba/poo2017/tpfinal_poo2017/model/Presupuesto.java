@@ -16,6 +16,8 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "presupuestos.disponibles", query = "SELECT p FROM Presupuesto p WHERE p.empresa=:empresa ORDER BY p.periodo.fechaDesde"),
       @NamedQuery(name="presupuestos.porcategoria", query="SELECT p FROM Presupuesto p WHERE p.subcategoria.categoriaPadre=:categoria AND p.empresa=:empresa ORDER BY p.periodo.fechaDesde"),
+      @NamedQuery(name="presupuestos.porsubcategoria", query="SELECT p FROM Presupuesto p WHERE p.subcategoria=:subcategoria AND p.empresa=:empresa ORDER BY p.periodo.fechaDesde"),
+      @NamedQuery(name="presupuestos.porsubcategoriaperiodo", query="SELECT p FROM Presupuesto p WHERE p.periodo=:periodo AND p.subcategoria=:subcategoria AND p.empresa=:empresa ORDER BY p.periodo.fechaDesde")
 })
 public class Presupuesto extends AbstractEntity implements Serializable{
     

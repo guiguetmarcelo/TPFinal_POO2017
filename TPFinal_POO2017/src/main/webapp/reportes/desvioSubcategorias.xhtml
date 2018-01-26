@@ -10,24 +10,14 @@
 
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
 
-        <ui:define name="title">Reporte de gastos</ui:define>
+        <ui:define name="title">Desvio de gastos por subcategoria</ui:define>
 
         <ui:define name="content">
 
-            <h1>Reporte de gastos</h1>
+            <h1>Reporte de gastos por subcategoria</h1>
             <h:form id="gastos_form_index">
                 <p:toolbar>
                     <f:facet name="left">
-                        <p:outputLabel for="cat" value="Elegir categoria" />
-                        <p:selectOneMenu id="cat" value="#{reporteBacking.categoria}" >
-                            <f:selectItem itemLabel="#{msg.elegir} " itemValue="#{cat}" />
-                            <f:selectItems value="#{categoriaBacking.categorias}" var="cat" itemLabel="#{cat.nombre}" itemValue="#{cat}" />
-                        </p:selectOneMenu>
-
-                        <span class="ui-separator">
-                            <span class="ui-icon ui-icon-grip-dotted-vertical" />
-                        </span>     
-
                         <p:outputLabel for="periodo" value="Elegir periodo" />
                         <p:selectOneMenu id="periodo" value="#{reporteBacking.periodo}">
                             <f:selectItem itemLabel="#{msg.elegir} " itemValue="#{periodo}" />
@@ -39,14 +29,19 @@
                         </span>
 
                         <p:commandButton value="Reportar" 
-                                         actionListener="#{reporteBacking.getGastosPeriodoCategoria(reporteBacking.periodo, reporteBacking.categoria)}" 
+                                         actionListener="#{reporteBacking.getGastosPeriodo(reporteBacking.periodo)}" 
                                          update="gastos"/>
                     </f:facet>
                 </p:toolbar>
 
                 <p:dataTable id="gastos"
                              value="#{reporteBacking.filtrados}" 
-                             var="gasto">
+                             var="gasto"
+                             sortBy="#{gasto.subcategoria.nombre}">
+
+                    <p:column headerText="Subcategoria" groupRow="true">
+                        <h:outputText value="#{gasto.subcategoria.nombre}" />
+                    </p:column>
 
                     <p:column headerText="#{msg.gastos_fecha}">
                         <h:outputText value="#{gasto.fecha}">
@@ -54,22 +49,21 @@
                         </h:outputText>
                     </p:column>
 
-                    <p:column headerText="Subcategoria" >
-                        <h:outputText value="#{gasto.subcategoria.nombre}" />
-                    </p:column>
-
-
                     <p:column headerText="#{msg.gastos_importe}">
                         <h:outputText value="#{gasto.importe}"/>
                     </p:column>
-
-                    <p:columnGroup type="footer">
-                        <p:row>
-                            <p:column colspan="2" style="text-align:right" footerText="Total:" />
-                            <p:column footerText="$#{reporteBacking.getTotalFiltrados(reporteBacking.filtrados)}" />
-                        </p:row>
-                    </p:columnGroup>
-
+                    
+                    <p:summaryRow>
+                        <p:column colspan="1" >
+                            <h:outputText value="Presupuestado: " />
+                            <h:outputText value="#{reporteBacking.getTotalPresupuestosFiltrados(reporteBacking.periodo, gasto.subcategoria)}">
+                            </h:outputText>
+                        </p:column>
+                        <p:column colspan="2" style="text-align:right">
+                            <h:outputText value="Total gastado:" />
+                            <h:outputText value="#{reporteBacking.getSubtotalGastos(gasto.subcategoria)}"></h:outputText>
+                        </p:column>
+                    </p:summaryRow>
                 </p:dataTable>
 
 

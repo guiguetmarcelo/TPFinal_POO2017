@@ -6,7 +6,9 @@
 package ar.edu.unnoba.poo2017.tpfinal_poo2017.dao;
 
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Categoria;
+import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Periodo;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Presupuesto;
+import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Subcategoria;
 import ar.edu.unobba.poo2017.tpfinal_poo2017.controller.SessionBacking;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -38,4 +40,12 @@ public class PresupuestoDao extends AbstractDAO<Presupuesto> {
         query.setParameter("categoria", categoria);
         return query.getResultList();
     }
+    
+     public List<Presupuesto> getPresupuestosSubcategoriaPeriodo(Periodo periodo, Subcategoria subcategoria){
+        Query query = em.createNamedQuery("presupuestos.porsubcategoriaperiodo").setParameter("empresa", sessionBacking.getUsuario().getEmpresa());
+        query.setParameter("subcategoria", subcategoria);
+        query.setParameter("periodo", periodo);
+        return query.getResultList();
+     }
+    
 }

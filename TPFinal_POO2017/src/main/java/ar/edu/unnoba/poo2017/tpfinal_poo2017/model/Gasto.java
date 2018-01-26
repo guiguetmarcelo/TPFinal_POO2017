@@ -19,7 +19,8 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "gastos.disponibles", query = "SELECT g FROM Gasto g WHERE g.empresa=:empresa ORDER BY g.fecha"),
         @NamedQuery(name= "gastos.porperiodo", query= "SELECT g FROM Gasto g WHERE g.fecha BETWEEN :fechaDesde AND :fechaHasta AND g.empresa=:empresa ORDER BY g.fecha"),
         @NamedQuery(name="gastos.porcategoria", query="SELECT g FROM Gasto g WHERE g.subcategoria.categoriaPadre=:categoria AND g.empresa=:empresa ORDER BY g.fecha"),
-        @NamedQuery(name="gastos.periodo_y_categoria", query="SELECT g FROM Gasto g WHERE g.empresa=:empresa AND g.subcategoria.categoriaPadre=:categoria AND  g.fecha BETWEEN :fechaDesde AND :fechaHasta ORDER BY g.fecha")
+        @NamedQuery(name="gastos.periodo_y_categoria", query="SELECT g FROM Gasto g WHERE g.empresa=:empresa AND g.subcategoria.categoriaPadre=:categoria AND  g.fecha BETWEEN :fechaDesde AND :fechaHasta ORDER BY g.fecha"),
+         @NamedQuery(name="gastos.periodo_y_subcategoria", query="SELECT g FROM Gasto g WHERE g.empresa=:empresa AND g.subcategoria=:subcategoria AND  g.fecha BETWEEN :fechaDesde AND :fechaHasta ORDER BY g.fecha")
 })
 public class Gasto extends AbstractEntity implements Serializable {
 

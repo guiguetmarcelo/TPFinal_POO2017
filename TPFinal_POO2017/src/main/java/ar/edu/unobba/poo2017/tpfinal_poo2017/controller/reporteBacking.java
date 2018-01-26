@@ -11,6 +11,7 @@ import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Categoria;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Gasto;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Periodo;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Presupuesto;
+import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Subcategoria;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -96,7 +97,8 @@ public class reporteBacking implements Serializable {
     }
 
     public List<Gasto> getGastosPeriodo(Periodo periodo) {
-        return gastoDao.getGastosPeriodo(periodo);
+        this.setFiltrados(gastoDao.getGastosPeriodo(periodo));
+        return filtrados;
     }
 
     public List<Gasto> getGastosCategoria(Categoria categoria) {
@@ -130,6 +132,10 @@ public class reporteBacking implements Serializable {
             total += unGasto.getImporte();
         }
         return total;
+    }
+    
+    public List<Presupuesto> getPresupuestosSubcategoriaPeriodo(Periodo periodo, Subcategoria subcategoria){
+        return presupuestoDao.getPresupuestosSubcategoriaPeriodo(periodo, subcategoria);
     }
 
     public void graficoLineas(Categoria categoria) {
@@ -172,6 +178,7 @@ public class reporteBacking implements Serializable {
     public void graficoComparativo(Periodo periodo) {
 
         BarChartModel model = new BarChartModel();
+        model.setExtender("ext1");
         model.setTitle("Comparativo de gastos por categoria en un periodo");
         model.setLegendPosition("ne");
         Axis xAxis = model.getAxis(AxisType.X);
@@ -199,5 +206,29 @@ public class reporteBacking implements Serializable {
         this.setReporteComparativo(model);
 
     }
+    
+    public List<Gasto> getGastosPeriodoSubcategoria(Periodo periodo, Subcategoria subcategoria){
+        return gastoDao.getGastosPeriodoSubcategoria(periodo, subcategoria);
+    }
+    
+    public float getSubtotalGastos(Subcategoria sub){
+        float total=0;
+        for (Gasto unGasto: filtrados){
+        if (unGasto.getSubcategoria().getNombre().equals(sub.getNombre()))
+            total+=unGasto.getImporte();
+        }
+        return total;
+        
+    }
+    
+    public float getTotalPresupuestosFiltrados(Periodo periodo, Subcategoria sub){
+        List<Presupuesto> filtrados= presupuestoDao.getPresupuestosSubcategoriaPeriodo(periodo, sub);
+        float total=0;
+        for(Presupuesto pre: filtrados){
+            total+=pre.getMonto();
+        }
+        return total;
+    }
+            
 
 }
