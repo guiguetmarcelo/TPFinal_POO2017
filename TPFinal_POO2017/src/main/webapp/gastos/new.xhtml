@@ -12,39 +12,90 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
-
-        <ui:define name="title">#{msg.gastos_nuevoTitle}</ui:define>
+        <ui:param name="pageTitle" value="#{msg.gastos_nuevoTitle}"></ui:param>
+        <!--<ui:define name="title">#{msg.gastos_nuevoTitle}</ui:define>-->
 
         <ui:define name="head_content" >
             <h:outputScript library="js" name="calendar_es.js" />
         </ui:define>
 
         <ui:define name="content">
-            <h1>#{msg.gastos_nuevoTitulo}</h1>
+            <div class="row justify-content-center">
+                <div class="col-auto">
+                    <h1>#{msg.gastos_nuevoTitulo}</h1>
 
-            <h:form >
-                <p:growl id="messages"></p:growl>
-                <p:panelGrid columns="2" styleClass="">
+                    <ui:decorate template="/WEB-INF/facelets/templates/forms/gastos_new-edit.xhtml">
+                        <ui:param name="renderedCBGastosActualizar" value="false"/>
+                    </ui:decorate>
+                    
+                    <ui:remove>
+                        <h:form >
+                            <p:growl id="messages"></p:growl>
 
-                    <p:outputLabel value="#{msg.gastos_fecha}"></p:outputLabel>
-                    <p:calendar id="input_gastos_fecha" value="#{gastoBacking.gasto.fecha}" required="true" pattern="dd/MM/yyyy" navigator="true"/>
+                            <p:panelGrid styleClass="tableBorderOff tableAutoMargin">
+                                <p:row>
+                                    <p:column>
 
-                    <p:outputLabel value="#{msg.gastos_importe}"></p:outputLabel>
-                    <p:inputNumber value="#{gastoBacking.gasto.importe}"/>
+                                    </p:column>
+                                    <p:column>
 
-                    <p:outputLabel for="gastos_subcat" value="#{msg.gastos_subcategoria}"  ></p:outputLabel>         
-                    <p:selectOneMenu id="gastos_subcat" value="#{gastoBacking.gasto.subcategoria}">
-                        <f:selectItems value="#{subcategoriaBacking.subcategorias}" var="subcat" itemLabel="#{subcat.nombre}" itemValue="#{subcat}"/>
-                    </p:selectOneMenu>
+                                    </p:column>
+                                </p:row>
+
+                                <p:row>
+                                    <p:column>
+                                        <p:outputLabel value="#{msg.gastos_fecha}"></p:outputLabel>
+                                    </p:column>
+                                    <p:column>
+                                        <p:calendar id="input_gastos_fecha" 
+                                                    value="#{gastoBacking.gasto.fecha}" 
+                                                    required="true" 
+                                                    pattern="dd/MM/yyyy" 
+                                                    navigator="true"/>
+                                    </p:column>
+                                </p:row>
+
+                                <p:row>
+                                    <p:column>
+                                        <p:outputLabel value="#{msg.gastos_importe}"></p:outputLabel>
+                                    </p:column>
+                                    <p:column>
+                                        <p:inputNumber value="#{gastoBacking.gasto.importe}"/>
+                                    </p:column>
+                                </p:row>
+
+                                <p:row>
+                                    <p:column>
+                                        <p:outputLabel for="gastos_subcat" value="#{msg.gastos_subcategoria}"></p:outputLabel>
+                                    </p:column>
+                                    <p:column>
+                                        <p:selectOneMenu id="gastos_subcat" value="#{gastoBacking.gasto.subcategoria}">
+                                            <f:selectItems value="#{subcategoriaBacking.subcategorias}" 
+                                                           var="subcat" 
+                                                           itemLabel="#{subcat.nombre}" 
+                                                           itemValue="#{subcat}"/>
+                                        </p:selectOneMenu>
+                                    </p:column>
+                                </p:row>
+
+                                <p:row styleClass="tableFooter">
+                                    <p:column colspan="2">
+                                        <p:commandButton value="#{msg.boton_registrar}" 
+                                                         action="#{gastoBacking.create()}" 
+                                                         update="messages"/>
+
+                                        <p:button value="#{msg.boton_cancelar}" outcome="/gastos/index"/>
+                                    </p:column>
+                                </p:row>
+
+                            </p:panelGrid>
+                        </h:form>
+                    </ui:remove>
 
 
-                    <p:commandButton value="#{msg.boton_registrar}" 
-                                     action="#{gastoBacking.create()}" 
-                                     update="messages"/>
+                </div>
+            </div>
 
-                    <p:button value="#{msg.boton_cancelar}" outcome="/gastos/index"/>
-                </p:panelGrid>
-            </h:form>
 
         </ui:define>
     </ui:composition>

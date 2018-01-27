@@ -10,7 +10,7 @@
     <h:form id="form_menu_principal">
         <p:menubar>
             <p:menuitem value="#{msg.menu_principal}" outcome="/index.xhtml?faces-redirect=true" icon="fa fa-home"></p:menuitem>
-
+            
 
             <p:submenu label="#{msg.menu_gastos}" icon="fa fa-money">
                 <p:menuitem value="#{msg.menu_gastosListar}" outcome="/gastos/index.xhtml?faces-redirect=true"></p:menuitem>
@@ -23,11 +23,11 @@
                 <p:menuitem value="#{msg.menu_presupuestosNuevo}" outcome="/presupuestos/new.xhtml?faces-redirect=true"></p:menuitem>
             </p:submenu>
             
-            <p:submenu label="Reportes" icon="fa fa-bar-chart">
-                <p:menuitem value="Desvio subcategorias" outcome="/reportes/desvioSubcategorias.xhtml?faces-redirect=true"></p:menuitem>
-                <p:menuitem value="Reporte comparativo" outcome="/reportes/reporteComparativo.xhtml?faces-redirect=true"></p:menuitem>
-                <p:menuitem value="Reporte desvio" outcome="/reportes/reporteDesvio.xhtml?faces-redirect=true"></p:menuitem>
-                <p:menuitem value="Reporte lista" outcome="/reportes/reporteLista.xhtml?faces-redirect=true"></p:menuitem>
+            <p:submenu label="#{msg.menu_reportes}" icon="fa fa-bar-chart">
+                <p:menuitem value="#{msg.menu_reportesDesvioSubcategorias}" outcome="/reportes/desvioSubcategorias.xhtml?faces-redirect=true"></p:menuitem>
+                <p:menuitem value="#{msg.menu_reportesReporteComparativo}" outcome="/reportes/reporteComparativo.xhtml?faces-redirect=true"></p:menuitem>
+                <p:menuitem value="#{msg.menu_reportesReporteDesvio}" outcome="/reportes/reporteDesvio.xhtml?faces-redirect=true"></p:menuitem>
+                <p:menuitem value="#{msg.menu_reportesReporteLista}" outcome="/reportes/reporteLista.xhtml?faces-redirect=true"></p:menuitem>
             </p:submenu>
 
             <p:submenu label="#{msg.menu_categorias}" icon="fa fa-tags">

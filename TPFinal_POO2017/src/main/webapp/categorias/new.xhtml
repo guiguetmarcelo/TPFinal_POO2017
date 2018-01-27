@@ -12,26 +12,66 @@
 
         <ui:define name="content">
 
-            <h1>#{msg.categoria_cabecera_nueva}</h1>
 
-            <h:form>
-                <p:growl id="messages"></p:growl>
+            <div class="row justify-content-center">
+                <div class="col-auto">
+                    <h1>#{msg.categoria_cabecera_nueva}</h1>
 
-                <p:panelGrid columns="2" styleClass="">
-                    <p:outputLabel value="#{msg.usuarios_nombre}"></p:outputLabel>
-                    <p:inputText value="#{categoriaBacking.categoria.nombre}"/>
+                    <p:growl id="messages"></p:growl>
 
-                    <p:outputLabel value="#{msg.descripcion}"></p:outputLabel>
-                    <p:inputText value="#{categoriaBacking.categoria.descripcion}"/>
+                    <h:form>
+
+                        <p:growl id="messages"></p:growl>
+
+                        <p:panelGrid styleClass="tableBorderOff tableAutoMargin">
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel value="#{msg.usuarios_nombre}"></p:outputLabel>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText value="#{categoriaBacking.categoria.nombre}"/>
+                                </p:column>
+                            </p:row>
+
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel value="#{msg.descripcion}"></p:outputLabel>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText value="#{categoriaBacking.categoria.descripcion}"/>
+                                </p:column>
+                            </p:row>
+
+                            <p:row styleClass="tableFooter">
+                                <p:column colspan="2">
+                                    <p:commandButton value="#{msg.boton_guardar}" 
+                                                     action="#{categoriaBacking.create()}" 
+                                                     update="messages"/>
+
+                                    <p:button value="#{msg.boton_cancelar}" outcome="/categorias/index?faces-redirect=true"/>
+                                </p:column>
+                            </p:row>
+
+                            <p:row styleClass="tableFooter">
+                                <p:column colspan="2">
+
+                                </p:column>
+                            </p:row>
 
 
-                    <p:commandButton value="#{msg.boton_guardar}" 
-                                     action="#{categoriaBacking.create()}" 
-                                     update="messages"/>
-                  
-                    <p:button value="#{msg.boton_cancelar}" outcome="/categorias/index"/>
-                </p:panelGrid>
-            </h:form>
+
+
+
+
+
+
+
+                        </p:panelGrid>
+                    </h:form>
+                </div>
+            </div>
+
+
 
         </ui:define>
     </ui:composition>

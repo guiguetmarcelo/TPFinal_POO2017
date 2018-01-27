@@ -107,7 +107,14 @@
 
                                 </p:column>
                                 <p:column>
-                                    <p:selectOneMenu id="newUserInputRol" value="#{usuarioBacking.usuario.rol}" converter="rolUsuarioConverter" rendered="#{sessionBacking.usuario.isAdmGen()}" required="true" filter="true" filterMatchMode="startsWith">
+                                    <p:selectOneMenu id="newUserInputRol" 
+                                                     value="#{usuarioBacking.usuario.rol}" 
+                                                     converter="rolUsuarioConverter" 
+                                                     rendered="#{sessionBacking.usuario.isAdmGen()}" 
+                                                     required="true" 
+                                                     filter="true" 
+                                                     filterMatchMode="startsWith"
+                                                     autoWidth="false">
                                         <f:selectItem itemLabel="#{msg.elegir} " />
                                         <f:selectItems value="#{usuarioBacking.rolesSelectMany}" var="rol" itemLabel="#{rol.name}" itemValue="#{rol}" />
                                     </p:selectOneMenu>

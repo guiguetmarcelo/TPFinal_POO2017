@@ -8,10 +8,13 @@
       xmlns:unnoba="http://unnoba.edu.ar/poo2017/functions"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
+    <c:set var="pageTitle" value="#{empty pageTitle ? 'Default value' : pageTitle}"
+           scope="request" />
     <h:head>
         <f:facet name="first">
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-            <title><ui:insert name="title">#{msg.home_title}</ui:insert></title>
+           <!-- <title><ui:insert name="title">#{msg.home_title}</ui:insert></title>-->
+            <title>#{pageTitle}</title>
         </f:facet>
 
         <!--<h:outputStylesheet name="css/default.css" />

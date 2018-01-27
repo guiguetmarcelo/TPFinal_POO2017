@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:unnoba="http://unnoba.edu.ar/poo2017/functions"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <c:set var="renderedRowGastosFecha" value="#{empty renderedRowGastosFecha ? 'true' : renderedRowGastosFecha}"
+           scope="request" />
+
+    <c:set var="renderedRowGastosImporte" value="#{empty renderedRowGastosImporte ? 'true' : renderedRowGastosImporte}"
+           scope="request" />
+
+    <c:set var="renderedRowGastosSubcategoria" value="#{empty renderedRowGastosSubcategoria ? 'true' : renderedRowGastosSubcategoria}"
+           scope="request" />
+
+    <c:set var="renderedCBGastosRegistrar" value="#{empty renderedCBGastosRegistrar ? 'true' : renderedCBGastosRegistrar}"
+           scope="request" />
+
+    <c:set var="renderedCBGastosActualizar" value="#{empty renderedCBGastosActualizar ? 'true' : renderedCBGastosActualizar}"
+           scope="request" />
+
+    <ui:remove>
+        <c:set var="pageTitle" value="#{empty pageTitle ? 'true' : pageTitle}"
+               scope="request" /> 
+
+        <p:row>
+            <p:column>
+
+            </p:column>
+            <p:column>
+
+            </p:column>
+        </p:row>
+
+    </ui:remove>
+
+
+    <h:form>
+        <p:growl id="messages"></p:growl>
+
+        <p:panelGrid styleClass="tableBorderOff tableAutoMargin">
+
+            <p:row rendered="#{renderedRowGastosFecha}">
+                <p:column>
+                    <p:outputLabel value="#{msg.gastos_fecha}"></p:outputLabel>
+                </p:column>
+                <p:column>
+                    <p:calendar id="input_gastos_fecha" 
+                                value="#{gastoBacking.gasto.fecha}" 
+                                required="true" 
+                                pattern="dd/MM/yyyy" 
+                                navigator="true"/>
+                </p:column>
+            </p:row>
+
+            <p:row rendered="#{renderedRowGastosImporte}">
+                <p:column>
+                    <p:outputLabel value="#{msg.gastos_importe}"></p:outputLabel>
+                </p:column>
+                <p:column>
+                    <p:inputNumber value="#{gastoBacking.gasto.importe}"/>
+                </p:column>
+            </p:row>
+
+            <p:row rendered="#{renderedRowGastosSubcategoria}">
+                <p:column>
+                    <p:outputLabel for="gastos_subcat" value="#{msg.gastos_subcategoria}"></p:outputLabel>
+                </p:column>
+                <p:column>
+                    <p:selectOneMenu id="gastos_subcat" value="#{gastoBacking.gasto.subcategoria}">
+                        <f:selectItems value="#{subcategoriaBacking.subcategorias}" 
+                                       var="subcat" 
+                                       itemLabel="#{subcat.nombre}" 
+                                       itemValue="#{subcat}"/>
+                    </p:selectOneMenu>
+                </p:column>
+            </p:row>
+
+            <p:row styleClass="tableFooter">
+                <p:column colspan="2">
+                    <p:commandButton value="#{msg.boton_registrar}" 
+                                     action="#{gastoBacking.create()}" 
+                                     update="messages"
+                                     rendered="#{renderedCBGastosRegistrar}"/>
+
+                    <p:commandButton value="#{msg.boton_actualizar}" 
+                                     action="#{gastoBacking.update()}" 
+                                     update="messages"
+                                     rendered="#{renderedCBGastosActualizar}"/>
+
+
+                    <p:button value="#{msg.boton_cancelar}" outcome="/gastos/index.xhtml?faces-redirect=true"/>
+                </p:column>
+            </p:row>
+
+        </p:panelGrid>
+    </h:form>
+
+</html>
