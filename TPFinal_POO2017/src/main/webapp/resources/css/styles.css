@@ -182,4 +182,14 @@ section[role=main] {
     color: #48a0c9;
     font-size: 5.5rem; }
 
+/* default SG styles */
+.default-container {
+  padding-top: 20px;
+  padding-bottom: 20px; }
+  .default-container h1 {
+    text-align: center;
+    margin-bottom: 15px; }
+  .default-container table {
+    margin-bottom: 15px; }
+
 /*# sourceMappingURL=styles.css.map */

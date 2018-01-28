@@ -6,13 +6,15 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
+        <ui:param name="pageTitle" value="PeriodosTitle"></ui:param>
+
         <ui:define name="content">
             <f:view contentType="text/html">
                 <h:form>
                     <p:dataTable id="periodos"
                                  value="#{periodoBacking.periodos}" 
                                  var="periodo">
-                        
+
                         <p:column headerText="#{msg.fecha_inicio}">
                             <h:outputText value="#{periodo.fechaDesde}">
                                 <f:convertDateTime pattern="dd/MM/yyyy" />

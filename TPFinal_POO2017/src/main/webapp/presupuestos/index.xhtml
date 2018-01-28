@@ -6,12 +6,13 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
-        
-        <ui:define name="title">#{msg.presupuestos_title}</ui:define>
+        <ui:param name="pageTitle" value="#{msg.presupuestos_title}"></ui:param>
 
         <ui:define name="content">
+            
+            <h1>Listado de presupuestos</h1>
+            
             <h:form>
-
                 <p:growl id="messages" autoUpdate="true" for="msgUsuario"></p:growl>
 
                 <p:dataTable id="presupuestos"

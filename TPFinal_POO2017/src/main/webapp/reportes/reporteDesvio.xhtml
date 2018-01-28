@@ -4,17 +4,15 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      >
-
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
-
-        <ui:define name="title">Reporte de gastos grafico</ui:define>
+        <ui:param name="pageTitle" value="Reporte de gastos grafico"></ui:param>
 
         <ui:define name="content">
 
             <h1>Reporte de gastos grafico</h1>
+            
             <h:form id="gastos_form_index">
                 <p:toolbar>
                     <f:facet name="left">
@@ -28,7 +26,7 @@
                             <span class="ui-icon ui-icon-grip-dotted-vertical" />
                         </span>
 
-                            <p:commandButton id="reportar" value="Generar grafico" actionListener="#{reporteBacking.graficoLineas(reporteBacking.categoria)}" styleClass="ui-priority-primary" update="tabla"  />
+                        <p:commandButton id="reportar" value="Generar grafico" actionListener="#{reporteBacking.graficoLineas(reporteBacking.categoria)}" styleClass="ui-priority-primary" update="tabla"  />
                     </f:facet>
                 </p:toolbar>
                 <p:panel id="tabla"> 

@@ -4,12 +4,10 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      >
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
-
-        <ui:define name="title">Reporte de gastos comparativo</ui:define>
+        <ui:param name="pageTitle" value="Reporte de gastos comparativo"></ui:param>
 
         <ui:define name="content">
 
@@ -22,6 +20,7 @@
             </script>
 
             <h1>Reporte de gastos comparativo</h1>
+            
             <h:form id="gastos_form_index">
                 <p:toolbar>
                     <f:facet name="left">

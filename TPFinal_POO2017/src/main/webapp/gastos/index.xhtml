@@ -6,12 +6,11 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
-        
-        <ui:define name="title">#{msg.gastos_title}</ui:define>
+        <ui:param name="pageTitle" value="#{msg.gastos_title}"></ui:param>
 
         <ui:define name="content">
-             <h1>#{msg.gastos_titulo}</h1>
-             
+            <h1>#{msg.gastos_titulo}</h1>
+
             <h:form id="gastos_form_index">
 
                 <p:growl id="messages" autoUpdate="true" for="msgUsuario"></p:growl>

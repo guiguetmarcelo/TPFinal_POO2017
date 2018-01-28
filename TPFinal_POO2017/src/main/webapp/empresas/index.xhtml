@@ -6,12 +6,11 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
-        
-        <ui:define name="title">Empresas</ui:define>
+        <ui:param name="pageTitle" value="Empresas"></ui:param>
 
         <ui:define name="content">
-             <h1>Empresas</h1>
-             
+            <h1>Empresas</h1>
+
             <h:form >
 
                 <p:growl id="messages" autoUpdate="true" for="msgUsuario"></p:growl>
@@ -24,7 +23,7 @@
                         <h:outputText value="#{empresa.nombre}">
                         </h:outputText>
                     </p:column>
-                    
+
                     <p:column headerText="Telefono de la empresa">
                         <h:outputText value="#{empresa.telefono}"/>
                     </p:column>
