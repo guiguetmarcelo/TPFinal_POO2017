@@ -7,72 +7,14 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
-
-        <ui:define name="title">#{msg.aniadir_categoria}</ui:define>
-
+        <ui:param name="pageTitle" value="#{msg.aniadir_categoria}"></ui:param>
+        
         <ui:define name="content">
+            <h1>#{msg.categoria_cabecera_nueva}</h1>
 
-
-            <div class="row justify-content-center">
-                <div class="col-auto">
-                    <h1>#{msg.categoria_cabecera_nueva}</h1>
-
-                    <p:growl id="messages"></p:growl>
-
-                    <h:form>
-
-                        <p:growl id="messages"></p:growl>
-
-                        <p:panelGrid styleClass="tableBorderOff tableAutoMargin">
-                            <p:row>
-                                <p:column>
-                                    <p:outputLabel value="#{msg.usuarios_nombre}"></p:outputLabel>
-                                </p:column>
-                                <p:column>
-                                    <p:inputText value="#{categoriaBacking.categoria.nombre}"/>
-                                </p:column>
-                            </p:row>
-
-                            <p:row>
-                                <p:column>
-                                    <p:outputLabel value="#{msg.descripcion}"></p:outputLabel>
-                                </p:column>
-                                <p:column>
-                                    <p:inputText value="#{categoriaBacking.categoria.descripcion}"/>
-                                </p:column>
-                            </p:row>
-
-                            <p:row styleClass="tableFooter">
-                                <p:column colspan="2">
-                                    <p:commandButton value="#{msg.boton_guardar}" 
-                                                     action="#{categoriaBacking.create()}" 
-                                                     update="messages"/>
-
-                                    <p:button value="#{msg.boton_cancelar}" outcome="/categorias/index?faces-redirect=true"/>
-                                </p:column>
-                            </p:row>
-
-                            <p:row styleClass="tableFooter">
-                                <p:column colspan="2">
-
-                                </p:column>
-                            </p:row>
-
-
-
-
-
-
-
-
-
-                        </p:panelGrid>
-                    </h:form>
-                </div>
-            </div>
-
-
-
+            <ui:decorate template="/WEB-INF/facelets/templates/forms/categorias_new-edit.xhtml">
+                <ui:param name="update" value="false"/>
+            </ui:decorate>
         </ui:define>
     </ui:composition>
 </html>

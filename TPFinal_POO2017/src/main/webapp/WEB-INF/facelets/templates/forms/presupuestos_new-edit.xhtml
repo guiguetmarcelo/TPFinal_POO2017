@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:unnoba="http://unnoba.edu.ar/poo2017/functions"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <c:set var="update" value="#{empty update ? 'true' : update}"
+           scope="request" /> 
+
+    <h:form>
+        <p:growl id="messages"></p:growl>
+
+        <p:panelGrid styleClass="tableBorderOff tableAutoMargin">
+
+            <p:row>
+                <p:column>
+                    <p:outputLabel value="#{msg.presupuestos_monto}"></p:outputLabel>
+                </p:column>
+                <p:column>
+                    <p:inputNumber value="#{presupuestoBacking.presupuesto.monto}"/>
+                </p:column>
+            </p:row>
+
+            <p:row>
+                <p:column>
+                    <p:outputLabel for="input_presupuestos_subcat" value="#{msg.presupuestos_subcategoria}"  ></p:outputLabel> 
+                </p:column>
+                <p:column>
+                    <p:selectOneMenu id="input_presupuestos_subcat" value="#{presupuestoBacking.presupuesto.subcategoria}">
+                        <f:selectItems value="#{subcategoriaBacking.subcategorias}" var="subcat" itemLabel="#{subcat.nombre}" itemValue="#{subcat}"/>
+                    </p:selectOneMenu>
+                </p:column>
+            </p:row>
+
+            <p:row>
+                <p:column>
+                    <p:outputLabel for="input_presupuestos_periodo" value="#{msg.presupuestos_periodo}"  ></p:outputLabel>
+                </p:column>
+                <p:column>
+                    <p:selectOneMenu id="input_presupuestos_periodo" value="#{presupuestoBacking.presupuesto.periodo}">
+                        <f:selectItems value="#{periodoBacking.periodos}" var="periodo" itemLabel="#{periodo.descripcion}" itemValue="#{periodo}"/>
+                    </p:selectOneMenu>
+                </p:column>
+            </p:row>
+
+            <p:row styleClass="tableFooter">
+                <p:column colspan="2">
+                    <p:commandButton value="#{msg.boton_registrar}" 
+                                     action="#{presupuestoBacking.create()}" 
+                                     update="messages"
+                                     rendered="#{not update}"/>
+                    
+                    <p:commandButton value="#{msg.usuarios_botonActualizar}" 
+                                     action="#{presupuestoBacking.update()}" 
+                                     update="messages"
+                                     rendered="#{update}"/>
+
+                    <p:button value="#{msg.boton_cancelar}" outcome="/periodos/index.xhtml?faces-redirect=true"/>
+                </p:column>
+            </p:row>
+
+        </p:panelGrid>
+    </h:form>
+
+</html>
+

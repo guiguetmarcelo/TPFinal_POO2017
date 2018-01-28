@@ -6,10 +6,18 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"
       xmlns:unnoba="http://unnoba.edu.ar/poo2017/functions"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
 
     <c:set var="pageTitle" value="#{empty pageTitle ? 'Default value' : pageTitle}"
            scope="request" />
+
+    <c:set var="default" value="#{empty default ? 'true' : default}"
+           scope="request" /> 
+
+    <c:set var="d" value="false"
+           scope="request" /> 
+
     <h:head>
         <f:facet name="first">
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -46,10 +54,20 @@
         </header>
 
         <section class="container-fluid" role="main">
-            <ui:insert name="content">
+            <c:if test="#{default}">
+                <ui:fragment>
+                    <div class="row justify-content-center">  
+                        <div class="col-auto">
+                            <ui:insert name="content"></ui:insert>
 
+                        </div>
+                    </div>
+                </ui:fragment>
+            </c:if>
 
-            </ui:insert>
+            <c:if test="#{not default}">
+                <ui:insert name="content" ></ui:insert>
+            </c:if>
         </section>
 
         <footer class="">

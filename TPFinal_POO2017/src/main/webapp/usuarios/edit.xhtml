@@ -6,8 +6,11 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
-
-        <ui:define name="title">#{msg.usuarios_editarTitle}</ui:define>
+        <ui:param name="pageTitle" value="#{msg.usuarios_editarTitle}"></ui:param>
+        
+        <ui:param name="RRrol" value="#{sessionBacking.usuario.isAdmGen()}"></ui:param>
+        <ui:param name="RRempresa" value="#{sessionBacking.usuario.isAdmGen()}"></ui:param>
+        <ui:param name="RRpassword" value="#{sessionBacking.usuario.isAdmGen() or sessionBacking.usuario.equals(usuarioBacking.usuario)}"></ui:param>
 
         <ui:define name="head_content">
             <f:metadata>
@@ -16,46 +19,13 @@
         </ui:define>
 
         <ui:define name="content">
+
             <h1>#{msg.usuarios_editarTitulo}</h1>
 
-            <h:form>
-                <p:growl id="messages"></p:growl>
-
-                <p:panelGrid columns="2" styleClass="">   
-                    <p:outputLabel value="#{msg.usuarios_nombre}"></p:outputLabel>
-                    <p:inputText value="#{usuarioBacking.usuario.nombre}"/>
-
-                    <p:outputLabel value="#{msg.usuarios_apellido}"></p:outputLabel>
-                    <p:inputText value="#{usuarioBacking.usuario.apellido}"/>
-
-                    <p:outputLabel value="#{msg.usuarios_email}"></p:outputLabel>
-                    <p:inputText value="#{usuarioBacking.usuario.email}"/>
-
-                    <p:outputLabel value="#{msg.usuarios_username}"></p:outputLabel>
-                    <p:inputText value="#{usuarioBacking.usuario.username}"/>
-
-                    <p:outputLabel value="#{msg.usuarios_password}"></p:outputLabel>
-                    <p:password value="#{usuarioBacking.usuario.password}"/>
-                    
-                    <p:outputLabel for="labelEmpresa" value="#{msg.usuarios_empresa}" rendered="#{sessionBacking.usuario.isAdmGen()}" />
-                    <p:selectOneMenu id="labelEmpresa" value="#{usuarioBacking.usuario.empresa}" rendered="#{sessionBacking.usuario.isAdmGen()}" required="true" filter="true" filterMatchMode="startsWith">
-                        <f:selectItem itemLabel="#{msg.elegir} " />
-                        <f:selectItems value="#{empresaBacking.empresas}" var="emp" itemLabel="#{emp.nombre}" itemValue="#{emp}" />
-                    </p:selectOneMenu>
-                    
-                     <p:outputLabel for="labelRol" value="Rol" rendered="#{sessionBacking.usuario.isAdmGen()}"></p:outputLabel>
-                    <p:selectOneMenu id="labelRol" value="#{usuarioBacking.usuario.rol}" converter="rolUsuarioConverter" rendered="#{sessionBacking.usuario.isAdmGen()}" required="true" filter="true" filterMatchMode="startsWith">
-                        <f:selectItem itemLabel="#{msg.elegir} " />
-                        <f:selectItems value="#{usuarioBacking.rolesSelectMany}" var="rol" itemLabel="#{rol.name}" itemValue="#{rol}" />
-                    </p:selectOneMenu>
-
-                    <p:commandButton value="#{msg.usuarios_botonActualizar}" 
-                                     action="#{usuarioBacking.update()}" 
-                                     update="messages :form_menu_principal"/>
-
-                    <p:button value="#{msg.boton_cancelar}" outcome="/usuarios/index.xhtml?faces-redirect=true"/>
-                </p:panelGrid>
-            </h:form>
+            <ui:decorate template="/WEB-INF/facelets/templates/forms/usuarios_new-edit.xhtml">
+                <ui:param name="update" value="true"/>
+            </ui:decorate> 
+      
         </ui:define>
     </ui:composition>
 </html>

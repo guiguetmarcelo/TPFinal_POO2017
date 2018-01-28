@@ -6,7 +6,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
-        <ui:define name="title">#{msg.periodo_nuevo}</ui:define>
+        <ui:param name="pageTitle" value="#{msg.periodos_nuevoTitle}"></ui:param>
 
         <ui:define name="head_content" >
             <h:outputScript library="js" name="calendar_es.js" />
@@ -16,25 +16,9 @@
 
             <h1> #{msg.periodo_cabecera_new}</h1>
 
-            <h:form>
-                <p:growl id="messages"></p:growl>
-                <p:panelGrid columns="2" styleClass="">
-                    <p:outputLabel for="evento" value="#{msg.fecha_inicio}" />
-                    <p:calendar id="evento" value="#{periodoBacking.periodo.fechaDesde}"></p:calendar>
-
-                    <p:outputLabel for="event" value="#{msg.fecha_fin}" />
-                    <p:calendar id="event" value="#{periodoBacking.periodo.fechaHasta}"></p:calendar>
-
-                    <p:outputLabel value="#{msg.descripcion}"></p:outputLabel>
-                    <p:inputText value="#{periodoBacking.periodo.descripcion}"/>
-
-                    <p:commandButton value="#{msg.boton_guardar}" 
-                                     action="#{periodoBacking.create()}" 
-                                     update="messages"/>
-
-                    <p:button value="#{msg.boton_cancelar}" outcome="/periodos/index"/>
-                </p:panelGrid>
-            </h:form>
+            <ui:decorate template="/WEB-INF/facelets/templates/forms/periodos_new-edit.xhtml">
+                <ui:param name="update" value="false"/>
+            </ui:decorate>
 
         </ui:define>
     </ui:composition>

@@ -6,33 +6,15 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
-
-        <ui:define name="title">Nueva empresa</ui:define>
+        <ui:param name="pageTitle" value="#{msg.empresas_nuevaTitle}"></ui:param>
 
         <ui:define name="content">
 
             <h1>Nueva empresa</h1>
 
-            <h:form>
-                <p:growl id="messages"></p:growl>
-
-                <p:panelGrid columns="2" styleClass="">
-                    <p:outputLabel value="Nombre de la empresa"></p:outputLabel>
-                    <p:inputText value="#{empresaBacking.empresa.nombre}"/>
-
-                    <p:outputLabel value="Telefono "></p:outputLabel>
-                    <p:inputText value="#{empresaBacking.empresa.telefono}"/>
-                    
-                    <p:outputLabel value="Descripcion de la empresa"></p:outputLabel>
-                    <p:inputText value="#{empresaBacking.empresa.descripcion}"/>
-
-                    <p:commandButton value="#{msg.boton_guardar}" 
-                                     action="#{empresaBacking.create()}" 
-                                     update="messages"/>
-
-                    <p:button value="#{msg.boton_cancelar}" outcome="/empresas/index"/>
-                </p:panelGrid>
-            </h:form>
+            <ui:decorate template="/WEB-INF/facelets/templates/forms/empresas_new-edit.xhtml">
+                <ui:param name="update" value="false"/>
+            </ui:decorate>
 
         </ui:define>
     </ui:composition>

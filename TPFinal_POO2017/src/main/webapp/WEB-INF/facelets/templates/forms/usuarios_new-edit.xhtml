@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:unnoba="http://unnoba.edu.ar/poo2017/functions"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+    <c:set var="update" value="#{empty update ? 'true' : update}"
+           scope="request" /> 
+    
+    <c:set var="RRusername" value="#{empty RRusername ? 'true' : RRusername}"
+           scope="request" /> 
+    
+    <c:set var="RRpassword" value="#{empty RRpassword ? 'true' : RRpassword}"
+           scope="request" /> 
+    
+    <c:set var="RRnombre" value="#{empty RRnombre ? 'true' : RRnombre}"
+           scope="request" /> 
+    
+    <c:set var="RRapellido" value="#{empty RRapellido ? 'true' : RRapellido}"
+           scope="request" /> 
+    
+    <c:set var="RRemail" value="#{empty RRemail ? 'true' : RRemail}"
+           scope="request" /> 
+    
+    <c:set var="RRrol" value="#{empty RRrol ? 'true' : RRrol}"
+           scope="request" /> 
+    
+    <c:set var="RRempresa" value="#{empty RRempresa ? 'true' : RRempresa}"
+           scope="request" /> 
+
+    <h:form>
+
+        <p:messages autoUpdate="true" for="newUserInputUsername" closable="true"></p:messages>
+        <p:messages autoUpdate="true" for="newUserInputPassword" closable="true"></p:messages>
+        <p:messages autoUpdate="true" for="newUserInputEmail" closable="true"></p:messages>
+        <p:messages autoUpdate="true" for="newUserInputRol" closable="true"></p:messages>
+        <p:messages autoUpdate="true" for="newUserInputCompany" closable="true"></p:messages>
+
+        <p:panelGrid styleClass="tableBorderOff tableAutoMargin"> 
+
+            <p:row rendered="#{RRusername}">
+                <p:column>
+                    <p:outputLabel for="newUserInputUsername" value="#{msg.usuarios_username}"></p:outputLabel>
+                </p:column>
+                <p:column>
+                    <p:inputText id="newUserInputUsername" value="#{usuarioBacking.usuario.username}" class="bsbb" required="true"/>
+                </p:column>
+            </p:row>
+
+            <p:row rendered="#{RRpassword}">
+                <p:column>
+                    <p:outputLabel for="newUserInputPassword" value="#{msg.usuarios_password}"></p:outputLabel>
+                </p:column>
+                <p:column>
+                    <p:password id="newUserInputPassword" value="#{usuarioBacking.usuario.password}" 
+                                class="bsbb"
+                                feedback="true"
+                                required="true"
+                                validatorMessage="Las contraseñas no coinciden"
+                                match="newUserInputPassword2"/>
+                </p:column>
+            </p:row>
+
+            <p:row rendered="#{RRpassword}">
+                <p:column>
+                    <p:outputLabel for="newUserInputPassword2" value="#{msg.usuarios_password}"></p:outputLabel>
+                </p:column>
+                <p:column>
+                    <p:password id="newUserInputPassword2" value="#{usuarioBacking.usuario.password}" class="bsbb"
+                                required="true"
+                                />
+                </p:column>
+            </p:row>
+
+            <p:row rendered="#{RRnombre}">
+                <p:column>
+                    <p:outputLabel for="newUserInputName" value="#{msg.usuarios_nombre}"></p:outputLabel>
+                </p:column>
+                <p:column>
+                    <p:inputText id="newUserInputName" value="#{usuarioBacking.usuario.nombre}" class="bsbb"/>
+                </p:column>
+            </p:row>
+
+            <p:row rendered="#{RRapellido}">
+                <p:column>
+                    <p:outputLabel for="newUserInputLastName" value="#{msg.usuarios_apellido}"></p:outputLabel>
+                </p:column>
+                <p:column>
+                    <p:inputText id="newUserInputLastName" value="#{usuarioBacking.usuario.apellido}" class="bsbb"/>
+                </p:column>
+            </p:row>
+
+            <p:row rendered="#{RRemail}">
+                <p:column>
+                    <p:outputLabel for="newUserInputEmail" value="#{msg.usuarios_email}"></p:outputLabel>
+                </p:column>
+                <p:column>
+                    <p:inputText id="newUserInputEmail" value="#{usuarioBacking.usuario.email}" required="true" validatorMessage="Mail invalido" class="bsbb">
+                        <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                    </p:inputText>
+                    <p:message  showDetail="true"  for="newUserInputEmail" display="tooltip" />
+                </p:column>
+            </p:row>
+
+            <p:row rendered="#{RRrol}">
+                <p:column>
+                    <p:outputLabel for="newUserInputRol" value="Rol" rendered="#{sessionBacking.usuario.isAdmGen()}"></p:outputLabel>
+
+                </p:column>
+                <p:column>
+                    <p:selectOneMenu id="newUserInputRol" 
+                                     value="#{usuarioBacking.usuario.rol}" 
+                                     converter="rolUsuarioConverter" 
+                                     rendered="#{sessionBacking.usuario.isAdmGen()}" 
+                                     required="true" 
+                                     filter="true" 
+                                     filterMatchMode="startsWith"
+                                     autoWidth="false">
+                        <f:selectItem itemLabel="#{msg.elegir} " />
+                        <f:selectItems value="#{usuarioBacking.rolesSelectMany}" var="rol" itemLabel="#{rol.name}" itemValue="#{rol}" />
+                    </p:selectOneMenu>
+                </p:column>
+            </p:row>
+
+            <p:row rendered="#{RRempresa}">
+                <p:column>
+                    <p:outputLabel for="newUserInputCompany" value="#{msg.usuarios_empresa}" rendered="#{sessionBacking.usuario.isAdmGen()}" />
+
+                </p:column>
+                <p:column>
+                    <p:selectOneMenu id="newUserInputCompany" value="#{usuarioBacking.usuario.empresa}" rendered="#{sessionBacking.usuario.isAdmGen()}" required="true" filter="true" filterMatchMode="startsWith">
+                        <f:selectItem itemLabel="#{msg.elegir} " />
+                        <f:selectItems value="#{empresaBacking.empresas}" var="emp" itemLabel="#{emp.nombre}" itemValue="#{emp}" />
+                    </p:selectOneMenu>
+                </p:column>
+            </p:row>
+
+            <p:row styleClass="tableFooter">
+                <p:column colspan="2">
+                    <p:commandButton value="#{msg.boton_registrar}" 
+                                     action="#{usuarioBacking.create()}" 
+                                     update=""
+                                     rendered="#{not update}"/>
+                    
+                    <p:commandButton value="#{msg.usuarios_botonActualizar}" 
+                                     action="#{usuarioBacking.update()}" 
+                                     update=""
+                                     rendered="#{update}"/>
+
+                    <p:button value="#{msg.boton_cancelar}" outcome="/usuarios/index.xhtml?faces-redirect=true"/>
+                </p:column>
+            </p:row>
+
+        </p:panelGrid>
+    </h:form>
+
+</html>

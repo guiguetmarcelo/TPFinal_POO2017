@@ -10,40 +10,17 @@ and open the template in the editor.
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-      
 
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
+        <ui:param name="pageTitle" value="#{msg.presupuestos_nuevoTitle}"></ui:param>
 
-        <ui:define name="title">#{msg.presupuestos_nuevoTitle}</ui:define>
-        
         <ui:define name="content">
+
             <h1>#{msg.presupuestos_nuevoTitulo}</h1>
 
-            <h:form >
-                <p:growl id="messages"></p:growl>
-                <p:panelGrid columns="2" styleClass="">
-                    
-                    <p:outputLabel value="#{msg.presupuestos_monto}"></p:outputLabel>
-                    <p:inputNumber value="#{presupuestoBacking.presupuesto.monto}"/>
-
-                    <p:outputLabel for="input_presupuestos_subcat" value="#{msg.presupuestos_subcategoria}"  ></p:outputLabel>         
-                    <p:selectOneMenu id="input_presupuestos_subcat" value="#{presupuestoBacking.presupuesto.subcategoria}">
-                        <f:selectItems value="#{subcategoriaBacking.subcategorias}" var="subcat" itemLabel="#{subcat.nombre}" itemValue="#{subcat}"/>
-                    </p:selectOneMenu>
-                    
-                    <p:outputLabel for="input_presupuestos_periodo" value="#{msg.presupuestos_periodo}"  ></p:outputLabel>         
-                    <p:selectOneMenu id="input_presupuestos_periodo" value="#{presupuestoBacking.presupuesto.periodo}">
-                        <f:selectItems value="#{periodoBacking.periodos}" var="periodo" itemLabel="#{periodo.descripcion}" itemValue="#{periodo}"/>
-                    </p:selectOneMenu>
-
-
-                    <p:commandButton value="#{msg.boton_registrar}" 
-                                     action="#{presupuestoBacking.create()}" 
-                                     update="messages"/>
-
-                    <p:button value="#{msg.boton_cancelar}" outcome="/periodos/index"/>
-                </p:panelGrid>
-            </h:form>
+            <ui:decorate template="/WEB-INF/facelets/templates/forms/presupuestos_new-edit.xhtml">
+                <ui:param name="update" value="false"/>
+            </ui:decorate>
 
         </ui:define>
     </ui:composition>

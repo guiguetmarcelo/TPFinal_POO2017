@@ -6,37 +6,20 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
-        
-        <ui:define name="title">Editar empresa</ui:define>
-        
+<ui:param name="pageTitle" value="#{msg.empresas_editarTitle}"></ui:param>
+
         <ui:define name="head_content">
             <f:metadata>
                 <f:viewParam name="id" value="#{empresaBacking.empresa}"/>
             </f:metadata>
         </ui:define>
-        
+
         <ui:define name="content">
             <h1>Actualizar empresa</h1>
 
-            <h:form>
-                <p:growl id="messages"></p:growl>
-                <p:panelGrid columns="2" styleClass="">
-                    <p:outputLabel value="Nombre de la empresa"></p:outputLabel>
-                    <p:inputText value="#{empresaBacking.empresa.nombre}"/>
-
-                    <p:outputLabel value="Telefono "></p:outputLabel>
-                    <p:inputText value="#{empresaBacking.empresa.telefono}"/>
-                    
-                    <p:outputLabel value="Descripcion de la empresa"></p:outputLabel>
-                    <p:inputText value="#{empresaBacking.empresa.descripcion}"/>
-
-                    <p:commandButton value="#{msg.boton_actualizar}" 
-                                     action="#{empresaBacking.update()}" 
-                                     update="messages"/>
-
-                    <p:button value="#{msg.boton_cancelar}" outcome="/empresas/index"/>
-                </p:panelGrid>
-            </h:form>
+            <ui:decorate template="/WEB-INF/facelets/templates/forms/empresas_new-edit.xhtml">
+                <ui:param name="update" value="true"/>
+            </ui:decorate>
 
         </ui:define>
     </ui:composition>

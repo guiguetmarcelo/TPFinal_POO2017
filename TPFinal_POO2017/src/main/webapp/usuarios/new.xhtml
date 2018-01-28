@@ -8,146 +8,25 @@
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
+        <ui:param name="pageTitle" value="#{msg.usuarios_nuevoTitle}"></ui:param>
+        <ui:param name="default" value="false"></ui:param>
 
-        <ui:define name="title">#{msg.usuarios_nuevoTitle}</ui:define>
-
+        <ui:param name="RRrol" value="#{sessionBacking.usuario.isAdmGen()}"></ui:param>
+        <ui:param name="RRempresa" value="#{sessionBacking.usuario.isAdmGen()}"></ui:param>
+        
         <ui:define name="content">
+
             <div class="row justify-content-center">
                 <div class="col-auto newUserContainer">
 
-
                     <h1>#{msg.usuarios_nuevoTitulo}</h1>
 
-                    <h:form id="s">
 
-                        <p:messages autoUpdate="true" for="newUserInputUsername" closable="true"></p:messages>
-                        <p:messages autoUpdate="true" for="newUserInputPassword" closable="true"></p:messages>
-                        <p:messages autoUpdate="true" for="newUserInputEmail" closable="true"></p:messages>
-                        <p:messages autoUpdate="true" for="newUserInputRol" closable="true"></p:messages>
-                        <p:messages autoUpdate="true" for="newUserInputCompany" closable="true"></p:messages>
-
-                        <p:panelGrid id="ss" styleClass="tableBorderOff tableAutoMargin"> 
-
-                            <p:row>
-                                <p:column>
+                    <ui:decorate template="/WEB-INF/facelets/templates/forms/usuarios_new-edit.xhtml">
+                        <ui:param name="update" value="false"/>
+                    </ui:decorate> 
 
 
-                                </p:column>
-                            </p:row>
-                            <p:row>
-                                <p:column>
-                                    <p:outputLabel for="newUserInputUsername" value="#{msg.usuarios_username}"></p:outputLabel>
-                                </p:column>
-                                <p:column>
-                                    <p:inputText id="newUserInputUsername" value="#{usuarioBacking.usuario.username}" class="bsbb" required="true"/>
-                                </p:column>
-                            </p:row>
-
-
-
-
-                            <p:row>
-                                <p:column>
-                                    <p:outputLabel for="newUserInputPassword" value="#{msg.usuarios_password}"></p:outputLabel>
-                                </p:column>
-                                <p:column>
-                                    <p:password id="newUserInputPassword" value="#{usuarioBacking.usuario.password}" 
-                                                class="bsbb"
-                                                feedback="true"
-                                                required="true"
-                                                validatorMessage="Las contraseñas no coinciden"
-                                                match="newUserInputPassword2"/>
-                                </p:column>
-                            </p:row>
-
-                            <p:row>
-                                <p:column>
-                                    <p:outputLabel for="newUserInputPassword2" value="#{msg.usuarios_password}"></p:outputLabel>
-                                </p:column>
-                                <p:column>
-                                    <p:password id="newUserInputPassword2" value="#{usuarioBacking.usuario.password}" class="bsbb"
-                                                required="true"
-                                                />
-                                </p:column>
-                            </p:row>
-
-                            <p:row>
-                                <p:column>
-                                    <p:outputLabel for="newUserInputName" value="#{msg.usuarios_nombre}"></p:outputLabel>
-                                </p:column>
-                                <p:column>
-                                    <p:inputText id="newUserInputName" value="#{usuarioBacking.usuario.nombre}" class="bsbb"/>
-                                </p:column>
-                            </p:row>
-
-                            <p:row>
-                                <p:column>
-                                    <p:outputLabel for="newUserInputLastName" value="#{msg.usuarios_apellido}"></p:outputLabel>
-                                </p:column>
-                                <p:column>
-                                    <p:inputText id="newUserInputLastName" value="#{usuarioBacking.usuario.apellido}" class="bsbb"/>
-                                </p:column>
-                            </p:row>
-
-                            <p:row>
-                                <p:column>
-                                    <p:outputLabel for="newUserInputEmail" value="#{msg.usuarios_email}"></p:outputLabel>
-                                </p:column>
-                                <p:column>
-                                    <p:inputText id="newUserInputEmail" value="#{usuarioBacking.usuario.email}" required="true" validatorMessage="Mail invalido" class="bsbb">
-                                        <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
-                                    </p:inputText>
-                                    <p:message  showDetail="true"  for="newUserInputEmail" display="tooltip" />
-                                </p:column>
-                            </p:row>
-
-                            <p:row rendered="#{sessionBacking.usuario.isAdmGen()}">
-                                <p:column>
-                                    <p:outputLabel for="newUserInputRol" value="Rol" rendered="#{sessionBacking.usuario.isAdmGen()}"></p:outputLabel>
-
-                                </p:column>
-                                <p:column>
-                                    <p:selectOneMenu id="newUserInputRol" 
-                                                     value="#{usuarioBacking.usuario.rol}" 
-                                                     converter="rolUsuarioConverter" 
-                                                     rendered="#{sessionBacking.usuario.isAdmGen()}" 
-                                                     required="true" 
-                                                     filter="true" 
-                                                     filterMatchMode="startsWith"
-                                                     autoWidth="false">
-                                        <f:selectItem itemLabel="#{msg.elegir} " />
-                                        <f:selectItems value="#{usuarioBacking.rolesSelectMany}" var="rol" itemLabel="#{rol.name}" itemValue="#{rol}" />
-                                    </p:selectOneMenu>
-                                </p:column>
-                            </p:row>
-
-                            <p:row rendered="#{sessionBacking.usuario.isAdmGen()}">
-                                <p:column>
-                                    <p:outputLabel for="newUserInputCompany" value="#{msg.usuarios_empresa}" rendered="#{sessionBacking.usuario.isAdmGen()}" />
-
-                                </p:column>
-                                <p:column>
-                                    <p:selectOneMenu id="newUserInputCompany" value="#{usuarioBacking.usuario.empresa}" rendered="#{sessionBacking.usuario.isAdmGen()}" required="true" filter="true" filterMatchMode="startsWith">
-                                        <f:selectItem itemLabel="#{msg.elegir} " />
-                                        <f:selectItems value="#{empresaBacking.empresas}" var="emp" itemLabel="#{emp.nombre}" itemValue="#{emp}" />
-                                    </p:selectOneMenu>
-                                </p:column>
-                            </p:row>
-
-                            <p:row styleClass="tableFooter">
-                                <p:column colspan="2">
-                                    <p:commandButton value="#{msg.boton_registrar}" 
-                                                     action="#{usuarioBacking.create()}" 
-                                                     update="s"/>
-
-                                    <p:button value="#{msg.boton_cancelar}" outcome="/usuarios/index.xhtml?faces-redirect=true"/>
-                                </p:column>
-                            </p:row>
-
-
-
-                        </p:panelGrid>
-                    </h:form>
                 </div>
             </div>
         </ui:define>

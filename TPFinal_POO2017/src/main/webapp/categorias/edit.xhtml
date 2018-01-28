@@ -6,34 +6,20 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
-        
-        <ui:define name="title">#{msg.editar_categoria}</ui:define>
-        
+        <ui:param name="pageTitle" value="#{msg.editar_categoria}"></ui:param>
+
         <ui:define name="head_content">
             <f:metadata>
                 <f:viewParam name="id" value="#{categoriaBacking.categoria}"/>
             </f:metadata>
         </ui:define>
-        
+
         <ui:define name="content">
             <h1>#{msg.actualizar_cat}</h1>
 
-            <h:form>
-                <p:growl id="messages"></p:growl>
-                <p:panelGrid columns="2" styleClass="">
-                    <p:outputLabel value="#{msg.usuarios_nombre}"></p:outputLabel>
-                    <p:inputText value="#{categoriaBacking.categoria.nombre}"/>
-
-                    <p:outputLabel value="#{msg.descripcion}"></p:outputLabel>
-                    <p:inputText value="#{categoriaBacking.categoria.descripcion}"/>
-
-                    <p:commandButton value="#{msg.boton_actualizar}" 
-                                     action="#{categoriaBacking.update()}" 
-                                     update="messages"/>
-
-                    <p:button value="#{msg.boton_cancelar}" outcome="/categorias/index"/>
-                </p:panelGrid>
-            </h:form>
+            <ui:decorate template="/WEB-INF/facelets/templates/forms/categorias_new-edit.xhtml">
+                <ui:param name="update" value="true"/>
+            </ui:decorate>
 
         </ui:define>
     </ui:composition>

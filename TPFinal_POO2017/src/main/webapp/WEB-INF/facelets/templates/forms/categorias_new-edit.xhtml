@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:unnoba="http://unnoba.edu.ar/poo2017/functions"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <c:set var="update" value="#{empty update ? 'true' : update}"
+           scope="request" /> 
+
+    <h:form>
+        <p:growl id="messages"></p:growl>
+
+        <p:panelGrid styleClass="tableBorderOff tableAutoMargin">
+            <p:row>
+                <p:column>
+                    <p:outputLabel value="#{msg.usuarios_nombre}"></p:outputLabel>
+                </p:column>
+                <p:column>
+                    <p:inputText value="#{categoriaBacking.categoria.nombre}"/>
+                </p:column>
+            </p:row>
+
+            <p:row>
+                <p:column>
+                    <p:outputLabel value="#{msg.descripcion}"></p:outputLabel>
+                </p:column>
+                <p:column>
+                    <p:inputText value="#{categoriaBacking.categoria.descripcion}"/>
+                </p:column>
+            </p:row>
+
+            <p:row styleClass="tableFooter">
+                <p:column colspan="2">
+                    <p:commandButton value="#{msg.boton_guardar}" 
+                                     action="#{categoriaBacking.create()}" 
+                                     update="messages"
+                                     rendered="#{not update}"/>
+                    
+                    <p:commandButton value="#{msg.boton_actualizar}" 
+                                     action="#{categoriaBacking.update()}" 
+                                     update="messages"
+                                     rendered="#{update}"/>
+
+                    <p:button value="#{msg.boton_cancelar}" outcome="/categorias/index?faces-redirect=true"/>
+                </p:column>
+            </p:row>
+        </p:panelGrid>
+    </h:form>
+
+</html>

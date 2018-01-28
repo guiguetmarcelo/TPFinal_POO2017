@@ -7,33 +7,15 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
-
-        <ui:define name="title">#{msg.subcategoria_nueva}</ui:define>
+        <ui:param name="pageTitle" value="#{msg.subcategorias_nuevaTitle}"></ui:param>
 
         <ui:define name="content">
+
             <h1>#{msg.subcategoria_ingresa_datos}</h1>
 
-            <h:form>
-                <p:growl id="messages"></p:growl>
-                <p:panelGrid columns="2" styleClass="">
-                    <p:outputLabel value="#{msg.usuarios_nombre}"></p:outputLabel>
-                    <p:inputText value="#{subcategoriaBacking.subcategoria.nombre}"/>
-
-                    <p:outputLabel value="#{msg.descripcion}"></p:outputLabel>
-                    <p:inputText value="#{subcategoriaBacking.subcategoria.descripcion}"/>
-
-                    <p:outputLabel for="cat" value="#{msg.categoria_padre} " />
-                    <p:selectOneMenu id="cat" value="#{subcategoriaBacking.subcategoria.categoriaPadre}">
-                        <f:selectItem itemLabel="#{msg.elegir} " itemValue="#{cat}" />
-                        <f:selectItems value="#{categoriaBacking.categorias}" var="cat" itemLabel="#{cat.nombre}" itemValue="#{cat}" />
-                    </p:selectOneMenu>
-
-                    <p:commandButton value="#{msg.boton_guardar}" 
-                                     action="#{subcategoriaBacking.create()}" 
-                                     update="messages"/>
-                    <p:button value="#{msg.boton_cancelar}" outcome="/subcategorias/index"/>
-                </p:panelGrid>
-            </h:form>
+            <ui:decorate template="/WEB-INF/facelets/templates/forms/subcategorias_new-edit.xhtml">
+                <ui:param name="update" value="false"/>
+            </ui:decorate>
 
         </ui:define>
     </ui:composition>
