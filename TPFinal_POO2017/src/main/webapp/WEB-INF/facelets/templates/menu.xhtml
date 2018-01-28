@@ -12,25 +12,25 @@
             <p:menuitem value="#{msg.menu_principal}" outcome="/index.xhtml?faces-redirect=true" icon="fa fa-home"></p:menuitem>
             
 
-            <p:submenu label="#{msg.menu_gastos}" icon="fa fa-money">
+            <p:submenu label="#{msg.menu_gastos}" icon="fa fa-money" styleClass="sg-menuitem">
                 <p:menuitem value="#{msg.menu_gastosListar}" outcome="/gastos/index.xhtml?faces-redirect=true"></p:menuitem>
                 <p:menuitem value="#{msg.menu_gastosNuevo}" outcome="/gastos/new.xhtml?faces-redirect=true"></p:menuitem>
             </p:submenu>
 
 
-            <p:submenu label="#{msg.menu_presupuestos}" icon="fa fa-file-text-o">
+            <p:submenu label="#{msg.menu_presupuestos}" icon="fa fa-file-text-o" styleClass="sg-menuitem">
                 <p:menuitem value="#{msg.menu_presupuestosListar}" outcome="/presupuestos/index.xhtml?faces-redirect=true"></p:menuitem>
                 <p:menuitem value="#{msg.menu_presupuestosNuevo}" outcome="/presupuestos/new.xhtml?faces-redirect=true"></p:menuitem>
             </p:submenu>
             
-            <p:submenu label="#{msg.menu_reportes}" icon="fa fa-bar-chart">
+            <p:submenu label="#{msg.menu_reportes}" icon="fa fa-bar-chart" styleClass="sg-menuitem">
                 <p:menuitem value="#{msg.menu_reportesDesvioSubcategorias}" outcome="/reportes/desvioSubcategorias.xhtml?faces-redirect=true"></p:menuitem>
                 <p:menuitem value="#{msg.menu_reportesReporteComparativo}" outcome="/reportes/reporteComparativo.xhtml?faces-redirect=true"></p:menuitem>
                 <p:menuitem value="#{msg.menu_reportesReporteDesvio}" outcome="/reportes/reporteDesvio.xhtml?faces-redirect=true"></p:menuitem>
                 <p:menuitem value="#{msg.menu_reportesReporteLista}" outcome="/reportes/reporteLista.xhtml?faces-redirect=true"></p:menuitem>
             </p:submenu>
 
-            <p:submenu label="#{msg.menu_categorias}" icon="fa fa-tags">
+            <p:submenu label="#{msg.menu_categorias}" icon="fa fa-tags" styleClass="sg-menuitem">
 
                 <p:submenu label="#{msg.menu_categoriasSubcategorias}" icon="">
                     <p:menuitem value="#{msg.menu_categoriasSubcategoriasListar}" outcome="/subcategorias/index.xhtml?faces-redirect=true"></p:menuitem>
@@ -42,24 +42,24 @@
 
             </p:submenu>
 
-            <p:submenu label="#{msg.periodos}" icon="fa fa-calendar">
+            <p:submenu label="#{msg.periodos}" icon="fa fa-calendar" styleClass="sg-menuitem">
                 <p:menuitem value="#{msg.periodo_nuevo}" outcome="/periodos/new.xhtml?faces-redirect=true"></p:menuitem>
                 <p:menuitem value="#{msg.periodo_listar}" outcome="/periodos/index.xhtml?faces-redirect=true"></p:menuitem>
             </p:submenu>
 
-            <p:submenu label="#{msg.menu_usuarios}" icon="fa fa-user-circle" >
+            <p:submenu label="#{msg.menu_usuarios}" icon="fa fa-user-circle" styleClass="sg-menuitem">
                 <p:menuitem value="#{msg.menu_usuariosListar}" outcome="/usuarios/index.xhtml?faces-redirect=true"></p:menuitem>
                 <p:menuitem value="#{msg.menu_usuariosNuevo}" outcome="/usuarios/new.xhtml?faces-redirect=true"></p:menuitem>
                 <p:menuitem value="#{msg.menu_usuariosListarTodos}" outcome="/usuarios/view_all.xhtml?faces-redirect=true"></p:menuitem>
             </p:submenu>
             
-            <p:submenu label="#{msg.menu_empresas}" icon="fa fa-building-o" rendered="#{sessionBacking.usuario.isAdmGen()}">
+            <p:submenu label="#{msg.menu_empresas}" icon="fa fa-building-o" rendered="#{sessionBacking.usuario.isAdmGen()}" styleClass="sg-menuitem">
                 <p:menuitem value="#{msg.menu_empresasListar}" outcome="/empresas/index.xhtml?faces-redirect=true"></p:menuitem>
                 <p:menuitem value="#{msg.menu_empresasNuevo}" outcome="/empresas/new.xhtml?faces-redirect=true"></p:menuitem>
             </p:submenu>
 
             <f:facet name="options">
-                <h:outputFormat id="usuario_login" value="#{unnoba:textFormat(msg.menu_usuarioLogin, sessionBacking.usuario.username)}"/>
+                <h:outputFormat id="usuario_login" value="#{unnoba:textFormat(msg.menu_usuarioLogin, sessionBacking.usuario.username)}" styleClass="usuario-log-menu"/>
 
                 <p:commandButton action="#{sessionBacking.logout()}"
                                  value="#{msg.menu_usuarioLogout}" 
