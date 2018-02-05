@@ -10,17 +10,107 @@
 
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
         <ui:param name="pageTitle" value="Home title"></ui:param>
-        
+
         <ui:define name="content">
-            <h1>#{unnoba:textFormat(msg.home_titulo,sessionBacking.usuario.username)}</h1>
-            <p>#{msg.home_contenido}</p>
-            <p:button outcome="/reportes/reporteDesvio.xhtml" value="Reporte grafico" icon="fa-bar-chart-o" >
-            </p:button>
-            <p:button outcome="/reportes/reporteLista.xhtml" value="Reporte de gastos" icon="fa-list-alt" >
-            </p:button>
-            
-            <p:button outcome="/reportes/reporteComparativo.xhtml" value="Reporte comparativo" icon="fa-list-alt" >
-            </p:button>
+
+            <h1>#{unnoba:textFormat(msg.home_titulo,"")}</h1>
+
+            <div class="card border border-primary">
+                <div class="card-header text-light bg-primary">
+                    Datos de la sesión
+                </div>
+                <div class="card-body">
+
+                    <div class="card-group">
+                        <div class="card border border-success card-p1">
+                            <div class="card-header text-light bg-success">
+                                Usuario
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Detalles</h5>
+                                <!-- <h6 class="card-subtitle mb-2 text-muted">Detalles</h6>-->
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><strong>Username: </strong>#{sessionBacking.usuario.username}</li>
+                                    <li class="list-group-item"><strong>Nombre: </strong>#{sessionBacking.usuario.nombre}</li>
+                                    <li class="list-group-item"><strong>Apellido: </strong>#{sessionBacking.usuario.apellido}</li>
+                                    <li class="list-group-item"><strong>Rol: </strong>#{sessionBacking.usuario.rol}</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="card border border-success card-p1">
+                            <div class="card-header text-light bg-success">
+                                Empresa
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Detalles</h5>
+                                <!-- <h6 class="card-subtitle mb-2 text-muted">Detalles</h6>-->
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><strong>Nombre: </strong>#{sessionBacking.empresa.nombre}</li>
+                                    <li class="list-group-item"><strong>Telefono: </strong>#{sessionBacking.empresa.telefono}</li>  
+                                </ul>
+                                <p class="card-text">#{sessionBacking.empresa.descripcion}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div style="margin-bottom: 20px"></div>
+            <div class="card border border-primary">
+                <div class="card-header text-light bg-primary">
+                    Estadisticas
+                </div>
+                <div class="card-body">
+
+                    <div class="card-group">
+                        <div class="card border border-success card-p1">
+                            <div class="card-header text-light bg-success">
+                                Gastos
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Detalles</h5>
+                                <!-- <h6 class="card-subtitle mb-2 text-muted">Detalles</h6>-->
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><strong>Username: </strong>#{sessionBacking.usuario.username}</li>
+                                    <li class="list-group-item"><strong>Nombre: </strong>#{sessionBacking.usuario.nombre}</li>
+                                    <li class="list-group-item"><strong>Apellido: </strong>#{sessionBacking.usuario.apellido}</li>
+                                    <li class="list-group-item"><strong>Rol: </strong>#{sessionBacking.usuario.rol}</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="card border border-success card-p1">
+                            <div class="card-header text-light bg-success">
+                                Presupuestos
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Detalles</h5>
+                                <!-- <h6 class="card-subtitle mb-2 text-muted">Detalles</h6>-->
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><strong>Nombre: </strong>#{sessionBacking.empresa.nombre}</li>
+                                    <li class="list-group-item"><strong>Telefono: </strong>#{sessionBacking.empresa.telefono}</li>  
+                                </ul>
+                                <p class="card-text">#{sessionBacking.empresa.descripcion}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card border border-success card-p1">
+                        <div class="card-header text-light bg-success">
+                            Reportes
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Utilidades</h5>
+
+                            <p:link value="Reporte grafico" outcome="/reportes/reporteDesvio.xhtml" styleClass="card-link" />
+                            <p:link value="Reporte de gastos" outcome="/reportes/reporteLista.xhtml" styleClass="card-link" />
+                            <p:link value="Reporte comparativo" outcome="/reportes/reporteLista.xhtml" styleClass="card-link" />
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
 
         </ui:define>
     </ui:composition>

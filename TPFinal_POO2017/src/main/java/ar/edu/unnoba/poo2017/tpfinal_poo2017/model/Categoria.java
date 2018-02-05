@@ -13,6 +13,10 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+/**
+ *
+ * @author Marcelo
+ */
 @Entity
 @Table(name = "categorias")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -26,6 +30,8 @@ import javax.persistence.Table;
 
 })
 public class Categoria extends AbstractEntity implements Serializable {
+
+    private static final long serialVersionUID = -1295040675146840881L;
     
     @Basic(optional = false)
     @Column(nullable = false)

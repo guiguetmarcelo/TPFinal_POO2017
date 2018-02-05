@@ -25,6 +25,8 @@ import javax.persistence.Table;
 })
 public class Subcategoria extends Categoria implements Serializable {
 
+    private static final long serialVersionUID = 6106926566118308026L;
+
     @ManyToOne(optional = false)
     @JoinColumn(name = "categoria_id", referencedColumnName = "id")
     private Categoria categoriaPadre;

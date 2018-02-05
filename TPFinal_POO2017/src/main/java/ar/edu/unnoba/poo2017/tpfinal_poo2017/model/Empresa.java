@@ -28,6 +28,8 @@ import javax.persistence.Table;
     @NamedQuery(name = "empresas.disponibles", query = "SELECT e FROM Empresa e")
 })
 public class Empresa implements Serializable{
+
+    private static final long serialVersionUID = 1064660939313009277L;
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

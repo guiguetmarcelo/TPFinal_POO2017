@@ -20,6 +20,8 @@ import javax.persistence.TemporalType;
            query = "Select p From Periodo p WHERE p.empresa=:empresa ORDER BY p.fechaDesde")})
 public class Periodo extends AbstractEntity implements Serializable {
 
+    private static final long serialVersionUID = 1262288828394353574L;
+
     @Temporal(TemporalType.TIMESTAMP)
     @Basic(optional = false)
     @Column(name = "fecha_desde", nullable = false)

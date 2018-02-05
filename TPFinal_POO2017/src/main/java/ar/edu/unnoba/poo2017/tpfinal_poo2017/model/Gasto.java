@@ -24,6 +24,8 @@ import javax.persistence.TemporalType;
 })
 public class Gasto extends AbstractEntity implements Serializable {
 
+    private static final long serialVersionUID = 7021378529685964107L;
+
     @Temporal(TemporalType.TIMESTAMP)
     @Basic(optional = false)
     @Column(nullable = false)

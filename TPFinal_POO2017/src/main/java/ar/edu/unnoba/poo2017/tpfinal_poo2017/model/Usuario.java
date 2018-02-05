@@ -28,6 +28,8 @@ import javax.persistence.Table;
            query = "Select u From Usuario u where u.username = :username AND u.password = :password AND u.empresa = :empresa AND u.activo = TRUE")
 })
 public class Usuario extends AbstractEntity implements Serializable{
+
+    private static final long serialVersionUID = -7755946055021437896L;
     
     @Basic(optional = false)
     @Column(nullable = false)
