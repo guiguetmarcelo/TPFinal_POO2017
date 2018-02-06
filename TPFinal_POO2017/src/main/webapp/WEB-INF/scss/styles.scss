@@ -212,7 +212,7 @@ footer{
     h3{
         color: $color2;
     }
-    
+
     p{
         margin-bottom: 0px;
     }
@@ -282,7 +282,7 @@ section[role=main]{
 
 .error404{
     text-align:center;
-    
+
     h1{
         color: $color2;
         font-size: 5.5rem;
@@ -294,12 +294,13 @@ section[role=main]{
 .default-container{
     padding-top: 20px;
     padding-bottom: 20px;
-    
+
     h1{
         text-align: center;
-        margin-bottom: 15px;
+        margin-bottom: 25px;
+        margin-top: 10px;
     }
-    
+
     form{
         margin-bottom: 15px;
     }
@@ -307,7 +308,7 @@ section[role=main]{
 
 .card-p1{
     margin: 5px;
-    
+
     i{
         margin-right: 5px;
     }
