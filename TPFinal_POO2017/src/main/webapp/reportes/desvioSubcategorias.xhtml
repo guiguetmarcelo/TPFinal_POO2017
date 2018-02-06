@@ -11,12 +11,12 @@
 
         <ui:define name="content">
 
-            <h1>Reporte de gastos por subcategoria</h1>
+            <h1>#{msg.menu_reportesDesvioSubcategorias}</h1>
             
             <h:form id="gastos_form_index">
                 <p:toolbar>
                     <f:facet name="left">
-                        <p:outputLabel for="periodo" value="Elegir periodo" />
+                        <p:outputLabel for="periodo" value="#{msg.elegir_periodo}" />
                         <p:selectOneMenu id="periodo" value="#{reporteBacking.periodo}">
                             <f:selectItem itemLabel="#{msg.elegir} " itemValue="#{periodo}" />
                             <f:selectItems value="#{periodoBacking.periodos}" var="periodo" itemLabel="#{periodo.descripcion}" itemValue="#{periodo}" />
@@ -26,7 +26,7 @@
                             <span class="ui-icon ui-icon-grip-dotted-vertical" />
                         </span>
 
-                        <p:commandButton value="Reportar" 
+                        <p:commandButton value="#{msg.consultar}" 
                                          actionListener="#{reporteBacking.getGastosPeriodo(reporteBacking.periodo)}" 
                                          update="gastos"/>
                     </f:facet>
@@ -37,7 +37,7 @@
                              var="gasto"
                              sortBy="#{gasto.subcategoria.nombre}">
 
-                    <p:column headerText="Subcategoria" groupRow="true">
+                    <p:column headerText="#{msg.presupuestos_subcategoria}" groupRow="true">
                         <h:outputText value="#{gasto.subcategoria.nombre}" />
                     </p:column>
 
@@ -53,12 +53,12 @@
 
                     <p:summaryRow>
                         <p:column colspan="1" >
-                            <h:outputText value="Presupuestado: " />
+                            <h:outputText value="#{msg.presupuestado}: " />
                             <h:outputText value="#{reporteBacking.getTotalPresupuestosFiltrados(reporteBacking.periodo, gasto.subcategoria)}">
                             </h:outputText>
                         </p:column>
                         <p:column colspan="2" style="text-align:right">
-                            <h:outputText value="Total gastado:" />
+                            <h:outputText value="#{msg.total_gastado}: " />
                             <h:outputText value="#{reporteBacking.getSubtotalGastos(gasto.subcategoria)}"></h:outputText>
                         </p:column>
                     </p:summaryRow>

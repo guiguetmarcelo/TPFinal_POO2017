@@ -11,11 +11,11 @@
 
         <ui:define name="content">
 
-            <h1>Reporte de gastos</h1>
+            <h1>#{msg.menu_reportesReporteLista}</h1>
             <h:form id="gastos_form_index">
                 <p:toolbar>
                     <f:facet name="left">
-                        <p:outputLabel for="cat" value="Elegir categoria" />
+                        <p:outputLabel for="cat" value="#{msg.elegir_categoria}: " />
                         <p:selectOneMenu id="cat" value="#{reporteBacking.categoria}" >
                             <f:selectItem itemLabel="#{msg.elegir} " itemValue="#{cat}" />
                             <f:selectItems value="#{categoriaBacking.categorias}" var="cat" itemLabel="#{cat.nombre}" itemValue="#{cat}" />
@@ -25,7 +25,7 @@
                             <span class="ui-icon ui-icon-grip-dotted-vertical" />
                         </span>     
 
-                        <p:outputLabel for="periodo" value="Elegir periodo" />
+                            <p:outputLabel for="periodo" value="#{msg.elegir_periodo}: " />
                         <p:selectOneMenu id="periodo" value="#{reporteBacking.periodo}">
                             <f:selectItem itemLabel="#{msg.elegir} " itemValue="#{periodo}" />
                             <f:selectItems value="#{periodoBacking.periodos}" var="periodo" itemLabel="#{periodo.descripcion}" itemValue="#{periodo}" />
@@ -35,7 +35,7 @@
                             <span class="ui-icon ui-icon-grip-dotted-vertical" />
                         </span>
 
-                        <p:commandButton value="Reportar" 
+                            <p:commandButton value="#{msg.consultar}" 
                                          actionListener="#{reporteBacking.getGastosPeriodoCategoria(reporteBacking.periodo, reporteBacking.categoria)}" 
                                          update="gastos"/>
                     </f:facet>
@@ -51,7 +51,7 @@
                         </h:outputText>
                     </p:column>
 
-                    <p:column headerText="Subcategoria" >
+                    <p:column headerText="#{msg.menu_categoriasSubcategorias}" >
                         <h:outputText value="#{gasto.subcategoria.nombre}" />
                     </p:column>
 
@@ -62,7 +62,7 @@
 
                     <p:columnGroup type="footer">
                         <p:row>
-                            <p:column colspan="2" style="text-align:right" footerText="Total:" />
+                            <p:column colspan="2" style="text-align:right" footerText="#{msg.total}: " />
                             <p:column footerText="$#{reporteBacking.getTotalFiltrados(reporteBacking.filtrados)}" />
                         </p:row>
                     </p:columnGroup>

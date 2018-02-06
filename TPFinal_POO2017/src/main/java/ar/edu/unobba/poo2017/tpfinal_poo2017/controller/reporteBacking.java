@@ -151,7 +151,7 @@ public class reporteBacking implements Serializable {
         LineChartModel model = new LineChartModel();
         ChartSeries presupuesto = new ChartSeries();
         ChartSeries gastos = new ChartSeries();
-        model.setTitle("Desvio de gastos por categoria");
+        model.setTitle(msg.getString("menu_reportesReporteDesvio"));
         List<Presupuesto> presupuestos = presupuestoDao.getPresupuestosCategoria(categoria);
         if (!presupuestos.isEmpty()) {
             for (Presupuesto pre : presupuestos) {
@@ -166,21 +166,21 @@ public class reporteBacking implements Serializable {
             }
         } else {
             model.setTitle("La categoria seleccionada no presenta presupuestos");
-            presupuesto.set("No hay datos", 0);
-            gastos.set("No hay datos", 0);
+            presupuesto.set(msg.getString("reporte_vacio"), 0);
+            gastos.set(msg.getString("reporte_vacio"), 0);
         }
 
-        gastos.setLabel("Gastado");
+        gastos.setLabel(msg.getString("gastado"));
         model.addSeries(gastos);
-        presupuesto.setLabel("Presupuestado");
+        presupuesto.setLabel(msg.getString("presupuestado"));
         model.addSeries(presupuesto);
         model.setLegendPosition("e");
         Axis yAxis = model.getAxis(AxisType.Y);
         Axis xAxis = model.getAxis(AxisType.X);
-        yAxis.setLabel("Importe");
+        yAxis.setLabel(msg.getString("total"));
         yAxis.setMin(0);
         model.setShowPointLabels(true);
-        model.getAxes().put(AxisType.X, new CategoryAxis("Periodo"));
+        model.getAxes().put(AxisType.X, new CategoryAxis(msg.getString("periodos")));
         this.setReporteGrafico(model);
     }
 
@@ -190,16 +190,16 @@ public class reporteBacking implements Serializable {
         model.setExtender("ext1");
         //PRUEBA
         //model.setTitle("Comparativo de gastos por categoria en un periodo");
-        model.setTitle(msg.getString("sistema"));
+        model.setTitle(msg.getString("menu_reportesReporteComparativo"));
         model.setLegendPosition("ne");
         Axis xAxis = model.getAxis(AxisType.X);
-        xAxis.setLabel("Categorias");
+        xAxis.setLabel(msg.getString("categorias"));
         Axis yAxis = model.getAxis(AxisType.Y);
-        yAxis.setLabel("Total de gastos");
+        yAxis.setLabel(msg.getString("total_gastado"));
         yAxis.setMin(0);
 
         ChartSeries categorias = new ChartSeries();
-        categorias.setLabel("Categorias");
+        categorias.setLabel(msg.getString("categorias"));
         List<Gasto> elementos = this.getGastosPeriodo(periodo);
         if (!elementos.isEmpty()) {
             for (Gasto unGasto : elementos) {
@@ -208,9 +208,9 @@ public class reporteBacking implements Serializable {
                 categorias.set(unGasto.getSubcategoria().getCategoriaPadre().getNombre(), total);
             }
         } else {
-            xAxis.setLabel("No hay datos para mostrar");
+            xAxis.setLabel(msg.getString("reporte_vacio"));
             categorias.set("0", 0);
-            model.setTitle("No hay gastos en el periodo");
+            model.setTitle(msg.getString("reporte_sin_datos_periodo"));
         }
 
         model.addSeries(categorias);

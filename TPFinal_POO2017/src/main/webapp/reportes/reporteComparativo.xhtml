@@ -19,12 +19,12 @@
                 }
             </script>
 
-            <h1>Reporte de gastos comparativo</h1>
+            <h1>#{msg.menu_reportesReporteComparativo}</h1>
             
             <h:form id="gastos_form_index">
                 <p:toolbar>
                     <f:facet name="left">
-                        <p:outputLabel for="periodo" value="Elegir periodo" />
+                        <p:outputLabel for="periodo" value="#{msg.elegir_periodo}" />
                         <p:selectOneMenu id="periodo" value="#{reporteBacking.periodo}" required="true" >
                             <f:selectItem itemLabel="#{msg.elegir} " itemValue="#{periodo}" />
                             <f:selectItems value="#{periodoBacking.periodos}" var="periodo" itemLabel="#{periodo.descripcion}" itemValue="#{periodo}" />
@@ -34,7 +34,7 @@
                             <span class="ui-icon ui-icon-grip-dotted-vertical" />
                         </span>
 
-                        <p:commandButton id="reportar" value="Generar grafico" actionListener="#{reporteBacking.graficoComparativo(reporteBacking.periodo)}" styleClass="ui-priority-primary" update="tabla"  />
+                        <p:commandButton id="reportar" value="#{msg.generar_grafico}" actionListener="#{reporteBacking.graficoComparativo(reporteBacking.periodo)}" styleClass="ui-priority-primary" update="tabla"  />
                     </f:facet>
                 </p:toolbar>
                 <p:panel id="tabla"> 

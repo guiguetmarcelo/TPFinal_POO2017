@@ -11,12 +11,12 @@
 
         <ui:define name="content">
 
-            <h1>Reporte de gastos grafico</h1>
+            <h1>#{msg.menu_reportesReporteDesvio}</h1>
             
             <h:form id="gastos_form_index">
                 <p:toolbar>
                     <f:facet name="left">
-                        <p:outputLabel for="cat" value="Elegir categoria" />
+                        <p:outputLabel for="cat" value="#{msg.elegir_categoria}" />
                         <p:selectOneMenu id="cat" value="#{reporteBacking.categoria}" required="true" >
                             <f:selectItem itemLabel="#{msg.elegir} " itemValue="#{cat}" />
                             <f:selectItems value="#{categoriaBacking.categorias}" var="cat" itemLabel="#{cat.nombre}" itemValue="#{cat}" />
@@ -26,7 +26,7 @@
                             <span class="ui-icon ui-icon-grip-dotted-vertical" />
                         </span>
 
-                        <p:commandButton id="reportar" value="Generar grafico" actionListener="#{reporteBacking.graficoLineas(reporteBacking.categoria)}" styleClass="ui-priority-primary" update="tabla"  />
+                            <p:commandButton id="reportar" value="#{msg.generar_grafico}" actionListener="#{reporteBacking.graficoLineas(reporteBacking.categoria)}" styleClass="ui-priority-primary" update="tabla"  />
                     </f:facet>
                 </p:toolbar>
                 <p:panel id="tabla"> 
