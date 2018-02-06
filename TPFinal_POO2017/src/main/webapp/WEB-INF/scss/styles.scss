@@ -8,6 +8,16 @@ and open the template in the editor.
     Author     : Marcelo
 */
 
+$blue:    #007bff !default;
+$indigo:  #6610f2 !default;
+$purple:  #6f42c1 !default;
+$pink:    #e83e8c !default;
+$red:     #dc3545 !default;
+$orange:  #fd7e14 !default;
+$yellow:  #ffc107 !default;
+$green:   #28a745 !default;
+$teal:    #20c997 !default;
+$cyan:    #17a2b8 !default;
 
 /* Coolors Exported Palette - coolors.co/e6fafc-48a0c9-0353a4-011627-080c0a */
 /* RGB */
@@ -301,4 +311,26 @@ section[role=main]{
     i{
         margin-right: 5px;
     }
+}
+.card-session{
+    margin-bottom: 20px;
+}
+
+.home-icons{
+    margin-right: 5px;
+}
+
+.bg-orange{
+    background-color: $orange !important;
+}
+
+.border-orange{
+    border-color: $orange !important;
+}
+.bg-green{
+    background-color: $green !important;
+}
+
+.border-green{
+    border-color: $green !important;
 }

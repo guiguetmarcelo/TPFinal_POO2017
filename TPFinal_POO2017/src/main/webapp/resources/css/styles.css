@@ -206,4 +206,22 @@ section[role=main] {
   .card-p1 i {
     margin-right: 5px; }
 
+.card-session {
+  margin-bottom: 20px; }
+
+.home-icons {
+  margin-right: 5px; }
+
+.bg-orange {
+  background-color: #fd7e14 !important; }
+
+.border-orange {
+  border-color: #fd7e14 !important; }
+
+.bg-green {
+  background-color: #28a745 !important; }
+
+.border-green {
+  border-color: #28a745 !important; }
+
 /*# sourceMappingURL=styles.css.map */

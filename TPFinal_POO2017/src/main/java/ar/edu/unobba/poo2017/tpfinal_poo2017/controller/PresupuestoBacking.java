@@ -42,6 +42,14 @@ public class PresupuestoBacking implements Serializable {
     public List<Presupuesto> getPresupuestos() {
         return presupuestoDao.getPresupuestos();
     }
+    
+    public Long getCantidadTotal(){
+        return presupuestoDao.getCantidad();
+    }
+    
+    public Long getCantidad(){
+        return presupuestoDao.getCantidad(sessionBacking.getEmpresa());
+    }
 
     public String create() {
         try {

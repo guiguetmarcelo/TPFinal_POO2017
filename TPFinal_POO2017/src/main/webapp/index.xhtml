@@ -15,16 +15,16 @@
 
             <h1>#{unnoba:textFormat(msg.home_titulo,"")}</h1>
 
-            <div class="card border border-primary">
+            <div class="card border border-primary card-session">
                 <div class="card-header text-light bg-primary">
-                    Datos de la sesión
+                    <i class="fa fa-play home-icons"></i>Datos de la sesión
                 </div>
                 <div class="card-body">
 
                     <div class="card-group">
-                        <div class="card border border-success card-p1">
-                            <div class="card-header text-light bg-success">
-                                Usuario
+                        <div class="card border border-green card-p1">
+                            <div class="card-header text-light bg-green">
+                                <i class="fa fa-user"></i>Usuario
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">Detalles</h5>
@@ -38,9 +38,9 @@
                             </div>
                         </div>
 
-                        <div class="card border border-success card-p1">
-                            <div class="card-header text-light bg-success">
-                                Empresa
+                        <div class="card border border-green card-p1">
+                            <div class="card-header text-light bg-green">
+                                <i class="fa fa-building"></i>Empresa
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">Detalles</h5>
@@ -59,45 +59,40 @@
             <div style="margin-bottom: 20px"></div>
             <div class="card border border-primary">
                 <div class="card-header text-light bg-primary">
-                    Estadisticas
+                    <i class="fa fa-line-chart home-icons"></i>Estadisticas
                 </div>
                 <div class="card-body">
 
                     <div class="card-group">
-                        <div class="card border border-success card-p1">
-                            <div class="card-header text-light bg-success">
-                                Gastos
+                        <div class="card border border-green card-p1">
+                            <div class="card-header text-light bg-green">
+                                <i class="fa fa-money"></i>Gastos
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">Detalles</h5>
                                 <!-- <h6 class="card-subtitle mb-2 text-muted">Detalles</h6>-->
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item"><strong>Username: </strong>#{sessionBacking.usuario.username}</li>
-                                    <li class="list-group-item"><strong>Nombre: </strong>#{sessionBacking.usuario.nombre}</li>
-                                    <li class="list-group-item"><strong>Apellido: </strong>#{sessionBacking.usuario.apellido}</li>
-                                    <li class="list-group-item"><strong>Rol: </strong>#{sessionBacking.usuario.rol}</li>
+                                    <li class="list-group-item"><strong>Registros: </strong>#{gastoBacking.cantidad}</li>
                                 </ul>
                             </div>
                         </div>
 
-                        <div class="card border border-success card-p1">
-                            <div class="card-header text-light bg-success">
+                        <div class="card border border-green card-p1">
+                            <div class="card-header text-light bg-green">
                                 <i class="fa fa-file-text"></i>Presupuestos
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">Detalles</h5>
                                 <!-- <h6 class="card-subtitle mb-2 text-muted">Detalles</h6>-->
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item"><strong>Nombre: </strong>#{sessionBacking.empresa.nombre}</li>
-                                    <li class="list-group-item"><strong>Telefono: </strong>#{sessionBacking.empresa.telefono}</li>  
+                                    <li class="list-group-item"><strong>Registros: </strong>#{presupuestoBacking.cantidad}</li>
                                 </ul>
-                                <p class="card-text">#{sessionBacking.empresa.descripcion}</p>
                             </div>
                         </div>
                     </div>
-                    <div class="card border border-success card-p1">
-                        <div class="card-header text-light bg-success">
-                            Reportes
+                    <div class="card border border-green card-p1">
+                        <div class="card-header text-light bg-green">
+                            <i class="fa fa-bar-chart"></i>Reportes
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">Utilidades</h5>

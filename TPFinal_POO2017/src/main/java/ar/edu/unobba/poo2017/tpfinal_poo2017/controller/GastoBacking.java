@@ -80,5 +80,13 @@ public class GastoBacking implements Serializable {
     public List<Gasto> getGastos() {
         return gastoDao.getGastos();
     }
+    
+     public Long getCantidadTotal(){
+        return gastoDao.getCantidad();
+    }
+    
+    public Long getCantidad(){
+        return gastoDao.getCantidad(sessionBacking.getEmpresa());
+    }
 
 }
