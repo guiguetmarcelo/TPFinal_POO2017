@@ -225,4 +225,8 @@ section[role=main] {
 .border-green {
   border-color: #28a745 !important; }
 
+.menu-item span {
+  width: 100%;
+  white-space: initial; }
+
 /*# sourceMappingURL=styles.css.map */

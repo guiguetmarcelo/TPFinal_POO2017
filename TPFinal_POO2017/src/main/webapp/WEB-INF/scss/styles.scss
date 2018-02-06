@@ -335,3 +335,12 @@ section[role=main]{
 .border-green{
     border-color: $green !important;
 }
+
+.menu-item{
+    
+    span{
+        width: 100%;
+        white-space: initial; 
+    }
+    
+}
