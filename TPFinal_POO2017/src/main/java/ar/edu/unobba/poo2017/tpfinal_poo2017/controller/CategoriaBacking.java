@@ -24,6 +24,8 @@ import javax.persistence.Query;
 @Named
 @ViewScoped
 public class CategoriaBacking implements Serializable {
+
+    private static final long serialVersionUID = -9078581278059597718L;
     
     private Categoria categoria;
 

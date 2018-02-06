@@ -22,6 +22,8 @@ import javax.inject.Named;
 @Named
 @ViewScoped
 public class EmpresaBacking implements Serializable{
+
+    private static final long serialVersionUID = -7254678850848580969L;
     
     private Empresa empresa;
 

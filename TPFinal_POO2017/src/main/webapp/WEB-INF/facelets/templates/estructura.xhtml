@@ -53,22 +53,27 @@
             </div>
         </header>
 
-        <section class="container-fluid" role="main">
-            <c:if test="#{default}">
-                <ui:fragment>
+
+        <c:if test="#{default}">
+            <ui:fragment>
+                <section class="container" role="main">
                     <div class="row justify-content-center">  
-                        <div class="col-auto default-container">
+                        <div class="col-12 default-container">
                             <ui:insert name="content"></ui:insert>
 
                         </div>
-                    </div>
-                </ui:fragment>
-            </c:if>
+                    </div>  
+                </section>
+            </ui:fragment>
+        </c:if>
 
-            <c:if test="#{not default}">
-                <ui:insert name="content" ></ui:insert>
-            </c:if>
-        </section>
+        <c:if test="#{not default}">
+            <section class="container-fluid" role="main">
+                <ui:insert name="content" ></ui:insert>   
+            </section>
+
+        </c:if>
+
 
         <footer class="">
             <ui:insert name="bottom">

@@ -30,6 +30,8 @@ import org.primefaces.model.chart.LineChartSeries;
 @ViewScoped
 public class GastoBacking implements Serializable {
 
+    private static final long serialVersionUID = 3153075978563526072L;
+
     private Gasto gasto;
 
     @EJB

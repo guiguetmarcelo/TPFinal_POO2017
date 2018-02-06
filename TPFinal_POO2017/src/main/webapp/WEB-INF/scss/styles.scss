@@ -202,10 +202,15 @@ footer{
     h3{
         color: $color2;
     }
+    
+    p{
+        margin-bottom: 0px;
+    }
 
     figure {
 
         text-align: center;
+        margin-bottom: 0px;
 
         img {
             width: 100%;
@@ -285,11 +290,15 @@ section[role=main]{
         margin-bottom: 15px;
     }
     
-    table{
+    form{
         margin-bottom: 15px;
     }
 }
 
 .card-p1{
     margin: 5px;
+    
+    i{
+        margin-right: 5px;
+    }
 }

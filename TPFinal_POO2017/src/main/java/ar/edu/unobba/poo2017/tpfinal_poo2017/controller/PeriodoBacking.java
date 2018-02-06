@@ -22,6 +22,8 @@ import javax.inject.Named;
 @Named
 @ViewScoped
 public class PeriodoBacking implements Serializable {
+
+    private static final long serialVersionUID = -6161957923995873981L;
     
     private Periodo periodo;
     

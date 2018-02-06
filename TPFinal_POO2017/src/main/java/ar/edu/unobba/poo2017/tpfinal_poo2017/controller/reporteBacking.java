@@ -5,6 +5,7 @@
  */
 package ar.edu.unobba.poo2017.tpfinal_poo2017.controller;
 
+import ar.edu.unnoba.poo2017.tpfinal_poo2017.bundle.MessagesBundle;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.dao.GastoDao;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.dao.PresupuestoDao;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Categoria;
@@ -15,9 +16,11 @@ import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Subcategoria;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.PropertyResourceBundle;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
@@ -34,6 +37,8 @@ import org.primefaces.model.chart.LineChartModel;
 @ViewScoped
 public class reporteBacking implements Serializable {
 
+    private static final long serialVersionUID = 7982580949884501226L;
+
     private Gasto gasto;
     private Periodo periodo;
     private Categoria categoria;
@@ -47,6 +52,10 @@ public class reporteBacking implements Serializable {
     @EJB
     private PresupuestoDao presupuestoDao;
 
+    @Inject
+    @MessagesBundle
+    private transient PropertyResourceBundle msg;
+    
     @PostConstruct
     public void init() {
         setGasto(new Gasto());
@@ -179,7 +188,9 @@ public class reporteBacking implements Serializable {
 
         BarChartModel model = new BarChartModel();
         model.setExtender("ext1");
-        model.setTitle("Comparativo de gastos por categoria en un periodo");
+        //PRUEBA
+        //model.setTitle("Comparativo de gastos por categoria en un periodo");
+        model.setTitle(msg.getString("sistema"));
         model.setLegendPosition("ne");
         Axis xAxis = model.getAxis(AxisType.X);
         xAxis.setLabel("Categorias");

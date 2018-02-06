@@ -23,6 +23,8 @@ import javax.inject.Named;
 @ViewScoped
 public class PresupuestoBacking implements Serializable {
 
+    private static final long serialVersionUID = -5125260839458783514L;
+
     private Presupuesto presupuesto;
 
     @EJB

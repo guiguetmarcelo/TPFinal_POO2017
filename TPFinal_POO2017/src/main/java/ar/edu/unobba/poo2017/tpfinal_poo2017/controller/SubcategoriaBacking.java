@@ -24,6 +24,8 @@ import javax.inject.Named;
 @Named
 @ViewScoped
 public class SubcategoriaBacking implements Serializable{
+
+    private static final long serialVersionUID = -655351001157459375L;
     
     private Subcategoria subcategoria;
     

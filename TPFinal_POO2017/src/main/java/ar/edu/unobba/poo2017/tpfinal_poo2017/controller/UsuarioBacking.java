@@ -28,6 +28,8 @@ import javax.inject.Named;
 @ViewScoped
 public class UsuarioBacking implements Serializable {
 
+    private static final long serialVersionUID = -1625966198515288546L;
+
     private Usuario usuario;
 
     @Inject

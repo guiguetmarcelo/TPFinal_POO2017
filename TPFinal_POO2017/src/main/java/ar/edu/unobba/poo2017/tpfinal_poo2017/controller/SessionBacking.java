@@ -29,6 +29,8 @@ import javax.inject.Named;
 @Named
 public class SessionBacking implements Serializable {
 
+    private static final long serialVersionUID = 5687471496874331768L;
+
     private String username;
     private String password;
     private Usuario usuario;
