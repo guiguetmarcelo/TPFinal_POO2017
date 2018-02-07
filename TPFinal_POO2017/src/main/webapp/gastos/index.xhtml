@@ -3,7 +3,8 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf" >
 
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
         <ui:param name="pageTitle" value="#{msg.gastos_title}"></ui:param>
@@ -17,7 +18,8 @@
 
                 <p:dataTable id="gastos"
                              value="#{gastoBacking.gastos}" 
-                             var="gasto">
+                             var="gasto"
+                             styleClass="table-listado-yellow">
 
                     <p:column headerText="#{msg.gastos_fecha}">
                         <h:outputText value="#{gasto.fecha}">
@@ -51,7 +53,7 @@
                     </p:column>
 
                 </p:dataTable>
-                <p:button value="#{msg.gastos_nuevo}" outcome="/gastos/new"/>
+                <button type="button" class="btn btn-primary" jsf:outcome="/gastos/new.xhtml?faces-redirect=true">#{msg.gastos_nuevo}</button>
 
 
                 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">

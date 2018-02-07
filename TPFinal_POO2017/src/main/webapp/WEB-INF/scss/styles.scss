@@ -256,6 +256,44 @@ section[role=main]{
     }
 }
 
+.table-listado-yellow{
+    table{
+        tr{
+
+        }
+        thead {
+            tr{
+                background: $yellow;
+                th{
+                    background: $yellow;
+                    border-color: darken($yellow, 15%);
+                }
+            }
+        }
+        tbody{
+            tr{
+                td:first-child{
+                    //  border-left-color: $yellow !important;
+                }
+                td:last-child{
+                    //  border-right-color: $yellow !important;
+                }
+            }
+            tr:last-child{
+                td{
+                    //border-bottom-color: $yellow !important;
+                }
+            }
+        }
+
+    }
+    div.ui-paginator{
+        background: rgba(lighten($yellow, 10%),0.5);   
+    }
+
+    margin-bottom: 15px;
+}
+
 #titulo_sistema{
     text-align: center; 
     padding-top: 15px;
@@ -342,10 +380,10 @@ section[role=main]{
 }
 
 .menu-item{
-    
+
     span{
         width: 100%;
         white-space: initial; 
     }
-    
+
 }
