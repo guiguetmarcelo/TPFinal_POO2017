@@ -18,7 +18,7 @@
                     <h:panelGroup id="usuarios_form_indexsdw">
 
                     </h:panelGroup>
-                    <h:form>
+                    <h:form id="uh">
 
                         <p:growl id="messages" autoUpdate="true" for="msgUsuario"></p:growl>
 
@@ -33,6 +33,7 @@
                                      class="dataTableUsuarios"
                                      styleClass="table-listado-yellow">
 
+
                             <p:column headerText="#{msg.usuarios_username}">
                                 <h:outputText value="#{usuario.username}"/>
                             </p:column>
@@ -41,27 +42,56 @@
                                 <h:outputText value="#{usuario.password}"/>
                             </p:column>
 
-                            <p:column colspan="3">
-                                <p:button outcome="/usuarios/view.xhtml?faces-redirect=true" icon="fa fa-eye" value="#{msg.boton_ver}" class="btnTable">
-                                    <f:param name="id" value="#{usuario.id}"/>
-                                </p:button>
+                            <p:column style="width:44px;text-align: center">
+                                <p:commandButton update="uh" oncomplete="PF('usuarioDialog').show()" icon="ui-icon-search" title="View" styleClass="bg-d-blue">
+                                    <f:setPropertyActionListener value="#{usuario}" target="#{usuarioBacking.usuarioSeleccionado}" />
+                                </p:commandButton>
+                            </p:column>
 
-                                <p:button outcome="/usuarios/edit.xhtml?faces-redirect=true" icon="fa fa-pencil" value="#{msg.boton_editar}" class="btnTable">
-                                    <f:param name="id" value="#{usuario.id}" />
+                            <p:column style="width:44px;text-align: center">
+                                <p:button icon="fa fa-pencil" title="View" outcome="/usuarios/edit.xhtml?faces-redirect=true" styleClass="bg-d-green" >
                                 </p:button>
+                            </p:column>
 
+                            <p:column style="width:44px;text-align: center">
                                 <p:commandButton actionListener="#{usuarioBacking.delete(usuario)}"
-                                                 value="#{msg.boton_eliminar}"
+
                                                  update="usuarios" 
                                                  icon="fa fa-trash"
-                                                 class="btnTable">
+                                                 class="btnTable"
+                                                 styleClass="bg-d-red">
 
                                     <p:confirm header="#{msg.dialogo_confirmacion}"
                                                message="#{unnoba:textFormat(msg.usuarios_eliminarConfirmacionMensaje, usuario.username)}"
                                                icon="fa fa-exclamation-triangle"/>
                                 </p:commandButton>
-
                             </p:column>
+
+                            <ui:remove>
+
+
+                                <p:column colspan="3">
+                                    <p:button outcome="/usuarios/view.xhtml?faces-redirect=true" icon="fa fa-eye" value="#{msg.boton_ver}" class="btnTable">
+                                        <f:param name="id" value="#{usuario.id}"/>
+                                    </p:button>
+
+                                    <p:button outcome="/usuarios/edit.xhtml?faces-redirect=true" icon="fa fa-pencil" value="#{msg.boton_editar}" class="btnTable">
+                                        <f:param name="id" value="#{usuario.id}" />
+                                    </p:button>
+
+                                    <p:commandButton actionListener="#{usuarioBacking.delete(usuario)}"
+                                                     value="#{msg.boton_eliminar}"
+                                                     update="usuarios" 
+                                                     icon="fa fa-trash"
+                                                     class="btnTable">
+
+                                        <p:confirm header="#{msg.dialogo_confirmacion}"
+                                                   message="#{unnoba:textFormat(msg.usuarios_eliminarConfirmacionMensaje, usuario.username)}"
+                                                   icon="fa fa-exclamation-triangle"/>
+                                    </p:commandButton>
+
+                                </p:column>
+                            </ui:remove>
 
                             <!-- <p:column>
                                  <p:button outcome="/usuarios/edit.xhtml?faces-redirect=true" icon="fa fa-pencil" value="#{msg.boton_editar}">
@@ -82,7 +112,7 @@
                              </p:column>-->
 
                         </p:dataTable>
-                        
+
                         <button type="button" class="btn btn-primary" jsf:outcome="/usuarios/new.xhtml?faces-redirect=true">#{msg.usuarios_nuevo}</button>
 
 
@@ -91,6 +121,21 @@
                             <p:commandButton value="#{msg.boton_no}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                         </p:confirmDialog>
 
+                        <p:dialog header="Car Info" widgetVar="usuarioDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                            <p:outputPanel id="usuarioDetail" style="text-align:center;">
+                                <p:panelGrid  columns="2" rendered="#{not empty usuarioBacking.usuarioSeleccionado}" columnClasses="label,value">
+
+                                    <h:outputText value="Id:" />
+                                    <h:outputText value="#{usuarioBacking.usuarioSeleccionado.id}" />
+
+                                    <h:outputText value="Username" />
+                                    <h:outputText value="#{usuarioBacking.usuarioSeleccionado.username}" />
+
+                                    <h:outputText value="Email" />
+                                    <h:outputText value="#{usuarioBacking.usuarioSeleccionado.email}" />
+                                </p:panelGrid>
+                            </p:outputPanel>
+                        </p:dialog>
                     </h:form>
                 </div>
             </div>

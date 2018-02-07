@@ -31,6 +31,7 @@ public class UsuarioBacking implements Serializable {
     private static final long serialVersionUID = -1625966198515288546L;
 
     private Usuario usuario;
+    private Usuario usuarioSeleccionado;
 
     @Inject
     private SessionBacking session;
@@ -110,6 +111,16 @@ public class UsuarioBacking implements Serializable {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
+    public Usuario getUsuarioSeleccionado() {
+        return usuarioSeleccionado;
+    }
+
+    public void setUsuarioSeleccionado(Usuario usuarioSeleccionado) {
+        this.usuarioSeleccionado = usuarioSeleccionado;
+    }
+    
+    
 
     public SelectItem[] getRolesSelectMany() {
         SelectItem[] items = new SelectItem[RolUsuario.values().length];

@@ -379,6 +379,18 @@ section[role=main]{
     border-color: $green !important;
 }
 
+.bg-d-red{
+    background: rgba($red, 0.6) !important;
+}
+
+.bg-d-green{
+    background: rgba($green, 0.6) !important;
+}
+
+.bg-d-blue{
+    background: rgba($blue, 0.6) !important;
+}
+
 .menu-item{
 
     span{
