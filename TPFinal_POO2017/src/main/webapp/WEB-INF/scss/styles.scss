@@ -250,6 +250,32 @@ section[role=main]{
     margin-right: 10px !important;
 }
 
+.btn-form{
+    background-image: none !important;
+    display: inline-block !important;
+    font-weight: 400 !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    vertical-align: middle !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+    border: 1px solid transparent !important;
+    padding: 0.375rem 0.75rem !important;
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+    border-radius: 0.25rem !important;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !important;
+
+}
+
+.btn-blue{
+    color: #fff !important;
+    background-color: $blue !important;
+    border-color: $blue !important;
+}
+
 .dataTableUsuarios{
     td{
         text-align: center;
@@ -289,6 +315,9 @@ section[role=main]{
     }
     div.ui-paginator{
         background: rgba(lighten($yellow, 10%),0.5);   
+    }
+    .ui-paginator a, .ui-paginator select{
+        background: rgba(darken($yellow, 10%), 0.8);
     }
 
     margin-bottom: 15px;
@@ -382,15 +411,30 @@ section[role=main]{
 .bg-d-red{
     background: rgba($red, 0.6) !important;
 }
+.bg-df-red{
+    background: rgba($red, 1) !important;
+    text-shadow: none !important;
+}
 
 .bg-d-green{
     background: rgba($green, 0.6) !important;
+}
+.bg-df-green{
+    background: rgba($green, 1) !important;
+    text-shadow: none !important;
 }
 
 .bg-d-blue{
     background: rgba($blue, 0.6) !important;
 }
+.bg-df-blue{
+    background: rgba($blue, 1) !important;
+    text-shadow: none !important;
+}
 
+.color-white{
+    color: #fff !important;
+}
 .menu-item{
 
     span{

@@ -49,14 +49,16 @@
                     <p:commandButton value="#{msg.boton_guardar}" 
                                      action="#{subcategoriaBacking.create()}" 
                                      update="messages"
-                                     rendered="#{not update}"/>
+                                     rendered="#{not update}"
+                                     styleClass="bg-df-green color-white"/>
 
                     <p:commandButton value="#{msg.boton_actualizar}" 
                                      action="#{subcategoriaBacking.update()}" 
                                      update="messages"
-                                     rendered="#{update}"/>
+                                     rendered="#{update}"
+                                     styleClass="bg-df-green color-white"/>
 
-                    <p:button value="#{msg.boton_cancelar}" outcome="/subcategorias/index.xhtml?faces-redirect=tru"/>
+                    <p:button value="#{msg.boton_cancelar}" outcome="/subcategorias/index.xhtml?faces-redirect=true" styleClass="bg-df-red color-white"/>
                 </p:column>
             </p:row>
 

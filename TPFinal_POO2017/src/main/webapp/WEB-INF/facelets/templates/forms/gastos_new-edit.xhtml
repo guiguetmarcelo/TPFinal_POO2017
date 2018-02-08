@@ -85,15 +85,17 @@
                     <p:commandButton value="#{msg.boton_registrar}" 
                                      action="#{gastoBacking.create()}" 
                                      update="messages"
-                                     rendered="#{renderedCBGastosRegistrar}"/>
+                                     rendered="#{renderedCBGastosRegistrar}"
+                                     styleClass="bg-df-green color-white"/>
 
                     <p:commandButton value="#{msg.boton_actualizar}" 
                                      action="#{gastoBacking.update()}" 
                                      update="messages"
-                                     rendered="#{renderedCBGastosActualizar}"/>
+                                     rendered="#{renderedCBGastosActualizar}"
+                                     styleClass="bg-df-green color-white"/>
 
 
-                    <p:button value="#{msg.boton_cancelar}" outcome="/gastos/index.xhtml?faces-redirect=true"/>
+                    <p:button value="#{msg.boton_cancelar}" outcome="/gastos/index.xhtml?faces-redirect=true" styleClass="bg-df-red color-white"/>
                 </p:column>
             </p:row>
 

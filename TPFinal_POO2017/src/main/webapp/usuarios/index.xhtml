@@ -43,19 +43,20 @@
                             </p:column>
 
                             <p:column style="width:44px;text-align: center">
-                                <p:commandButton update="uh" oncomplete="PF('usuarioDialog').show()" icon="ui-icon-search" title="View" styleClass="bg-d-blue">
+                                <p:commandButton update="uh" oncomplete="PF('usuarioDialog').show()" icon="fa fa-search" title="Ver detalles" styleClass="bg-d-blue">
                                     <f:setPropertyActionListener value="#{usuario}" target="#{usuarioBacking.usuarioSeleccionado}" />
                                 </p:commandButton>
                             </p:column>
 
                             <p:column style="width:44px;text-align: center">
-                                <p:button icon="fa fa-pencil" title="View" outcome="/usuarios/edit.xhtml?faces-redirect=true" styleClass="bg-d-green" >
+                                <p:button icon="fa fa-pencil" title="Editar usuario" outcome="/usuarios/edit.xhtml?faces-redirect=true" styleClass="bg-d-green" >
+                                    <f:param name="id" value="#{usuario.id}" />
                                 </p:button>
                             </p:column>
 
                             <p:column style="width:44px;text-align: center">
                                 <p:commandButton actionListener="#{usuarioBacking.delete(usuario)}"
-
+                                                 title="Eliminar usuario"
                                                  update="usuarios" 
                                                  icon="fa fa-trash"
                                                  class="btnTable"
@@ -93,28 +94,9 @@
                                 </p:column>
                             </ui:remove>
 
-                            <!-- <p:column>
-                                 <p:button outcome="/usuarios/edit.xhtml?faces-redirect=true" icon="fa fa-pencil" value="#{msg.boton_editar}">
-                                     <f:param name="id" value="#{usuario.id}" />
-                                 </p:button>
-                             </p:column>
-         
-                             <p:column>
-                                 <p:commandButton actionListener="#{usuarioBacking.delete(usuario)}"
-                                                  value="#{msg.boton_eliminar}"
-                                                  update="usuarios" 
-                                                  icon="fa fa-trash">
-         
-                                     <p:confirm header="#{msg.dialogo_confirmacion}"
-                                                message="#{unnoba:textFormat(msg.usuarios_eliminarConfirmacionMensaje, usuario.username)}"
-                                                icon="fa fa-exclamation-triangle"/>
-                                 </p:commandButton>
-                             </p:column>-->
-
                         </p:dataTable>
 
-                        <button type="button" class="btn btn-primary" jsf:outcome="/usuarios/new.xhtml?faces-redirect=true">#{msg.usuarios_nuevo}</button>
-
+                        <p:button value="#{msg.usuarios_nuevo}" outcome="/usuarios/new.xhtml?faces-redirect=true" styleClass="bg-df-blue color-white"/>
 
                         <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
                             <p:commandButton value="#{msg.boton_si}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
@@ -123,19 +105,12 @@
 
                         <p:dialog header="Car Info" widgetVar="usuarioDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
                             <p:outputPanel id="usuarioDetail" style="text-align:center;">
-                                <p:panelGrid  columns="2" rendered="#{not empty usuarioBacking.usuarioSeleccionado}" columnClasses="label,value">
+                                <ui:decorate template="/WEB-INF/facelets/templates/objects-views/usuario.xhtml">
 
-                                    <h:outputText value="Id:" />
-                                    <h:outputText value="#{usuarioBacking.usuarioSeleccionado.id}" />
-
-                                    <h:outputText value="Username" />
-                                    <h:outputText value="#{usuarioBacking.usuarioSeleccionado.username}" />
-
-                                    <h:outputText value="Email" />
-                                    <h:outputText value="#{usuarioBacking.usuarioSeleccionado.email}" />
-                                </p:panelGrid>
+                                </ui:decorate>
                             </p:outputPanel>
                         </p:dialog>
+
                     </h:form>
                 </div>
             </div>

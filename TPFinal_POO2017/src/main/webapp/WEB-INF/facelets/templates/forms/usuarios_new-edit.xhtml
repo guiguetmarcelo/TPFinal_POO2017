@@ -145,14 +145,16 @@
                     <p:commandButton value="#{msg.boton_registrar}" 
                                      action="#{usuarioBacking.create()}" 
                                      update=""
-                                     rendered="#{not update}"/>
+                                     rendered="#{not update}"
+                                     styleClass="bg-df-green color-white"/>
                     
                     <p:commandButton value="#{msg.usuarios_botonActualizar}" 
                                      action="#{usuarioBacking.update()}" 
                                      update=""
-                                     rendered="#{update}"/>
+                                     rendered="#{update}"
+                                     styleClass="bg-df-green color-white"/>
 
-                    <p:button value="#{msg.boton_cancelar}" outcome="/usuarios/index.xhtml?faces-redirect=true"/>
+                    <p:button value="#{msg.boton_cancelar}" outcome="/usuarios/index.xhtml?faces-redirect=true" styleClass="bg-df-red color-white"/>
                 </p:column>
             </p:row>
 

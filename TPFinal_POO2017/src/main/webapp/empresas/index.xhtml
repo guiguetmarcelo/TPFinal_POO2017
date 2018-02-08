@@ -3,7 +3,8 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
 
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
         <ui:param name="pageTitle" value="Empresas"></ui:param>
@@ -17,7 +18,8 @@
 
                 <p:dataTable id="empresas"
                              value="#{empresaBacking.empresas}" 
-                             var="empresa">
+                             var="empresa"
+                             styleClass="table-listado-yellow">
 
                     <p:column headerText="Nombre de la empresa">
                         <h:outputText value="#{empresa.nombre}">
@@ -50,9 +52,26 @@
                         </p:commandButton>
                     </p:column>
 
-                </p:dataTable>
-                <p:button value="Empresa nueva" outcome="/empresas/new"/>
+                    <p:column style="width:44px;text-align: center">
+                        <p:button icon="fa fa-pencil" title="Editar empresa" outcome="/empresas/edit.xhtml?faces-redirect=true" styleClass="bg-d-green" >
+                            <f:param name="id" value="#{empresa.id}" />
+                        </p:button>
+                    </p:column>
 
+                    <p:column style="width:44px;text-align: center">
+                        <p:commandButton actionListener="#{empresaBacking.delete(empresa)}"
+                                         update="empresas" 
+                                         icon="fa fa-trash"
+                                         styleClass="bg-d-red">
+
+                            <p:confirm header="#{msg.dialogo_confirmacion}"
+                                       message="#{unnoba:textFormat('Empresa {0}', empresa.nombre)}"
+                                       icon="fa fa-exclamation-triangle"/>
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
+                
+                <p:button value="Empresa nueva" outcome="/empresas/new.xhtml?faces-redirect=true" styleClass="bg-df-blue color-white"/>
 
                 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
                     <p:commandButton value="#{msg.boton_si}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
