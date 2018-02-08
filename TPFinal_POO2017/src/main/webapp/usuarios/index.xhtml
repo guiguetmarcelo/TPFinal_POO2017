@@ -49,14 +49,14 @@
                             </p:column>
 
                             <p:column style="width:44px;text-align: center">
-                                <p:button icon="fa fa-pencil" title="Editar usuario" outcome="/usuarios/edit.xhtml?faces-redirect=true" styleClass="bg-d-green" >
+                                <p:button icon="fa fa-pencil" title="#{msg.usuarios_editarTitle}" outcome="/usuarios/edit.xhtml?faces-redirect=true" styleClass="bg-d-green" >
                                     <f:param name="id" value="#{usuario.id}" />
                                 </p:button>
                             </p:column>
 
                             <p:column style="width:44px;text-align: center">
                                 <p:commandButton actionListener="#{usuarioBacking.delete(usuario)}"
-                                                 title="Eliminar usuario"
+                                                 title="#{msg.usuarios_eliminar}"
                                                  update="usuarios" 
                                                  icon="fa fa-trash"
                                                  class="btnTable"
@@ -103,7 +103,7 @@
                             <p:commandButton value="#{msg.boton_no}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                         </p:confirmDialog>
 
-                        <p:dialog header="Car Info" widgetVar="usuarioDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                        <p:dialog header="#{msg.usuarios_info}" widgetVar="usuarioDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
                             <p:outputPanel id="usuarioDetail" style="text-align:center;">
                                 <ui:decorate template="/WEB-INF/facelets/templates/objects-views/usuario.xhtml">
 

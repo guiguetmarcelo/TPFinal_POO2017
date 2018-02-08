@@ -17,7 +17,7 @@
         <p:panelGrid styleClass="tableBorderOff tableAutoMargin">
             <p:row>
                 <p:column>
-                    <p:outputLabel value="Nombre de la empresa"></p:outputLabel>
+                    <p:outputLabel value="#{msg.empresa_nombre} "></p:outputLabel>
                 </p:column>
                 <p:column>
                     <p:inputText value="#{empresaBacking.empresa.nombre}"/>
@@ -26,7 +26,7 @@
 
             <p:row>
                 <p:column>
-                    <p:outputLabel value="Telefono "></p:outputLabel>
+                    <p:outputLabel value="#{msg.empresa_telefono} "></p:outputLabel>
                 </p:column>
                 <p:column>
                     <p:inputText value="#{empresaBacking.empresa.telefono}"/>
@@ -35,7 +35,7 @@
 
             <p:row>
                 <p:column>
-                    <p:outputLabel value="Descripcion de la empresa"></p:outputLabel>
+                    <p:outputLabel value="#{msg.empresa_descripcion} "></p:outputLabel>
                 </p:column>
                 <p:column>
                     <p:inputText value="#{empresaBacking.empresa.descripcion}"/>

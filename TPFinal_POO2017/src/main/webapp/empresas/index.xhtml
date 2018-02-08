@@ -7,10 +7,10 @@
       xmlns:jsf="http://xmlns.jcp.org/jsf">
 
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
-        <ui:param name="pageTitle" value="Empresas"></ui:param>
+        <ui:param name="pageTitle" value="#{msg.empresas}"></ui:param>
 
         <ui:define name="content">
-            <h1>Empresas</h1>
+            <h1>#{msg.empresas}</h1>
 
             <h:form >
 
@@ -21,39 +21,22 @@
                              var="empresa"
                              styleClass="table-listado-yellow">
 
-                    <p:column headerText="Nombre de la empresa">
+                    <p:column headerText="#{msg.empresa_nombre}">
                         <h:outputText value="#{empresa.nombre}">
                         </h:outputText>
                     </p:column>
 
-                    <p:column headerText="Telefono de la empresa">
+                    <p:column headerText="#{msg.empresa_telefono}">
                         <h:outputText value="#{empresa.telefono}"/>
                     </p:column>
 
 
-                    <p:column headerText="Descripcion de la empresa">
+                    <p:column headerText="#{msg.empresa_descripcion}">
                         <h:outputText value="#{empresa.descripcion}"/>
                     </p:column>
 
-                    <p:column>
-                        <p:button outcome="/empresas/edit" icon="fa fa-pencil" value="#{msg.boton_editar}">
-                            <f:param name="id" value="#{empresa.id}" />
-                        </p:button>
-                    </p:column>
-
-                    <p:column>
-                        <p:commandButton actionListener="#{empresaBacking.delete(empresa)}"
-                                         value="#{msg.boton_eliminar}"
-                                         update="empresas" 
-                                         icon="fa fa-trash">
-                            <p:confirm header="#{msg.dialogo_confirmacion}"
-                                       message="#{unnoba:textFormat(msg.gastos_eliminarConfirmacionMensaje, empresa.id)}"
-                                       icon="fa fa-exclamation-triangle"/>
-                        </p:commandButton>
-                    </p:column>
-
                     <p:column style="width:44px;text-align: center">
-                        <p:button icon="fa fa-pencil" title="Editar empresa" outcome="/empresas/edit.xhtml?faces-redirect=true" styleClass="bg-d-green" >
+                        <p:button icon="fa fa-pencil" title="#{msg.empresa_editar}" outcome="/empresas/edit.xhtml?faces-redirect=true" styleClass="bg-d-green" >
                             <f:param name="id" value="#{empresa.id}" />
                         </p:button>
                     </p:column>
@@ -61,6 +44,7 @@
                     <p:column style="width:44px;text-align: center">
                         <p:commandButton actionListener="#{empresaBacking.delete(empresa)}"
                                          update="empresas" 
+                                         title="#{msg.empresa_elimianr}"
                                          icon="fa fa-trash"
                                          styleClass="bg-d-red">
 
@@ -71,7 +55,7 @@
                     </p:column>
                 </p:dataTable>
                 
-                <p:button value="Empresa nueva" outcome="/empresas/new.xhtml?faces-redirect=true" styleClass="bg-df-blue color-white"/>
+                <p:button value="#{msg.empresa_nueva}" outcome="/empresas/new.xhtml?faces-redirect=true" styleClass="bg-df-blue color-white"/>
 
                 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
                     <p:commandButton value="#{msg.boton_si}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />

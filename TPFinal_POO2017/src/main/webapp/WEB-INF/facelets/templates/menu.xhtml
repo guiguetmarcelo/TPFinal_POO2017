@@ -53,7 +53,7 @@
                 <p:menuitem value="#{msg.menu_usuariosListarTodos}" outcome="/usuarios/view_all.xhtml?faces-redirect=true" styleClass="menu-item"></p:menuitem>
             </p:submenu>
             
-            <p:submenu label="#{msg.menu_empresas}" icon="fa fa-building-o" rendered="#{sessionBacking.usuario.isAdmGen()}" styleClass="sg-menuitem">
+            <p:submenu label="#{msg.usuarios_empresa}" icon="fa fa-building-o" rendered="#{sessionBacking.usuario.isAdmGen()}" styleClass="sg-menuitem">
                 <p:menuitem value="#{msg.menu_empresasListar}" outcome="/empresas/index.xhtml?faces-redirect=true" styleClass="menu-item"></p:menuitem>
                 <p:menuitem value="#{msg.menu_empresasNuevo}" outcome="/empresas/new.xhtml?faces-redirect=true" styleClass="menu-item"></p:menuitem>
             </p:submenu>
