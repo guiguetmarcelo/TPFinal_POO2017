@@ -31,15 +31,31 @@
                                      paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                      rowsPerPageTemplate="5,10,15"
                                      class="dataTableUsuarios"
-                                     styleClass="table-listado-yellow">
+                                     styleClass="table-listado-yellow"
+                                     emptyMessage="No cars found with given criteria" 
+                                     filteredValue="#{usuarioBacking.usuariosFiltrados}"
+                                     widgetVar="usuariosDT">
 
-
-                            <p:column headerText="#{msg.usuarios_username}">
+                            <ui:remove>
+                                <f:facet name="header">
+                                    <p:outputPanel>
+                                        <h:outputText value="Search all fields:" />
+                                        <p:inputText id="globalFilter" onkeyup="PF('usuariosDT').filter()" style="width:150px" placeholder="Enter keyword"/>
+                                    </p:outputPanel>
+                                </f:facet>   
+                            </ui:remove>
+                          
+                            
+                            <p:column headerText="#{msg.usuarios_username}" sortBy="#{usuario.username}" filterBy="#{usuario.username}" filterMatchMode="contains">
                                 <h:outputText value="#{usuario.username}"/>
                             </p:column>
 
-                            <p:column headerText="#{msg.usuarios_password}">
-                                <h:outputText value="#{usuario.password}"/>
+                            <p:column headerText="#{msg.usuarios_nombre}" sortBy="#{usuario.nombre}" filterBy="#{usuario.nombre}" filterMatchMode="contains">
+                                <h:outputText value="#{usuario.nombre}"/>
+                            </p:column>
+
+                            <p:column headerText="#{msg.usuarios_apellido}" sortBy="#{usuario.apellido}" filterBy="#{usuario.apellido}" filterMatchMode="contains">
+                                <h:outputText value="#{usuario.apellido}"/>
                             </p:column>
 
                             <p:column style="width:44px;text-align: center">

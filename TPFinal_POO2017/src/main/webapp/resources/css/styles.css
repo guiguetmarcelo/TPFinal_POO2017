@@ -200,6 +200,10 @@ section[role=main] {
     .table-listado-yellow table thead tr th {
       background: #ffc107;
       border-color: #ba8b00; }
+      .table-listado-yellow table thead tr th input.ui-column-filter {
+        width: 100%;
+        box-sizing: border-box;
+        margin-top: 5px; }
   .table-listado-yellow div.ui-paginator {
     background: rgba(255, 206, 58, 0.5); }
   .table-listado-yellow .ui-paginator a, .table-listado-yellow .ui-paginator select {

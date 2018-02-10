@@ -23,6 +23,8 @@ import javax.inject.Named;
 /**
  *
  * @author jpgm
+ * @author Marcelo
+ * @author Sebastian
  */
 @Named
 @ViewScoped
@@ -32,6 +34,9 @@ public class UsuarioBacking implements Serializable {
 
     private Usuario usuario;
     private Usuario usuarioSeleccionado;
+    
+    private List<Usuario> listUsuariosActivos;
+    private List<Usuario> usuariosFiltrados;
 
     @Inject
     private SessionBacking session;
@@ -52,7 +57,11 @@ public class UsuarioBacking implements Serializable {
     }
 
     public List<Usuario> getUsuariosActivos() {
-        return usuarioDao.getUsuariosActivos();
+        if (getListUsuariosActivos() == null)
+        {
+            setListUsuariosActivos(usuarioDao.getUsuariosActivos());
+        }
+        return getListUsuariosActivos();
     }
 
     public String create() {
@@ -118,6 +127,22 @@ public class UsuarioBacking implements Serializable {
 
     public void setUsuarioSeleccionado(Usuario usuarioSeleccionado) {
         this.usuarioSeleccionado = usuarioSeleccionado;
+    }
+
+    public List<Usuario> getListUsuariosActivos() {
+        return listUsuariosActivos;
+    }
+
+    public void setListUsuariosActivos(List<Usuario> listUsuariosActivos) {
+        this.listUsuariosActivos = listUsuariosActivos;
+    }
+
+    public List<Usuario> getUsuariosFiltrados() {
+        return usuariosFiltrados;
+    }
+
+    public void setUsuariosFiltrados(List<Usuario> usuariosFiltrados) {
+        this.usuariosFiltrados = usuariosFiltrados;
     }
     
     

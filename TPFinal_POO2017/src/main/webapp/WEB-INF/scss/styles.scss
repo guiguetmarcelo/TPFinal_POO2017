@@ -293,6 +293,12 @@ section[role=main]{
                 th{
                     background: $yellow;
                     border-color: darken($yellow, 15%);
+
+                    input.ui-column-filter{
+                        width: 100%;
+                        box-sizing: border-box;
+                        margin-top: 5px;
+                    }
                 }
             }
         }
