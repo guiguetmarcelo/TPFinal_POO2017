@@ -17,37 +17,37 @@
 
             <div class="card border border-primary card-session">
                 <div class="card-header text-light bg-primary">
-                    <i class="fa fa-play home-icons"></i>Datos de la sesión
+                    <i class="fa fa-play home-icons"></i>#{msg.datos_sesion}
                 </div>
                 <div class="card-body">
 
                     <div class="card-group">
                         <div class="card border border-green card-p1">
                             <div class="card-header text-light bg-green">
-                                <i class="fa fa-user"></i>Usuario
+                                <i class="fa fa-user"></i>${msg.usuario}
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title">Detalles</h5>
+                                <h5 class="card-title">#{msg.detalles}</h5>
                                 <!-- <h6 class="card-subtitle mb-2 text-muted">Detalles</h6>-->
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item"><strong>Username: </strong>#{sessionBacking.usuario.username}</li>
-                                    <li class="list-group-item"><strong>Nombre: </strong>#{sessionBacking.usuario.nombre}</li>
-                                    <li class="list-group-item"><strong>Apellido: </strong>#{sessionBacking.usuario.apellido}</li>
-                                    <li class="list-group-item"><strong>Rol: </strong>#{sessionBacking.usuario.rol}</li>
+                                    <li class="list-group-item"><strong>#{msg.usuarios_username}: </strong>#{sessionBacking.usuario.username}</li>
+                                    <li class="list-group-item"><strong>#{msg.usuarios_nombre}: </strong>#{sessionBacking.usuario.nombre}</li>
+                                    <li class="list-group-item"><strong>#{msg.usuarios_apellido}: </strong>#{sessionBacking.usuario.apellido}</li>
+                                    <li class="list-group-item"><strong>#{msg.usuarios_rol}: </strong>#{sessionBacking.usuario.rol}</li>
                                 </ul>
                             </div>
                         </div>
 
                         <div class="card border border-green card-p1">
                             <div class="card-header text-light bg-green">
-                                <i class="fa fa-building"></i>Empresa
+                                <i class="fa fa-building"></i>#{msg.usuarios_empresa}
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title">Detalles</h5>
+                                <h5 class="card-title">#{msg.detalles}</h5>
                                 <!-- <h6 class="card-subtitle mb-2 text-muted">Detalles</h6>-->
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item"><strong>Nombre: </strong>#{sessionBacking.empresa.nombre}</li>
-                                    <li class="list-group-item"><strong>Telefono: </strong>#{sessionBacking.empresa.telefono}</li>  
+                                    <li class="list-group-item"><strong>#{msg.usuarios_nombre}: </strong>#{sessionBacking.empresa.nombre}</li>
+                                    <li class="list-group-item"><strong>#{msg.telefono}: </strong>#{sessionBacking.empresa.telefono}</li>  
                                 </ul>
                                 <p class="card-text">#{sessionBacking.empresa.descripcion}</p>
                             </div>
@@ -59,49 +59,49 @@
             <div style="margin-bottom: 20px"></div>
             <div class="card border border-primary">
                 <div class="card-header text-light bg-primary">
-                    <i class="fa fa-line-chart home-icons"></i>Estadisticas
+                    <i class="fa fa-line-chart home-icons"></i>#{msg.estadisticas}
                 </div>
                 <div class="card-body">
 
                     <div class="card-group">
                         <div class="card border border-green card-p1">
                             <div class="card-header text-light bg-green">
-                                <i class="fa fa-money"></i>Gastos
+                                <i class="fa fa-money"></i>#{msg.menu_gastos}
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title">Detalles</h5>
+                                <h5 class="card-title">#{msg.detalles}</h5>
                                 <!-- <h6 class="card-subtitle mb-2 text-muted">Detalles</h6>-->
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item"><strong>Registros: </strong>#{gastoBacking.cantidad}</li>
+                                    <li class="list-group-item"><strong>#{msg.registros}: </strong>#{gastoBacking.cantidad}</li>
                                 </ul>
-                                <p:link value="Listado de gastos" outcome="/gastos/index.xhtml?faces-redirect=true" styleClass="card-link card-link-mt" />
+                                <p:link value="#{msg.gastos_titulo}" outcome="/gastos/index.xhtml?faces-redirect=true" styleClass="card-link card-link-mt" />
                             </div>
                         </div>
 
                         <div class="card border border-green card-p1">
                             <div class="card-header text-light bg-green">
-                                <i class="fa fa-file-text"></i>Presupuestos
+                                <i class="fa fa-file-text"></i>#{msg.menu_presupuestos}
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title">Detalles</h5>
+                                <h5 class="card-title">#{msg.detalles}</h5>
                                 <!-- <h6 class="card-subtitle mb-2 text-muted">Detalles</h6>-->
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item"><strong>Registros: </strong>#{presupuestoBacking.cantidad}</li>
+                                    <li class="list-group-item"><strong>#{msg.registros}: </strong>#{presupuestoBacking.cantidad}</li>
                                 </ul>
-                                <p:link value="Listado de presupuestos" outcome="/presupuestos/index.xhtml?faces-redirect=true" styleClass="card-link card-link-mt" />
+                                <p:link value="#{msg.presupuestos_titulo}" outcome="/presupuestos/index.xhtml?faces-redirect=true" styleClass="card-link card-link-mt" />
                             </div>
                         </div>
                     </div>
                     <div class="card border border-green card-p1">
                         <div class="card-header text-light bg-green">
-                            <i class="fa fa-bar-chart"></i>Reportes
+                            <i class="fa fa-bar-chart"></i>#{msg.menu_reportes}
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Utilidades</h5>
+                            <h5 class="card-title">#{msg.utilidades}</h5>
 
-                            <p:link value="Reporte grafico" outcome="/reportes/reporteDesvio.xhtml" styleClass="card-link" />
-                            <p:link value="Reporte de gastos" outcome="/reportes/reporteLista.xhtml" styleClass="card-link" />
-                            <p:link value="Reporte comparativo" outcome="/reportes/reporteLista.xhtml" styleClass="card-link" />
+                            <p:link value="#{msg.menu_reportesReporteDesvio}" outcome="/reportes/reporteDesvio.xhtml" styleClass="card-link" />
+                            <p:link value="#{msg.menu_reportesReporteLista}" outcome="/reportes/reporteLista.xhtml" styleClass="card-link" />
+                            <p:link value="#{msg.menu_reportesReporteComparativo}" outcome="/reportes/reporteComparativo.xhtml" styleClass="card-link" />
                         </div>
                     </div>
 
