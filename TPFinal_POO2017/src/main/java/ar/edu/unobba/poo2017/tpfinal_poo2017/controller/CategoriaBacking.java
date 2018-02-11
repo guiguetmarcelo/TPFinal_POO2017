@@ -44,7 +44,8 @@ public class CategoriaBacking implements Serializable {
     private SessionBacking sessionBacking;
 
     public List<Categoria> getCategorias() {
-        return categoriaDao.getCategorias();
+        setCategoriasFiltradas(categoriaDao.getCategorias());
+        return getCategoriasFiltradas();
         
     }
 

@@ -9,54 +9,148 @@
         <ui:param name="pageTitle" value="#{msg.presupuestos_title}"></ui:param>
 
         <ui:define name="content">
-            
+
             <h1>#{msg.presupuestos_titulo}</h1>
-            
+
             <h:form>
                 <p:growl id="messages" autoUpdate="true" for="msgUsuario"></p:growl>
 
                 <p:dataTable id="presupuestos"
                              value="#{presupuestoBacking.presupuestos}" 
-                             var="presupuesto">
+                             var="presupuesto"
+                             paginator="true"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="5,10,15"
+                             styleClass="table-listado-yellow"
+                             emptyMessage="No hay elementos" 
+                             filteredValue="#{presupuestoBacking.presupuestosFiltrados}"
+                             widgetVar="presupuestosDT">
 
-                    <p:column headerText="#{msg.presupuestos_periodo}">
-                        <h:outputText value="#{presupuesto.periodo.descripcion}"/>
+                    <p:column headerText="#{msg.presupuestos_periodo}"
+                              sortBy="#{presupuesto.periodo.toString()}"
+                              filterBy="#{presupuesto.periodo.toString()}"
+                              filterMatchMode="in">
+
+                        <f:facet name="filter">
+                            <p:selectCheckboxMenu label="Periodos"  
+                                                  filter="true" filterMatchMode="contains">
+                                <f:selectItems value="#{periodoBacking.periodos}" 
+                                               var="periodo" 
+                                               itemLabel="#{periodo.toString()}" 
+                                               itemValue="#{periodo.toString()}"/> 
+                                <p:ajax event="change" oncomplete="PF('presupuestosDT').filter()" />
+                                <p:ajax event="toggleSelect" oncomplete="PF('presupuestosDT').filter()" />
+                            </p:selectCheckboxMenu>
+                        </f:facet>
+
+                        <h:outputText value="#{presupuesto.periodo.toString()}"/>
                     </p:column>
 
-                    <p:column headerText="#{msg.presupuestos_monto}">
-                        <h:outputText value="#{presupuesto.monto}"/>
+                    <p:column headerText="#{msg.presupuestos_monto}"
+                              sortBy="#{presupuesto.monto}"
+                              filterBy="#{presupuesto.monto}"
+                              filterMatchMode="contains">
+
+                        <h:outputText value="#{presupuesto.monto}">
+                            <f:convertNumber currencySymbol="$" type="currency"  /> 
+                        </h:outputText>
                     </p:column>
 
-                    <p:column headerText="#{msg.presupuestos_subcategoria}">
+                    <p:column headerText="#{msg.presupuestos_subcategoria}"
+                              sortBy="#{presupuesto.subcategoria.nombre}"
+                              filterBy="#{presupuesto.subcategoria.nombre}"
+                              filterMatchMode="in">
+
+                        <f:facet name="filter">
+                            <p:selectCheckboxMenu label="Subcategorias"  
+                                                  filter="true" filterMatchMode="contains">
+                                <f:selectItems value="#{subcategoriaBacking.subcategorias}" 
+                                               var="subcat" 
+                                               itemLabel="#{subcat.nombre}" 
+                                               itemValue="#{subcat.nombre}"/> 
+                                <p:ajax event="change" oncomplete="PF('presupuestosDT').filter()" />
+                                <p:ajax event="toggleSelect" oncomplete="PF('presupuestosDT').filter()" />
+                            </p:selectCheckboxMenu>
+                        </f:facet>
+
                         <h:outputText value="#{presupuesto.subcategoria.nombre}"/>
                     </p:column>
 
-                    <p:column>
-                        <p:button outcome="/presupuestos/edit" icon="fa fa-pencil" value="#{msg.boton_editar}">
+
+                    <p:column style="width:44px;text-align: center">
+                        <p:commandButton update="presupuestos" 
+                                         oncomplete="PF('presupuestoDialog').show()" 
+                                         icon="fa fa-search" 
+                                         title="Ver detalles" 
+                                         styleClass="bg-d-blue">
+                            <f:setPropertyActionListener value="#{presupuesto}" target="#{presupuestoBacking.presupuestoSeleccionado}" />
+                        </p:commandButton>
+                    </p:column>
+
+                    <p:column style="width:44px;text-align: center">
+                        <p:button icon="fa fa-pencil" 
+                                  title="#{msg.boton_editar}"
+                                  outcome="/presupuestos/edit.xhtml?faces-redirect=true" 
+                                  styleClass="bg-d-green" >
                             <f:param name="id" value="#{presupuesto.id}" />
                         </p:button>
                     </p:column>
 
-                    <p:column>
+                    <p:column style="width:44px;text-align: center">
                         <p:commandButton actionListener="#{presupuestoBacking.delete(presupuesto)}"
-                                         value="#{msg.boton_eliminar}"
+                                         title="#{msg.boton_eliminar}"
                                          update="presupuestos" 
-                                         icon="fa fa-trash">
+                                         icon="fa fa-trash"
+                                         class="btnTable"
+                                         styleClass="bg-d-red">
+
                             <p:confirm header="#{msg.dialogo_confirmacion}"
                                        message="#{unnoba:textFormat(msg.presupuestos_eliminarConfirmacionMensaje, presupuesto.toString())}"
                                        icon="fa fa-exclamation-triangle"/>
                         </p:commandButton>
-
                     </p:column>
 
+
+                    <ui:remove>
+                        <p:column>
+                            <p:button outcome="/presupuestos/edit" icon="fa fa-pencil" value="#{msg.boton_editar}">
+                                <f:param name="id" value="#{presupuesto.id}" />
+                            </p:button>
+                        </p:column>
+
+                        <p:column>
+                            <p:commandButton actionListener="#{presupuestoBacking.delete(presupuesto)}"
+                                             value="#{msg.boton_eliminar}"
+                                             update="presupuestos" 
+                                             icon="fa fa-trash">
+                                <p:confirm header="#{msg.dialogo_confirmacion}"
+                                           message="#{unnoba:textFormat(msg.presupuestos_eliminarConfirmacionMensaje, presupuesto.toString())}"
+                                           icon="fa fa-exclamation-triangle"/>
+                            </p:commandButton>
+
+                        </p:column> 
+                    </ui:remove>
+
+
                 </p:dataTable>
-                <p:button value="#{msg.presupuestos_nuevo}" outcome="/presupuestos/new"/>
+
+                <p:button value="#{msg.presupuestos_nuevo}" 
+                          outcome="/presupuestos/new.xhtml?faces-redirect=true"
+                          styleClass="bg-df-blue color-white"/>
 
 
                 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
                     <p:commandButton value="#{msg.boton_si}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
                     <p:commandButton value="#{msg.boton_no}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                 </p:confirmDialog>
+
+                <p:dialog header="#{msg.usuarios_info}" widgetVar="presupuestoDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                    <p:outputPanel id="presupuestoDetail" style="text-align:center;">
+                        <ui:decorate template="/WEB-INF/facelets/templates/objects-views/presupuesto.xhtml">
+
+                        </ui:decorate>
+                    </p:outputPanel>
+                </p:dialog>
             </h:form>
         </ui:define>
     </ui:composition>

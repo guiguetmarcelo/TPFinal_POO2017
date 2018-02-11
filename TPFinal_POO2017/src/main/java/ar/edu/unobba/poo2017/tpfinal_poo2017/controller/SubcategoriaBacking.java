@@ -43,7 +43,8 @@ public class SubcategoriaBacking implements Serializable{
     private SessionBacking sessionBacking;
     
     public List<Subcategoria> getSubcategorias(){
-        return subcategoriaDao.getSubcategorias();
+        setSubcategoriasFiltradas(subcategoriaDao.getSubcategorias());
+        return getSubcategoriasFiltradas();
     }
     
     public String create(){

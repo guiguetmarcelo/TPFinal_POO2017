@@ -19,9 +19,16 @@
                 <p:dataTable id="empresas"
                              value="#{empresaBacking.empresas}" 
                              var="empresa"
-                             styleClass="table-listado-yellow">
+                             paginator="true"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="5,10,15"
+                             styleClass="table-listado-yellow"
+                             emptyMessage="No hay elementos" 
+                             filteredValue="#{empresaBacking.empresasFiltradas}"
+                             widgetVar="presupuestosDT">
 
-                    <p:column headerText="#{msg.empresa_nombre}">
+                    <p:column headerText="#{msg.empresa_nombre}" 
+                              sortBy="#{empresa.nombre}">
                         <h:outputText value="#{empresa.nombre}">
                         </h:outputText>
                     </p:column>

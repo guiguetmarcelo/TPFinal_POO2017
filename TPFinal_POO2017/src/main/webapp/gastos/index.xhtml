@@ -33,7 +33,7 @@
                               filterMatchMode="contains">
 
                         <f:facet name="filter">
-                            <p:calendar id="cal1" pattern="dd/MM/yyyy">
+                            <p:calendar id="cal1" pattern="dd/MM/yyyy" >
                                 <p:ajax event="dateSelect" oncomplete="PF('gastosDT').filter()"/>
                                 <p:ajax event="change" oncomplete="PF('gastosDT').filter()"/>
                             </p:calendar>
@@ -51,7 +51,7 @@
 
 
                         <h:outputText value="#{gasto.importe}">
-                            <f:convertNumber currencySymbol="$" type="currency" locale="es_AR"  /> 
+                            <f:convertNumber currencySymbol="$" type="currency"  /> 
 
                         </h:outputText>
                     </p:column>
@@ -103,7 +103,10 @@
                     </p:column>
 
                 </p:dataTable>
-                <button type="button" class="btn btn-primary" jsf:outcome="/gastos/new.xhtml?faces-redirect=true">#{msg.gastos_nuevo}</button>
+
+                <p:button value="#{msg.gastos_nuevo}" 
+                          outcome="/gastos/new.xhtml?faces-redirect=true" 
+                          styleClass="bg-df-blue color-white"/>
 
 
                 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">

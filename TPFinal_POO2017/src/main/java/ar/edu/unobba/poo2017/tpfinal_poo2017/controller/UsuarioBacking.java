@@ -35,7 +35,6 @@ public class UsuarioBacking implements Serializable {
     private Usuario usuario;
     private Usuario usuarioSeleccionado;
     
-    private List<Usuario> listUsuariosActivos;
     private List<Usuario> usuariosFiltrados;
 
     @Inject
@@ -57,11 +56,8 @@ public class UsuarioBacking implements Serializable {
     }
 
     public List<Usuario> getUsuariosActivos() {
-        if (getListUsuariosActivos() == null)
-        {
-            setListUsuariosActivos(usuarioDao.getUsuariosActivos());
-        }
-        return getListUsuariosActivos();
+        setUsuariosFiltrados(usuarioDao.getUsuariosActivos());
+        return getUsuariosFiltrados();
     }
 
     public String create() {
@@ -127,14 +123,6 @@ public class UsuarioBacking implements Serializable {
 
     public void setUsuarioSeleccionado(Usuario usuarioSeleccionado) {
         this.usuarioSeleccionado = usuarioSeleccionado;
-    }
-
-    public List<Usuario> getListUsuariosActivos() {
-        return listUsuariosActivos;
-    }
-
-    public void setListUsuariosActivos(List<Usuario> listUsuariosActivos) {
-        this.listUsuariosActivos = listUsuariosActivos;
     }
 
     public List<Usuario> getUsuariosFiltrados() {

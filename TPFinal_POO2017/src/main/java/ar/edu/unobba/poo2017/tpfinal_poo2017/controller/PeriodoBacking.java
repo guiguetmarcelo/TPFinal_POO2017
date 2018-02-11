@@ -41,7 +41,8 @@ public class PeriodoBacking implements Serializable {
     private SessionBacking sessionBacking;
     
     public List<Periodo> getPeriodos(){
-        return periodoDao.getPeriodos();
+        setPeriodosFiltrados(periodoDao.getPeriodos());
+        return getPeriodosFiltrados();
     }
     
     public String create(){

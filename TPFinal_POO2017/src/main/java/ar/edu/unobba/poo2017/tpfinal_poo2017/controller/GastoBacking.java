@@ -36,6 +36,7 @@ public class GastoBacking implements Serializable {
     private Gasto gastoSeleccionado;
     private List<Gasto> gastosFiltrados;
     private List<Gasto> listGastos;
+    private Boolean listUpdateRequired;
 
     @EJB
     private GastoDao gastoDao;
@@ -61,6 +62,7 @@ public class GastoBacking implements Serializable {
     public String create() {
         try {
             gastoDao.create(getGasto());
+            getGastos().add(getGasto());
             return "/gastos/index?faces-redirect=true";
         } catch (Exception e) {
             return null;
@@ -78,6 +80,7 @@ public class GastoBacking implements Serializable {
 
     public void delete(Gasto gasto) {
         gastoDao.delete(gasto);
+        getGastos().remove(gasto);
     }
 
     public List<Gasto> getGastos() {

@@ -37,7 +37,8 @@ public class EmpresaBacking implements Serializable{
     private EmpresaDao empresaDao;
 
     public List<Empresa> getEmpresas() {
-        return empresaDao.getEmpresas();
+        setEmpresasFiltradas(empresaDao.getEmpresas());
+        return getEmpresasFiltradas();
     }
 
     public String create() {

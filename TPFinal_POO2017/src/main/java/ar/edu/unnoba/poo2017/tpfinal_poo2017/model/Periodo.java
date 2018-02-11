@@ -66,9 +66,9 @@ public class Periodo extends AbstractEntity implements Serializable {
     
     @Override
     public String toString(){
-        String desde = new SimpleDateFormat("dd-MM-yyyy").format(fechaDesde);
-        String hasta = new SimpleDateFormat("dd-MM-yyyy").format(fechaHasta);
-        return "Desde "+desde+" hasta "+hasta;
+        String desde = new SimpleDateFormat("dd/MM/yyyy").format(fechaDesde);
+        String hasta = new SimpleDateFormat("dd/MM/yyyy").format(fechaHasta);
+        return "["+desde+" - "+hasta+"] "+getDescripcion();
     }
 
     @Override
