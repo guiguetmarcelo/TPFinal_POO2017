@@ -6,43 +6,100 @@
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
         <ui:param name="pageTitle" value="#{msg.subcategorias_title}"></ui:param>
-        
+
         <ui:define name="content">
             <f:view contentType="text/html">
                 <h:form>
                     <p:dataTable id="subcategorias"
                                  value="#{subcategoriaBacking.subcategorias}" 
-                                 var="subcategoria">
+                                 var="subcategoria"
+                                 paginator="true"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15"
+                                 styleClass="table-listado-yellow"
+                                 emptyMessage="No hay elementos" 
+                                 filteredValue="#{subcategoriaBacking.subcategoriasFiltradas}"
+                                 widgetVar="subcategoriasDT">
 
-                        <p:column headerText="#{msg.usuarios_nombre}">
+                        <p:column headerText="#{msg.usuarios_nombre}"
+                                  sortBy="#{subcategoria.nombre}"
+                                  filterBy="#{subcategoria.nombre}"
+                                  filterMatchMode="contains">
+
                             <h:outputText value="#{subcategoria.nombre}"/>
                         </p:column>
 
-                        <p:column headerText="#{msg.descripcion}">
+                        <p:column headerText="#{msg.descripcion}"
+                                  sortBy="#{subcategoria.descripcion}"
+                                  filterBy="#{subcategoria.descripcion}"
+                                  filterMatchMode="contains">
+
                             <h:outputText value="#{subcategoria.descripcion}"/>
                         </p:column>
 
-                        <p:column headerText="#{msg.categoria_padre}">
+                        <p:column headerText="#{msg.categoria_padre}"
+                                  sortBy="#{subcategoria.categoriaPadre.nombre}"
+                                  filterBy="#{subcategoria.categoriaPadre.nombre}"
+                                  filterMatchMode="in">
+
+                            <f:facet name="filter">
+                                <p:selectCheckboxMenu label="#{msg.categorias}"  
+                                                      filter="true" filterMatchMode="contains">
+                                    <f:selectItems value="#{categoriaBacking.categorias}" 
+                                                   var="cat" 
+                                                   itemLabel="#{cat.nombre}" 
+                                                   itemValue="#{cat.nombre}"/> 
+                                    <p:ajax event="change" oncomplete="PF('subcategoriasDT').filter()" />
+                                    <p:ajax event="toggleSelect" oncomplete="PF('subcategoriasDT').filter()" />
+                                </p:selectCheckboxMenu>
+                            </f:facet>
+
                             <h:outputText value="#{subcategoria.categoriaPadre.nombre}"/>
                         </p:column>
 
-                        <p:column>
-                            <p:button outcome="/subcategorias/edit" icon="fa fa-pencil" value="#{msg.boton_editar}">
+                        <p:column style="width:44px;text-align: center">
+                            <p:button icon="fa fa-pencil" 
+                                      title="#{msg.boton_editar}"
+                                      outcome="/subcategorias/edit.xhtml?faces-redirect=true" 
+                                      styleClass="bg-d-green" >
                                 <f:param name="id" value="#{subcategoria.id}" />
                             </p:button>
                         </p:column>
 
-                        <p:column>
+                        <p:column style="width:44px;text-align: center">
                             <p:commandButton actionListener="#{subcategoriaBacking.delete(subcategoria)}"
-                                             value="#{msg.boton_eliminar}"
+                                             title="#{msg.boton_eliminar}"
                                              update="subcategorias" 
-                                             icon="fa fa-trash">
+                                             icon="fa fa-trash"
+                                             class="btnTable"
+                                             styleClass="bg-d-red">
 
                                 <p:confirm header="#{msg.dialogo_confirmacion}"
                                            message="#{msg.categoria_confirmacion} #{subcategoria.nombre}"
                                            icon="fa fa-exclamation-triangle"/>
                             </p:commandButton>
                         </p:column>
+
+                        <ui:remove>
+                            <p:column>
+                                <p:button outcome="/subcategorias/edit" icon="fa fa-pencil" value="#{msg.boton_editar}">
+                                    <f:param name="id" value="#{subcategoria.id}" />
+                                </p:button>
+                            </p:column> 
+                            <p:column>
+                                <p:commandButton actionListener="#{subcategoriaBacking.delete(subcategoria)}"
+                                                 value="#{msg.boton_eliminar}"
+                                                 update="subcategorias" 
+                                                 icon="fa fa-trash">
+
+                                    <p:confirm header="#{msg.dialogo_confirmacion}"
+                                               message="#{msg.categoria_confirmacion} #{subcategoria.nombre}"
+                                               icon="fa fa-exclamation-triangle"/>
+                                </p:commandButton>
+                            </p:column>
+                        </ui:remove>
+
+
                     </p:dataTable>
                     <p:button value="#{msg.boton_registrar}" outcome="/subcategorias/new"/>
 

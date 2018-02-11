@@ -18,14 +18,15 @@ import javax.inject.Named;
  *
  * @author Sebastian
  */
-
 @Named
 @ViewScoped
-public class EmpresaBacking implements Serializable{
+public class EmpresaBacking implements Serializable {
 
     private static final long serialVersionUID = -7254678850848580969L;
-    
+
     private Empresa empresa;
+    private Empresa empresaSeleccionada;
+    private List<Empresa> listEmpresas;
     private List<Empresa> empresasFiltradas;
 
     @PostConstruct
@@ -37,8 +38,10 @@ public class EmpresaBacking implements Serializable{
     private EmpresaDao empresaDao;
 
     public List<Empresa> getEmpresas() {
-        setEmpresasFiltradas(empresaDao.getEmpresas());
-        return getEmpresasFiltradas();
+        if (getListEmpresas() == null) {
+            setListEmpresas(empresaDao.getEmpresas());
+        }
+        return getListEmpresas();
     }
 
     public String create() {
@@ -59,11 +62,12 @@ public class EmpresaBacking implements Serializable{
         }
     }
 
-    
-     public void delete(Empresa empresa) {
-         try{
-        empresaDao.delete(empresa);
-         }catch(Exception e) {}
+    public void delete(Empresa empresa) {
+        try {
+            empresaDao.delete(empresa);
+            setListEmpresas(null);
+        } catch (Exception e) {
+        }
     }
 
     public Empresa getEmpresa() {
@@ -74,6 +78,14 @@ public class EmpresaBacking implements Serializable{
         this.empresa = empresa;
     }
 
+    public Empresa getEmpresaSeleccionada() {
+        return empresaSeleccionada;
+    }
+
+    public void setEmpresaSeleccionada(Empresa empresaSeleccionada) {
+        this.empresaSeleccionada = empresaSeleccionada;
+    }
+
     public List<Empresa> getEmpresasFiltradas() {
         return empresasFiltradas;
     }
@@ -82,6 +94,12 @@ public class EmpresaBacking implements Serializable{
         this.empresasFiltradas = empresasFiltradas;
     }
 
-    
-    
+    private List<Empresa> getListEmpresas() {
+        return listEmpresas;
+    }
+
+    private void setListEmpresas(List<Empresa> listEmpresas) {
+        this.listEmpresas = listEmpresas;
+    }
+
 }

@@ -77,12 +77,6 @@
                     </p:column>
 
                     <p:column style="width:44px;text-align: center">
-                        <p:commandButton update="gastos_form_index" oncomplete="PF('gastoDialog').show()" icon="fa fa-search" title="Ver detalles" styleClass="bg-d-blue">
-                            <f:setPropertyActionListener value="#{gasto}" target="#{gastoBacking.gastoSeleccionado}" />
-                        </p:commandButton>
-                    </p:column>
-
-                    <p:column style="width:44px;text-align: center">
                         <p:button icon="fa fa-pencil" title="#{msg.boton_editar}" outcome="/gastos/edit.xhtml?faces-redirect=true" styleClass="bg-d-green" >
                             <f:param name="id" value="#{gasto.id}" />
                         </p:button>

@@ -26,27 +26,32 @@ import javax.persistence.Query;
 public class CategoriaBacking implements Serializable {
 
     private static final long serialVersionUID = -9078581278059597718L;
-    
+
     private Categoria categoria;
+    private Categoria categoriaSeleccionada;
+    private List<Categoria> listCategorias;
     private List<Categoria> categoriasFiltradas;
+
 
     @PostConstruct
     public void init() {
         this.categoria = new Categoria();
         this.categoria.setEmpresa(sessionBacking.getUsuario().getEmpresa());
-  
+
     }
 
     @EJB
     private CategoriaDao categoriaDao;
-    
+
     @Inject
     private SessionBacking sessionBacking;
 
     public List<Categoria> getCategorias() {
-        setCategoriasFiltradas(categoriaDao.getCategorias());
-        return getCategoriasFiltradas();
-        
+        if (getListCategorias() == null) {
+            setListCategorias(categoriaDao.getCategorias());
+        }
+        return getListCategorias();
+
     }
 
     public String create() {
@@ -67,11 +72,12 @@ public class CategoriaBacking implements Serializable {
         }
     }
 
-    
-     public void delete(Categoria categoria) {
-         try{
-        categoriaDao.delete(categoria);
-         }catch(Exception e) {}
+    public void delete(Categoria categoria) {
+        try {
+            categoriaDao.delete(categoria);
+            setListCategorias(null);
+        } catch (Exception e) {
+        }
     }
 
     public Categoria getCategoria() {
@@ -82,6 +88,22 @@ public class CategoriaBacking implements Serializable {
         this.categoria = categoria;
     }
 
+    public Categoria getCategoriaSeleccionada() {
+        return categoriaSeleccionada;
+    }
+
+    public void setCategoriaSeleccionada(Categoria categoriaSeleccionada) {
+        this.categoriaSeleccionada = categoriaSeleccionada;
+    }
+    
+    private List<Categoria> getListCategorias() {
+        return listCategorias;
+    }
+
+    private void setListCategorias(List<Categoria> listCategorias) {
+        this.listCategorias = listCategorias;
+    }
+
     public List<Categoria> getCategoriasFiltradas() {
         return categoriasFiltradas;
     }
@@ -90,5 +112,5 @@ public class CategoriaBacking implements Serializable {
         this.categoriasFiltradas = categoriasFiltradas;
     }
 
-    
+
 }

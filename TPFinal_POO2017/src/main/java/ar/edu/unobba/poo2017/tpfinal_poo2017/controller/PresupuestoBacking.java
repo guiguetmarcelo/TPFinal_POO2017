@@ -11,7 +11,6 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.inject.Produces;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -30,7 +29,6 @@ public class PresupuestoBacking implements Serializable {
     private Presupuesto presupuestoSeleccionado;
     private List<Presupuesto> listPresupuestos;
     private List<Presupuesto> presupuestosFiltrados;
-    private Boolean listUpdateRequired;
 
     @EJB
     private PresupuestoDao presupuestoDao;
@@ -43,14 +41,12 @@ public class PresupuestoBacking implements Serializable {
         setPresupuesto(new Presupuesto());
         getPresupuesto().setEmpresa(sessionBacking.getUsuario().getEmpresa());
         //this.presupuesto.setEmpresa(sessionBacking.getUsuario().getEmpresa());
-        setListUpdateRequired(false);
 
     }
 
     public List<Presupuesto> getPresupuestos() {
         if (getListPresupuestos() == null) {
             setListPresupuestos(presupuestoDao.getPresupuestos());
-            setListUpdateRequired(true);
         }
         return getListPresupuestos();
     }
@@ -66,9 +62,6 @@ public class PresupuestoBacking implements Serializable {
     public String create() {
         try {
             presupuestoDao.create(getPresupuesto());
-            if (isListUpdateRequired()) {
-                getPresupuestos().add(getPresupuesto());
-            }
             return "/presupuestos/index?faces-redirect=true";
         } catch (Exception e) {
             return null;
@@ -86,10 +79,7 @@ public class PresupuestoBacking implements Serializable {
 
     public void delete(Presupuesto presupuesto) {
         presupuestoDao.delete(presupuesto);
-        if (isListUpdateRequired()) {
-            getPresupuestos().remove(presupuesto);
-        }
-        
+        setListPresupuestos(null);
     }
 
     public Presupuesto getPresupuesto() {
@@ -108,11 +98,11 @@ public class PresupuestoBacking implements Serializable {
         this.presupuestoSeleccionado = presupuestoSeleccionado;
     }
 
-    public List<Presupuesto> getListPresupuestos() {
+    private List<Presupuesto> getListPresupuestos() {
         return listPresupuestos;
     }
 
-    public void setListPresupuestos(List<Presupuesto> listPresupuestos) {
+    private void setListPresupuestos(List<Presupuesto> listPresupuestos) {
         this.listPresupuestos = listPresupuestos;
     }
 
@@ -123,15 +113,5 @@ public class PresupuestoBacking implements Serializable {
     public void setPresupuestosFiltrados(List<Presupuesto> presupuestosFiltrados) {
         this.presupuestosFiltrados = presupuestosFiltrados;
     }
-
-    private Boolean isListUpdateRequired() {
-        return listUpdateRequired;
-    }
-
-    private void setListUpdateRequired(Boolean listUpdateRequired) {
-        this.listUpdateRequired = listUpdateRequired;
-    }
-
-    
 
 }

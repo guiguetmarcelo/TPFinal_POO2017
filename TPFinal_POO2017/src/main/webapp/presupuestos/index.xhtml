@@ -76,17 +76,6 @@
                         <h:outputText value="#{presupuesto.subcategoria.nombre}"/>
                     </p:column>
 
-
-                    <p:column style="width:44px;text-align: center">
-                        <p:commandButton update="presupuestos" 
-                                         oncomplete="PF('presupuestoDialog').show()" 
-                                         icon="fa fa-search" 
-                                         title="Ver detalles" 
-                                         styleClass="bg-d-blue">
-                            <f:setPropertyActionListener value="#{presupuesto}" target="#{presupuestoBacking.presupuestoSeleccionado}" />
-                        </p:commandButton>
-                    </p:column>
-
                     <p:column style="width:44px;text-align: center">
                         <p:button icon="fa fa-pencil" 
                                   title="#{msg.boton_editar}"

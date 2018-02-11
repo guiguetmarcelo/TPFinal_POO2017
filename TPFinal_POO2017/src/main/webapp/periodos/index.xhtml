@@ -13,41 +13,101 @@
                 <h:form>
                     <p:dataTable id="periodos"
                                  value="#{periodoBacking.periodos}" 
-                                 var="periodo">
+                                 var="periodo"
+                                 paginator="true"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15"
+                                 styleClass="table-listado-yellow"
+                                 emptyMessage="No hay elementos" 
+                                 filteredValue="#{periodoBacking.periodosFiltrados}"
+                                 widgetVar="periodosDT">
 
-                        <p:column headerText="#{msg.fecha_inicio}">
+                        <p:column headerText="#{msg.fecha_inicio}"
+                                  sortBy="#{periodo.fechaDesde}"
+                                  filterBy="#{periodo.fechaDesde}"
+                                  filterMatchMode="contains">
+
+                            <f:facet name="filter">
+                                <p:calendar id="cal1" pattern="dd/MM/yyyy" >
+                                    <p:ajax event="dateSelect" oncomplete="PF('periodosDT').filter()"/>
+                                    <p:ajax event="change" oncomplete="PF('periodosDT').filter()"/>
+                                </p:calendar>
+                            </f:facet>
+
                             <h:outputText value="#{periodo.fechaDesde}">
                                 <f:convertDateTime pattern="dd/MM/yyyy" />
                             </h:outputText>
                         </p:column>
 
-                        <p:column headerText="#{msg.fecha_fin}">
+                        <p:column headerText="#{msg.fecha_fin}"
+                                  sortBy="#{periodo.fechaHasta}"
+                                  filterBy="#{periodo.fechaHasta}"
+                                  filterMatchMode="contains">
+
+                            <f:facet name="filter">
+                                <p:calendar id="cal12" pattern="dd/MM/yyyy" >
+                                    <p:ajax event="dateSelect" oncomplete="PF('periodosDT').filter()"/>
+                                    <p:ajax event="change" oncomplete="PF('periodosDT').filter()"/>
+                                </p:calendar>
+                            </f:facet>
+
                             <h:outputText value="#{periodo.fechaHasta}">
                                 <f:convertDateTime pattern="dd/MM/yyyy" />
                             </h:outputText>
                         </p:column>
 
-                        <p:column headerText="#{msg.descripcion}">
+                        <p:column headerText="#{msg.descripcion}"
+                                  sortBy="#{periodo.descripcion}"
+                                  filterBy="#{periodo.descripcion}"
+                                  filterMatchMode="contains">
+
                             <h:outputText value="#{periodo.descripcion}"/>
                         </p:column>
 
-                        <p:column>
-                            <p:button outcome="/periodos/edit" icon="fa fa-pencil" value="#{msg.boton_editar}">
+
+                        <p:column style="width:44px;text-align: center">
+                            <p:button icon="fa fa-pencil" 
+                                      title="#{msg.boton_editar}"
+                                      outcome="/periodos/edit.xhtml?faces-redirect=true" 
+                                      styleClass="bg-d-green" >
                                 <f:param name="id" value="#{periodo.id}" />
                             </p:button>
                         </p:column>
 
-                        <p:column>
+                        <p:column style="width:44px;text-align: center">
                             <p:commandButton actionListener="#{periodoBacking.delete(periodo)}"
-                                             value="#{msg.boton_eliminar}"
+                                             title="#{msg.boton_eliminar}"
                                              update="periodos" 
-                                             icon="fa fa-trash">
+                                             icon="fa fa-trash"
+                                             class="btnTable"
+                                             styleClass="bg-d-red">
 
                                 <p:confirm header="#{msg.dialogo_confirmacion}"
                                            message="#{msg.confirmacion_periodo}"
                                            icon="fa fa-exclamation-triangle"/>
                             </p:commandButton>
                         </p:column>
+
+                        <ui:remove>
+                            <p:column>
+                                <p:button outcome="/periodos/edit" icon="fa fa-pencil" value="#{msg.boton_editar}">
+                                    <f:param name="id" value="#{periodo.id}" />
+                                </p:button>
+                            </p:column>
+
+                            <p:column>
+                                <p:commandButton actionListener="#{periodoBacking.delete(periodo)}"
+                                                 value="#{msg.boton_eliminar}"
+                                                 update="periodos" 
+                                                 icon="fa fa-trash">
+
+                                    <p:confirm header="#{msg.dialogo_confirmacion}"
+                                               message="#{msg.confirmacion_periodo}"
+                                               icon="fa fa-exclamation-triangle"/>
+                                </p:commandButton>
+                            </p:column>  
+                        </ui:remove>
+
 
                     </p:dataTable>
                     <p:button value="#{msg.periodo_nuevo}" outcome="/periodos/new"/>

@@ -12,7 +12,7 @@
         <ui:define name="content">
             <h1>#{msg.empresas}</h1>
 
-            <h:form >
+            <h:form id="fe">
 
                 <p:growl id="messages" autoUpdate="true" for="msgUsuario"></p:growl>
 
@@ -25,20 +25,31 @@
                              styleClass="table-listado-yellow"
                              emptyMessage="No hay elementos" 
                              filteredValue="#{empresaBacking.empresasFiltradas}"
-                             widgetVar="presupuestosDT">
+                             widgetVar="empresasDT">
 
                     <p:column headerText="#{msg.empresa_nombre}" 
-                              sortBy="#{empresa.nombre}">
+                              sortBy="#{empresa.nombre}"
+                              filterBy="#{empresa.nombre}"
+                              filterMatchMode="contains">
+
                         <h:outputText value="#{empresa.nombre}">
                         </h:outputText>
                     </p:column>
 
-                    <p:column headerText="#{msg.empresa_telefono}">
+                    <p:column headerText="#{msg.empresa_telefono}"
+                              sortBy="#{empresa.telefono}"
+                              filterBy="#{empresa.telefono}"
+                              filterMatchMode="contains">
+
                         <h:outputText value="#{empresa.telefono}"/>
                     </p:column>
 
 
-                    <p:column headerText="#{msg.empresa_descripcion}">
+                    <p:column headerText="#{msg.empresa_descripcion}"
+                              sortBy="#{empresa.descripcion}"
+                              filterBy="#{empresa.descripcion}"
+                              filterMatchMode="contains">
+
                         <h:outputText value="#{empresa.descripcion}"/>
                     </p:column>
 
@@ -61,7 +72,7 @@
                         </p:commandButton>
                     </p:column>
                 </p:dataTable>
-                
+
                 <p:button value="#{msg.empresa_nueva}" outcome="/empresas/new.xhtml?faces-redirect=true" styleClass="bg-df-blue color-white"/>
 
                 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">

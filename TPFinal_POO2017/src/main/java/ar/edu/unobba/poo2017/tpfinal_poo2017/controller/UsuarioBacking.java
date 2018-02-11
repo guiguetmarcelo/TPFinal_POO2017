@@ -34,8 +34,10 @@ public class UsuarioBacking implements Serializable {
 
     private Usuario usuario;
     private Usuario usuarioSeleccionado;
-    
+
+    private List<Usuario> listUsuariosActivos;
     private List<Usuario> usuariosFiltrados;
+
 
     @Inject
     private SessionBacking session;
@@ -56,8 +58,10 @@ public class UsuarioBacking implements Serializable {
     }
 
     public List<Usuario> getUsuariosActivos() {
-        setUsuariosFiltrados(usuarioDao.getUsuariosActivos());
-        return getUsuariosFiltrados();
+        if(getListUsuariosActivos() == null){
+            setListUsuariosActivos(usuarioDao.getUsuariosActivos());
+        }
+        return getListUsuariosActivos();
     }
 
     public String create() {
@@ -90,6 +94,8 @@ public class UsuarioBacking implements Serializable {
         } else {
             message = new FacesMessage(msg.getString("usuarios_eliminarUsuarioEliminado", usuario.getUsername()));
             usuarioDao.delete(usuario);
+            setListUsuariosActivos(null);
+            
 
         }
         context.addMessage("msgUsuario", message);
@@ -125,6 +131,14 @@ public class UsuarioBacking implements Serializable {
         this.usuarioSeleccionado = usuarioSeleccionado;
     }
 
+    private List<Usuario> getListUsuariosActivos() {
+        return listUsuariosActivos;
+    }
+
+    private void setListUsuariosActivos(List<Usuario> listUsuariosActivos) {
+        this.listUsuariosActivos = listUsuariosActivos;
+    }  
+    
     public List<Usuario> getUsuariosFiltrados() {
         return usuariosFiltrados;
     }
@@ -132,8 +146,6 @@ public class UsuarioBacking implements Serializable {
     public void setUsuariosFiltrados(List<Usuario> usuariosFiltrados) {
         this.usuariosFiltrados = usuariosFiltrados;
     }
-    
-    
 
     public SelectItem[] getRolesSelectMany() {
         SelectItem[] items = new SelectItem[RolUsuario.values().length];

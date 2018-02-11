@@ -26,6 +26,7 @@ public class PeriodoBacking implements Serializable {
     private static final long serialVersionUID = -6161957923995873981L;
     
     private Periodo periodo;
+    private List<Periodo> listPeriodos;
     private List<Periodo> periodosFiltrados;
     
     @PostConstruct
@@ -41,8 +42,10 @@ public class PeriodoBacking implements Serializable {
     private SessionBacking sessionBacking;
     
     public List<Periodo> getPeriodos(){
-        setPeriodosFiltrados(periodoDao.getPeriodos());
-        return getPeriodosFiltrados();
+        if(getListPeriodos() == null){
+            setListPeriodos(periodoDao.getPeriodos());
+        } 
+        return getListPeriodos();
     }
     
     public String create(){
@@ -65,6 +68,7 @@ public class PeriodoBacking implements Serializable {
     
     public void delete(Periodo periodo){
         periodoDao.delete(periodo);
+        setListPeriodos(null);
     }
 
     public Periodo getPeriodo() {
@@ -75,6 +79,16 @@ public class PeriodoBacking implements Serializable {
         this.periodo=periodo;
     }
 
+    private List<Periodo> getListPeriodos() {
+        return listPeriodos;
+    }
+
+    private void setListPeriodos(List<Periodo> listPeriodos) {
+        this.listPeriodos = listPeriodos;
+    }
+    
+    
+
     public List<Periodo> getPeriodosFiltrados() {
         return periodosFiltrados;
     }
@@ -83,5 +97,5 @@ public class PeriodoBacking implements Serializable {
         this.periodosFiltrados = periodosFiltrados;
     }
     
-    
+  
 }

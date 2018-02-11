@@ -12,7 +12,6 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -23,54 +22,59 @@ import javax.inject.Named;
  */
 @Named
 @ViewScoped
-public class SubcategoriaBacking implements Serializable{
+public class SubcategoriaBacking implements Serializable {
 
     private static final long serialVersionUID = -655351001157459375L;
-    
+
     private Subcategoria subcategoria;
+
+    private List<Subcategoria> listSubcategorias;
     private List<Subcategoria> subcategoriasFiltradas;
-    
+
     @PostConstruct
-    public void init(){
+    public void init() {
         this.subcategoria = new Subcategoria();
         this.subcategoria.setEmpresa(sessionBacking.getUsuario().getEmpresa());
     }
-    
-    @EJB 
+
+    @EJB
     private SubcategoriaDao subcategoriaDao;
-    
+
     @Inject
     private SessionBacking sessionBacking;
-    
-    public List<Subcategoria> getSubcategorias(){
-        setSubcategoriasFiltradas(subcategoriaDao.getSubcategorias());
-        return getSubcategoriasFiltradas();
+
+    public List<Subcategoria> getSubcategorias() {
+        if (getListSubcategorias() == null) {
+            setListSubcategorias(subcategoriaDao.getSubcategorias());
+        }
+        return getListSubcategorias();
     }
-    
-    public String create(){
-        try{
+
+    public String create() {
+        try {
             subcategoriaDao.create(subcategoria);
+
             return "/subcategorias/index?faces-redirect=true";
-        }catch(Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
-    
-    public String update(){
-        try{
+
+    public String update() {
+        try {
             subcategoriaDao.update(subcategoria);
             return "/subcategorias/index?faces-redirect=true";
-        }catch(Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
-    
-    public void delete(Subcategoria subcategoria){
-        try{
-        subcategoriaDao.delete(subcategoria);
-        }
-        catch(Exception e){
-            
+
+    public void delete(Subcategoria subcategoria) {
+        try {
+            subcategoriaDao.delete(subcategoria);
+            setListSubcategorias(null);
+        } catch (Exception e) {
+
         }
     }
 
@@ -82,6 +86,14 @@ public class SubcategoriaBacking implements Serializable{
         this.subcategoria = subcategoria;
     }
 
+    private List<Subcategoria> getListSubcategorias() {
+        return listSubcategorias;
+    }
+
+    private void setListSubcategorias(List<Subcategoria> listSubcategorias) {
+        this.listSubcategorias = listSubcategorias;
+    }
+
     public List<Subcategoria> getSubcategoriasFiltradas() {
         return subcategoriasFiltradas;
     }
@@ -89,7 +101,5 @@ public class SubcategoriaBacking implements Serializable{
     public void setSubcategoriasFiltradas(List<Subcategoria> subcategoriasFiltradas) {
         this.subcategoriasFiltradas = subcategoriasFiltradas;
     }
-    
-    
-    
+
 }
