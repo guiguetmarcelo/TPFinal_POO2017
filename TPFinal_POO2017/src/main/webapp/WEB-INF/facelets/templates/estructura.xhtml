@@ -57,74 +57,76 @@
     </h:head>
 
     <h:body>
+        <f:view>
 
 
-        <header class="">
-            <div id="top" class="col-12">
-                <div id="titulo_sistema">
-                    <span>#{msg.sistema}</span>
-                    <span>#{sessionBacking.empresa.nombre}</span>
+
+            <header class="">
+                <div id="top" class="col-12">
+                    <div id="titulo_sistema">
+                        <span>#{msg.sistema}</span>
+                        <span>#{sessionBacking.empresa.nombre}</span>
+                    </div>
+
+                    <ui:insert name="menu">
+                        <ui:decorate template="/WEB-INF/facelets/templates/menu.xhtml">
+                        </ui:decorate>  
+                    </ui:insert>
+
+                    <ui:insert name="top"></ui:insert>
                 </div>
+            </header>
 
-                <ui:insert name="menu">
-                    <ui:decorate template="/WEB-INF/facelets/templates/menu.xhtml">
-                    </ui:decorate>  
+
+            <c:if test="#{default}">
+                <ui:fragment>
+                    <section class="container" role="main">
+                        <div class="row justify-content-center">  
+                            <div class="col-12 default-container">
+                                <ui:insert name="content"></ui:insert>
+
+                            </div>
+                        </div>  
+                    </section>
+                </ui:fragment>
+            </c:if>
+
+            <c:if test="#{not default}">
+                <section class="container-fluid" role="main">
+                    <ui:insert name="content" ></ui:insert>   
+                </section>
+
+            </c:if>
+
+
+            <footer class="">
+                <ui:insert name="bottom">
+                    <div id="bottom" class="container-fluid">
+                        <div class="row justify-content-center">
+                            <div class="col-auto">
+                                <figure>
+                                    <h:graphicImage library="images" name="escudo.png"></h:graphicImage>
+                                </figure>
+
+
+                            </div>
+
+                            <div class="col-auto align-self-center">   
+                                <h3>#{msg.p_autores}</h3>
+                                <p>Sebastian Adorno</p>
+                                <p>Marcelo Emanuel Guiguet</p>                       
+                            </div>
+
+                            <div class="col-12" role="end">
+                                <p>Programación Orientada a Objetos (POO) | Ingeniería en Informática | UNNOBA</p>
+                                <p>Año 2017</p>
+                            </div>
+
+                        </div> 
+                    </div>
                 </ui:insert>
 
-                <ui:insert name="top"></ui:insert>
-            </div>
-        </header>
-
-
-        <c:if test="#{default}">
-            <ui:fragment>
-                <section class="container" role="main">
-                    <div class="row justify-content-center">  
-                        <div class="col-12 default-container">
-                            <ui:insert name="content"></ui:insert>
-
-                        </div>
-                    </div>  
-                </section>
-            </ui:fragment>
-        </c:if>
-
-        <c:if test="#{not default}">
-            <section class="container-fluid" role="main">
-                <ui:insert name="content" ></ui:insert>   
-            </section>
-
-        </c:if>
-
-
-        <footer class="">
-            <ui:insert name="bottom">
-                <div id="bottom" class="container-fluid">
-                    <div class="row justify-content-center">
-                        <div class="col-auto">
-                            <figure>
-                                <h:graphicImage library="images" name="escudo.png"></h:graphicImage>
-                            </figure>
-
-
-                        </div>
-
-                        <div class="col-auto align-self-center">   
-                            <h3>#{msg.p_autores}</h3>
-                            <p>Sebastian Adorno</p>
-                            <p>Marcelo Emanuel Guiguet</p>                       
-                        </div>
-
-                        <div class="col-12" role="end">
-                            <p>Programación Orientada a Objetos (POO) | Ingeniería en Informática | UNNOBA</p>
-                            <p>Año 2017</p>
-                        </div>
-
-                    </div> 
-                </div>
-            </ui:insert>
-
-        </footer>
+            </footer>
 
 
 
@@ -132,7 +134,7 @@
 
 
 
-
+        </f:view>
     </h:body>
 
 </html>

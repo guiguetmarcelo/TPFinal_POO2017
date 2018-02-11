@@ -195,15 +195,25 @@ section[role=main] {
 
 .table-listado-yellow {
   margin-bottom: 15px; }
+  .table-listado-yellow * {
+    outline: none; }
+  .table-listado-yellow *:focus {
+    outline: none; }
+  .table-listado-yellow *::-moz-focus-inner {
+    border: 0; }
   .table-listado-yellow table thead tr {
     background: #ffc107; }
     .table-listado-yellow table thead tr th {
       background: #ffc107;
       border-color: #ba8b00; }
-      .table-listado-yellow table thead tr th input.ui-column-filter {
+      .table-listado-yellow table thead tr th input.ui-column-filter, .table-listado-yellow table thead tr th .ui-column-customfilter span input.ui-inputfield, .table-listado-yellow table thead tr th .ui-column-customfilter div.ui-selectcheckboxmenu {
         width: 100%;
         box-sizing: border-box;
         margin-top: 5px; }
+      .table-listado-yellow table thead tr th .ui-column-customfilter label {
+        margin: 0px; }
+      .table-listado-yellow table thead tr th .ui-column-customfilter div.ui-selectcheckboxmenu:focus {
+        outline: none; }
   .table-listado-yellow div.ui-paginator {
     background: rgba(255, 206, 58, 0.5); }
   .table-listado-yellow .ui-paginator a, .table-listado-yellow .ui-paginator select {

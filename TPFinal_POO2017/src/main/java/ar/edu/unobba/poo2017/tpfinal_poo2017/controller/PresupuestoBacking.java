@@ -26,6 +26,7 @@ public class PresupuestoBacking implements Serializable {
     private static final long serialVersionUID = -5125260839458783514L;
 
     private Presupuesto presupuesto;
+    private List<Presupuesto> presupuestosFiltrados;
 
     @EJB
     private PresupuestoDao presupuestoDao;
@@ -81,4 +82,13 @@ public class PresupuestoBacking implements Serializable {
         this.presupuesto = presupuesto;
     }
 
+    public List<Presupuesto> getPresupuestosFiltrados() {
+        return presupuestosFiltrados;
+    }
+
+    public void setPresupuestosFiltrados(List<Presupuesto> presupuestosFiltrados) {
+        this.presupuestosFiltrados = presupuestosFiltrados;
+    }
+
+    
 }

@@ -33,6 +33,9 @@ public class GastoBacking implements Serializable {
     private static final long serialVersionUID = 3153075978563526072L;
 
     private Gasto gasto;
+    private Gasto gastoSeleccionado;
+    private List<Gasto> gastosFiltrados;
+    private List<Gasto> listGastos;
 
     @EJB
     private GastoDao gastoDao;
@@ -78,8 +81,21 @@ public class GastoBacking implements Serializable {
     }
 
     public List<Gasto> getGastos() {
-        return gastoDao.getGastos();
+        if(getListGastos() == null)
+        {
+            setListGastos(gastoDao.getGastos());
+        }
+        return getListGastos();
     }
+
+    public Gasto getGastoSeleccionado() {
+        return gastoSeleccionado;
+    }
+
+    public void setGastoSeleccionado(Gasto gastoSeleccionado) {
+        this.gastoSeleccionado = gastoSeleccionado;
+    }
+    
     
      public Long getCantidadTotal(){
         return gastoDao.getCantidad();
@@ -88,5 +104,23 @@ public class GastoBacking implements Serializable {
     public Long getCantidad(){
         return gastoDao.getCantidad(sessionBacking.getEmpresa());
     }
+
+    public List<Gasto> getGastosFiltrados() {
+        return gastosFiltrados;
+    }
+
+    public void setGastosFiltrados(List<Gasto> gastosFiltrados) {
+        this.gastosFiltrados = gastosFiltrados;
+    }
+
+    public List<Gasto> getListGastos() {
+        return listGastos;
+    }
+
+    public void setListGastos(List<Gasto> listGastos) {
+        this.listGastos = listGastos;
+    }
+    
+    
 
 }

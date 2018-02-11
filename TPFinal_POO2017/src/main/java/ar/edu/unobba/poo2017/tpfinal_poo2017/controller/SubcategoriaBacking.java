@@ -28,6 +28,7 @@ public class SubcategoriaBacking implements Serializable{
     private static final long serialVersionUID = -655351001157459375L;
     
     private Subcategoria subcategoria;
+    private List<Subcategoria> subcategoriasFiltradas;
     
     @PostConstruct
     public void init(){
@@ -79,6 +80,15 @@ public class SubcategoriaBacking implements Serializable{
     public void setSubcategoria(Subcategoria subcategoria) {
         this.subcategoria = subcategoria;
     }
+
+    public List<Subcategoria> getSubcategoriasFiltradas() {
+        return subcategoriasFiltradas;
+    }
+
+    public void setSubcategoriasFiltradas(List<Subcategoria> subcategoriasFiltradas) {
+        this.subcategoriasFiltradas = subcategoriasFiltradas;
+    }
+    
     
     
 }

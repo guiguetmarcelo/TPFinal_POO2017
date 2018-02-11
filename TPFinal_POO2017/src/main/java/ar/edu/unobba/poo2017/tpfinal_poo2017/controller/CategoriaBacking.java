@@ -28,6 +28,7 @@ public class CategoriaBacking implements Serializable {
     private static final long serialVersionUID = -9078581278059597718L;
     
     private Categoria categoria;
+    private List<Categoria> categoriasFiltradas;
 
     @PostConstruct
     public void init() {
@@ -80,4 +81,13 @@ public class CategoriaBacking implements Serializable {
         this.categoria = categoria;
     }
 
+    public List<Categoria> getCategoriasFiltradas() {
+        return categoriasFiltradas;
+    }
+
+    public void setCategoriasFiltradas(List<Categoria> categoriasFiltradas) {
+        this.categoriasFiltradas = categoriasFiltradas;
+    }
+
+    
 }

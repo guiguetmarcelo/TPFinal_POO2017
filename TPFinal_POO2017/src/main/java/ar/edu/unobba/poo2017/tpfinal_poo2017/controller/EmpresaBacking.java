@@ -26,6 +26,7 @@ public class EmpresaBacking implements Serializable{
     private static final long serialVersionUID = -7254678850848580969L;
     
     private Empresa empresa;
+    private List<Empresa> empresasFiltradas;
 
     @PostConstruct
     public void init() {
@@ -72,5 +73,14 @@ public class EmpresaBacking implements Serializable{
         this.empresa = empresa;
     }
 
+    public List<Empresa> getEmpresasFiltradas() {
+        return empresasFiltradas;
+    }
+
+    public void setEmpresasFiltradas(List<Empresa> empresasFiltradas) {
+        this.empresasFiltradas = empresasFiltradas;
+    }
+
+    
     
 }

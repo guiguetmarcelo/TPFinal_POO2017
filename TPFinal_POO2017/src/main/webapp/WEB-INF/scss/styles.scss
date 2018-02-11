@@ -283,7 +283,17 @@ section[role=main]{
 }
 
 .table-listado-yellow{
+    *{
+        outline: none;
+    }
+    *:focus{
+        outline: none;
+    }
+    *::-moz-focus-inner{
+        border: 0;
+    }
     table{
+
         tr{
 
         }
@@ -294,10 +304,18 @@ section[role=main]{
                     background: $yellow;
                     border-color: darken($yellow, 15%);
 
-                    input.ui-column-filter{
+                    input.ui-column-filter, .ui-column-customfilter span input.ui-inputfield, .ui-column-customfilter div.ui-selectcheckboxmenu{
                         width: 100%;
                         box-sizing: border-box;
                         margin-top: 5px;
+                    }
+                    .ui-column-customfilter{
+                        label{
+                            margin: 0px;
+                        }
+                        div.ui-selectcheckboxmenu:focus{
+                            outline: none;
+                        }
                     }
                 }
             }

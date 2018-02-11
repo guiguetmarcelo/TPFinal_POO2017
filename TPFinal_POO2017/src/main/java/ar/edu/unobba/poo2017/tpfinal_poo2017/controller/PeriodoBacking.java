@@ -26,6 +26,7 @@ public class PeriodoBacking implements Serializable {
     private static final long serialVersionUID = -6161957923995873981L;
     
     private Periodo periodo;
+    private List<Periodo> periodosFiltrados;
     
     @PostConstruct
     public void init(){
@@ -71,6 +72,14 @@ public class PeriodoBacking implements Serializable {
 
     public void setPeriodo(Periodo periodo) {
         this.periodo=periodo;
+    }
+
+    public List<Periodo> getPeriodosFiltrados() {
+        return periodosFiltrados;
+    }
+
+    public void setPeriodosFiltrados(List<Periodo> periodosFiltrados) {
+        this.periodosFiltrados = periodosFiltrados;
     }
     
     

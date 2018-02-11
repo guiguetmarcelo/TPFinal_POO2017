@@ -19,33 +19,83 @@
                 <p:dataTable id="gastos"
                              value="#{gastoBacking.gastos}" 
                              var="gasto"
-                             styleClass="table-listado-yellow">
+                             paginator="true"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="5,10,15"
+                             styleClass="table-listado-yellow"
+                             emptyMessage="No hay elementos" 
+                             filteredValue="#{gastoBacking.gastosFiltrados}"
+                             widgetVar="gastosDT">
 
-                    <p:column headerText="#{msg.gastos_fecha}">
+                    <p:column headerText="#{msg.gastos_fecha}"
+                              sortBy="#{gasto.fecha}"
+                              filterBy="#{gasto.fecha}"
+                              filterMatchMode="contains">
+
+                        <f:facet name="filter">
+                            <p:calendar id="cal1" pattern="dd/MM/yyyy">
+                                <p:ajax event="dateSelect" oncomplete="PF('gastosDT').filter()"/>
+                                <p:ajax event="change" oncomplete="PF('gastosDT').filter()"/>
+                            </p:calendar>
+                        </f:facet>
+
                         <h:outputText value="#{gasto.fecha}">
                             <f:convertDateTime pattern="dd/MM/yyyy" />
                         </h:outputText>
                     </p:column>
 
-                    <p:column headerText="#{msg.gastos_importe}">
-                        <h:outputText value="#{gasto.importe}"/>
+                    <p:column headerText="#{msg.gastos_importe}"
+                              sortBy="#{gasto.importe}"
+                              filterBy="#{gasto.importe}"
+                              filterMatchMode="contains">
+
+
+                        <h:outputText value="#{gasto.importe}">
+                            <f:convertNumber currencySymbol="$" type="currency" locale="es_AR"  /> 
+
+                        </h:outputText>
                     </p:column>
 
-                    <p:column headerText="#{msg.gastos_subcategoria}">
+                    <p:column headerText="#{msg.gastos_subcategoria}"
+                              sortBy="#{gasto.subcategoria.nombre}"
+                              filterBy="#{gasto.subcategoria.nombre}"
+                              filterMatchMode="in">
+
+                        <f:facet name="filter">
+                            <p:selectCheckboxMenu label="Subcategorias"  
+                                                  filter="true" filterMatchMode="contains">
+                                <f:selectItems value="#{subcategoriaBacking.subcategorias}" 
+                                               var="subcat" 
+                                               itemLabel="#{subcat.nombre}" 
+                                               itemValue="#{subcat.nombre}"/> 
+                                <p:ajax event="change" oncomplete="PF('gastosDT').filter()" />
+                                <p:ajax event="toggleSelect" oncomplete="PF('gastosDT').filter()" />
+                            </p:selectCheckboxMenu>
+                        </f:facet>
+
                         <h:outputText value="#{gasto.subcategoria.nombre}"/>
                     </p:column>
 
-                    <p:column>
-                        <p:button outcome="/gastos/edit" icon="fa fa-pencil" value="#{msg.boton_editar}">
+                    <p:column style="width:44px;text-align: center">
+                        <p:commandButton update="gastos_form_index" oncomplete="PF('gastoDialog').show()" icon="fa fa-search" title="Ver detalles" styleClass="bg-d-blue">
+                            <f:setPropertyActionListener value="#{gasto}" target="#{gastoBacking.gastoSeleccionado}" />
+                        </p:commandButton>
+                    </p:column>
+
+                    <p:column style="width:44px;text-align: center">
+                        <p:button icon="fa fa-pencil" title="#{msg.boton_editar}" outcome="/gastos/edit.xhtml?faces-redirect=true" styleClass="bg-d-green" >
                             <f:param name="id" value="#{gasto.id}" />
                         </p:button>
                     </p:column>
 
-                    <p:column>
+                    <p:column style="width:44px;text-align: center">
                         <p:commandButton actionListener="#{gastoBacking.delete(gasto)}"
-                                         value="#{msg.boton_eliminar}"
+                                         title="#{msg.boton_eliminar}"
                                          update="gastos" 
-                                         icon="fa fa-trash">
+                                         icon="fa fa-trash"
+                                         class="btnTable"
+                                         styleClass="bg-d-red">
+
                             <p:confirm header="#{msg.dialogo_confirmacion}"
                                        message="#{unnoba:textFormat(msg.gastos_eliminarConfirmacionMensaje, gasto.id)}"
                                        icon="fa fa-exclamation-triangle"/>
@@ -60,6 +110,12 @@
                     <p:commandButton value="#{msg.boton_si}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
                     <p:commandButton value="#{msg.boton_no}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                 </p:confirmDialog>
+
+                <p:dialog header="#{msg.usuarios_info}" widgetVar="gastoDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                    <p:outputPanel id="gastoDetail" style="text-align:center;">
+
+                    </p:outputPanel>
+                </p:dialog>
             </h:form>
         </ui:define>
     </ui:composition>

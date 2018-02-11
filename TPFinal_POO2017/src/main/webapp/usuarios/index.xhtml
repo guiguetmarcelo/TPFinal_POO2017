@@ -46,7 +46,11 @@
                             </ui:remove>
                           
                             
-                            <p:column headerText="#{msg.usuarios_username}" sortBy="#{usuario.username}" filterBy="#{usuario.username}" filterMatchMode="contains">
+                            <p:column headerText="#{msg.usuarios_username}" 
+                                      sortBy="#{usuario.username}" 
+                                      filterBy="#{usuario.username}" 
+                                      filterMatchMode="contains">
+                                
                                 <h:outputText value="#{usuario.username}"/>
                             </p:column>
 
