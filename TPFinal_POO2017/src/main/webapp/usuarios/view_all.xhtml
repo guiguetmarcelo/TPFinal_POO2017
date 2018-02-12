@@ -17,22 +17,138 @@
 
                 <p:dataTable id="usuarios"
                              value="#{usuarioBacking.usuarios}" 
-                             var="usuario">
+                             var="usuario"
+                             reflow="true" 
+                             rows="5"
+                             paginator="true"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="5,10,15"
+                             class="dataTableUsuarios"
+                             styleClass="table-listado-yellow"
+                             emptyMessage="No cars found with given criteria" 
+                             filteredValue="#{usuarioBacking.usuariosFiltrados}"
+                             widgetVar="usuariosDT">
 
-                    <p:column headerText="#{msg.usuarios_username}">
+                    <p:column headerText="#{msg.usuarios_username}"
+                              sortBy="#{usuario.username}"
+                              filterBy="#{usuario.username}"
+                              filterMatchMode="contains">
+
                         <h:outputText value="#{usuario.username}"/>
                     </p:column>
 
-                    <p:column headerText="#{msg.usuarios_password}">
-                        <h:outputText value="#{usuario.password}"/>
+                    <ui:remove>
+                        <p:column headerText="#{msg.usuarios_nombre}"
+                                  sortBy="#{usuario.nombre}"
+                                  filterBy="#{usuario.nombre}"
+                                  filterMatchMode="contains">
+
+                            <h:outputText value="#{usuario.nombre}"/>
+                        </p:column>
+
+                        <p:column headerText="#{msg.usuarios_apellido}"
+                                  sortBy="#{usuario.apellido}"
+                                  filterBy="#{usuario.apellido}"
+                                  filterMatchMode="contains">
+
+                            <h:outputText value="#{usuario.apellido}"/>
+                        </p:column> 
+                    </ui:remove>
+
+
+                    <p:column headerText="#{msg.usuarios_rol}"
+                              sortBy="#{usuario.rol}"
+                              filterBy="#{usuario.rol}"
+                              filterMatchMode="contains">
+
+                        <h:outputText value="#{usuario.rol}"/>
                     </p:column>
 
-                    <p:column headerText="#{msg.usuarios_estado}">
+                    <p:column headerText="#{msg.usuarios_empresa}"
+                              sortBy="#{usuario.empresa.nombre}"
+                              filterBy="#{usuario.empresa.nombre}"
+                              filterMatchMode="in">
+
+                        <f:facet name="filter">
+                            <p:selectCheckboxMenu label="#{msg.empresas}"  
+                                                  filter="true" filterMatchMode="contains">
+                                <f:selectItems value="#{empresaBacking.empresas}" 
+                                               var="emp" 
+                                               itemLabel="#{emp.nombre}" 
+                                               itemValue="#{emp.nombre}"/> 
+                                <p:ajax event="change" oncomplete="PF('usuariosDT').filter()" />
+                                <p:ajax event="toggleSelect" oncomplete="PF('usuariosDT').filter()" />
+                            </p:selectCheckboxMenu>
+                        </f:facet>
+
+                        <h:outputText value="#{usuario.empresa.nombre}"/>
+                    </p:column>
+
+                    <p:column headerText="#{msg.usuarios_estado}"
+                              sortBy="#{usuario.estado}"
+                              filterBy="#{usuario.estado}"
+                              filterMatchMode="in">
+
+                        <f:facet name="filter">
+                            <p:selectCheckboxMenu label="#{msg.usuarios_estado}">
+                                <f:selectItem itemLabel="Activos" itemValue="Activo" />
+                                <f:selectItem itemLabel="Borrados" itemValue="Borrado" />
+
+                                <p:ajax event="change" oncomplete="PF('usuariosDT').filter()" />
+                                <p:ajax event="toggleSelect" oncomplete="PF('usuariosDT').filter()" />
+                            </p:selectCheckboxMenu>
+                        </f:facet>
+
                         <h:outputText value="#{usuario.estado}"/>
                     </p:column>
+
+                    <p:column style="width:44px;text-align: center">
+                        <p:commandButton update="usuarios_form_index" 
+                                         oncomplete="PF('usuarioDialog').show()" 
+                                         icon="fa fa-search" 
+                                         title="Ver detalles" 
+                                         styleClass="bg-d-blue">
+
+                            <f:setPropertyActionListener value="#{usuario}" target="#{usuarioBacking.usuarioSeleccionado}" />
+                        </p:commandButton>
+                    </p:column>
+
+                    <p:column style="width:44px;text-align: center">
+                        <p:button icon="fa fa-pencil" title="#{msg.usuarios_editarTitle}" 
+                                  outcome="/usuarios/edit.xhtml?faces-redirect=true" 
+                                  styleClass="bg-d-green"
+                                  rendered="#{usuario.isActivo()}">
+                            <f:param name="id" value="#{usuario.id}" />
+                        </p:button>
+                    </p:column>
+
+                    <p:column style="width:44px;text-align: center">
+                        <p:commandButton actionListener="#{usuarioBacking.delete(usuario)}"
+                                         title="#{msg.usuarios_eliminar}"
+                                         update="usuarios" 
+                                         icon="fa fa-trash"
+                                         class="btnTable"
+                                         styleClass="bg-d-red"
+                                         rendered="#{usuario.isActivo()}">
+
+                            <p:confirm header="#{msg.dialogo_confirmacion}"
+                                       message="#{unnoba:textFormat(msg.usuarios_eliminarConfirmacionMensaje, usuario.username)}"
+                                       icon="fa fa-exclamation-triangle"/>
+                        </p:commandButton>
+                    </p:column>
+
                 </p:dataTable>
 
+                <p:dialog header="#{msg.usuarios_info}" widgetVar="usuarioDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                    <p:outputPanel id="usuarioDetail" style="text-align:center;">
+                        <ui:decorate template="/WEB-INF/facelets/templates/objects-views/usuario.xhtml">
+
+                        </ui:decorate>
+                    </p:outputPanel>
+                </p:dialog>
+
             </h:form>
+
         </ui:define>
     </ui:composition>
 </html>
