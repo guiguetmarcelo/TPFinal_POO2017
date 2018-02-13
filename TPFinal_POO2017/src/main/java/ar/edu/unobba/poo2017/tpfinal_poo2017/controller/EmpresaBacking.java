@@ -59,6 +59,10 @@ public class EmpresaBacking implements Serializable {
             empresaDao.create(empresa);
             return "/empresas/index?faces-redirect=true";
         } catch (Exception e) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            FacesMessage message;
+            message = new FacesMessage(msg.getString("empresas_eliminarASiMismo"));
+            context.addMessage("msgEmpresa", message);
             return null;
         }
     }
@@ -87,7 +91,7 @@ public class EmpresaBacking implements Serializable {
                 setListEmpresas(null);
             }
             context.addMessage("msgEmpresa", message);
-            
+
         } catch (Exception e) {
         }
     }
