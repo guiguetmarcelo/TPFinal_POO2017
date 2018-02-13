@@ -11,6 +11,8 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -67,8 +69,19 @@ public class PeriodoBacking implements Serializable {
     }
     
     public void delete(Periodo periodo){
+        
+        try{
         periodoDao.delete(periodo);
         setListPeriodos(null);
+        
+ 
+        } catch (Exception e) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            FacesMessage message;
+            message = new FacesMessage("ERROR al eliminar la empresa. Posible causa: La empresa esta en uso");
+            context.addMessage("msgEmpresa", message);
+            
+        }
     }
 
     public Periodo getPeriodo() {
