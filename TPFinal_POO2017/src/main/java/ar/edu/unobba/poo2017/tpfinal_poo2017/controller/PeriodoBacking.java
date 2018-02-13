@@ -79,7 +79,7 @@ public class PeriodoBacking implements Serializable {
             FacesContext context = FacesContext.getCurrentInstance();
             FacesMessage message;
             message = new FacesMessage("ERROR al eliminar la empresa. Posible causa: La empresa esta en uso");
-            context.addMessage("msgEmpresa", message);
+            context.addMessage("msgPeriodo", message);
             
         }
     }

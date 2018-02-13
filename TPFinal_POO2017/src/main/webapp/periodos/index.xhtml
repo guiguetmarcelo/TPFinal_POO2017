@@ -11,6 +11,9 @@
         <ui:define name="content">
             <f:view contentType="text/html">
                 <h:form>
+                    
+                     <p:growl id="messages" autoUpdate="true" for="msgPeriodo"></p:growl>
+                    
                     <p:dataTable id="periodos"
                                  value="#{periodoBacking.periodos}" 
                                  var="periodo"
