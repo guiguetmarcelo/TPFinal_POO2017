@@ -45,7 +45,7 @@ public class SubcategoriaBacking implements Serializable {
 
     public List<Subcategoria> getSubcategorias() {
         if (getListSubcategorias() == null) {
-            setListSubcategorias(subcategoriaDao.getSubcategorias());
+            setListSubcategorias(subcategoriaDao.getSubcategorias(sessionBacking.getEmpresa()));
         }
         return getListSubcategorias();
     }

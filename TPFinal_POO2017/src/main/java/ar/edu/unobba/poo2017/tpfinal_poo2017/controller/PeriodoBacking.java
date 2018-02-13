@@ -43,7 +43,7 @@ public class PeriodoBacking implements Serializable {
     
     public List<Periodo> getPeriodos(){
         if(getListPeriodos() == null){
-            setListPeriodos(periodoDao.getPeriodos());
+            setListPeriodos(periodoDao.getPeriodos(sessionBacking.getEmpresa()));
         } 
         return getListPeriodos();
     }

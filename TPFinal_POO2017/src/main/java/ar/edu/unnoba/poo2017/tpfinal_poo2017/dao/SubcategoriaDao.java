@@ -5,11 +5,12 @@
  */
 package ar.edu.unnoba.poo2017.tpfinal_poo2017.dao;
 
+import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Empresa;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Subcategoria;
-import ar.edu.unobba.poo2017.tpfinal_poo2017.controller.SessionBacking;
+
 import java.util.List;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
+
 import javax.persistence.Query;
 
 /**
@@ -18,17 +19,14 @@ import javax.persistence.Query;
  */
 @Stateless
 public class SubcategoriaDao extends AbstractDAO<Subcategoria> {
-    
+
     public SubcategoriaDao() {
         super(Subcategoria.class);
     }
-    
-    @Inject
-    private SessionBacking sessionBacking;
-    
-    public List<Subcategoria> getSubcategorias(){
-        Query query = em.createNamedQuery("subcategoria.activas").setParameter("empresa", sessionBacking.getUsuario().getEmpresa());
+
+    public List<Subcategoria> getSubcategorias(Empresa empresa) {
+        Query query = em.createNamedQuery("subcategoria.activas").setParameter("empresa", empresa);
         return query.getResultList();
     }
-    
+
 }

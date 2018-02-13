@@ -6,11 +6,10 @@
 package ar.edu.unnoba.poo2017.tpfinal_poo2017.dao;
 
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Categoria;
-import ar.edu.unobba.poo2017.tpfinal_poo2017.controller.SessionBacking;
+import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Empresa;
 import java.util.List;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.persistence.Query;
 
 /**
@@ -23,12 +22,9 @@ public class CategoriaDao extends AbstractDAO<Categoria> {
     public CategoriaDao() {
         super(Categoria.class);
     }
-        
-    @Inject 
-    private SessionBacking sessionBacking;
     
-    public List<Categoria> getCategorias(){
-        Query query = em.createNamedQuery("categoria.activas").setParameter("empresa", sessionBacking.getUsuario().getEmpresa());
+    public List<Categoria> getCategorias(Empresa empresa){
+        Query query = em.createNamedQuery("categoria.activas").setParameter("empresa", empresa);
          return query.getResultList();
     }
     

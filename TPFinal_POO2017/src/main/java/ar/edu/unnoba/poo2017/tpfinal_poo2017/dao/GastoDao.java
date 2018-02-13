@@ -17,7 +17,6 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.Query;
 import javax.persistence.TemporalType;
-
 /**
  *
  * @author Sebastian
@@ -33,42 +32,42 @@ public class GastoDao extends AbstractDAO<Gasto>{
     @Inject
     private SessionBacking sessionBacking;
     
-    public List<Gasto> getGastos(){
-        Query query = em.createNamedQuery("gastos.disponibles").setParameter("empresa", sessionBacking.getUsuario().getEmpresa());
+    public List<Gasto> getGastos(Empresa empresa){
+        Query query = em.createNamedQuery("gastos.disponibles").setParameter("empresa", empresa);
         return query.getResultList();
     }
     
-    public List<Gasto> getGastosPeriodo(Periodo periodo){
+    public List<Gasto> getGastosPeriodo(Periodo periodo, Empresa empresa){
         
         Query query = em.createNamedQuery("gastos.porperiodo");
-         query.setParameter("empresa", sessionBacking.getUsuario().getEmpresa());
+         query.setParameter("empresa", empresa);
         query.setParameter("fechaDesde", periodo.getFechaDesde(),TemporalType.TIMESTAMP);
         query.setParameter("fechaHasta", periodo.getFechaHasta(),TemporalType.TIMESTAMP);
         return query.getResultList();
     }
     
-    public List<Gasto> getGastosCategoria(Categoria categoria){
+    public List<Gasto> getGastosCategoria(Categoria categoria, Empresa empresa){
         
         Query query = em.createNamedQuery("gastos.porcategoria");
-         query.setParameter("empresa", sessionBacking.getUsuario().getEmpresa());
+         query.setParameter("empresa", empresa);
         query.setParameter("categoria", categoria);
         return query.getResultList();
     }
     
-    public List<Gasto> getGastosPeriodoCategoria(Periodo periodo, Categoria categoria){
+    public List<Gasto> getGastosPeriodoCategoria(Periodo periodo, Categoria categoria, Empresa empresa){
         
         Query query = em.createNamedQuery("gastos.periodo_y_categoria");
-        query.setParameter("empresa", sessionBacking.getUsuario().getEmpresa());
+        query.setParameter("empresa", empresa);
         query.setParameter("fechaDesde", periodo.getFechaDesde(),TemporalType.TIMESTAMP);
         query.setParameter("fechaHasta", periodo.getFechaHasta(),TemporalType.TIMESTAMP);
         query.setParameter("categoria", categoria);
         return query.getResultList();
     }
     
-     public List<Gasto> getGastosPeriodoSubcategoria(Periodo periodo, Subcategoria subcategoria){
+     public List<Gasto> getGastosPeriodoSubcategoria(Periodo periodo, Subcategoria subcategoria, Empresa empresa){
         
         Query query = em.createNamedQuery("gastos.periodo_y_categoria");
-        query.setParameter("empresa", sessionBacking.getUsuario().getEmpresa());
+        query.setParameter("empresa", empresa);
         query.setParameter("fechaDesde", periodo.getFechaDesde(),TemporalType.TIMESTAMP);
         query.setParameter("fechaHasta", periodo.getFechaHasta(),TemporalType.TIMESTAMP);
         query.setParameter("subcategoria", subcategoria);

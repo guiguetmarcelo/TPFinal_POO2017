@@ -6,21 +6,14 @@
 package ar.edu.unobba.poo2017.tpfinal_poo2017.controller;
 
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.dao.GastoDao;
-import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Categoria;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Gasto;
-import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Periodo;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import org.primefaces.model.chart.Axis;
-import org.primefaces.model.chart.AxisType;
-import org.primefaces.model.chart.LineChartModel;
-import org.primefaces.model.chart.LineChartSeries;
 
 /**
  *
@@ -84,7 +77,7 @@ public class GastoBacking implements Serializable {
     public List<Gasto> getGastos() {
         if(getListGastos() == null)
         {
-            setListGastos(gastoDao.getGastos());
+            setListGastos(gastoDao.getGastos(sessionBacking.getEmpresa()));
         }
         return getListGastos();
     }

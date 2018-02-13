@@ -46,7 +46,7 @@ public class PresupuestoBacking implements Serializable {
 
     public List<Presupuesto> getPresupuestos() {
         if (getListPresupuestos() == null) {
-            setListPresupuestos(presupuestoDao.getPresupuestos());
+            setListPresupuestos(presupuestoDao.getPresupuestos(sessionBacking.getEmpresa()));
         }
         return getListPresupuestos();
     }

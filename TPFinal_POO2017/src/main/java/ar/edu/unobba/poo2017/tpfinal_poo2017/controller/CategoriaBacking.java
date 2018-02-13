@@ -11,11 +11,9 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.Query;
 
 /**
  *
@@ -48,7 +46,7 @@ public class CategoriaBacking implements Serializable {
 
     public List<Categoria> getCategorias() {
         if (getListCategorias() == null) {
-            setListCategorias(categoriaDao.getCategorias());
+            setListCategorias(categoriaDao.getCategorias(sessionBacking.getEmpresa()));
         }
         return getListCategorias();
 

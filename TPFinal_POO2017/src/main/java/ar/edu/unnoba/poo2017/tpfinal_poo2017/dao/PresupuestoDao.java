@@ -31,19 +31,19 @@ public class PresupuestoDao extends AbstractDAO<Presupuesto> {
     @Inject
     private SessionBacking sessionBacking;
     
-    public List<Presupuesto> getPresupuestos(){
-        Query query = em.createNamedQuery("presupuestos.disponibles").setParameter("empresa", sessionBacking.getUsuario().getEmpresa());
+    public List<Presupuesto> getPresupuestos(Empresa empresa){
+        Query query = em.createNamedQuery("presupuestos.disponibles").setParameter("empresa", empresa);
         return query.getResultList();
     }
     
-    public List<Presupuesto> getPresupuestosCategoria(Categoria categoria){
-        Query query= em.createNamedQuery("presupuestos.porcategoria").setParameter("empresa", sessionBacking.getUsuario().getEmpresa());
+    public List<Presupuesto> getPresupuestosCategoria(Categoria categoria,Empresa empresa){
+        Query query= em.createNamedQuery("presupuestos.porcategoria").setParameter("empresa", empresa);
         query.setParameter("categoria", categoria);
         return query.getResultList();
     }
     
-     public List<Presupuesto> getPresupuestosSubcategoriaPeriodo(Periodo periodo, Subcategoria subcategoria){
-        Query query = em.createNamedQuery("presupuestos.porsubcategoriaperiodo").setParameter("empresa", sessionBacking.getUsuario().getEmpresa());
+     public List<Presupuesto> getPresupuestosSubcategoriaPeriodo(Periodo periodo, Subcategoria subcategoria,Empresa empresa){
+        Query query = em.createNamedQuery("presupuestos.porsubcategoriaperiodo").setParameter("empresa", empresa);
         query.setParameter("subcategoria", subcategoria);
         query.setParameter("periodo", periodo);
         return query.getResultList();
