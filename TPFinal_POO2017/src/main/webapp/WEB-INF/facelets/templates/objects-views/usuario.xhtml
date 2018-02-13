@@ -13,18 +13,14 @@ and open the template in the editor.
       xmlns:jsf="http://xmlns.jcp.org/jsf">
 
     <p:panelGrid  columns="2" rendered="#{not empty usuarioBacking.usuarioSeleccionado}" columnClasses="label,value">
-
-        <h:outputText value="Id:" />
-        <h:outputText value="#{usuarioBacking.usuarioSeleccionado.id}" />    
+        <h:outputText value="Email" />
+        <h:outputText value="#{usuarioBacking.usuarioSeleccionado.email}" />
 
         <h:outputText value="Nombre" />
         <h:outputText value="#{usuarioBacking.usuarioSeleccionado.nombre}" />
 
         <h:outputText value="Apellido" />
         <h:outputText value="#{usuarioBacking.usuarioSeleccionado.apellido}" />
-
-        <h:outputText value="Email" />
-        <h:outputText value="#{usuarioBacking.usuarioSeleccionado.email}" />
 
         <h:outputText value="Empresa" />
         <h:outputText value="#{usuarioBacking.usuarioSeleccionado.empresa.nombre}" />
