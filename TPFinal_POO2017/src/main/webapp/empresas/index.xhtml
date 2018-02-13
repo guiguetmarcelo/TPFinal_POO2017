@@ -10,6 +10,7 @@
         <ui:param name="pageTitle" value="#{msg.empresas}"></ui:param>
 
         <ui:define name="content">
+            
             <h1>#{msg.empresas}</h1>
 
             <h:form id="fe">
@@ -44,7 +45,6 @@
                         <h:outputText value="#{empresa.telefono}"/>
                     </p:column>
 
-
                     <p:column headerText="#{msg.empresa_descripcion}"
                               sortBy="#{empresa.descripcion}"
                               filterBy="#{empresa.descripcion}"
@@ -73,12 +73,15 @@
                     </p:column>
                 </p:dataTable>
 
-                <p:button value="#{msg.empresa_nueva}" outcome="/empresas/new.xhtml?faces-redirect=true" styleClass="bg-df-blue color-white"/>
+                <p:button value="#{msg.empresa_nueva}" 
+                          outcome="/empresas/new.xhtml?faces-redirect=true" 
+                          styleClass="bg-df-blue color-white"/>
 
                 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
                     <p:commandButton value="#{msg.boton_si}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
                     <p:commandButton value="#{msg.boton_no}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                 </p:confirmDialog>
+                
             </h:form>
         </ui:define>
     </ui:composition>
