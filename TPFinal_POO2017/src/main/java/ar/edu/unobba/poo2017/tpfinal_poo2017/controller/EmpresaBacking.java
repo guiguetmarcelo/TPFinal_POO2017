@@ -17,6 +17,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.PersistenceException;
+import org.eclipse.persistence.exceptions.EclipseLinkException;
 
 /**
  *
@@ -61,7 +63,7 @@ public class EmpresaBacking implements Serializable {
         } catch (Exception e) {
             FacesContext context = FacesContext.getCurrentInstance();
             FacesMessage message;
-            message = new FacesMessage(msg.getString("empresas_eliminarASiMismo"));
+            message = new FacesMessage("ERROR al registrar la empresa. Posible causa: La empresa ya existe");
             context.addMessage("msgEmpresa", message);
             return null;
         }
@@ -93,6 +95,11 @@ public class EmpresaBacking implements Serializable {
             context.addMessage("msgEmpresa", message);
 
         } catch (Exception e) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            FacesMessage message;
+            message = new FacesMessage("ERROR al eliminar la empresa. Posible causa: La empresa esta en uso");
+            context.addMessage("msgEmpresa", message);
+            
         }
     }
 

@@ -38,27 +38,6 @@
                         <h:outputText value="#{usuario.email}"/>
                     </p:column> 
 
-
-
-                    <ui:remove>
-                        <p:column headerText="#{msg.usuarios_nombre}"
-                                  sortBy="#{usuario.nombre}"
-                                  filterBy="#{usuario.nombre}"
-                                  filterMatchMode="contains">
-
-                            <h:outputText value="#{usuario.nombre}"/>
-                        </p:column>
-
-                        <p:column headerText="#{msg.usuarios_apellido}"
-                                  sortBy="#{usuario.apellido}"
-                                  filterBy="#{usuario.apellido}"
-                                  filterMatchMode="contains">
-
-                            <h:outputText value="#{usuario.apellido}"/>
-                        </p:column> 
-                    </ui:remove>
-
-
                     <p:column headerText="#{msg.usuarios_rol}"
                               sortBy="#{usuario.rol}"
                               filterBy="#{usuario.rol}"
@@ -141,6 +120,11 @@
                     </p:column>
 
                 </p:dataTable>
+
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                    <p:commandButton value="#{msg.boton_si}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                    <p:commandButton value="#{msg.boton_no}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                </p:confirmDialog>
 
                 <p:dialog header="#{msg.usuarios_info}" widgetVar="usuarioDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
                     <p:outputPanel id="usuarioDetail" style="text-align:center;">
