@@ -51,6 +51,17 @@ public class UsuarioDao extends AbstractDAO<Usuario> {
             return usuarios.get(0);            
         }
     }
+    
+    public Usuario getUsuarioActivo(long id) {
+        Query query = em.createNamedQuery("usuario.por_id_activo");
+        query.setParameter("id", id);
+        List<Usuario> usuarios = query.getResultList();
+        if (usuarios.isEmpty()) {
+            return null;
+        } else {
+            return usuarios.get(0);            
+        }
+    }
 
     public void deleteF(Usuario t) throws EJBException{
         super.delete(t);

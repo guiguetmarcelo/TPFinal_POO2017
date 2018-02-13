@@ -12,9 +12,11 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "periodos")
+@Table(name = "periodos",
+        uniqueConstraints={@UniqueConstraint(columnNames={"fecha_desde", "fecha_hasta","descripcion" ,"empresa"})})
 @NamedQueries({
    @NamedQuery(name = "periodo.disponibles",
            query = "Select p From Periodo p WHERE p.empresa=:empresa ORDER BY p.fechaDesde")})

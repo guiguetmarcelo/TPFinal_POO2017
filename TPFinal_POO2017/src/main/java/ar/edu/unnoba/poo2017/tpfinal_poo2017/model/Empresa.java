@@ -32,7 +32,7 @@ public class Empresa implements Serializable{
     private static final long serialVersionUID = 1064660939313009277L;
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column
     private Long id;
@@ -46,7 +46,7 @@ public class Empresa implements Serializable{
     }
     
     @Basic(optional = false)
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String nombre;
     
     @Basic(optional = false)

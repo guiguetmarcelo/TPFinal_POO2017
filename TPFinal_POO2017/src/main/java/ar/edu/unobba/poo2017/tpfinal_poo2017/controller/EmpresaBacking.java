@@ -5,13 +5,17 @@
  */
 package ar.edu.unobba.poo2017.tpfinal_poo2017.controller;
 
+import ar.edu.unnoba.poo2017.tpfinal_poo2017.bundle.MessagesProducer;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.dao.EmpresaDao;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Empresa;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -28,6 +32,12 @@ public class EmpresaBacking implements Serializable {
     private Empresa empresaSeleccionada;
     private List<Empresa> listEmpresas;
     private List<Empresa> empresasFiltradas;
+
+    @Inject
+    private SessionBacking session;
+
+    @Inject
+    private MessagesProducer msg;
 
     @PostConstruct
     public void init() {
@@ -55,7 +65,10 @@ public class EmpresaBacking implements Serializable {
 
     public String update() {
         try {
-            empresaDao.update(empresa);
+            empresaDao.update(getEmpresa());
+            if (session.getEmpresa().equals(getEmpresa())) {
+                session.update();
+            }
             return "/empresas/index?faces-redirect=true";
         } catch (Exception e) {
             return null;
@@ -64,8 +77,17 @@ public class EmpresaBacking implements Serializable {
 
     public void delete(Empresa empresa) {
         try {
-            empresaDao.delete(empresa);
-            setListEmpresas(null);
+            FacesContext context = FacesContext.getCurrentInstance();
+            FacesMessage message;
+            if (empresa.equals(session.getEmpresa())) {
+                message = new FacesMessage(msg.getString("empresas_eliminarASiMismo"));
+            } else {
+                message = new FacesMessage(msg.getString("empresas_eliminarEmpresaEliminada", empresa.getNombre()));
+                empresaDao.delete(empresa);
+                setListEmpresas(null);
+            }
+            context.addMessage("msgEmpresa", message);
+            
         } catch (Exception e) {
         }
     }

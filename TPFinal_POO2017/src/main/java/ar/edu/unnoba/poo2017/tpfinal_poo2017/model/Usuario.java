@@ -29,14 +29,17 @@ import org.mindrot.jbcrypt.BCrypt;
            query = "Select u From Usuario u WHERE u.empresa = :empresa"),
     
     @NamedQuery(name = "usuario.por_email_activo",
-           query = "Select u From Usuario u where u.email = :email AND u.activo = TRUE")
+           query = "Select u From Usuario u where u.email = :email AND u.activo = TRUE"),
+    
+    @NamedQuery(name = "usuario.por_id_activo",
+           query = "Select u From Usuario u where u.id = :id AND u.activo = TRUE")
 })
 public class Usuario extends AbstractEntity implements Serializable{
 
     private static final long serialVersionUID = -7755946055021437896L;
     
     @Basic(optional = false)
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
     
     @Basic(optional = false)

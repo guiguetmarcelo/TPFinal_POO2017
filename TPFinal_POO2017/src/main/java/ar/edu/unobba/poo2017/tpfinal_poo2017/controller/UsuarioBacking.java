@@ -65,11 +65,11 @@ public class UsuarioBacking implements Serializable {
 
     public String create() {
         if (!session.getUsuario().isAdmGen()) {
-            usuario.setRol(RolUsuario.ADMINISTRADOR_EMPRESA);
-            usuario.setEmpresa(session.getUsuario().getEmpresa());
+            getUsuario().setRol(RolUsuario.ADMINISTRADOR_EMPRESA);
+            getUsuario().setEmpresa(session.getUsuario().getEmpresa());
         }
         try {
-            usuarioDao.create(usuario);
+            usuarioDao.create(getUsuario());
             return "/usuarios/index?faces-redirect=true";
         } catch (Exception e) {
             return null;
@@ -78,7 +78,10 @@ public class UsuarioBacking implements Serializable {
 
     public String update() {
         try {
-            usuarioDao.update(usuario);
+            usuarioDao.update(getUsuario());
+            if(getUsuario().equals(session.getUsuario())){
+                session.update();
+            }
             return "/usuarios/index?faces-redirect=true";
         } catch (Exception e) {
             return null;

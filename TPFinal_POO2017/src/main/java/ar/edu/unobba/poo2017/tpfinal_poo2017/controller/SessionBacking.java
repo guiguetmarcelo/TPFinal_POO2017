@@ -20,6 +20,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.mindrot.jbcrypt.BCrypt;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -82,6 +83,15 @@ public class SessionBacking implements Serializable {
         return "/login.xhtml?faces-redirect=true";
     }
 
+    public void update(){
+        if(getUsuario() != null){
+          setUsuario(usuarioDao.find(getUsuario().getId())); 
+          if(getUsuario() != null){
+             setEmpresa(getUsuario().getEmpresa()); 
+          }     
+        }    
+    }
+    
     public String getEmail() {
         return email;
     }

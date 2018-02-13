@@ -12,13 +12,15 @@ import javax.persistence.InheritanceType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 /**
  *
  * @author Marcelo
  */
 @Entity
-@Table(name = "categorias")
+@Table(name = "categorias",
+         uniqueConstraints={@UniqueConstraint(columnNames={"nombre", "empresa", "tipo"})})
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipo", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("cat")
