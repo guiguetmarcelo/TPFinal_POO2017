@@ -6,7 +6,11 @@
 package ar.edu.unobba.poo2017.tpfinal_poo2017.controller;
 
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.dao.PresupuestoDao;
+import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Categoria;
+import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Empresa;
+import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Periodo;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Presupuesto;
+import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Subcategoria;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -113,5 +117,13 @@ public class PresupuestoBacking implements Serializable {
     public void setPresupuestosFiltrados(List<Presupuesto> presupuestosFiltrados) {
         this.presupuestosFiltrados = presupuestosFiltrados;
     }
+    
+    public List<Presupuesto> getPresupuestosSubcategoriaPeriodo(Periodo periodo, Subcategoria subcategoria,Empresa empresa){
+        return presupuestoDao.getPresupuestosSubcategoriaPeriodo(periodo, subcategoria,empresa);
+    }
+    
+     public List<Presupuesto> getPresupuestosCategoria(Categoria categoria,Empresa empresa){
+         return presupuestoDao.getPresupuestosCategoria(categoria, empresa);
+     }
 
 }

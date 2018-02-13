@@ -6,7 +6,11 @@
 package ar.edu.unobba.poo2017.tpfinal_poo2017.controller;
 
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.dao.GastoDao;
+import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Categoria;
+
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Gasto;
+import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Periodo;
+import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Subcategoria;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -75,8 +79,7 @@ public class GastoBacking implements Serializable {
     }
 
     public List<Gasto> getGastos() {
-        if(getListGastos() == null)
-        {
+        if (getListGastos() == null) {
             setListGastos(gastoDao.getGastos(sessionBacking.getEmpresa()));
         }
         return getListGastos();
@@ -89,13 +92,12 @@ public class GastoBacking implements Serializable {
     public void setGastoSeleccionado(Gasto gastoSeleccionado) {
         this.gastoSeleccionado = gastoSeleccionado;
     }
-    
-    
-     public Long getCantidadTotal(){
+
+    public Long getCantidadTotal() {
         return gastoDao.getCantidad();
     }
-    
-    public Long getCantidad(){
+
+    public Long getCantidad() {
         return gastoDao.getCantidad(sessionBacking.getEmpresa());
     }
 
@@ -114,7 +116,21 @@ public class GastoBacking implements Serializable {
     private void setListGastos(List<Gasto> listGastos) {
         this.listGastos = listGastos;
     }
-    
-    
+
+    public List<Gasto> getGastosPeriodo(Periodo periodo) {
+        return gastoDao.getGastosPeriodo(periodo, sessionBacking.getEmpresa());
+    }
+
+    public List<Gasto> getGastosCategoria(Categoria categoria) {
+        return gastoDao.getGastosCategoria(categoria, sessionBacking.getEmpresa());
+    }
+
+    public List<Gasto> getGastosPeriodoCategoria(Periodo periodo, Categoria categoria) {
+        return gastoDao.getGastosPeriodoCategoria(periodo, categoria, sessionBacking.getEmpresa());
+    }
+
+    public List<Gasto> getGastosPeriodoSubcategoria(Periodo periodo, Subcategoria subcategoria) {
+        return gastoDao.getGastosPeriodoSubcategoria(periodo, subcategoria, sessionBacking.getEmpresa());
+    }
 
 }

@@ -46,11 +46,11 @@ public class reporteBacking implements Serializable {
     private LineChartModel reporteGrafico;
     private BarChartModel reporteComparativo;
 
-    @EJB
-    private GastoDao gastoDao;
+    @Inject
+    private GastoBacking gastoBacking;
 
-    @EJB
-    private PresupuestoDao presupuestoDao;
+    @Inject
+    private PresupuestoBacking presupuestoBacking;
     
     @Inject
     private SessionBacking sessionBacking;
@@ -101,24 +101,24 @@ public class reporteBacking implements Serializable {
     }
 
     public List<Gasto> getGastos() {
-        return gastoDao.getGastos(sessionBacking.getEmpresa());
+        return gastoBacking.getGastos();
     }
 
     public List<Presupuesto> getPresupuestos() {
-        return presupuestoDao.getPresupuestos(sessionBacking.getEmpresa());
+        return presupuestoBacking.getPresupuestos();
     }
 
     public List<Gasto> getGastosPeriodo(Periodo periodo) {
-        this.setFiltrados(gastoDao.getGastosPeriodo(periodo,sessionBacking.getEmpresa()));
+        this.setFiltrados(gastoBacking.getGastosPeriodo(periodo));
         return filtrados;
     }
 
     public List<Gasto> getGastosCategoria(Categoria categoria) {
-        return gastoDao.getGastosCategoria(categoria,sessionBacking.getEmpresa());
+        return gastoBacking.getGastosCategoria(categoria);
     }
 
     public List<Gasto> getGastosPeriodoCategoria(Periodo periodo, Categoria categoria) {
-        this.setFiltrados(gastoDao.getGastosPeriodoCategoria(periodo, categoria,sessionBacking.getEmpresa()));
+        this.setFiltrados(gastoBacking.getGastosPeriodoCategoria(periodo,categoria));
         return filtrados;
     }
 
@@ -147,7 +147,7 @@ public class reporteBacking implements Serializable {
     }
     
     public List<Presupuesto> getPresupuestosSubcategoriaPeriodo(Periodo periodo, Subcategoria subcategoria){
-        return presupuestoDao.getPresupuestosSubcategoriaPeriodo(periodo, subcategoria,sessionBacking.getEmpresa());
+        return presupuestoBacking.getPresupuestosSubcategoriaPeriodo(periodo, subcategoria,sessionBacking.getEmpresa());
     }
 
     public void graficoLineas(Categoria categoria) {
@@ -155,7 +155,7 @@ public class reporteBacking implements Serializable {
         ChartSeries presupuesto = new ChartSeries();
         ChartSeries gastos = new ChartSeries();
         model.setTitle(msg.getString("menu_reportesReporteDesvio"));
-        List<Presupuesto> presupuestos = presupuestoDao.getPresupuestosCategoria(categoria,sessionBacking.getEmpresa());
+        List<Presupuesto> presupuestos = presupuestoBacking.getPresupuestosCategoria(categoria,sessionBacking.getEmpresa());
         if (!presupuestos.isEmpty()) {
             for (Presupuesto pre : presupuestos) {
                 presupuesto.set(pre.getPeriodo().toString(), pre.getMonto());
@@ -222,7 +222,7 @@ public class reporteBacking implements Serializable {
     }
     
     public List<Gasto> getGastosPeriodoSubcategoria(Periodo periodo, Subcategoria subcategoria){
-        return gastoDao.getGastosPeriodoSubcategoria(periodo, subcategoria,sessionBacking.getEmpresa());
+        return gastoBacking.getGastosPeriodoSubcategoria(periodo, subcategoria);
     }
     
     public float getSubtotalGastos(Subcategoria sub){
@@ -236,7 +236,7 @@ public class reporteBacking implements Serializable {
     }
     
     public float getTotalPresupuestosFiltrados(Periodo periodo, Subcategoria sub){
-        List<Presupuesto> filtrados= presupuestoDao.getPresupuestosSubcategoriaPeriodo(periodo, sub,sessionBacking.getEmpresa());
+        List<Presupuesto> filtrados= presupuestoBacking.getPresupuestosSubcategoriaPeriodo(periodo, sub,sessionBacking.getEmpresa());
         float total=0;
         for(Presupuesto pre: filtrados){
             total+=pre.getMonto();
