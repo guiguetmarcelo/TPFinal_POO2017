@@ -30,12 +30,12 @@
 
                     <h3>#{msg.usuarios_loginSubtitulo}</h3>
                     <div class="form-group">
-                        <p:outputLabel for="loginInputUsername" value="#{msg.usuarios_username}"></p:outputLabel>
+                        <p:outputLabel for="loginInputUsername" value="#{msg.usuarios_email}"></p:outputLabel>
                         <p:inputText id="loginInputUsername" 
                                      class="form-control" 
                                      a:aria-describedby="usernameHelp" 
-                                     placeholder="#{msg.usuarios_username}" 
-                                     value="#{sessionBacking.userName}"
+                                     placeholder="#{msg.usuarios_email}" 
+                                     value="#{sessionBacking.email}"
                                      required="true"/>
                         <small id="usernameHelp" class="form-text text-muted">#{msg.usuarios_consejo_u}</small>
                     </div>
@@ -51,21 +51,24 @@
                         <small id="passwordHelp" class="form-text text-muted">#{msg.usuarios_consejo_p}</small>
                     </div>
 
-                    <div class="form-group">
-                        <p:outputLabel for="loginInputEmpresa" value="#{msg.usuarios_empresa}" />
+                    <ui:remove>
+                        <div class="form-group">
+                            <p:outputLabel for="loginInputEmpresa" value="#{msg.usuarios_empresa}" />
 
-                        <p:selectOneMenu id="loginInputEmpresa"
-                                         class="login-selectonemenu"
-                                         placeholder="#{msg.elegir}"
-                                         value="#{sessionBacking.empresa}" 
-                                         required="true" 
-                                         filter="true" 
-                                         filterMatchMode="startsWith">
+                            <p:selectOneMenu id="loginInputEmpresa"
+                                             class="login-selectonemenu"
+                                             placeholder="#{msg.elegir}"
+                                             value="#{sessionBacking.empresa}" 
+                                             required="true" 
+                                             filter="true" 
+                                             filterMatchMode="startsWith">
 
-                            <f:selectItem itemLabel="#{msg.elegir} " />
-                            <f:selectItems value="#{empresaBacking.empresas}" var="emp" itemLabel="#{emp.nombre}" itemValue="#{emp}" />
-                        </p:selectOneMenu>                     
-                    </div>
+                                <f:selectItem itemLabel="#{msg.elegir} " />
+                                <f:selectItems value="#{empresaBacking.empresas}" var="emp" itemLabel="#{emp.nombre}" itemValue="#{emp}" />
+                            </p:selectOneMenu>                     
+                        </div> 
+                    </ui:remove>
+
 
                     <div class="login-button">
                         <p:commandButton value="#{msg.usuarios_loginIngresar}" 

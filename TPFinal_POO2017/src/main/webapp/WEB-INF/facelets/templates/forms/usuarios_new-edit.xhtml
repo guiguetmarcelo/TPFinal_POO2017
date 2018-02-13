@@ -11,25 +11,22 @@
 
     <c:set var="update" value="#{empty update ? 'true' : update}"
            scope="request" /> 
-    
-    <c:set var="RRusername" value="#{empty RRusername ? 'true' : RRusername}"
-           scope="request" /> 
-    
+
     <c:set var="RRpassword" value="#{empty RRpassword ? 'true' : RRpassword}"
            scope="request" /> 
-    
+
     <c:set var="RRnombre" value="#{empty RRnombre ? 'true' : RRnombre}"
            scope="request" /> 
-    
+
     <c:set var="RRapellido" value="#{empty RRapellido ? 'true' : RRapellido}"
            scope="request" /> 
-    
+
     <c:set var="RRemail" value="#{empty RRemail ? 'true' : RRemail}"
            scope="request" /> 
-    
+
     <c:set var="RRrol" value="#{empty RRrol ? 'true' : RRrol}"
            scope="request" /> 
-    
+
     <c:set var="RRempresa" value="#{empty RRempresa ? 'true' : RRempresa}"
            scope="request" /> 
 
@@ -43,12 +40,15 @@
 
         <p:panelGrid styleClass="tableBorderOff tableAutoMargin"> 
 
-            <p:row rendered="#{RRusername}">
+            <p:row rendered="#{RRemail}">
                 <p:column>
-                    <p:outputLabel for="newUserInputUsername" value="#{msg.usuarios_username}"></p:outputLabel>
+                    <p:outputLabel for="newUserInputEmail" value="#{msg.usuarios_email}"></p:outputLabel>
                 </p:column>
                 <p:column>
-                    <p:inputText id="newUserInputUsername" value="#{usuarioBacking.usuario.username}" class="bsbb" required="true"/>
+                    <p:inputText id="newUserInputEmail" value="#{usuarioBacking.usuario.email}" required="true" validatorMessage="Mail invalido" class="bsbb">
+                        <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                    </p:inputText>
+                    <p:message  showDetail="true"  for="newUserInputEmail" display="tooltip" />
                 </p:column>
             </p:row>
 
@@ -95,18 +95,6 @@
                 </p:column>
             </p:row>
 
-            <p:row rendered="#{RRemail}">
-                <p:column>
-                    <p:outputLabel for="newUserInputEmail" value="#{msg.usuarios_email}"></p:outputLabel>
-                </p:column>
-                <p:column>
-                    <p:inputText id="newUserInputEmail" value="#{usuarioBacking.usuario.email}" required="true" validatorMessage="Mail invalido" class="bsbb">
-                        <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
-                    </p:inputText>
-                    <p:message  showDetail="true"  for="newUserInputEmail" display="tooltip" />
-                </p:column>
-            </p:row>
-
             <p:row rendered="#{RRrol}">
                 <p:column>
                     <p:outputLabel for="newUserInputRol" value="#{msg.usuarios_rol}" rendered="#{sessionBacking.usuario.isAdmGen()}"></p:outputLabel>
@@ -147,7 +135,7 @@
                                      update=""
                                      rendered="#{not update}"
                                      styleClass="bg-df-green color-white"/>
-                    
+
                     <p:commandButton value="#{msg.usuarios_botonActualizar}" 
                                      action="#{usuarioBacking.update()}" 
                                      update=""

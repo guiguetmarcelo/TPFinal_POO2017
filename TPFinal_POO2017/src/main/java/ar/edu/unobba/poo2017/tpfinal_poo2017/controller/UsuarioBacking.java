@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ar.edu.unobba.poo2017.tpfinal_poo2017.controller;
 
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.bundle.MessagesProducer;
@@ -38,7 +34,6 @@ public class UsuarioBacking implements Serializable {
     private List<Usuario> listUsuariosActivos;
     private List<Usuario> usuariosFiltrados;
 
-
     @Inject
     private SessionBacking session;
 
@@ -57,9 +52,13 @@ public class UsuarioBacking implements Serializable {
         return usuarioDao.getUsuarios();
     }
 
-    public List<Usuario> getUsuariosActivos() {
-        if(getListUsuariosActivos() == null){
-            setListUsuariosActivos(usuarioDao.getUsuariosActivos());
+    public List<Usuario> getUsuariosEmpresa() {
+        return usuarioDao.getUsuarios(session.getEmpresa());
+    }
+
+    public List<Usuario> getUsuariosActivosEmpresa() {
+        if (getListUsuariosActivos() == null) {
+            setListUsuariosActivos(usuarioDao.getUsuariosActivos(session.getEmpresa()));
         }
         return getListUsuariosActivos();
     }
@@ -89,13 +88,12 @@ public class UsuarioBacking implements Serializable {
     public void delete(Usuario usuario) {
         FacesContext context = FacesContext.getCurrentInstance();
         FacesMessage message;
-        if (usuario.getUsername().equals(session.getUsuario().getUsername())) {
+        if (usuario.getEmail().equals(session.getUsuario().getEmail())) {
             message = new FacesMessage(msg.getString("usuarios_eliminarASiMismo"));
         } else {
-            message = new FacesMessage(msg.getString("usuarios_eliminarUsuarioEliminado", usuario.getUsername()));
+            message = new FacesMessage(msg.getString("usuarios_eliminarUsuarioEliminado", usuario.getEmail()));
             usuarioDao.delete(usuario);
             setListUsuariosActivos(null);
-            
 
         }
         context.addMessage("msgUsuario", message);
@@ -137,8 +135,8 @@ public class UsuarioBacking implements Serializable {
 
     private void setListUsuariosActivos(List<Usuario> listUsuariosActivos) {
         this.listUsuariosActivos = listUsuariosActivos;
-    }  
-    
+    }
+
     public List<Usuario> getUsuariosFiltrados() {
         return usuariosFiltrados;
     }

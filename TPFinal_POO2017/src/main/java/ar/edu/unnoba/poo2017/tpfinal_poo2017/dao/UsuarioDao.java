@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ar.edu.unnoba.poo2017.tpfinal_poo2017.dao;
 
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Empresa;
@@ -33,35 +29,21 @@ public class UsuarioDao extends AbstractDAO<Usuario> {
         return query.getResultList();
     }
     
-    public Usuario getUsuario(String username, String password) {
-        Query query = em.createNamedQuery("usuario.por_username_y_password");
-        query.setParameter("username", username);
-        query.setParameter("password", password);
-        List<Usuario> usuarios = query.getResultList();
-        if (usuarios.isEmpty()) {
-            return null;
-        } else {
-            return usuarios.get(0);            
-        }
-    }
-    
-    public Usuario getUsuarioActivo(String username, String password) {
-        Query query = em.createNamedQuery("usuario.por_username_y_password_activo");
-        query.setParameter("username", username);
-        query.setParameter("password", password);
-        List<Usuario> usuarios = query.getResultList();
-        if (usuarios.isEmpty()) {
-            return null;
-        } else {
-            return usuarios.get(0);            
-        }
-    }
-    
-     public Usuario getUsuarioActivo(String username, String password, Empresa empresa) {
-        Query query = em.createNamedQuery("usuario.por_username_password_empresa_activo");
-        query.setParameter("username", username);
-        query.setParameter("password", password);
+    public List<Usuario> getUsuarios(Empresa empresa) {
+        Query query = em.createNamedQuery("usuario.totales.por_empresa");
         query.setParameter("empresa", empresa);
+        return query.getResultList();
+    }
+    
+    public List<Usuario> getUsuariosActivos(Empresa empresa) {
+        Query query = em.createNamedQuery("usuario.disponibles.por_empresa");
+        query.setParameter("empresa", empresa);
+        return query.getResultList();
+    }
+    
+    public Usuario getUsuarioActivo(String email) {
+        Query query = em.createNamedQuery("usuario.por_email_activo");
+        query.setParameter("email", email);
         List<Usuario> usuarios = query.getResultList();
         if (usuarios.isEmpty()) {
             return null;

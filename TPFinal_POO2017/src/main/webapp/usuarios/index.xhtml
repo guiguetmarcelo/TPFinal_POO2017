@@ -23,7 +23,7 @@
                         <p:growl id="messages" autoUpdate="true" for="msgUsuario"></p:growl>
 
                         <p:dataTable id="usuarios"
-                                     value="#{usuarioBacking.usuariosActivos}" 
+                                     value="#{usuarioBacking.usuariosActivosEmpresa}" 
                                      var="usuario"
                                      reflow="true" 
                                      rows="5"
@@ -44,15 +44,17 @@
                                     </p:outputPanel>
                                 </f:facet>   
                             </ui:remove>
-                          
-                            
-                            <p:column headerText="#{msg.usuarios_username}" 
-                                      sortBy="#{usuario.username}" 
-                                      filterBy="#{usuario.username}" 
+
+
+                            <p:column headerText="#{msg.usuarios_email}" 
+                                      sortBy="#{usuario.email}" 
+                                      filterBy="#{usuario.email}" 
                                       filterMatchMode="contains">
-                                
-                                <h:outputText value="#{usuario.username}"/>
-                            </p:column>
+
+                                <h:outputText value="#{usuario.email}"/>
+                            </p:column>  
+
+
 
                             <p:column headerText="#{msg.usuarios_nombre}" sortBy="#{usuario.nombre}" filterBy="#{usuario.nombre}" filterMatchMode="contains">
                                 <h:outputText value="#{usuario.nombre}"/>
@@ -83,7 +85,7 @@
                                                  styleClass="bg-d-red">
 
                                     <p:confirm header="#{msg.dialogo_confirmacion}"
-                                               message="#{unnoba:textFormat(msg.usuarios_eliminarConfirmacionMensaje, usuario.username)}"
+                                               message="#{unnoba:textFormat(msg.usuarios_eliminarConfirmacionMensaje, usuario.email)}"
                                                icon="fa fa-exclamation-triangle"/>
                                 </p:commandButton>
                             </p:column>
@@ -107,7 +109,7 @@
                                                      class="btnTable">
 
                                         <p:confirm header="#{msg.dialogo_confirmacion}"
-                                                   message="#{unnoba:textFormat(msg.usuarios_eliminarConfirmacionMensaje, usuario.username)}"
+                                                   message="#{unnoba:textFormat(msg.usuarios_eliminarConfirmacionMensaje, usuario.email)}"
                                                    icon="fa fa-exclamation-triangle"/>
                                     </p:commandButton>
 

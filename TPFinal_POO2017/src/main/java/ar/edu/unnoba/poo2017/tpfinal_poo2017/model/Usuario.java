@@ -11,29 +11,29 @@ import javax.persistence.Enumerated;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import org.mindrot.jbcrypt.BCrypt;
 
 @Entity
 @Table(name = "usuarios")
 @NamedQueries({
    @NamedQuery(name = "usuario.disponibles",
            query = "Select u From Usuario u Where u.activo = TRUE"),
-    @NamedQuery(name = "usuario.totales",
+    
+    @NamedQuery(name = "usuario.totales", 
            query = "Select u From Usuario u"),
-    @NamedQuery(name = "usuario.por_username_y_password",
-           query = "Select u From Usuario u "
-                   + "where u.username = :username and u.password = :password"),
-    @NamedQuery(name = "usuario.por_username_y_password_activo",
-           query = "Select u From Usuario u where u.username = :username and u.password = :password and u.activo = TRUE"),
-    @NamedQuery(name = "usuario.por_username_password_empresa_activo",
-           query = "Select u From Usuario u where u.username = :username AND u.password = :password AND u.empresa = :empresa AND u.activo = TRUE")
+    
+    @NamedQuery(name = "usuario.disponibles.por_empresa",
+           query = "Select u From Usuario u Where u.empresa = :empresa AND u.activo = TRUE"),
+    
+    @NamedQuery(name = "usuario.totales.por_empresa",
+           query = "Select u From Usuario u WHERE u.empresa = :empresa"),
+    
+    @NamedQuery(name = "usuario.por_email_activo",
+           query = "Select u From Usuario u where u.email = :email AND u.activo = TRUE")
 })
 public class Usuario extends AbstractEntity implements Serializable{
 
     private static final long serialVersionUID = -7755946055021437896L;
-    
-    @Basic(optional = false)
-    @Column(nullable = false)
-    private String username;
     
     @Basic(optional = false)
     @Column(nullable = false)
@@ -66,14 +66,6 @@ public class Usuario extends AbstractEntity implements Serializable{
 
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -87,7 +79,8 @@ public class Usuario extends AbstractEntity implements Serializable{
     }
 
     public void setPassword(String password) {
-        this.password = password;
+       // this.password = password;
+       this.password = BCrypt.hashpw(password, BCrypt.gensalt(12));
     }
 
     public String getApellido() {
@@ -137,4 +130,5 @@ public class Usuario extends AbstractEntity implements Serializable{
     public Boolean isAdmEmp(){
         return getRol().isAdmEmp();
     }
+    
 }

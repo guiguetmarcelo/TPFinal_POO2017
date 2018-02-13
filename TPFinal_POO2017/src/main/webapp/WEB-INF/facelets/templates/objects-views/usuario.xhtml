@@ -15,10 +15,7 @@ and open the template in the editor.
     <p:panelGrid  columns="2" rendered="#{not empty usuarioBacking.usuarioSeleccionado}" columnClasses="label,value">
 
         <h:outputText value="Id:" />
-        <h:outputText value="#{usuarioBacking.usuarioSeleccionado.id}" />
-
-        <h:outputText value="Username" />
-        <h:outputText value="#{usuarioBacking.usuarioSeleccionado.username}" />
+        <h:outputText value="#{usuarioBacking.usuarioSeleccionado.id}" />    
 
         <h:outputText value="Nombre" />
         <h:outputText value="#{usuarioBacking.usuarioSeleccionado.nombre}" />

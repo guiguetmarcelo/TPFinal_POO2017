@@ -19,6 +19,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
@@ -31,7 +32,7 @@ public class SessionBacking implements Serializable {
 
     private static final long serialVersionUID = 5687471496874331768L;
 
-    private String username;
+    private String email;
     private String password;
     private Usuario usuario;
     private Empresa empresa;
@@ -49,6 +50,7 @@ public class SessionBacking implements Serializable {
     public void init() {
     }
 
+    /*
     public String login() {
         this.usuario = usuarioDao.getUsuarioActivo(this.username, this.password, this.empresa);
         if (this.usuario == null) {
@@ -58,6 +60,21 @@ public class SessionBacking implements Serializable {
             return null;
         }
         return "/index?faces-redirect=true";
+    }*/
+    
+    public String login() {
+        setUsuario(usuarioDao.getUsuarioActivo(getEmail()));
+        if (getUsuario() != null && BCrypt.checkpw(getPassword(), getUsuario().getPassword())) {
+            setEmpresa(getUsuario().getEmpresa());
+            return "/index?faces-redirect=true";
+        }else{
+            FacesContext context = FacesContext.getCurrentInstance();
+            FacesMessage message = new FacesMessage(msg.getString("usuarios_loginUCIncorrectos"));
+            context.addMessage(null, message);
+            setUsuario(null);
+            return null;
+        }
+        
     }
 
     public String logout() {
@@ -65,12 +82,12 @@ public class SessionBacking implements Serializable {
         return "/login.xhtml?faces-redirect=true";
     }
 
-    public String getUserName() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUserName(String userName) {
-        this.username = userName;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -96,5 +113,6 @@ public class SessionBacking implements Serializable {
     public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
     }
+
 
 }
