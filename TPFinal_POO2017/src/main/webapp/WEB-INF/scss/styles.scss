@@ -18,6 +18,7 @@ $yellow:  #ffc107 !default;
 $green:   #28a745 !default;
 $teal:    #20c997 !default;
 $cyan:    #17a2b8 !default;
+$gray:    #868e96 !default;
 
 /* Coolors Exported Palette - coolors.co/e6fafc-48a0c9-0353a4-011627-080c0a */
 /* RGB */
@@ -399,7 +400,11 @@ section[role=main]{
 
 .card-p1{
     margin: 5px;
+    background: rgba(lighten($gray,40%), 1) !important;
 
+    li{
+        background: rgba(lighten($gray,40%), 1) !important;
+    }
     i{
         margin-right: 5px;
     }
@@ -430,6 +435,14 @@ section[role=main]{
 
 .border-green{
     border-color: $green !important;
+}
+
+.bg-yellow{
+    background-color: $yellow !important;
+}
+
+.border-yellow{
+    border-color: darken($yellow, 7%) !important;
 }
 
 .bg-d-red{

@@ -252,7 +252,10 @@ section[role=main] {
     margin-bottom: 15px; }
 
 .card-p1 {
-  margin: 5px; }
+  margin: 5px;
+  background: #f3f4f5 !important; }
+  .card-p1 li {
+    background: #f3f4f5 !important; }
   .card-p1 i {
     margin-right: 5px; }
 
@@ -277,6 +280,12 @@ section[role=main] {
 
 .border-green {
   border-color: #28a745 !important; }
+
+.bg-yellow {
+  background-color: #ffc107 !important; }
+
+.border-yellow {
+  border-color: #e2aa00 !important; }
 
 .bg-d-red {
   background: rgba(220, 53, 69, 0.6) !important; }
