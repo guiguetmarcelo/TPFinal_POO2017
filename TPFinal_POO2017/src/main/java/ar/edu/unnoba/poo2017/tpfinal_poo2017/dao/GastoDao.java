@@ -66,7 +66,7 @@ public class GastoDao extends AbstractDAO<Gasto>{
     
      public List<Gasto> getGastosPeriodoSubcategoria(Periodo periodo, Subcategoria subcategoria, Empresa empresa){
         
-        Query query = em.createNamedQuery("gastos.periodo_y_categoria");
+        Query query = em.createNamedQuery("gastos.periodo_y_subcategoria");
         query.setParameter("empresa", empresa);
         query.setParameter("fechaDesde", periodo.getFechaDesde(),TemporalType.TIMESTAMP);
         query.setParameter("fechaHasta", periodo.getFechaHasta(),TemporalType.TIMESTAMP);

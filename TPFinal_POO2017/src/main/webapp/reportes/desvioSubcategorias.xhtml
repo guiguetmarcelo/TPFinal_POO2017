@@ -12,7 +12,7 @@
         <ui:define name="content">
 
             <h1>#{msg.menu_reportesDesvioSubcategorias}</h1>
-            
+
             <h:form id="gastos_form_index">
                 <p:toolbar>
                     <f:facet name="left">
@@ -21,13 +21,18 @@
                             <f:selectItem itemLabel="#{msg.elegir} " itemValue="#{periodo}" />
                             <f:selectItems value="#{periodoBacking.periodos}" var="periodo" itemLabel="#{periodo.descripcion}" itemValue="#{periodo}" />
                         </p:selectOneMenu>
+                        <p:outputLabel for="subcategoria" value="#{msg.elegir_subcategoria}" />
+                        <p:selectOneMenu id="subcategoria" value="#{reporteBacking.subcategoria}">
+                            <f:selectItem itemLabel="#{msg.elegir} " itemValue="#{subcategoria}" />
+                            <f:selectItems value="#{subcategoriaBacking.subcategorias}" var="subcategoria" itemLabel="#{subcategoria.nombre}" itemValue="#{subcategoria}" />
+                        </p:selectOneMenu>
 
                         <span class="ui-separator">
                             <span class="ui-icon ui-icon-grip-dotted-vertical" />
                         </span>
 
                         <p:commandButton value="#{msg.consultar}" 
-                                         actionListener="#{reporteBacking.getGastosPeriodo(reporteBacking.periodo)}" 
+                                         actionListener="#{reporteBacking.getGastosPeriodoSubcategoria(reporteBacking.periodo, reporteBacking.subcategoria)}" 
                                          update="gastos"/>
                     </f:facet>
                 </p:toolbar>
