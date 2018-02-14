@@ -5,6 +5,7 @@
  */
 package ar.edu.unobba.poo2017.tpfinal_poo2017.controller;
 
+import ar.edu.unnoba.poo2017.tpfinal_poo2017.bundle.MessagesProducer;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.dao.PeriodoDao;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Periodo;
 import java.io.Serializable;
@@ -45,6 +46,10 @@ public class PeriodoBacking implements Serializable {
     @Inject
     private SessionBacking sessionBacking;
     
+    
+    @Inject
+    private MessagesProducer msg;
+    
     public List<Periodo> getPeriodos(){
         if(getListPeriodos() == null){
             setListPeriodos(periodoDao.getPeriodos(sessionBacking.getEmpresa()));
@@ -56,16 +61,24 @@ public class PeriodoBacking implements Serializable {
         try{
             periodoDao.create(periodo);
             return "/periodos/index?faces-redirect=true";
-        }catch(Exception e){
+        } catch (Exception e) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            FacesMessage message;
+            message = new FacesMessage(msg.getString("periodo_existente"));
+            context.addMessage("msgPeriodo", message);
             return null;
         }
     }
-    
     public String update(){
         try{
             periodoDao.update(periodo);
             return "/periodos/index?faces-redirect=true";
         }catch(Exception e){
+                        FacesContext context = FacesContext.getCurrentInstance();
+            FacesMessage message;
+            message = new FacesMessage(msg.getString("error_actualizar"));
+            context.addMessage("msgPeriodo", message);
+            
             return null;
         }
     }
@@ -80,7 +93,7 @@ public class PeriodoBacking implements Serializable {
         } catch (EJBException e) {
             FacesContext context = FacesContext.getCurrentInstance();
             FacesMessage message;
-            message = new FacesMessage("ERROR al eliminar la empresa. Posible causa: La empresa esta en uso");
+            message = new FacesMessage(msg.getString("periodo_enuso"));
             context.addMessage("msgPeriodo", message);
             
         }catch(Exception e){

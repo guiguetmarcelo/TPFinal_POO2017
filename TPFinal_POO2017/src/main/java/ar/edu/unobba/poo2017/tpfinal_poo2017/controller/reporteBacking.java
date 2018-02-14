@@ -42,6 +42,7 @@ public class reporteBacking implements Serializable {
     private Gasto gasto;
     private Periodo periodo;
     private Categoria categoria;
+    private Subcategoria subcategoria;
     private List<Gasto> filtrados;
     private LineChartModel reporteGrafico;
     private BarChartModel reporteComparativo;
@@ -51,21 +52,30 @@ public class reporteBacking implements Serializable {
 
     @Inject
     private PresupuestoBacking presupuestoBacking;
-    
+
     @Inject
     private SessionBacking sessionBacking;
 
     @Inject
     @MessagesBundle
     private transient PropertyResourceBundle msg;
-    
+
     @PostConstruct
     public void init() {
         setGasto(new Gasto());
         setPeriodo(new Periodo());
         setFiltrados(new ArrayList<Gasto>());
         setCategoria(new Categoria());
+        setSubcategoria(new Subcategoria());
 
+    }
+
+    public Subcategoria getSubcategoria() {
+        return subcategoria;
+    }
+
+    public void setSubcategoria(Subcategoria subcategoria) {
+        this.subcategoria = subcategoria;
     }
 
     public BarChartModel getReporteComparativo() {
@@ -118,7 +128,7 @@ public class reporteBacking implements Serializable {
     }
 
     public List<Gasto> getGastosPeriodoCategoria(Periodo periodo, Categoria categoria) {
-        this.setFiltrados(gastoBacking.getGastosPeriodoCategoria(periodo,categoria));
+        this.setFiltrados(gastoBacking.getGastosPeriodoCategoria(periodo, categoria));
         return filtrados;
     }
 
@@ -145,9 +155,9 @@ public class reporteBacking implements Serializable {
         }
         return total;
     }
-    
-    public List<Presupuesto> getPresupuestosSubcategoriaPeriodo(Periodo periodo, Subcategoria subcategoria){
-        return presupuestoBacking.getPresupuestosSubcategoriaPeriodo(periodo, subcategoria,sessionBacking.getEmpresa());
+
+    public List<Presupuesto> getPresupuestosSubcategoriaPeriodo(Periodo periodo, Subcategoria subcategoria) {
+        return presupuestoBacking.getPresupuestosSubcategoriaPeriodo(periodo, subcategoria, sessionBacking.getEmpresa());
     }
 
     public void graficoLineas(Categoria categoria) {
@@ -155,7 +165,7 @@ public class reporteBacking implements Serializable {
         ChartSeries presupuesto = new ChartSeries();
         ChartSeries gastos = new ChartSeries();
         model.setTitle(msg.getString("menu_reportesReporteDesvio"));
-        List<Presupuesto> presupuestos = presupuestoBacking.getPresupuestosCategoria(categoria,sessionBacking.getEmpresa());
+        List<Presupuesto> presupuestos = presupuestoBacking.getPresupuestosCategoria(categoria, sessionBacking.getEmpresa());
         if (!presupuestos.isEmpty()) {
             for (Presupuesto pre : presupuestos) {
                 presupuesto.set(pre.getPeriodo().toString(), pre.getMonto());
@@ -220,29 +230,30 @@ public class reporteBacking implements Serializable {
         this.setReporteComparativo(model);
 
     }
-    
-    public List<Gasto> getGastosPeriodoSubcategoria(Periodo periodo, Subcategoria subcategoria){
-        return gastoBacking.getGastosPeriodoSubcategoria(periodo, subcategoria);
+
+    public List<Gasto> getGastosPeriodoSubcategoria(Periodo periodo, Subcategoria subcategoria) {
+        this.setFiltrados(gastoBacking.getGastosPeriodoSubcategoria(periodo, subcategoria));
+        return filtrados;
     }
-    
-    public float getSubtotalGastos(Subcategoria sub){
-        float total=0;
-        for (Gasto unGasto: filtrados){
-        if (unGasto.getSubcategoria().getNombre().equals(sub.getNombre()))
-            total+=unGasto.getImporte();
+
+    public float getSubtotalGastos(Subcategoria sub) {
+        float total = 0;
+        for (Gasto unGasto : filtrados) {
+            if (unGasto.getSubcategoria().getNombre().equals(sub.getNombre())) {
+                total += unGasto.getImporte();
+            }
         }
         return total;
-        
+
     }
-    
-    public float getTotalPresupuestosFiltrados(Periodo periodo, Subcategoria sub){
-        List<Presupuesto> filtrados= presupuestoBacking.getPresupuestosSubcategoriaPeriodo(periodo, sub,sessionBacking.getEmpresa());
-        float total=0;
-        for(Presupuesto pre: filtrados){
-            total+=pre.getMonto();
+
+    public float getTotalPresupuestosFiltrados(Periodo periodo, Subcategoria sub) {
+        List<Presupuesto> filtrados = presupuestoBacking.getPresupuestosSubcategoriaPeriodo(periodo, sub, sessionBacking.getEmpresa());
+        float total = 0;
+        for (Presupuesto pre : filtrados) {
+            total += pre.getMonto();
         }
         return total;
     }
-            
 
 }

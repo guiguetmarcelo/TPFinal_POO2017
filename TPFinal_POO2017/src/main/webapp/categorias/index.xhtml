@@ -11,6 +11,8 @@
         <ui:define name="content">  
             <f:view contentType="text/html">
                 <h:form>
+                    
+                                         <p:growl id="messages" autoUpdate="true" for="msgCategoria"></p:growl>
                     <p:dataTable id="categorias"
                                  value="#{categoriaBacking.categorias}" 
                                  var="categoria"
