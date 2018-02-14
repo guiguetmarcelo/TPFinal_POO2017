@@ -5,6 +5,7 @@
  */
 package ar.edu.unobba.poo2017.tpfinal_poo2017.controller;
 
+import ar.edu.unnoba.poo2017.tpfinal_poo2017.bundle.MessagesProducer;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.dao.SubcategoriaDao;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Categoria;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Subcategoria;
@@ -12,6 +13,8 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -43,6 +46,9 @@ public class SubcategoriaBacking implements Serializable {
     @Inject
     private SessionBacking sessionBacking;
 
+    @Inject
+    private MessagesProducer msg;
+
     public List<Subcategoria> getSubcategorias() {
         if (getListSubcategorias() == null) {
             setListSubcategorias(subcategoriaDao.getSubcategorias(sessionBacking.getEmpresa()));
@@ -56,6 +62,10 @@ public class SubcategoriaBacking implements Serializable {
 
             return "/subcategorias/index?faces-redirect=true";
         } catch (Exception e) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            FacesMessage message;
+            message = new FacesMessage(msg.getString("subcategorias_existente"));
+            context.addMessage("msgSubcategoria", message);
             return null;
         }
     }
@@ -65,6 +75,10 @@ public class SubcategoriaBacking implements Serializable {
             subcategoriaDao.update(subcategoria);
             return "/subcategorias/index?faces-redirect=true";
         } catch (Exception e) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            FacesMessage message;
+            message = new FacesMessage(msg.getString("error_actualizar"));
+            context.addMessage("msgSubcategoria", message);
             return null;
         }
     }
@@ -74,6 +88,10 @@ public class SubcategoriaBacking implements Serializable {
             subcategoriaDao.delete(subcategoria);
             setListSubcategorias(null);
         } catch (Exception e) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            FacesMessage message;
+            message = new FacesMessage(msg.getString("subcategorias_enuso"));
+            context.addMessage("msgSubcategoria", message);
 
         }
     }

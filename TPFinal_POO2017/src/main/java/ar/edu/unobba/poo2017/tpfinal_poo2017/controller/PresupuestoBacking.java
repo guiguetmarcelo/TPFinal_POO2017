@@ -5,6 +5,7 @@
  */
 package ar.edu.unobba.poo2017.tpfinal_poo2017.controller;
 
+import ar.edu.unnoba.poo2017.tpfinal_poo2017.bundle.MessagesProducer;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.dao.PresupuestoDao;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Categoria;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Empresa;
@@ -15,6 +16,8 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -36,6 +39,9 @@ public class PresupuestoBacking implements Serializable {
 
     @EJB
     private PresupuestoDao presupuestoDao;
+
+    @Inject
+    private MessagesProducer msg;
 
     @Inject
     private SessionBacking sessionBacking;
@@ -68,6 +74,10 @@ public class PresupuestoBacking implements Serializable {
             presupuestoDao.create(getPresupuesto());
             return "/presupuestos/index?faces-redirect=true";
         } catch (Exception e) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            FacesMessage message;
+            message = new FacesMessage(msg.getString("error"));
+            context.addMessage("msgUsuario", message);
             return null;
         }
     }
@@ -77,13 +87,24 @@ public class PresupuestoBacking implements Serializable {
             presupuestoDao.update(getPresupuesto());
             return "/presupuestos/index?faces-redirect=true";
         } catch (Exception e) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            FacesMessage message;
+            message = new FacesMessage(msg.getString("error_actualizar"));
+            context.addMessage("msgUsuario", message);
             return null;
         }
     }
 
     public void delete(Presupuesto presupuesto) {
-        presupuestoDao.delete(presupuesto);
-        setListPresupuestos(null);
+        try {
+            presupuestoDao.delete(presupuesto);
+            setListPresupuestos(null);
+        } catch (Exception e) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            FacesMessage message;
+            message = new FacesMessage(msg.getString("error"));
+            context.addMessage("msgUsuario", message);
+        }
     }
 
     public Presupuesto getPresupuesto() {
@@ -117,13 +138,13 @@ public class PresupuestoBacking implements Serializable {
     public void setPresupuestosFiltrados(List<Presupuesto> presupuestosFiltrados) {
         this.presupuestosFiltrados = presupuestosFiltrados;
     }
-    
-    public List<Presupuesto> getPresupuestosSubcategoriaPeriodo(Periodo periodo, Subcategoria subcategoria,Empresa empresa){
-        return presupuestoDao.getPresupuestosSubcategoriaPeriodo(periodo, subcategoria,empresa);
+
+    public List<Presupuesto> getPresupuestosSubcategoriaPeriodo(Periodo periodo, Subcategoria subcategoria, Empresa empresa) {
+        return presupuestoDao.getPresupuestosSubcategoriaPeriodo(periodo, subcategoria, empresa);
     }
-    
-     public List<Presupuesto> getPresupuestosCategoria(Categoria categoria,Empresa empresa){
-         return presupuestoDao.getPresupuestosCategoria(categoria, empresa);
-     }
+
+    public List<Presupuesto> getPresupuestosCategoria(Categoria categoria, Empresa empresa) {
+        return presupuestoDao.getPresupuestosCategoria(categoria, empresa);
+    }
 
 }

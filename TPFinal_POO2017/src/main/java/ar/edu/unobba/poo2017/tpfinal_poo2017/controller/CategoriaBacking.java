@@ -5,12 +5,15 @@
  */
 package ar.edu.unobba.poo2017.tpfinal_poo2017.controller;
 
+import ar.edu.unnoba.poo2017.tpfinal_poo2017.bundle.MessagesProducer;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.dao.CategoriaDao;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Categoria;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -30,7 +33,6 @@ public class CategoriaBacking implements Serializable {
     private List<Categoria> listCategorias;
     private List<Categoria> categoriasFiltradas;
 
-
     @PostConstruct
     public void init() {
         this.categoria = new Categoria();
@@ -40,6 +42,9 @@ public class CategoriaBacking implements Serializable {
 
     @EJB
     private CategoriaDao categoriaDao;
+
+    @Inject
+    private MessagesProducer msg;
 
     @Inject
     private SessionBacking sessionBacking;
@@ -57,6 +62,10 @@ public class CategoriaBacking implements Serializable {
             categoriaDao.create(categoria);
             return "/categorias/index?faces-redirect=true";
         } catch (Exception e) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            FacesMessage message;
+            message = new FacesMessage(msg.getString("categorias_existente"));
+            context.addMessage("msgCategoria", message);
             return null;
         }
     }
@@ -66,6 +75,10 @@ public class CategoriaBacking implements Serializable {
             categoriaDao.update(categoria);
             return "/categorias/index?faces-redirect=true";
         } catch (Exception e) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            FacesMessage message;
+            message = new FacesMessage(msg.getString("error_actualizar"));
+            context.addMessage("msgCategoria", message);
             return null;
         }
     }
@@ -75,6 +88,11 @@ public class CategoriaBacking implements Serializable {
             categoriaDao.delete(categoria);
             setListCategorias(null);
         } catch (Exception e) {
+
+            FacesContext context = FacesContext.getCurrentInstance();
+            FacesMessage message;
+            message = new FacesMessage(msg.getString("categorias_enuso"));
+            context.addMessage("msgCategoria", message);
         }
     }
 
@@ -93,7 +111,7 @@ public class CategoriaBacking implements Serializable {
     public void setCategoriaSeleccionada(Categoria categoriaSeleccionada) {
         this.categoriaSeleccionada = categoriaSeleccionada;
     }
-    
+
     private List<Categoria> getListCategorias() {
         return listCategorias;
     }
@@ -109,6 +127,5 @@ public class CategoriaBacking implements Serializable {
     public void setCategoriasFiltradas(List<Categoria> categoriasFiltradas) {
         this.categoriasFiltradas = categoriasFiltradas;
     }
-
 
 }

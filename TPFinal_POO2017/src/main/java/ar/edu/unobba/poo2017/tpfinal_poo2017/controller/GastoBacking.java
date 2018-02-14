@@ -5,6 +5,7 @@
  */
 package ar.edu.unobba.poo2017.tpfinal_poo2017.controller;
 
+import ar.edu.unnoba.poo2017.tpfinal_poo2017.bundle.MessagesProducer;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.dao.GastoDao;
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.model.Categoria;
 
@@ -15,6 +16,8 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -36,6 +39,9 @@ public class GastoBacking implements Serializable {
 
     @EJB
     private GastoDao gastoDao;
+    
+        @Inject
+    private MessagesProducer msg;
 
     public Gasto getGasto() {
         return gasto;
@@ -60,6 +66,10 @@ public class GastoBacking implements Serializable {
             gastoDao.create(getGasto());
             return "/gastos/index?faces-redirect=true";
         } catch (Exception e) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            FacesMessage message;
+            message = new FacesMessage(msg.getString("error"));
+            context.addMessage("msgUsuario", message);
             return null;
         }
     }
@@ -69,13 +79,24 @@ public class GastoBacking implements Serializable {
             gastoDao.update(getGasto());
             return "/gastos/index?faces-redirect=true";
         } catch (Exception e) {
+                        FacesContext context = FacesContext.getCurrentInstance();
+            FacesMessage message;
+            message = new FacesMessage(msg.getString("error"));
+            context.addMessage("msgUsuario", message);
             return null;
         }
     }
 
     public void delete(Gasto gasto) {
+        try{
         gastoDao.delete(gasto);
         setListGastos(null);
+        } catch(Exception e){
+                    FacesContext context = FacesContext.getCurrentInstance();
+            FacesMessage message;
+            message = new FacesMessage(msg.getString("error"));
+            context.addMessage("msgUsuario", message);
+        }
     }
 
     public List<Gasto> getGastos() {

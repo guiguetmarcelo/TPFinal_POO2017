@@ -10,6 +10,8 @@
         <ui:define name="content">
             <f:view contentType="text/html">
                 <h:form>
+                    
+                      <p:growl id="messages" autoUpdate="true" for="msgSubcategoria"></p:growl>
                     <p:dataTable id="subcategorias"
                                  value="#{subcategoriaBacking.subcategorias}" 
                                  var="subcategoria"
