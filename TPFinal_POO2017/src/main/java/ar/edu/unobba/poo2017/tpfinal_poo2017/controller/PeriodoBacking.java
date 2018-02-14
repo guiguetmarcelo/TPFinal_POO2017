@@ -11,11 +11,13 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import org.eclipse.persistence.exceptions.DatabaseException;
 
 /**
  *
@@ -75,11 +77,13 @@ public class PeriodoBacking implements Serializable {
         setListPeriodos(null);
         
  
-        } catch (Exception e) {
+        } catch (EJBException e) {
             FacesContext context = FacesContext.getCurrentInstance();
             FacesMessage message;
             message = new FacesMessage("ERROR al eliminar la empresa. Posible causa: La empresa esta en uso");
             context.addMessage("msgPeriodo", message);
+            
+        }catch(Exception e){
             
         }
     }

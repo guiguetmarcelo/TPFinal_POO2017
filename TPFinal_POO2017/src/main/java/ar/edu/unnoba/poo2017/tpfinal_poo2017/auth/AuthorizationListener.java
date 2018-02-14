@@ -45,7 +45,7 @@ public class AuthorizationListener implements PhaseListener {
         } else {
             try {
                 if (!currentUser.isAdmGen()) {
-                    if (currentPage.equals("/empresas/index.xhtml")) {
+                    if (currentPage.contains("/empresas") || currentPage.contains("view_all.xhtml")) {
                         NavigationHandler nh = facesContext.getApplication().getNavigationHandler();
                         nh.handleNavigation(facesContext, null, "/error404.xhtml?faces-redirect=false");
                     }

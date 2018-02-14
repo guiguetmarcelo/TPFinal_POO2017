@@ -9,7 +9,10 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
-    <c:set var="update" value="#{empty update ? 'true' : update}"
+    <c:set var="changePassword" value="#{empty update ? 'true' : update}"
+           scope="request" /> 
+
+    <c:set var="update" value="#{(empty update ? 'true' : update) or changePassword}"
            scope="request" /> 
 
     <c:set var="RRpassword" value="#{empty RRpassword ? 'true' : RRpassword}"
@@ -30,7 +33,7 @@
     <c:set var="RRempresa" value="#{empty RRempresa ? 'true' : RRempresa}"
            scope="request" /> 
 
-    <h:form>
+    <h:form id="userForm">
 
         <p:messages autoUpdate="true" for="newUserInputUsername" closable="true"></p:messages>
         <p:messages autoUpdate="true" for="newUserInputPassword" closable="true"></p:messages>
@@ -52,30 +55,65 @@
                 </p:column>
             </p:row>
 
-            <p:row rendered="#{RRpassword}">
+            <p:row rendered="#{RRpassword and update}">
                 <p:column>
-                    <p:outputLabel for="newUserInputPassword" value="#{msg.usuarios_password}"></p:outputLabel>
+                    <p:outputLabel for="newUserInputActivePassword" value="#{msg.usuarios_changePassword}"></p:outputLabel>
                 </p:column>
                 <p:column>
-                    <p:password id="newUserInputPassword" value="#{usuarioBacking.usuario.password}" 
-                                class="bsbb"
-                                feedback="true"
-                                required="true"
-                                validatorMessage="Las contraseñas no coinciden"
-                                match="newUserInputPassword2"/>
+                    <p:inputSwitch id="newUserInputActivePassword" value="#{usuarioBacking.changePassword}">
+                        <p:ajax update="labelPassword1 inputPassword1 labelPassword2 inputPassword2" />
+                    </p:inputSwitch>
                 </p:column>
             </p:row>
 
             <p:row rendered="#{RRpassword}">
                 <p:column>
-                    <p:outputLabel for="newUserInputPassword2" value="#{msg.usuarios_password}"></p:outputLabel>
+                    <p:fragment id="labelPassword1">
+                        <p:outputLabel for="newUserInputPassword" 
+                                       rendered="#{usuarioBacking.changePassword or not update}"
+                                       value="#{msg.usuarios_password}">
+                        </p:outputLabel>
+                    </p:fragment> 
                 </p:column>
                 <p:column>
-                    <p:password id="newUserInputPassword2" value="#{usuarioBacking.usuario.password}" class="bsbb"
-                                required="true"
-                                />
+                    <p:fragment id="inputPassword1">
+                        <p:password id="newUserInputPassword" 
+                                    rendered="#{usuarioBacking.changePassword or not update}"
+                                    value="#{usuarioBacking.password}" 
+                                    class="bsbb"
+                                    feedback="true"
+                                    required="true"
+                                    validatorMessage="Las contraseñas no coinciden"
+                                    match="newUserInputPassword2"/>
+                    </p:fragment> 
                 </p:column>
             </p:row>
+
+            <p:row rendered="#{RRpassword}">
+                <p:column>
+                    <p:fragment id="labelPassword2">
+                        <p:outputLabel for="newUserInputPassword2"
+                                       rendered="#{usuarioBacking.changePassword or not update}"
+                                       value="#{msg.usuarios_password}">
+                        </p:outputLabel>
+                    </p:fragment> 
+                </p:column>
+                <p:column>
+                    <p:fragment id="inputPassword2">
+                        <p:password id="newUserInputPassword2" 
+                                    rendered="#{usuarioBacking.changePassword or not update}"
+                                    value="#{usuarioBacking.password}" 
+                                    class="bsbb"
+                                    required="true"
+                                    />
+                    </p:fragment> 
+                </p:column>
+            </p:row> 
+
+
+
+
+
 
             <p:row rendered="#{RRnombre}">
                 <p:column>

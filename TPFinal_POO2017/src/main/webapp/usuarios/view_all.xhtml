@@ -5,13 +5,13 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
+    <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml" >
         <ui:param name="pageTitle" value="#{msg.usuarios_vistaTodosTitle}"></ui:param>
 
         <ui:define name="content">
             <h1>#{msg.usuarios_vistaTodosTitulo}</h1>
 
-            <h:form id="usuarios_form_index">
+            <h:form id="usuarios_form_index" >
 
                 <p:growl id="messages" autoUpdate="true" for="msgUsuario"></p:growl>
 

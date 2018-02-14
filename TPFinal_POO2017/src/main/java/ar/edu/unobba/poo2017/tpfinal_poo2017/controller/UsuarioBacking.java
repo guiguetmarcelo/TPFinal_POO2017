@@ -18,7 +18,6 @@ import javax.inject.Named;
 
 /**
  *
- * @author jpgm
  * @author Marcelo
  * @author Sebastian
  */
@@ -30,7 +29,10 @@ public class UsuarioBacking implements Serializable {
 
     private Usuario usuario;
     private Usuario usuarioSeleccionado;
-
+    
+    private Boolean changePassword;
+    private String password;
+    
     private List<Usuario> listUsuariosActivos;
     private List<Usuario> usuariosFiltrados;
 
@@ -42,7 +44,8 @@ public class UsuarioBacking implements Serializable {
 
     @PostConstruct
     public void init() {
-        this.usuario = new Usuario();
+        setUsuario(new Usuario());
+        setChangePassword(false);
     }
 
     @EJB
@@ -69,6 +72,7 @@ public class UsuarioBacking implements Serializable {
             getUsuario().setEmpresa(session.getUsuario().getEmpresa());
         }
         try {
+            loadPassword();
             usuarioDao.create(getUsuario());
             return "/usuarios/index?faces-redirect=true";
         } catch (Exception e) {
@@ -78,6 +82,9 @@ public class UsuarioBacking implements Serializable {
 
     public String update() {
         try {
+            if(getChangePassword()){
+                loadPassword();
+            }
             usuarioDao.update(getUsuario());
             if(getUsuario().equals(session.getUsuario())){
                 session.update();
@@ -132,6 +139,24 @@ public class UsuarioBacking implements Serializable {
         this.usuarioSeleccionado = usuarioSeleccionado;
     }
 
+    public Boolean getChangePassword() {
+        return changePassword;
+    }
+
+    public void setChangePassword(Boolean changePassword) {
+        this.changePassword = changePassword;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    
+    
     private List<Usuario> getListUsuariosActivos() {
         return listUsuariosActivos;
     }
@@ -156,6 +181,10 @@ public class UsuarioBacking implements Serializable {
             items[i++] = new SelectItem(role, role.toString());
         }
         return items;
+    }
+    
+    private void loadPassword(){
+        getUsuario().setPassword(getPassword());
     }
 
 }
