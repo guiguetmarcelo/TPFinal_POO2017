@@ -69,6 +69,12 @@ $color3Lighten: lighten($color3, 10%);
     -webkit-box-sizing: border-box !important;
     -moz-box-sizing: border-box !important;
     box-sizing: border-box !important;
+
+    input{
+        -webkit-box-sizing: border-box !important;
+        -moz-box-sizing: border-box !important;
+        box-sizing: border-box !important;
+    }
 }
 
 //FIX Jquery ui conflict with bootstrap in box-sizing attribute

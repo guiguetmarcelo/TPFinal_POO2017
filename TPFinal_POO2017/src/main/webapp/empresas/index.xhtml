@@ -24,7 +24,7 @@
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                              rowsPerPageTemplate="5,10,15"
                              styleClass="table-listado-yellow"
-                             emptyMessage="No hay elementos" 
+                             emptyMessage="#{msg.reporte_vacio}" 
                              filteredValue="#{empresaBacking.empresasFiltradas}"
                              widgetVar="empresasDT">
 
@@ -62,7 +62,7 @@
                     <p:column style="width:44px;text-align: center">
                         <p:commandButton actionListener="#{empresaBacking.delete(empresa)}"
                                          update="empresas" 
-                                         title="#{msg.empresa_elimianr}"
+                                         title="#{msg.empresa_eliminar}"
                                          icon="fa fa-trash"
                                          styleClass="bg-d-red">
 

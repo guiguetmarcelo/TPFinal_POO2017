@@ -19,7 +19,7 @@
                         <p:outputLabel for="periodo" value="#{msg.elegir_periodo}" />
                         <p:selectOneMenu id="periodo" value="#{reporteBacking.periodo}">
                             <f:selectItem itemLabel="#{msg.elegir} " itemValue="#{periodo}" />
-                            <f:selectItems value="#{periodoBacking.periodos}" var="periodo" itemLabel="#{periodo.descripcion}" itemValue="#{periodo}" />
+                            <f:selectItems value="#{periodoBacking.periodos}" var="periodo" itemLabel="#{periodo.toString()}" itemValue="#{periodo}" />
                         </p:selectOneMenu>
                         <p:outputLabel for="subcategoria" value="#{msg.elegir_subcategoria}" />
                         <p:selectOneMenu id="subcategoria" value="#{reporteBacking.subcategoria}">
@@ -53,18 +53,23 @@
                     </p:column>
 
                     <p:column headerText="#{msg.gastos_importe}">
-                        <h:outputText value="#{gasto.importe}"/>
+                        <h:outputText value="#{gasto.importe}">
+                            <f:convertNumber currencySymbol="$" type="currency"  /> 
+                        </h:outputText>
                     </p:column>
 
                     <p:summaryRow>
                         <p:column colspan="1" >
                             <h:outputText value="#{msg.presupuestado}: " />
                             <h:outputText value="#{reporteBacking.getTotalPresupuestosFiltrados(reporteBacking.periodo, gasto.subcategoria)}">
+                                <f:convertNumber currencySymbol="$" type="currency"  /> 
                             </h:outputText>
                         </p:column>
                         <p:column colspan="2" style="text-align:right">
                             <h:outputText value="#{msg.total_gastado}: " />
-                            <h:outputText value="#{reporteBacking.getSubtotalGastos(gasto.subcategoria)}"></h:outputText>
+                            <h:outputText value="#{reporteBacking.getSubtotalGastos(gasto.subcategoria)}">
+                                <f:convertNumber currencySymbol="$" type="currency"  /> 
+                            </h:outputText>
                         </p:column>
                     </p:summaryRow>
                 </p:dataTable>

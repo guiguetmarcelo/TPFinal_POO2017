@@ -28,7 +28,7 @@
         <p:messages autoUpdate="true" for="gastoInputImporte" closable="true"></p:messages>
         <p:messages autoUpdate="true" for="gastoInputSubcategoria" closable="true"></p:messages>
 
-        <p:panelGrid styleClass="tableBorderOff tableAutoMargin">
+        <p:panelGrid styleClass="tableBorderOff tableAutoMargin table-new-form">
 
             <p:row rendered="#{renderedRowGastosFecha}">
                 <p:column>
@@ -39,7 +39,8 @@
                                 value="#{gastoBacking.gasto.fecha}" 
                                 required="true" 
                                 pattern="dd/MM/yyyy" 
-                                navigator="true"/>
+                                navigator="true"
+                                class="bsbb"/>
                 </p:column>
             </p:row>
 
@@ -51,7 +52,8 @@
                     <p:inputNumber id="gastoInputImporte"
                                    value="#{gastoBacking.gasto.importe}"
                                    required="true"
-                                   symbol="$"/>
+                                   symbol="$"
+                                   class="bsbb"/>
                 </p:column>
             </p:row>
 

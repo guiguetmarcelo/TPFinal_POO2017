@@ -27,7 +27,7 @@
                         <p:outputLabel for="periodo" value="#{msg.elegir_periodo}" />
                         <p:selectOneMenu id="periodo" value="#{reporteBacking.periodo}" required="true" >
                             <f:selectItem itemLabel="#{msg.elegir} " itemValue="#{periodo}" />
-                            <f:selectItems value="#{periodoBacking.periodos}" var="periodo" itemLabel="#{periodo.descripcion}" itemValue="#{periodo}" />
+                            <f:selectItems value="#{periodoBacking.periodos}" var="periodo" itemLabel="#{periodo.toString()}" itemValue="#{periodo}" />
                         </p:selectOneMenu>
 
                         <span class="ui-separator">

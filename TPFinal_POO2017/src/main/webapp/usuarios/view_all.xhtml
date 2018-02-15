@@ -25,10 +25,9 @@
                              rowsPerPageTemplate="5,10,15"
                              class="dataTableUsuarios"
                              styleClass="table-listado-yellow"
-                             emptyMessage="No cars found with given criteria" 
+                             emptyMessage="#{msg.reporte_vacio}" 
                              filteredValue="#{usuarioBacking.usuariosFiltrados}"
                              widgetVar="usuariosDT">
-
 
                     <p:column headerText="#{msg.usuarios_email}" 
                               sortBy="#{usuario.email}" 

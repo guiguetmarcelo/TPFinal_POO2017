@@ -10,9 +10,10 @@
 
         <ui:define name="content">  
             <f:view contentType="text/html">
+                                <h1>#{msg.categorias_titulo}</h1>
                 <h:form>
-                    
-                                         <p:growl id="messages" autoUpdate="true" for="msgCategoria"></p:growl>
+
+                    <p:growl id="messages" autoUpdate="true" for="msgCategoria"></p:growl>
                     <p:dataTable id="categorias"
                                  value="#{categoriaBacking.categorias}" 
                                  var="categoria"
@@ -20,7 +21,7 @@
                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  rowsPerPageTemplate="5,10,15"
                                  styleClass="table-listado-yellow"
-                                 emptyMessage="No hay elementos" 
+                                 emptyMessage="#{msg.reporte_vacio}" 
                                  filteredValue="#{categoriaBacking.categoriasFiltradas}"
                                  widgetVar="categoriasDT">
 
@@ -63,7 +64,7 @@
                             </p:commandButton>
                         </p:column>
                     </p:dataTable>
-                    
+
                     <p:button value="#{msg.aniadir_categoria}" 
                               outcome="/categorias/new.xhtml?faces-redirect=true"
                               styleClass="bg-df-blue color-white"/>
@@ -73,7 +74,7 @@
                         <p:commandButton value="#{msg.boton_si}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
                         <p:commandButton value="#{msg.boton_no}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                     </p:confirmDialog>
-                    
+
                 </h:form>
             </f:view>
         </ui:define>

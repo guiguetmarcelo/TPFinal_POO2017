@@ -15,6 +15,26 @@
             <h:outputStylesheet name="css/styles.css"/>
         </f:facet>
 
+        <link rel="apple-touch-icon-precomposed" sizes="57x57" href="#{resource['images/favicon/apple-touch-icon-57x57.png']}" />
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="#{resource['images/favicon/apple-touch-icon-114x114.png']}" />
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="#{resource['images/favicon/apple-touch-icon-72x72.png']}" />
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="#{resource['images/favicon/apple-touch-icon-144x144.png']}" />
+        <link rel="apple-touch-icon-precomposed" sizes="60x60" href="#{resource['images/favicon/apple-touch-icon-60x60.png']}" />
+        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="#{resource['images/favicon/apple-touch-icon-120x120.png']}" />
+        <link rel="apple-touch-icon-precomposed" sizes="76x76" href="#{resource['images/favicon/apple-touch-icon-76x76.png']}" />
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="#{resource['images/favicon/apple-touch-icon-152x152.png']}" />
+        <link rel="icon" type="image/png" href="#{resource['images/favicon/favicon-196x196.png']}" sizes="196x196" />
+        <link rel="icon" type="image/png" href="#{resource['images/favicon/favicon-96x96.png']}" sizes="96x96" />
+        <link rel="icon" type="image/png" href="#{resource['images/favicon/favicon-32x32.png']}" sizes="32x32" />
+        <link rel="icon" type="image/png" href="#{resource['images/favicon/favicon-16x16.png']}" sizes="16x16" />
+        <link rel="icon" type="image/png" href="#{resource['images/favicon/favicon-128.png']}" sizes="128x128" />
+        <meta name="application-name" content="&nbsp;"/>
+        <meta name="msapplication-TileColor" content="#FFFFFF" />
+        <meta name="msapplication-TileImage" content="#{resource['images/favicon/mstile-144x144.png']}" />
+        <meta name="msapplication-square70x70logo" content="#{resource['images/favicon/mstile-70x70.png']}" />
+        <meta name="msapplication-square150x150logo" content="#{resource['images/favicon/mstile-150x150.png']}" />
+        <meta name="msapplication-wide310x150logo" content="#{resource['images/favicon/mstile-310x150.png']}" />
+        <meta name="msapplication-square310x310logo" content="#{resource['images/favicon/mstile-310x310.png']}" />
     </h:head>
     <h:body class="h-100 loginBody">
         <div class="loginBackground"></div>
@@ -50,25 +70,6 @@
                                     required="true"/>
                         <small id="passwordHelp" class="form-text text-muted">#{msg.usuarios_consejo_p}</small>
                     </div>
-
-                    <ui:remove>
-                        <div class="form-group">
-                            <p:outputLabel for="loginInputEmpresa" value="#{msg.usuarios_empresa}" />
-
-                            <p:selectOneMenu id="loginInputEmpresa"
-                                             class="login-selectonemenu"
-                                             placeholder="#{msg.elegir}"
-                                             value="#{sessionBacking.empresa}" 
-                                             required="true" 
-                                             filter="true" 
-                                             filterMatchMode="startsWith">
-
-                                <f:selectItem itemLabel="#{msg.elegir} " />
-                                <f:selectItems value="#{empresaBacking.empresas}" var="emp" itemLabel="#{emp.nombre}" itemValue="#{emp}" />
-                            </p:selectOneMenu>                     
-                        </div> 
-                    </ui:remove>
-
 
                     <div class="login-button">
                         <p:commandButton value="#{msg.usuarios_loginIngresar}" 

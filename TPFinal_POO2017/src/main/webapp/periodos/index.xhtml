@@ -21,7 +21,7 @@
                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  rowsPerPageTemplate="5,10,15"
                                  styleClass="table-listado-yellow"
-                                 emptyMessage="No hay elementos" 
+                                 emptyMessage="#{msg.reporte_vacio}" 
                                  filteredValue="#{periodoBacking.periodosFiltrados}"
                                  widgetVar="periodosDT">
 
@@ -113,7 +113,7 @@
 
 
                     </p:dataTable>
-                    <p:button value="#{msg.periodo_nuevo}" outcome="/periodos/new"/>
+                    <p:button value="#{msg.periodo_nuevo}" outcome="/periodos/new" styleClass="bg-df-blue color-white"/>
 
                     <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
                         <p:commandButton value="#{msg.boton_si}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />

@@ -25,17 +25,17 @@
                             <span class="ui-icon ui-icon-grip-dotted-vertical" />
                         </span>     
 
-                            <p:outputLabel for="periodo" value="#{msg.elegir_periodo}: " />
+                        <p:outputLabel for="periodo" value="#{msg.elegir_periodo}: " />
                         <p:selectOneMenu id="periodo" value="#{reporteBacking.periodo}">
                             <f:selectItem itemLabel="#{msg.elegir} " itemValue="#{periodo}" />
-                            <f:selectItems value="#{periodoBacking.periodos}" var="periodo" itemLabel="#{periodo.descripcion}" itemValue="#{periodo}" />
+                            <f:selectItems value="#{periodoBacking.periodos}" var="periodo" itemLabel="#{periodo.toString()}" itemValue="#{periodo}" />
                         </p:selectOneMenu>
 
                         <span class="ui-separator">
                             <span class="ui-icon ui-icon-grip-dotted-vertical" />
                         </span>
 
-                            <p:commandButton value="#{msg.consultar}" 
+                        <p:commandButton value="#{msg.consultar}" 
                                          actionListener="#{reporteBacking.getGastosPeriodoCategoria(reporteBacking.periodo, reporteBacking.categoria)}" 
                                          update="gastos"/>
                     </f:facet>
@@ -57,7 +57,9 @@
 
 
                     <p:column headerText="#{msg.gastos_importe}">
-                        <h:outputText value="#{gasto.importe}"/>
+                        <h:outputText value="#{gasto.importe}">
+                            <f:convertNumber currencySymbol="$" type="currency"  /> 
+                        </h:outputText>
                     </p:column>
 
                     <p:columnGroup type="footer">

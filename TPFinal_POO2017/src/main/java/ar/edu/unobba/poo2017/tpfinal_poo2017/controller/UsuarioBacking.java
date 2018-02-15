@@ -73,6 +73,10 @@ public class UsuarioBacking implements Serializable {
         }
         try {
             loadPassword();
+            if(getUsuario().getRol() == RolUsuario.ADMINISTRADOR_GENERAL)
+            {
+                getUsuario().setEmpresa(session.getUsuario().getEmpresa());
+            }
             usuarioDao.create(getUsuario());
             return "/usuarios/index?faces-redirect=true";
         } catch (Exception e) {
@@ -84,6 +88,10 @@ public class UsuarioBacking implements Serializable {
         try {
             if (getChangePassword()) {
                 loadPassword();
+            }
+            if(getUsuario().getRol() == RolUsuario.ADMINISTRADOR_GENERAL)
+            {
+                getUsuario().setEmpresa(session.getUsuario().getEmpresa());
             }
             usuarioDao.update(getUsuario());
             if (getUsuario().equals(session.getUsuario())) {

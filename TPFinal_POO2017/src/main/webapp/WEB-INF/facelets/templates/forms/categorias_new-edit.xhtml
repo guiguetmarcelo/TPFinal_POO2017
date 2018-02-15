@@ -17,7 +17,7 @@
         <p:messages autoUpdate="true" for="categoriaInputNombre" closable="true"></p:messages>
         <p:messages autoUpdate="true" for="categoriaInputDescripcion" closable="true"></p:messages>
 
-        <p:panelGrid styleClass="tableBorderOff tableAutoMargin">
+        <p:panelGrid styleClass="tableBorderOff tableAutoMargin table-new-form">
             
             <p:row>
                 <p:column>
@@ -26,7 +26,8 @@
                 <p:column>
                     <p:inputText id="categoriaInputNombre" 
                                  value="#{categoriaBacking.categoria.nombre}"
-                                 required="true"/>
+                                 required="true"
+                                 class="bsbb"/>
                 </p:column>
             </p:row>
 
@@ -37,7 +38,8 @@
                 <p:column>
                     <p:inputText id="categoriaInputDescripcion" 
                                  value="#{categoriaBacking.categoria.descripcion}"
-                                 required="true"/>
+                                 required="true"
+                                 class="bsbb"/>
                 </p:column>
             </p:row>
 

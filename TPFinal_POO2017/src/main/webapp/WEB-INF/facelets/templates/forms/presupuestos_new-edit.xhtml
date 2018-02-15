@@ -16,7 +16,7 @@
         <p:messages autoUpdate="true" for="presupuestoInputSubcategoria" closable="true"></p:messages>
         <p:messages autoUpdate="true" for="presupuestoInputPeriodo" closable="true"></p:messages>
 
-        <p:panelGrid styleClass="tableBorderOff tableAutoMargin">
+        <p:panelGrid styleClass="tableBorderOff tableAutoMargin table-new-form">
 
             <p:row>
                 <p:column>
@@ -26,7 +26,8 @@
                     <p:inputNumber id="presupuestoInputMonto" 
                                    value="#{presupuestoBacking.presupuesto.monto}"
                                    required="true"
-                                   symbol="$"/>
+                                   symbol="$"
+                                   class="bsbb"/>
                 </p:column>
             </p:row>
 
@@ -53,7 +54,7 @@
                                      value="#{presupuestoBacking.presupuesto.periodo}"
                                      required="true">
 
-                        <f:selectItems value="#{periodoBacking.periodos}" var="periodo" itemLabel="#{periodo.descripcion}" itemValue="#{periodo}"/>
+                        <f:selectItems value="#{periodoBacking.periodos}" var="periodo" itemLabel="#{periodo.toString()}" itemValue="#{periodo}"/>
                     </p:selectOneMenu>
                 </p:column>
             </p:row>

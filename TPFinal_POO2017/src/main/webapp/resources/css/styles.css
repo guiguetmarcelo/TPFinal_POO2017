@@ -28,6 +28,10 @@ and open the template in the editor.
   -webkit-box-sizing: border-box !important;
   -moz-box-sizing: border-box !important;
   box-sizing: border-box !important; }
+  .bsbb input {
+    -webkit-box-sizing: border-box !important;
+    -moz-box-sizing: border-box !important;
+    box-sizing: border-box !important; }
 
 .ui-widget *,
 .ui-widget *:before,

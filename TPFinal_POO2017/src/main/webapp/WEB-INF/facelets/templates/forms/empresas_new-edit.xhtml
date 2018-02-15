@@ -16,7 +16,7 @@
         <p:messages autoUpdate="true" for="empresaInputTelefono" closable="true"></p:messages>
         <p:messages autoUpdate="true" for="empresaInputDescripcion" closable="true"></p:messages>
 
-        <p:panelGrid styleClass="tableBorderOff tableAutoMargin">
+        <p:panelGrid styleClass="tableBorderOff tableAutoMargin table-new-form">
             <p:row>
                 <p:column>
                     <p:outputLabel for="empresaInputNombre" value="#{msg.empresa_nombre} "></p:outputLabel>
@@ -24,7 +24,8 @@
                 <p:column>
                     <p:inputText id="empresaInputNombre" 
                                  value="#{empresaBacking.empresa.nombre}"
-                                 required="true"/>
+                                 required="true"
+                                 class="bsbb"/>
                 </p:column>
             </p:row>
 
@@ -35,7 +36,8 @@
                 <p:column>
                     <p:inputText id="empresaInputTelefono" 
                                  value="#{empresaBacking.empresa.telefono}"
-                                 required="false"/>
+                                 required="false"
+                                 class="bsbb"/>
                 </p:column>
             </p:row>
 
@@ -46,7 +48,8 @@
                 <p:column>
                     <p:inputText id="empresaInputDescripcion" 
                                  value="#{empresaBacking.empresa.descripcion}"
-                                 required="true"/>
+                                 required="true"
+                                 class="bsbb"/>
                 </p:column>
             </p:row>
 

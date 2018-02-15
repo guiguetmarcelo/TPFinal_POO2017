@@ -27,7 +27,6 @@
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">#{msg.detalles}</h5>
-                                <!-- <h6 class="card-subtitle mb-2 text-muted">Detalles</h6>-->
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item"><strong>#{msg.usuarios_email}: </strong>#{sessionBacking.usuario.email}</li>
                                     <li class="list-group-item"><strong>#{msg.usuarios_nombre}: </strong>#{sessionBacking.usuario.nombre}</li>
@@ -43,7 +42,6 @@
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">#{msg.detalles}</h5>
-                                <!-- <h6 class="card-subtitle mb-2 text-muted">Detalles</h6>-->
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item"><strong>#{msg.usuarios_nombre}: </strong>#{sessionBacking.empresa.nombre}</li>
                                     <li class="list-group-item"><strong>#{msg.telefono}: </strong>#{sessionBacking.empresa.telefono}</li>
@@ -70,7 +68,6 @@
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">#{msg.detalles}</h5>
-                                <!-- <h6 class="card-subtitle mb-2 text-muted">Detalles</h6>-->
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item"><strong>#{msg.registros}: </strong>#{gastoBacking.cantidad}</li>
                                 </ul>
@@ -84,7 +81,6 @@
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">#{msg.detalles}</h5>
-                                <!-- <h6 class="card-subtitle mb-2 text-muted">Detalles</h6>-->
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item"><strong>#{msg.registros}: </strong>#{presupuestoBacking.cantidad}</li>
                                 </ul>
@@ -103,6 +99,7 @@
                             <p:link value="#{msg.menu_reportesReporteDesvio}" outcome="/reportes/reporteDesvio.xhtml" styleClass="card-link" />
                             <p:link value="#{msg.menu_reportesReporteLista}" outcome="/reportes/reporteLista.xhtml" styleClass="card-link" />
                             <p:link value="#{msg.menu_reportesReporteComparativo}" outcome="/reportes/reporteComparativo.xhtml" styleClass="card-link" />
+                            <p:link value="#{msg.menu_reportesDesvioSubcategorias}" outcome="/reportes/desvioSubcategorias.xhtml" styleClass="card-link" />
                         </div>
                     </div>
 

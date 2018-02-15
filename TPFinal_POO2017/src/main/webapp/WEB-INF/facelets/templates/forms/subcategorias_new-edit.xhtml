@@ -16,7 +16,7 @@
         <p:messages autoUpdate="true" for="subcategoriaInputDescripcion" closable="true"></p:messages>
         <p:messages autoUpdate="true" for="subcategoriaInputPadre" closable="true"></p:messages>
 
-        <p:panelGrid styleClass="tableBorderOff tableAutoMargin">
+        <p:panelGrid styleClass="tableBorderOff tableAutoMargin table-new-form">
             <p:row>
                 <p:column>
                     <p:outputLabel for="subcategoriaInputNombre" value="#{msg.subcategorias_nombre}"></p:outputLabel>
@@ -24,7 +24,8 @@
                 <p:column>
                     <p:inputText id="subcategoriaInputNombre" 
                                  value="#{subcategoriaBacking.subcategoria.nombre}"
-                                 required="true"/>
+                                 required="true"
+                                 class="bsbb"/>
                 </p:column>
             </p:row>
 
@@ -35,7 +36,8 @@
                 <p:column>
                     <p:inputText id="subcategoriaInputDescripcion" 
                                  value="#{subcategoriaBacking.subcategoria.descripcion}"
-                                 required="true"/>
+                                 required="true"
+                                 class="bsbb"/>
                 </p:column>
             </p:row>
             <p:row>

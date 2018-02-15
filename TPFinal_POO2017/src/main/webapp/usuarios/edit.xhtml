@@ -7,10 +7,8 @@
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
         <ui:param name="pageTitle" value="#{msg.usuarios_editarTitle}"></ui:param>
-        
-        <ui:param name="RRrol" value="#{sessionBacking.usuario.isAdmGen() and not sessionBacking.usuario.equals(usuarioBacking.usuario)}"></ui:param>
-        <ui:param name="RRempresa" value="#{sessionBacking.usuario.isAdmGen() and not sessionBacking.usuario.equals(usuarioBacking.usuario)}"></ui:param>
-        <ui:param name="RRpassword" value="#{sessionBacking.usuario.isAdmGen() or sessionBacking.usuario.equals(usuarioBacking.usuario)}"></ui:param>
+
+
 
         <ui:define name="head_content">
             <f:metadata>
@@ -20,12 +18,16 @@
 
         <ui:define name="content">
 
+
             <h1>#{msg.usuarios_editarTitulo}</h1>
 
             <ui:decorate template="/WEB-INF/facelets/templates/forms/usuarios_new-edit.xhtml">
                 <ui:param name="update" value="true"/>
+                <ui:param name="RRrol" value="#{sessionBacking.usuario.isAdmGen() and not usuarioBacking.usuario.equals(sessionBacking.usuario)}"></ui:param>
+                <ui:param name="RRempresa" value="#{sessionBacking.usuario.isAdmGen() and not usuarioBacking.usuario.equals(sessionBacking.usuario)}"></ui:param>
+                <ui:param name="RRpassword" value="#{sessionBacking.usuario.isAdmGen() or usuarioBacking.usuario.equals(sessionBacking.usuario)}"></ui:param>
             </ui:decorate> 
-      
+
         </ui:define>
     </ui:composition>
 </html>

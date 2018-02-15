@@ -16,7 +16,7 @@
         <p:messages autoUpdate="true" for="periodoInputFechaHasta" closable="true"></p:messages>
         <p:messages autoUpdate="true" for="periodoInputDescripcion" closable="true"></p:messages>
 
-        <p:panelGrid styleClass="tableBorderOff tableAutoMargin">
+        <p:panelGrid styleClass="tableBorderOff tableAutoMargin table-new-form">
 
             <p:row>
                 <p:column>
@@ -25,7 +25,8 @@
                 <p:column>
                     <p:calendar id="periodoInputFechaDesde" 
                                 value="#{periodoBacking.periodo.fechaDesde}"
-                                required="true">
+                                required="true"
+                                class="bsbb">
                     </p:calendar>
                 </p:column>
             </p:row>
@@ -37,7 +38,8 @@
                 <p:column>
                     <p:calendar id="periodoInputFechaHasta"
                                 value="#{periodoBacking.periodo.fechaHasta}"
-                                required="true">
+                                required="true"
+                                class="bsbb">
                     </p:calendar>
                 </p:column>
             </p:row>
@@ -49,7 +51,8 @@
                 <p:column>
                     <p:inputText id="periodoInputDescripcion" 
                                  value="#{periodoBacking.periodo.descripcion}"
-                                 required="false"/>
+                                 required="false"
+                                 class="bsbb"/>
                 </p:column>
             </p:row>
 
