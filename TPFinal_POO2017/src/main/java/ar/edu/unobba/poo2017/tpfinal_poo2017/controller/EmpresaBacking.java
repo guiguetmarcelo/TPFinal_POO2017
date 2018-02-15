@@ -59,7 +59,7 @@ public class EmpresaBacking implements Serializable {
         } catch (Exception e) {
             FacesContext context = FacesContext.getCurrentInstance();
             FacesMessage message;
-            message = new FacesMessage("ERROR al registrar la empresa. Posible causa: La empresa ya existe");
+            message = new FacesMessage(msg.getString("empresa_existente"));
             context.addMessage("msgEmpresa", message);
             return null;
         }
@@ -93,7 +93,7 @@ public class EmpresaBacking implements Serializable {
         } catch (Exception e) {
             FacesContext context = FacesContext.getCurrentInstance();
             FacesMessage message;
-            message = new FacesMessage("ERROR al eliminar la empresa. Posible causa: La empresa esta en uso");
+            message = new FacesMessage(msg.getString("empresa_enuso"));
             context.addMessage("msgEmpresa", message);
             
         }
