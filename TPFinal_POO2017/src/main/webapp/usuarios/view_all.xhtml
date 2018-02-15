@@ -39,11 +39,11 @@
                     </p:column> 
 
                     <p:column headerText="#{msg.usuarios_rol}"
-                              sortBy="#{usuario.rol}"
-                              filterBy="#{usuario.rol}"
+                              sortBy="#{usuarioBacking.rolToString(usuario.rol)}"
+                              filterBy="#{usuarioBacking.rolToString(usuario.rol)}"
                               filterMatchMode="contains">
 
-                        <h:outputText value="#{usuario.rol}"/>
+                        <h:outputText value="#{usuarioBacking.rolToString(usuario.rol)}"/>
                     </p:column>
 
                     <p:column headerText="#{msg.usuarios_empresa}"

@@ -8,8 +8,8 @@
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
         <ui:param name="pageTitle" value="#{msg.usuarios_editarTitle}"></ui:param>
         
-        <ui:param name="RRrol" value="#{sessionBacking.usuario.isAdmGen()}"></ui:param>
-        <ui:param name="RRempresa" value="#{sessionBacking.usuario.isAdmGen()}"></ui:param>
+        <ui:param name="RRrol" value="#{sessionBacking.usuario.isAdmGen() and not sessionBacking.usuario.equals(usuarioBacking.usuario)}"></ui:param>
+        <ui:param name="RRempresa" value="#{sessionBacking.usuario.isAdmGen() and not sessionBacking.usuario.equals(usuarioBacking.usuario)}"></ui:param>
         <ui:param name="RRpassword" value="#{sessionBacking.usuario.isAdmGen() or sessionBacking.usuario.equals(usuarioBacking.usuario)}"></ui:param>
 
         <ui:define name="head_content">

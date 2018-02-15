@@ -41,7 +41,7 @@
         <p:messages autoUpdate="true" for="usuarioInputRol" closable="true"></p:messages>
         <p:messages autoUpdate="true" for="usuarioInputCompany" closable="true"></p:messages>
 
-        <p:panelGrid styleClass="tableBorderOff tableAutoMargin"> 
+        <p:panelGrid styleClass="tableBorderOff tableAutoMargin table-new-form"> 
 
             <p:row rendered="#{RRemail}">
                 <p:column>
@@ -66,7 +66,9 @@
                 </p:column>
                 <p:column>
                     <p:inputSwitch id="usuarioInputActivePassword" 
-                                   value="#{usuarioBacking.changePassword}">
+                                   value="#{usuarioBacking.changePassword}"
+                                   onLabel="#{msg.si}"
+                                   offLabel="#{msg.no}">
 
                         <p:ajax update="labelPassword1 inputPassword1 labelPassword2 inputPassword2" />
                     </p:inputSwitch>
@@ -150,32 +152,40 @@
                                      converter="rolUsuarioConverter" 
                                      rendered="#{sessionBacking.usuario.isAdmGen()}" 
                                      required="true" 
-                                     filter="true" 
-                                     filterMatchMode="startsWith"
                                      autoWidth="false">
 
-                        <f:selectItem itemLabel="#{msg.elegir} " />
-                        <f:selectItems value="#{usuarioBacking.rolesSelectMany}" var="rol" itemLabel="#{rol.name}" itemValue="#{rol}" />
+                  
+                        <f:selectItems value="#{usuarioBacking.rolesSelectMany}" itemLabel="asdafaf"  />
+                      <!--  <f:selectItems value="#{usuarioBacking.rolesSelectMany}" var="rol" itemLabel="#{rol}" itemValue="#{rol}" />-->
+                        
+                        <p:ajax update="inputCompany labelCompany"/>
                     </p:selectOneMenu>
                 </p:column>
             </p:row>
 
             <p:row rendered="#{RRempresa}">
                 <p:column>
-                    <p:outputLabel for="usuarioInputCompany" value="#{msg.usuarios_empresa}" rendered="#{sessionBacking.usuario.isAdmGen()}" />
+                    <p:fragment id="labelCompany">
+                     <p:outputLabel for="usuarioInputCompany" 
+                                    value="#{msg.usuarios_empresa}" 
+                                    rendered="#{sessionBacking.usuario.isAdmGen() and not usuarioBacking.usuario.isAdmGen()}" />   
+                    </p:fragment>
+                    
 
                 </p:column>
                 <p:column>
-                    <p:selectOneMenu id="usuarioInputCompany" 
-                                     value="#{usuarioBacking.usuario.empresa}" 
-                                     rendered="#{sessionBacking.usuario.isAdmGen()}" 
-                                     required="true" 
-                                     filter="true" 
-                                     filterMatchMode="startsWith">
+                    <p:fragment id="inputCompany">
+                        <p:selectOneMenu id="usuarioInputCompany" 
+                                         value="#{usuarioBacking.usuario.empresa}" 
+                                         rendered="#{sessionBacking.usuario.isAdmGen() and not usuarioBacking.usuario.isAdmGen()}" 
+                                         required="true" 
+                                         filter="true" 
+                                         filterMatchMode="startsWith">
 
-                        <f:selectItem itemLabel="#{msg.elegir} " />
-                        <f:selectItems value="#{empresaBacking.empresas}" var="emp" itemLabel="#{emp.nombre}" itemValue="#{emp}" />
-                    </p:selectOneMenu>
+                            <f:selectItems value="#{empresaBacking.empresas}" var="emp" itemLabel="#{emp.nombre}" itemValue="#{emp}" />
+                        </p:selectOneMenu>  
+                    </p:fragment>
+
                 </p:column>
             </p:row>
 

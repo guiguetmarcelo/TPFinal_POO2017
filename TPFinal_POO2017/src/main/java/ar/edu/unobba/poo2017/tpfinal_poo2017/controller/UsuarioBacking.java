@@ -1,4 +1,3 @@
-
 package ar.edu.unobba.poo2017.tpfinal_poo2017.controller;
 
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.bundle.MessagesProducer;
@@ -29,10 +28,10 @@ public class UsuarioBacking implements Serializable {
 
     private Usuario usuario;
     private Usuario usuarioSeleccionado;
-    
+
     private Boolean changePassword;
     private String password;
-    
+
     private List<Usuario> listUsuariosActivos;
     private List<Usuario> usuariosFiltrados;
 
@@ -45,6 +44,7 @@ public class UsuarioBacking implements Serializable {
     @PostConstruct
     public void init() {
         setUsuario(new Usuario());
+        getUsuario().setRol(RolUsuario.ADMINISTRADOR_EMPRESA);
         setChangePassword(false);
     }
 
@@ -82,11 +82,11 @@ public class UsuarioBacking implements Serializable {
 
     public String update() {
         try {
-            if(getChangePassword()){
+            if (getChangePassword()) {
                 loadPassword();
             }
             usuarioDao.update(getUsuario());
-            if(getUsuario().equals(session.getUsuario())){
+            if (getUsuario().equals(session.getUsuario())) {
                 session.update();
             }
             return "/usuarios/index?faces-redirect=true";
@@ -141,8 +141,6 @@ public class UsuarioBacking implements Serializable {
         this.password = password;
     }
 
-    
-    
     private List<Usuario> getListUsuariosActivos() {
         return listUsuariosActivos;
     }
@@ -168,8 +166,24 @@ public class UsuarioBacking implements Serializable {
         }
         return items;
     }
+
+    public RolUsuario rolAdmEmp(){
+        return RolUsuario.ADMINISTRADOR_EMPRESA;
+    }
     
-    private void loadPassword(){
+    public RolUsuario rolAdmGen(){
+        return RolUsuario.ADMINISTRADOR_GENERAL;
+    }
+    
+    public String rolToString(RolUsuario rol) {
+        if (rol.isAdmGen()) {
+            return msg.getString("rol_admGen");
+        } else {
+            return msg.getString("rol_admEmp");
+        }
+    }
+
+    private void loadPassword() {
         getUsuario().setPassword(getPassword());
     }
 

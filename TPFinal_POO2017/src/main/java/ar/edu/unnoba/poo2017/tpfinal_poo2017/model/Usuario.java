@@ -118,12 +118,14 @@ public class Usuario extends AbstractEntity implements Serializable{
     public RolUsuario getRol() {
         return rol;
     }
+    
+    public String getRolToString(){
+        return getRol().toString();
+    }
 
     public void setRol(RolUsuario rol) {
         this.rol = rol;
     }
-    
-    
     
     public Boolean isAdmGen(){
         return getRol().isAdmGen();

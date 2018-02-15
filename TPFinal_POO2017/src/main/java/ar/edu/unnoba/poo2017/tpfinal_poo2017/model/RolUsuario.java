@@ -5,8 +5,8 @@
  */
 package ar.edu.unnoba.poo2017.tpfinal_poo2017.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
+import ar.edu.unnoba.poo2017.tpfinal_poo2017.bundle.MessagesProducer;
+import javax.inject.Inject;
 
 /**
  *
@@ -27,5 +27,6 @@ public enum RolUsuario {
     public Boolean isAdmEmp(){
         return ADMINISTRADOR_EMPRESA == this;
     }
+    
     
 }
