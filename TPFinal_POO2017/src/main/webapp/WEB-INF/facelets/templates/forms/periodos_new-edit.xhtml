@@ -12,33 +12,44 @@
            scope="request" /> 
 
     <h:form>
-        <p:growl id="messages"></p:growl>
+        <p:messages autoUpdate="true" for="periodoInputFechaDesde" closable="true"></p:messages>
+        <p:messages autoUpdate="true" for="periodoInputFechaHasta" closable="true"></p:messages>
+        <p:messages autoUpdate="true" for="periodoInputDescripcion" closable="true"></p:messages>
+
         <p:panelGrid styleClass="tableBorderOff tableAutoMargin">
 
             <p:row>
                 <p:column>
-                    <p:outputLabel for="evento" value="#{msg.fecha_inicio}" />
+                    <p:outputLabel for="periodoInputFechaDesde" value="#{msg.fecha_inicio}" />
                 </p:column>
                 <p:column>
-                    <p:calendar id="evento" value="#{periodoBacking.periodo.fechaDesde}"></p:calendar>
-                </p:column>
-            </p:row>
-
-            <p:row>
-                <p:column>
-                    <p:outputLabel for="event" value="#{msg.fecha_fin}" />
-                </p:column>
-                <p:column>
-                    <p:calendar id="event" value="#{periodoBacking.periodo.fechaHasta}"></p:calendar>
+                    <p:calendar id="periodoInputFechaDesde" 
+                                value="#{periodoBacking.periodo.fechaDesde}"
+                                required="true">
+                    </p:calendar>
                 </p:column>
             </p:row>
 
             <p:row>
                 <p:column>
-                    <p:outputLabel value="#{msg.descripcion}"></p:outputLabel>
+                    <p:outputLabel for="periodoInputFechaHasta" value="#{msg.fecha_fin}" />
                 </p:column>
                 <p:column>
-                    <p:inputText value="#{periodoBacking.periodo.descripcion}"/>
+                    <p:calendar id="periodoInputFechaHasta"
+                                value="#{periodoBacking.periodo.fechaHasta}"
+                                required="true">
+                    </p:calendar>
+                </p:column>
+            </p:row>
+
+            <p:row>
+                <p:column>
+                    <p:outputLabel for="periodoInputDescripcion" value="#{msg.descripcion}"></p:outputLabel>
+                </p:column>
+                <p:column>
+                    <p:inputText id="periodoInputDescripcion" 
+                                 value="#{periodoBacking.periodo.descripcion}"
+                                 required="false"/>
                 </p:column>
             </p:row>
 
@@ -46,21 +57,17 @@
                 <p:column colspan="2">
                     <p:commandButton value="#{msg.boton_guardar}" 
                                      action="#{periodoBacking.create()}" 
-                                     update="messages"
                                      rendered="#{not update}"
                                      styleClass="bg-df-green color-white"/>
 
                     <p:commandButton value="#{msg.boton_actualizar}" 
                                      action="#{periodoBacking.update()}" 
-                                     update="messages"
                                      rendered="#{update}"
                                      styleClass="bg-df-green color-white"/>
 
                     <p:button value="#{msg.boton_cancelar}" outcome="/periodos/index.xhtml?faces-redirect=true" styleClass="bg-df-red color-white"/>
                 </p:column>
             </p:row> 
-
-
 
         </p:panelGrid>
     </h:form>

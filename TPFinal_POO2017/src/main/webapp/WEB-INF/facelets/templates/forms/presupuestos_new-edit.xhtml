@@ -12,25 +12,33 @@
            scope="request" /> 
 
     <h:form>
-        <p:growl id="messages"></p:growl>
+        <p:messages autoUpdate="true" for="presupuestoInputMonto" closable="true"></p:messages>
+        <p:messages autoUpdate="true" for="presupuestoInputSubcategoria" closable="true"></p:messages>
+        <p:messages autoUpdate="true" for="presupuestoInputPeriodo" closable="true"></p:messages>
 
         <p:panelGrid styleClass="tableBorderOff tableAutoMargin">
 
             <p:row>
                 <p:column>
-                    <p:outputLabel value="#{msg.presupuestos_monto}"></p:outputLabel>
+                    <p:outputLabel for="presupuestoInputMonto" value="#{msg.presupuestos_monto}"></p:outputLabel>
                 </p:column>
                 <p:column>
-                    <p:inputNumber value="#{presupuestoBacking.presupuesto.monto}"/>
+                    <p:inputNumber id="presupuestoInputMonto" 
+                                   value="#{presupuestoBacking.presupuesto.monto}"
+                                   required="true"
+                                   symbol="$"/>
                 </p:column>
             </p:row>
 
             <p:row>
                 <p:column>
-                    <p:outputLabel for="input_presupuestos_subcat" value="#{msg.presupuestos_subcategoria}"  ></p:outputLabel> 
+                    <p:outputLabel for="presupuestoInputSubcategoria" value="#{msg.presupuestos_subcategoria}"  ></p:outputLabel> 
                 </p:column>
                 <p:column>
-                    <p:selectOneMenu id="input_presupuestos_subcat" value="#{presupuestoBacking.presupuesto.subcategoria}">
+                    <p:selectOneMenu id="presupuestoInputSubcategoria" 
+                                     value="#{presupuestoBacking.presupuesto.subcategoria}"
+                                     required="true">
+
                         <f:selectItems value="#{subcategoriaBacking.subcategorias}" var="subcat" itemLabel="#{subcat.nombre}" itemValue="#{subcat}"/>
                     </p:selectOneMenu>
                 </p:column>
@@ -38,10 +46,13 @@
 
             <p:row>
                 <p:column>
-                    <p:outputLabel for="input_presupuestos_periodo" value="#{msg.presupuestos_periodo}"  ></p:outputLabel>
+                    <p:outputLabel for="presupuestoInputPeriodo" value="#{msg.presupuestos_periodo}"  ></p:outputLabel>
                 </p:column>
                 <p:column>
-                    <p:selectOneMenu id="input_presupuestos_periodo" value="#{presupuestoBacking.presupuesto.periodo}">
+                    <p:selectOneMenu id="presupuestoInputPeriodo" 
+                                     value="#{presupuestoBacking.presupuesto.periodo}"
+                                     required="true">
+
                         <f:selectItems value="#{periodoBacking.periodos}" var="periodo" itemLabel="#{periodo.descripcion}" itemValue="#{periodo}"/>
                     </p:selectOneMenu>
                 </p:column>
@@ -54,7 +65,7 @@
                                      update="messages"
                                      rendered="#{not update}"
                                      styleClass="bg-df-green color-white"/>
-                    
+
                     <p:commandButton value="#{msg.usuarios_botonActualizar}" 
                                      action="#{presupuestoBacking.update()}" 
                                      update="messages"

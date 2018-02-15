@@ -35,20 +35,25 @@
 
     <h:form id="userForm">
 
-        <p:messages autoUpdate="true" for="newUserInputUsername" closable="true"></p:messages>
-        <p:messages autoUpdate="true" for="newUserInputPassword" closable="true"></p:messages>
-        <p:messages autoUpdate="true" for="newUserInputEmail" closable="true"></p:messages>
-        <p:messages autoUpdate="true" for="newUserInputRol" closable="true"></p:messages>
-        <p:messages autoUpdate="true" for="newUserInputCompany" closable="true"></p:messages>
+        <p:messages autoUpdate="true" for="usuarioInputUsername" closable="true"></p:messages>
+        <p:messages autoUpdate="true" for="usuarioInputPassword" closable="true"></p:messages>
+        <p:messages autoUpdate="true" for="usuarioInputEmail" closable="true"></p:messages>
+        <p:messages autoUpdate="true" for="usuarioInputRol" closable="true"></p:messages>
+        <p:messages autoUpdate="true" for="usuarioInputCompany" closable="true"></p:messages>
 
         <p:panelGrid styleClass="tableBorderOff tableAutoMargin"> 
 
             <p:row rendered="#{RRemail}">
                 <p:column>
-                    <p:outputLabel for="newUserInputEmail" value="#{msg.usuarios_email}"></p:outputLabel>
+                    <p:outputLabel for="usuarioInputEmail" value="#{msg.usuarios_email}"></p:outputLabel>
                 </p:column>
                 <p:column>
-                    <p:inputText id="newUserInputEmail" value="#{usuarioBacking.usuario.email}" required="true" validatorMessage="Mail invalido" class="bsbb">
+                    <p:inputText id="usuarioInputEmail" 
+                                 value="#{usuarioBacking.usuario.email}" 
+                                 required="true" 
+                                 validatorMessage="Mail invalido" 
+                                 class="bsbb">
+
                         <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
                     </p:inputText>
                     <p:message  showDetail="true"  for="newUserInputEmail" display="tooltip" />
@@ -57,10 +62,12 @@
 
             <p:row rendered="#{RRpassword and update}">
                 <p:column>
-                    <p:outputLabel for="newUserInputActivePassword" value="#{msg.usuarios_changePassword}"></p:outputLabel>
+                    <p:outputLabel for="usuarioInputActivePassword" value="#{msg.usuarios_changePassword}"></p:outputLabel>
                 </p:column>
                 <p:column>
-                    <p:inputSwitch id="newUserInputActivePassword" value="#{usuarioBacking.changePassword}">
+                    <p:inputSwitch id="usuarioInputActivePassword" 
+                                   value="#{usuarioBacking.changePassword}">
+
                         <p:ajax update="labelPassword1 inputPassword1 labelPassword2 inputPassword2" />
                     </p:inputSwitch>
                 </p:column>
@@ -69,7 +76,7 @@
             <p:row rendered="#{RRpassword}">
                 <p:column>
                     <p:fragment id="labelPassword1">
-                        <p:outputLabel for="newUserInputPassword" 
+                        <p:outputLabel for="usuarioInputPassword" 
                                        rendered="#{usuarioBacking.changePassword or not update}"
                                        value="#{msg.usuarios_password}">
                         </p:outputLabel>
@@ -77,7 +84,7 @@
                 </p:column>
                 <p:column>
                     <p:fragment id="inputPassword1">
-                        <p:password id="newUserInputPassword" 
+                        <p:password id="usuarioInputPassword" 
                                     rendered="#{usuarioBacking.changePassword or not update}"
                                     value="#{usuarioBacking.password}" 
                                     class="bsbb"
@@ -92,7 +99,7 @@
             <p:row rendered="#{RRpassword}">
                 <p:column>
                     <p:fragment id="labelPassword2">
-                        <p:outputLabel for="newUserInputPassword2"
+                        <p:outputLabel for="usuarioInputPassword2"
                                        rendered="#{usuarioBacking.changePassword or not update}"
                                        value="#{msg.usuarios_password}">
                         </p:outputLabel>
@@ -100,7 +107,7 @@
                 </p:column>
                 <p:column>
                     <p:fragment id="inputPassword2">
-                        <p:password id="newUserInputPassword2" 
+                        <p:password id="usuarioInputPassword2" 
                                     rendered="#{usuarioBacking.changePassword or not update}"
                                     value="#{usuarioBacking.password}" 
                                     class="bsbb"
@@ -110,36 +117,35 @@
                 </p:column>
             </p:row> 
 
-
-
-
-
-
             <p:row rendered="#{RRnombre}">
                 <p:column>
-                    <p:outputLabel for="newUserInputName" value="#{msg.usuarios_nombre}"></p:outputLabel>
+                    <p:outputLabel for="usuarioInputName" value="#{msg.usuarios_nombre}"></p:outputLabel>
                 </p:column>
                 <p:column>
-                    <p:inputText id="newUserInputName" value="#{usuarioBacking.usuario.nombre}" class="bsbb"/>
+                    <p:inputText id="usuarioInputName"
+                                 value="#{usuarioBacking.usuario.nombre}" 
+                                 class="bsbb"/>
                 </p:column>
             </p:row>
 
             <p:row rendered="#{RRapellido}">
                 <p:column>
-                    <p:outputLabel for="newUserInputLastName" value="#{msg.usuarios_apellido}"></p:outputLabel>
+                    <p:outputLabel for="usuarioInputLastName" value="#{msg.usuarios_apellido}"></p:outputLabel>
                 </p:column>
                 <p:column>
-                    <p:inputText id="newUserInputLastName" value="#{usuarioBacking.usuario.apellido}" class="bsbb"/>
+                    <p:inputText id="usuarioInputLastName" 
+                                 value="#{usuarioBacking.usuario.apellido}" 
+                                 class="bsbb"/>
                 </p:column>
             </p:row>
 
             <p:row rendered="#{RRrol}">
                 <p:column>
-                    <p:outputLabel for="newUserInputRol" value="#{msg.usuarios_rol}" rendered="#{sessionBacking.usuario.isAdmGen()}"></p:outputLabel>
+                    <p:outputLabel for="usuarioInputRol" value="#{msg.usuarios_rol}" rendered="#{sessionBacking.usuario.isAdmGen()}"></p:outputLabel>
 
                 </p:column>
                 <p:column>
-                    <p:selectOneMenu id="newUserInputRol" 
+                    <p:selectOneMenu id="usuarioInputRol" 
                                      value="#{usuarioBacking.usuario.rol}" 
                                      converter="rolUsuarioConverter" 
                                      rendered="#{sessionBacking.usuario.isAdmGen()}" 
@@ -147,6 +153,7 @@
                                      filter="true" 
                                      filterMatchMode="startsWith"
                                      autoWidth="false">
+
                         <f:selectItem itemLabel="#{msg.elegir} " />
                         <f:selectItems value="#{usuarioBacking.rolesSelectMany}" var="rol" itemLabel="#{rol.name}" itemValue="#{rol}" />
                     </p:selectOneMenu>
@@ -155,11 +162,17 @@
 
             <p:row rendered="#{RRempresa}">
                 <p:column>
-                    <p:outputLabel for="newUserInputCompany" value="#{msg.usuarios_empresa}" rendered="#{sessionBacking.usuario.isAdmGen()}" />
+                    <p:outputLabel for="usuarioInputCompany" value="#{msg.usuarios_empresa}" rendered="#{sessionBacking.usuario.isAdmGen()}" />
 
                 </p:column>
                 <p:column>
-                    <p:selectOneMenu id="newUserInputCompany" value="#{usuarioBacking.usuario.empresa}" rendered="#{sessionBacking.usuario.isAdmGen()}" required="true" filter="true" filterMatchMode="startsWith">
+                    <p:selectOneMenu id="usuarioInputCompany" 
+                                     value="#{usuarioBacking.usuario.empresa}" 
+                                     rendered="#{sessionBacking.usuario.isAdmGen()}" 
+                                     required="true" 
+                                     filter="true" 
+                                     filterMatchMode="startsWith">
+
                         <f:selectItem itemLabel="#{msg.elegir} " />
                         <f:selectItems value="#{empresaBacking.empresas}" var="emp" itemLabel="#{emp.nombre}" itemValue="#{emp}" />
                     </p:selectOneMenu>
@@ -170,13 +183,11 @@
                 <p:column colspan="2">
                     <p:commandButton value="#{msg.boton_registrar}" 
                                      action="#{usuarioBacking.create()}" 
-                                     update=""
                                      rendered="#{not update}"
                                      styleClass="bg-df-green color-white"/>
 
                     <p:commandButton value="#{msg.usuarios_botonActualizar}" 
                                      action="#{usuarioBacking.update()}" 
-                                     update=""
                                      rendered="#{update}"
                                      styleClass="bg-df-green color-white"/>
 

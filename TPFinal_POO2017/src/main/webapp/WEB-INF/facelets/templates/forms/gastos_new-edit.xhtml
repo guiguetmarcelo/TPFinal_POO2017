@@ -23,33 +23,19 @@
     <c:set var="renderedCBGastosActualizar" value="#{empty renderedCBGastosActualizar ? 'true' : renderedCBGastosActualizar}"
            scope="request" />
 
-    <ui:remove>
-        <c:set var="pageTitle" value="#{empty pageTitle ? 'true' : pageTitle}"
-               scope="request" /> 
-
-        <p:row>
-            <p:column>
-
-            </p:column>
-            <p:column>
-
-            </p:column>
-        </p:row>
-
-    </ui:remove>
-
-
     <h:form>
-        <p:growl id="messages"></p:growl>
+        <p:messages autoUpdate="true" for="gastoInputFecha" closable="true"></p:messages>
+        <p:messages autoUpdate="true" for="gastoInputImporte" closable="true"></p:messages>
+        <p:messages autoUpdate="true" for="gastoInputSubcategoria" closable="true"></p:messages>
 
         <p:panelGrid styleClass="tableBorderOff tableAutoMargin">
 
             <p:row rendered="#{renderedRowGastosFecha}">
                 <p:column>
-                    <p:outputLabel value="#{msg.gastos_fecha}"></p:outputLabel>
+                    <p:outputLabel for="gastoInputFecha" value="#{msg.gastos_fecha}"></p:outputLabel>
                 </p:column>
                 <p:column>
-                    <p:calendar id="input_gastos_fecha" 
+                    <p:calendar id="gastoInputFecha" 
                                 value="#{gastoBacking.gasto.fecha}" 
                                 required="true" 
                                 pattern="dd/MM/yyyy" 
@@ -59,19 +45,24 @@
 
             <p:row rendered="#{renderedRowGastosImporte}">
                 <p:column>
-                    <p:outputLabel value="#{msg.gastos_importe}"></p:outputLabel>
+                    <p:outputLabel for="gastoInputImporte" value="#{msg.gastos_importe}"></p:outputLabel>
                 </p:column>
                 <p:column>
-                    <p:inputNumber value="#{gastoBacking.gasto.importe}"/>
+                    <p:inputNumber id="gastoInputImporte"
+                                   value="#{gastoBacking.gasto.importe}"
+                                   required="true"/>
                 </p:column>
             </p:row>
 
             <p:row rendered="#{renderedRowGastosSubcategoria}">
                 <p:column>
-                    <p:outputLabel for="gastos_subcat" value="#{msg.gastos_subcategoria}"></p:outputLabel>
+                    <p:outputLabel for="gastoInputSubcategoria" value="#{msg.gastos_subcategoria}"></p:outputLabel>
                 </p:column>
                 <p:column>
-                    <p:selectOneMenu id="gastos_subcat" value="#{gastoBacking.gasto.subcategoria}">
+                    <p:selectOneMenu id="gastoInputSubcategoria" 
+                                     value="#{gastoBacking.gasto.subcategoria}"
+                                     required="true">
+
                         <f:selectItems value="#{subcategoriaBacking.subcategorias}" 
                                        var="subcat" 
                                        itemLabel="#{subcat.nombre}" 
@@ -84,13 +75,11 @@
                 <p:column colspan="2">
                     <p:commandButton value="#{msg.boton_registrar}" 
                                      action="#{gastoBacking.create()}" 
-                                     update="messages"
                                      rendered="#{renderedCBGastosRegistrar}"
                                      styleClass="bg-df-green color-white"/>
 
                     <p:commandButton value="#{msg.boton_actualizar}" 
                                      action="#{gastoBacking.update()}" 
-                                     update="messages"
                                      rendered="#{renderedCBGastosActualizar}"
                                      styleClass="bg-df-green color-white"/>
 

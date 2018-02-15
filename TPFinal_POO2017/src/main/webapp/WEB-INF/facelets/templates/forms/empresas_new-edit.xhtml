@@ -12,33 +12,41 @@
            scope="request" /> 
 
     <h:form>
-        <p:growl id="messages"></p:growl>
+        <p:messages autoUpdate="true" for="empresaInputNombre" closable="true"></p:messages>
+        <p:messages autoUpdate="true" for="empresaInputTelefono" closable="true"></p:messages>
+        <p:messages autoUpdate="true" for="empresaInputDescripcion" closable="true"></p:messages>
 
         <p:panelGrid styleClass="tableBorderOff tableAutoMargin">
             <p:row>
                 <p:column>
-                    <p:outputLabel value="#{msg.empresa_nombre} "></p:outputLabel>
+                    <p:outputLabel for="empresaInputNombre" value="#{msg.empresa_nombre} "></p:outputLabel>
                 </p:column>
                 <p:column>
-                    <p:inputText value="#{empresaBacking.empresa.nombre}"/>
-                </p:column>
-            </p:row>
-
-            <p:row>
-                <p:column>
-                    <p:outputLabel value="#{msg.empresa_telefono} "></p:outputLabel>
-                </p:column>
-                <p:column>
-                    <p:inputText value="#{empresaBacking.empresa.telefono}"/>
+                    <p:inputText id="empresaInputNombre" 
+                                 value="#{empresaBacking.empresa.nombre}"
+                                 required="true"/>
                 </p:column>
             </p:row>
 
             <p:row>
                 <p:column>
-                    <p:outputLabel value="#{msg.empresa_descripcion} "></p:outputLabel>
+                    <p:outputLabel for="empresaInputTelefono" value="#{msg.empresa_telefono} "></p:outputLabel>
                 </p:column>
                 <p:column>
-                    <p:inputText value="#{empresaBacking.empresa.descripcion}"/>
+                    <p:inputText id="empresaInputTelefono" 
+                                 value="#{empresaBacking.empresa.telefono}"
+                                 required="false"/>
+                </p:column>
+            </p:row>
+
+            <p:row>
+                <p:column>
+                    <p:outputLabel for="empresaInputDescripcion" value="#{msg.empresa_descripcion} "></p:outputLabel>
+                </p:column>
+                <p:column>
+                    <p:inputText id="empresaInputDescripcion" 
+                                 value="#{empresaBacking.empresa.descripcion}"
+                                 required="true"/>
                 </p:column>
             </p:row>
 
@@ -46,13 +54,11 @@
                 <p:column colspan="2">
                     <p:commandButton value="#{msg.boton_guardar}" 
                                      action="#{empresaBacking.create()}" 
-                                     update="messages"
                                      rendered="#{not update}"
                                      styleClass="bg-df-green color-white"/>
 
                     <p:commandButton value="#{msg.boton_actualizar}" 
                                      action="#{empresaBacking.update()}" 
-                                     update="messages"
                                      rendered="#{update}"
                                      styleClass="bg-df-green color-white"/>
 

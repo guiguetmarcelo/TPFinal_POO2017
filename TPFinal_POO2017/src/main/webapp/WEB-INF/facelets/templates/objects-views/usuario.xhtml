@@ -25,7 +25,7 @@ and open the template in the editor.
         <h:outputText value="Empresa" />
         <h:outputText value="#{usuarioBacking.usuarioSeleccionado.empresa.nombre}" />
 
-        <h:outputText value="Rol" />
-        <h:outputText value="#{usuarioBacking.usuarioSeleccionado.rol}" />
+        <h:outputText value="Rol" rendered="#{sessionBacking.usuario.isAdmGen}"/>
+        <h:outputText value="#{usuarioBacking.usuarioSeleccionado.rol}" rendered="#{sessionBacking.usuario.isAdmGen}" />
     </p:panelGrid>
 </html>

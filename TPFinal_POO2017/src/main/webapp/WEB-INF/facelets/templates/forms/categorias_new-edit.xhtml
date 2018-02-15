@@ -13,24 +13,31 @@
            scope="request" /> 
 
     <h:form>
-        <p:growl id="messages"></p:growl>
+        
+        <p:messages autoUpdate="true" for="categoriaInputNombre" closable="true"></p:messages>
+        <p:messages autoUpdate="true" for="categoriaInputDescripcion" closable="true"></p:messages>
 
         <p:panelGrid styleClass="tableBorderOff tableAutoMargin">
+            
             <p:row>
                 <p:column>
-                    <p:outputLabel value="#{msg.usuarios_nombre}"></p:outputLabel>
+                    <p:outputLabel for="categoriaInputNombre" value="#{msg.categorias_nombre}"></p:outputLabel>
                 </p:column>
                 <p:column>
-                    <p:inputText value="#{categoriaBacking.categoria.nombre}"/>
+                    <p:inputText id="categoriaInputNombre" 
+                                 value="#{categoriaBacking.categoria.nombre}"
+                                 required="true"/>
                 </p:column>
             </p:row>
 
             <p:row>
                 <p:column>
-                    <p:outputLabel value="#{msg.descripcion}"></p:outputLabel>
+                    <p:outputLabel for="categoriaInputDescripcion" value="#{msg.descripcion}"></p:outputLabel>
                 </p:column>
                 <p:column>
-                    <p:inputText value="#{categoriaBacking.categoria.descripcion}"/>
+                    <p:inputText id="categoriaInputDescripcion" 
+                                 value="#{categoriaBacking.categoria.descripcion}"
+                                 required="true"/>
                 </p:column>
             </p:row>
 
@@ -38,13 +45,11 @@
                 <p:column colspan="2">
                     <p:commandButton value="#{msg.boton_guardar}" 
                                      action="#{categoriaBacking.create()}" 
-                                     update="messages"
                                      rendered="#{not update}"
                                      styleClass="bg-df-green color-white"/>
                     
                     <p:commandButton value="#{msg.boton_actualizar}" 
                                      action="#{categoriaBacking.update()}" 
-                                     update="messages"
                                      rendered="#{update}"
                                      styleClass="bg-df-green color-white"/>
 
