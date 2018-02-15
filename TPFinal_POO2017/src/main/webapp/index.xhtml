@@ -9,7 +9,7 @@
       xmlns:unnoba="http://unnoba.edu.ar/poo2017/functions">
 
     <ui:composition template="/WEB-INF/facelets/templates/estructura.xhtml">
-        <ui:param name="pageTitle" value="Home title"></ui:param>
+        <ui:param name="pageTitle" value="#{msg.sistema}"></ui:param>
 
         <ui:define name="content">
 
@@ -47,9 +47,9 @@
                                 <!-- <h6 class="card-subtitle mb-2 text-muted">Detalles</h6>-->
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item"><strong>#{msg.usuarios_nombre}: </strong>#{sessionBacking.empresa.nombre}</li>
-                                    <li class="list-group-item"><strong>#{msg.telefono}: </strong>#{sessionBacking.empresa.telefono}</li>  
+                                    <li class="list-group-item"><strong>#{msg.telefono}: </strong>#{sessionBacking.empresa.telefono}</li>
+                                    <li class="list-group-item"><strong>#{msg.descripcion}: </strong>#{sessionBacking.empresa.descripcion}</li>  
                                 </ul>
-                                <p class="card-text">#{sessionBacking.empresa.descripcion}</p>
                             </div>
                         </div>
                     </div>

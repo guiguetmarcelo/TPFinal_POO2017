@@ -22,7 +22,7 @@
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                              rowsPerPageTemplate="5,10,15"
                              styleClass="table-listado-yellow"
-                             emptyMessage="No hay elementos" 
+                             emptyMessage="#{msg.reporte_vacio}" 
                              filteredValue="#{presupuestoBacking.presupuestosFiltrados}"
                              widgetVar="presupuestosDT">
 
@@ -32,7 +32,7 @@
                               filterMatchMode="in">
 
                         <f:facet name="filter">
-                            <p:selectCheckboxMenu label="Periodos"  
+                            <p:selectCheckboxMenu label="#{msg.periodos}"  
                                                   filter="true" filterMatchMode="contains">
                                 <f:selectItems value="#{periodoBacking.periodos}" 
                                                var="periodo" 
@@ -62,7 +62,7 @@
                               filterMatchMode="in">
 
                         <f:facet name="filter">
-                            <p:selectCheckboxMenu label="Subcategorias"  
+                            <p:selectCheckboxMenu label="#{msg.menu_categoriasSubcategorias}"  
                                                   filter="true" filterMatchMode="contains">
                                 <f:selectItems value="#{subcategoriaBacking.subcategorias}" 
                                                var="subcat" 
