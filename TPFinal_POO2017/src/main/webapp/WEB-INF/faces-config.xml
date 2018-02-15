@@ -8,6 +8,10 @@
         <phase-listener>ar.edu.unnoba.poo2017.tpfinal_poo2017.auth.AuthorizationListener</phase-listener>
     </lifecycle>
     
+    <converter>
+        <converter-for-class>java.lang.Enum</converter-for-class>
+        <converter-class>javax.faces.convert.EnumConverter</converter-class>
+    </converter>
     <application>
         
         <locale-config>

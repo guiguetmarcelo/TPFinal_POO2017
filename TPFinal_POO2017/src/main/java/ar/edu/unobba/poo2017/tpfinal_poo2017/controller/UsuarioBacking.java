@@ -166,6 +166,9 @@ public class UsuarioBacking implements Serializable {
         }
         return items;
     }
+    public RolUsuario[] getRolesSelectMany2() {
+    return RolUsuario.values();
+  }
 
     public RolUsuario rolAdmEmp(){
         return RolUsuario.ADMINISTRADOR_EMPRESA;

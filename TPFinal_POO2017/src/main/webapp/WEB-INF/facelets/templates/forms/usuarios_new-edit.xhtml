@@ -93,7 +93,7 @@
                                     feedback="true"
                                     required="true"
                                     validatorMessage="Las contraseñas no coinciden"
-                                    match="newUserInputPassword2"/>
+                                    match="usuarioInputPassword2"/>
                     </p:fragment> 
                 </p:column>
             </p:row>
@@ -155,7 +155,7 @@
                                      autoWidth="false">
 
                   
-                        <f:selectItems value="#{usuarioBacking.rolesSelectMany}" itemLabel="asdafaf"  />
+                        <f:selectItems value="#{usuarioBacking.rolesSelectMany2}" var="rol" itemLabel="#{usuarioBacking.rolToString(rol)}" itemValue="#{rol}" />
                       <!--  <f:selectItems value="#{usuarioBacking.rolesSelectMany}" var="rol" itemLabel="#{rol}" itemValue="#{rol}" />-->
                         
                         <p:ajax update="inputCompany labelCompany"/>
