@@ -1,7 +1,6 @@
 package ar.edu.unnoba.poo2017.tpfinal_poo2017.model;
 
 
-
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;

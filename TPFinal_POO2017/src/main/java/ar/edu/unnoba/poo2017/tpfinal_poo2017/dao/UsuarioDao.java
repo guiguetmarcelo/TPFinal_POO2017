@@ -10,7 +10,9 @@ import javax.persistence.Query;
 
 /**
  *
- * @author jpgm
+ * @author Marcelo
+ * @author Sebastian
+ * 
  */
 @Stateless
 public class UsuarioDao extends AbstractDAO<Usuario> {

@@ -13,6 +13,7 @@ import javax.faces.convert.FacesConverter;
 /**
  *
  * @author Sebastian
+ * 
  */
 @FacesConverter(forClass=Empresa.class)
 public class EmpresaConverter extends AbstractConverter<Empresa>{

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ar.edu.unobba.poo2017.tpfinal_poo2017.controller;
 
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.bundle.MessagesBundle;
@@ -25,6 +21,7 @@ import org.primefaces.context.RequestContext;
 /**
  *
  * @author jpgm
+ * @author Sebastian
  * @author Marcelo
  */
 @SessionScoped
@@ -49,20 +46,9 @@ public class SessionBacking implements Serializable {
     //private MessagesProducer h;
     @PostConstruct
     public void init() {
+        setUsuario(null);
     }
-
-    /*
-    public String login() {
-        this.usuario = usuarioDao.getUsuarioActivo(this.username, this.password, this.empresa);
-        if (this.usuario == null) {
-            FacesContext context = FacesContext.getCurrentInstance();
-            FacesMessage message = new FacesMessage(msg.getString("usuarios_loginUCIncorrectos"));
-            context.addMessage(null, message);
-            return null;
-        }
-        return "/index?faces-redirect=true";
-    }*/
-    
+  
     public String login() {
         setUsuario(usuarioDao.getUsuarioActivo(getEmail()));
         if (getUsuario() != null && BCrypt.checkpw(getPassword(), getUsuario().getPassword())) {

@@ -28,9 +28,6 @@ public class PresupuestoDao extends AbstractDAO<Presupuesto> {
         super(Presupuesto.class);
     }
     
-    @Inject
-    private SessionBacking sessionBacking;
-    
     public List<Presupuesto> getPresupuestos(Empresa empresa){
         Query query = em.createNamedQuery("presupuestos.disponibles").setParameter("empresa", empresa);
         return query.getResultList();

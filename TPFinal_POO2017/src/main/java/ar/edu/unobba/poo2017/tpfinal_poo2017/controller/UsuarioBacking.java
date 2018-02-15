@@ -109,20 +109,6 @@ public class UsuarioBacking implements Serializable {
         context.addMessage("msgUsuario", message);
     }
 
-    public String delete1(Usuario usuario) {
-        if (!usuario.equals(session.getUsuario())) {
-            usuarioDao.delete(usuario);
-            FacesContext context = FacesContext.getCurrentInstance();
-            FacesMessage message = new FacesMessage(msg.getString("usuarios_eliminarASiMismo"));
-            context.addMessage(null, message);
-
-            return null;
-        } else {
-            return null;
-        }
-
-    }
-
     public Usuario getUsuario() {
         return usuario;
     }

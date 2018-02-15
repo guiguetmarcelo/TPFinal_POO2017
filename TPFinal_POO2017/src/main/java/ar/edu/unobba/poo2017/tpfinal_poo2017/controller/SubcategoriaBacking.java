@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ar.edu.unobba.poo2017.tpfinal_poo2017.controller;
 
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.bundle.MessagesProducer;
@@ -36,8 +32,8 @@ public class SubcategoriaBacking implements Serializable {
 
     @PostConstruct
     public void init() {
-        this.subcategoria = new Subcategoria();
-        this.subcategoria.setEmpresa(sessionBacking.getUsuario().getEmpresa());
+        setSubcategoria(new Subcategoria());
+        getSubcategoria().setEmpresa(sessionBacking.getUsuario().getEmpresa());
     }
 
     @EJB
@@ -58,7 +54,7 @@ public class SubcategoriaBacking implements Serializable {
 
     public String create() {
         try {
-            subcategoriaDao.create(subcategoria);
+            subcategoriaDao.create(getSubcategoria());
 
             return "/subcategorias/index?faces-redirect=true";
         } catch (Exception e) {

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ar.edu.unobba.poo2017.tpfinal_poo2017.controller;
 
 import ar.edu.unnoba.poo2017.tpfinal_poo2017.bundle.MessagesProducer;
@@ -29,37 +24,36 @@ import org.eclipse.persistence.exceptions.DatabaseException;
 public class PeriodoBacking implements Serializable {
 
     private static final long serialVersionUID = -6161957923995873981L;
-    
+
     private Periodo periodo;
     private List<Periodo> listPeriodos;
     private List<Periodo> periodosFiltrados;
-    
+
     @PostConstruct
-    public void init(){
-        this.periodo = new Periodo();
-        this.periodo.setEmpresa(sessionBacking.getUsuario().getEmpresa());
+    public void init() {
+        setPeriodo(new Periodo());
+        getPeriodo().setEmpresa(sessionBacking.getUsuario().getEmpresa());
     }
-    
+
     @EJB
     private PeriodoDao periodoDao;
-    
+
     @Inject
     private SessionBacking sessionBacking;
-    
-    
+
     @Inject
     private MessagesProducer msg;
-    
-    public List<Periodo> getPeriodos(){
-        if(getListPeriodos() == null){
+
+    public List<Periodo> getPeriodos() {
+        if (getListPeriodos() == null) {
             setListPeriodos(periodoDao.getPeriodos(sessionBacking.getEmpresa()));
-        } 
+        }
         return getListPeriodos();
     }
-    
-    public String create(){
-        try{
-            periodoDao.create(periodo);
+
+    public String create() {
+        try {
+            periodoDao.create(getPeriodo());
             return "/periodos/index?faces-redirect=true";
         } catch (Exception e) {
             FacesContext context = FacesContext.getCurrentInstance();
@@ -69,35 +63,35 @@ public class PeriodoBacking implements Serializable {
             return null;
         }
     }
-    public String update(){
-        try{
-            periodoDao.update(periodo);
+
+    public String update() {
+        try {
+            periodoDao.update(getPeriodo());
             return "/periodos/index?faces-redirect=true";
-        }catch(Exception e){
-                        FacesContext context = FacesContext.getCurrentInstance();
+        } catch (Exception e) {
+            FacesContext context = FacesContext.getCurrentInstance();
             FacesMessage message;
             message = new FacesMessage(msg.getString("error_actualizar"));
             context.addMessage("msgPeriodo", message);
-            
+
             return null;
         }
     }
-    
-    public void delete(Periodo periodo){
-        
-        try{
-        periodoDao.delete(periodo);
-        setListPeriodos(null);
-        
- 
+
+    public void delete(Periodo periodo) {
+
+        try {
+            periodoDao.delete(periodo);
+            setListPeriodos(null);
+
         } catch (EJBException e) {
             FacesContext context = FacesContext.getCurrentInstance();
             FacesMessage message;
             message = new FacesMessage(msg.getString("periodo_enuso"));
             context.addMessage("msgPeriodo", message);
-            
-        }catch(Exception e){
-            
+
+        } catch (Exception e) {
+
         }
     }
 
@@ -106,7 +100,7 @@ public class PeriodoBacking implements Serializable {
     }
 
     public void setPeriodo(Periodo periodo) {
-        this.periodo=periodo;
+        this.periodo = periodo;
     }
 
     private List<Periodo> getListPeriodos() {
@@ -116,8 +110,6 @@ public class PeriodoBacking implements Serializable {
     private void setListPeriodos(List<Periodo> listPeriodos) {
         this.listPeriodos = listPeriodos;
     }
-    
-    
 
     public List<Periodo> getPeriodosFiltrados() {
         return periodosFiltrados;
@@ -126,6 +118,5 @@ public class PeriodoBacking implements Serializable {
     public void setPeriodosFiltrados(List<Periodo> periodosFiltrados) {
         this.periodosFiltrados = periodosFiltrados;
     }
-    
-  
+
 }

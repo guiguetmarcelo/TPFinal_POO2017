@@ -14,6 +14,7 @@ import javax.persistence.MappedSuperclass;
 /**
  *
  * @author Marcelo
+ * @author Sebastian
  */
 
 @MappedSuperclass
