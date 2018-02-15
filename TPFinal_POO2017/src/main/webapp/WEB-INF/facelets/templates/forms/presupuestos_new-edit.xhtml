@@ -62,13 +62,11 @@
                 <p:column colspan="2">
                     <p:commandButton value="#{msg.boton_registrar}" 
                                      action="#{presupuestoBacking.create()}" 
-                                     update="messages"
                                      rendered="#{not update}"
                                      styleClass="bg-df-green color-white"/>
 
                     <p:commandButton value="#{msg.usuarios_botonActualizar}" 
                                      action="#{presupuestoBacking.update()}" 
-                                     update="messages"
                                      rendered="#{update}"
                                      styleClass="bg-df-green color-white"/>
 
